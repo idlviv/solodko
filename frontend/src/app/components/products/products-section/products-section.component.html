@@ -1,0 +1,8 @@
+<p>
+  products-section works!
+</p>
+<div class="row">
+  <div *ngFor="let product of products" class="col-lg-3 col-md-4 col-6">
+    <app-item [product]="product"></app-item>
+  </div>
+</div>

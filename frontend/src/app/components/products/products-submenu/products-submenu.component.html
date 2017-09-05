@@ -1,0 +1,24 @@
+
+<nav class="breadcrumb">
+
+  <!--<li class="breadcrumb-item"> <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"-->
+       <!--[routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/main',-->
+        <!--productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}</a> <span class="divider">></span> </li>-->
+  <!--<li class="breadcrumb-item" *ngFor="let submenuItem of submenuList; let i = index" >-->
+    <!--<a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"-->
+       <!--[routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem,-->
+        <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem}}]">{{submenuItem}}</a></li>-->
+
+  <!--<span class="divider">></span>-->
+
+  <a class="breadcrumb-item active" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+     [routerLink]="['/products', {outlets: {primary: 'start/' + category0 + '/main',
+    productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}></a>
+
+
+  <a class="breadcrumb-item" *ngFor="let submenuItem of submenuList; let i = index"
+    [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+    [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
+    productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>
+
+</nav>

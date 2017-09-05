@@ -1,0 +1,12 @@
+<p>
+  products-management-submenu works!
+</p>
+
+<div>
+
+  <div class="list-group">
+      <a class="list-group-item list-group-item-action" *ngFor="let item of menuList"
+         [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/products-management', {outlets: {primary: item.route}}]">{{item.name}}></a>
+  </div>
+</div>
