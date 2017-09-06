@@ -9,15 +9,22 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/']">Home</a></li>
-      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/toys/main',
-           productsSubmenu: 'category/toys/main'}}]">Toys</a></li>
-      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/flowers/main',
-           productsSubmenu: 'category/flowers/main'}}]">Flowers</a></li>
-      <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/букети/main',
-           productsSubmenu: 'category/букети/main'}}]">Букети</a></li>
+      <li *ngFor="let catalogItem of localCatalog" class="nav-item" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link"
+           [routerLink]="['/products', {outlets: {primary: catalogItem.category0.category1 ?
+            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/main',
+           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]">
+          {{catalogItem.category0.name}}</a></li>
+      <!--<li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/toys/main',-->
+           <!--productsSubmenu: 'category/toys/main'}}]">Toys</a></li>-->
+      <!--<li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/flowers/main',-->
+           <!--productsSubmenu: 'category/flowers/main'}}]">Flowers</a></li>-->
+      <!--<li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link" [routerLink]="['/products', {outlets: {primary: 'start/букети/main',-->
+           <!--productsSubmenu: 'category/букети/main'}}]">Букети</a></li>-->
 
     </ul>
     <ul class="nav navbar-nav navbar-right">

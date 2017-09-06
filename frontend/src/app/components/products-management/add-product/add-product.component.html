@@ -17,7 +17,7 @@
         <div class="form-group row">
          <label class="col-md-4" for="category1">Підкатегорія</label>
           <select class="form-control form-control-sm custom-select col-md-8"  id="category1"
-                  required [disabled]="!category0"
+                  [required]="isCategory1" [disabled]="!category0 || !isCategory1"
                   [(ngModel)]="category1" name="category1">
             <option *ngFor="let catalogItem of catalogCategory1" [value]="catalogItem.name">
               {{catalogItem.name}}</option>

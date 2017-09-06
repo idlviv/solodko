@@ -23,7 +23,6 @@ export class CatalogService {
   getQueriedCatalog(params) {
     for(let i = 0; i < localCatalog.length; i++){
       if (params.category0 === localCatalog[i].category0.name) {
-        console.log('catalog.service', localCatalog[i].category0.category1);
         return localCatalog[i].category0.category1;
       }
     }

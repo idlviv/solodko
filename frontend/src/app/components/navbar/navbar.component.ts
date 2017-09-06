@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
+import {CatalogService} from '../../services/catalog.service';
+import {ICatalog} from '../../interfaces/i-catalog';
 
 @Component({
   selector: 'app-navbar',
@@ -9,16 +11,17 @@ import {Router} from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  userName: Object;
-
+  localCatalog: ICatalog[];
 
   constructor(
     public authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
+    private catalogService: CatalogService
   ) {}
 
   ngOnInit() {
+    this.localCatalog = this.catalogService.getCatalog();
   }
 
   onLogoutClick() {

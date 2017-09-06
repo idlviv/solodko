@@ -2,7 +2,7 @@ export interface ICatalog {
   _id: string;
   category0: {
     name: string;
-    category1: [{
+    category1?: [{
       name: string,
       description: string,
       mainImgSrc: string[],

@@ -20,6 +20,7 @@ export class AddProductComponent implements OnInit {
   product: IProduct;
   catalog: ICatalog[];
   catalogCategory1: any;
+  isCategory1: boolean = false;
 
   @Output() updateProducts = new EventEmitter();
 
@@ -40,28 +41,54 @@ export class AddProductComponent implements OnInit {
     console.log(event.srcElement.value);
     for (let i = 0; i < this.catalog.length; i++) {
       if (this.catalog[i].category0.name === event.srcElement.value) {
-        this.catalogCategory1 = this.catalog[i].category0.category1;
+        if (this.catalog[i].category0.category1) {
+          this.catalogCategory1 = this.catalog[i].category0.category1;
+          this.isCategory1 = true;
+        } else {
+        this.isCategory1 = false;
+        document.querySelector('#category1').value='';
       }
+    }
+    console.log('this.isCategory1', this.isCategory1);
     }
   }
 
   onAddProductSubmit(form: NgForm) {
 console.log('form.value.showOnMainPage', form.value.showOnMainPage);
-    const product: IProduct = {
-      category0: form.value.category0,
-      category1: form.value.category1,
-      itemNumber: form.value.itemNumber,
-      name: form.value.name,
-      price: form.value.price || false,
-      mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
-      itemDescription: form.value.itemDescription,
-      showOnMainPage: form.value.showOnMainPage || false,
-      discount: form.value.discount || false,
-      size: {
-        width: form.value.width || false,
-        height: form.value.height || false
-      },
-    };
+    if (this.isCategory1) {
+      const product: IProduct = {
+        category0: form.value.category0,
+        category1: form.value.category1,
+        itemNumber: form.value.itemNumber,
+        name: form.value.name,
+        price: form.value.price || false,
+        mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
+        itemDescription: form.value.itemDescription,
+        showOnMainPage: form.value.showOnMainPage || false,
+        discount: form.value.discount || false,
+        size: {
+          width: form.value.width || false,
+          height: form.value.height || false
+        },
+      };
+    } else {
+      const product: IProduct = {
+        category0: form.value.category0,
+        category1: null,
+        itemNumber: form.value.itemNumber,
+        name: form.value.name,
+        price: form.value.price || false,
+        mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
+        itemDescription: form.value.itemDescription,
+        showOnMainPage: form.value.showOnMainPage || false,
+        discount: form.value.discount || false,
+        size: {
+          width: form.value.width || false,
+          height: form.value.height || false
+        },
+      };
+    }
+
     console.log(product);
 
     if (!this.validateService.validateProduct(product)) {
