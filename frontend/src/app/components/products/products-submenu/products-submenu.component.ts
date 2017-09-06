@@ -38,21 +38,37 @@ export class ProductsSubmenuComponent implements OnInit {
 
   ngOnInit() {
     this.route.params
-      .switchMap(params => {
+      .subscribe(params => {
         this.category0 = params.category0;
         this.category1 = params.category1;
-        return this.catalogService.getQueriedCatalog(params);
-      })
-      .subscribe(submenuList => this.submenuList = submenuList,
-        (error) => {
-          this.flashMessage.show(
-            error,
-            {
-              cssClass: 'alert-danger',
-              timeout: 3000
-            });
-          return false;
-        });
+        this.submenuList = this.catalogService.getQueriedCatalog(params);
+      },
+      (error) => {
+        this.flashMessage.show(
+          error,
+          {
+            cssClass: 'alert-danger',
+            timeout: 3000
+          });
+        return false;
+      });
+
+    // this.route.params
+    //   .switchMap(params => {
+    //     this.category0 = params.category0;
+    //     this.category1 = params.category1;
+    //     return this.catalogService.getQueriedCatalog(params);
+    //   })
+    //   .subscribe(submenuList => this.submenuList = submenuList,
+    //     (error) => {
+    //       this.flashMessage.show(
+    //         error,
+    //         {
+    //           cssClass: 'alert-danger',
+    //           timeout: 3000
+    //         });
+    //       return false;
+    //     });
   }
 }
 

@@ -15,20 +15,20 @@ export class AppComponent implements OnInit {
               private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {
-    this.catalogService.getCatalog()
-      .subscribe(
-          catalog => {
-            console.log('app catalog ', catalog);
-            return this.catalog = catalog
-              ;},
-          (error) => {
-            this.flashMessage.show(
-              error,
-              {
-                cssClass: 'alert-danger',
-                timeout: 3000
-              });
-            return false;
-          });
+    // this.catalogService.getCatalog()
+    //   .subscribe(
+    //       catalog => {
+    //         console.log('app catalog ', catalog);
+    //         return this.catalog = catalog
+    //           ;},
+    //       (error) => {
+    //         this.flashMessage.show(
+    //           error,
+    //           {
+    //             cssClass: 'alert-danger',
+    //             timeout: 3000
+    //           });
+    //         return false;
+    //       });
   }
 }

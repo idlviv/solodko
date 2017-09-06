@@ -15,7 +15,6 @@ module.exports = function(passport) {
   opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
   // Друга опція secret береться з конфіга
   opts.secretOrKey = config.get('MONGOOSE_SECRET');
-
   // При кожному passport.authenticate створюється новий екземпляр стратегії
   // туда передається JWT token і secret
   // з токена на основі секрета виділяється юзер

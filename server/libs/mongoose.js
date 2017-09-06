@@ -16,7 +16,7 @@ mongoose.connect(db, {useMongoClient: true})
       console.error('Error ' + err);
       // process.exit(1);
     })
-    .catch(err => {
+  .catch(err => {
       console.log('Який з обробчиків помилок ловить? (catch)');
       console.error('Failed to connect to db ');
       console.error('Error ' + err);

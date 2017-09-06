@@ -51,7 +51,6 @@ module.exports.comparePassword = function(candidatePassword, hash) {
   });
 };
 
-
 module.exports.addUser = function(newUser) {
   return new Promise(function(resolve, reject) {
     // хешує пароль, і записує вже хешований в user.password
@@ -66,5 +65,3 @@ module.exports.addUser = function(newUser) {
       .catch((error) => {throw error;});
   });
 };
-
-

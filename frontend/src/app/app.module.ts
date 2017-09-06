@@ -17,7 +17,6 @@ import {ProductsManagementModule} from './components/products-management/product
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
-import {CatalogResolverService} from './services/catalog-resolver.service';
 import {CatalogService} from './services/catalog.service';
 import {ValidateService} from './services/validate.service';
 
@@ -44,7 +43,6 @@ import {ValidateService} from './services/validate.service';
   providers: [
     MyUrlSerializer,
     CatalogService,
-    CatalogResolverService,
     ProductService,
     ProductResolverService,
     ValidateService,

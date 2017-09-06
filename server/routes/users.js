@@ -35,7 +35,7 @@ router.post('/authenticate', function(req, res, next) {
       UserModel.comparePassword(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
-            const token = jwt.sign(user, config.get('mongoose:secret'), {
+            const token = jwt.sign(user, config.get('MONGOOSE_SECRET'), {
               expiresIn: 604800 //1 week
             });
             res.json({
@@ -68,8 +68,8 @@ router.get(
     res.json({user: req.user});
   });
 
-router.get('/validate', function(req, res, next) {
-  res.json({user: req.user});
-});
+// router.get('/validate', function(req, res, next) {
+//   res.json({user: req.user});
+// });
 
 module.exports = router;

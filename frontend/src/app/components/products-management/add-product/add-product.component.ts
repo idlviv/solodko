@@ -33,8 +33,7 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.catalogService.getCatalog()
-      .subscribe(catalog => this.catalog = catalog);
+    this.catalog = this.catalogService.getCatalog();
   }
 
   onSelectCategory0(event) {

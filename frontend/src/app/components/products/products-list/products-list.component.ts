@@ -33,12 +33,12 @@ export class ProductsListComponent implements OnInit {
   ngOnInit() {
 
     this.route.params
-      .switchMap(params => {
-        this.category0 = params.category0;
-        this.category1 = params.category1;
-        return this.catalogService.getQueriedCatalog(params);
-      })
-      .subscribe(submenuList => this.submenuList = submenuList,
+      .subscribe(params => {
+          this.category0 = params.category0;
+          this.category1 = params.category1;
+          this.submenuList = this.catalogService.getQueriedCatalog(params);
+
+        },
         (error) => {
           this.flashMessage.show(
             error,
@@ -48,18 +48,24 @@ export class ProductsListComponent implements OnInit {
             });
           return false;
         });
-    // this.catalog = this.appComponent.catalog;
-    // this.route.params.subscribe(params => {
-    //
-    //   this.category0 = params.category0;
-    //   this.category1 = params.category1;
-    //
-    //   this.catalog.forEach((value) => {
-    //     if (params.category0 === value.category0.name) {
-    //       this.submenuList = value.category0.category1;
-    //     }
-    //   });
-    // });
+
+    // this.route.params
+    //   .switchMap(params => {
+    //     this.category0 = params.category0;
+    //     this.category1 = params.category1;
+    //     return this.catalogService.getQueriedCatalog(params);
+    //   })
+    //   .subscribe(submenuList => this.submenuList = submenuList,
+    //     (error) => {
+    //       this.flashMessage.show(
+    //         error,
+    //         {
+    //           cssClass: 'alert-danger',
+    //           timeout: 3000
+    //         });
+    //       return false;
+    //     });
+
   }
 
 }
