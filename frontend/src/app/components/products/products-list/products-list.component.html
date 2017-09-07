@@ -1,12 +1,8 @@
-<p>
-  products-list works!
-</p>
-
 <div class="row">
   <div class="col-lg-3 col-md-4 col-6" *ngFor="let submenuItem of submenuList">
     <div>{{submenuItem.description}}</div>
     <hr>
-    <img src={{submenuItem.mainImgSrc[0]}} class="img-fluid img-thumbnail">
+    <img src={{submenuItem.mainImgSrc[0]}} class="img-fluid">
     <hr>
     <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
        [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,

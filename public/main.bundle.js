@@ -370,7 +370,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home-section/home-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<p>\r\n  home-section works!\r\n</p>\r\n\r\n<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -453,7 +453,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-9\">\r\n    <h1>Main</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-sm-3\">\r\n    <h2>Side menu</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-9\">\r\n    <h1>Майстерня</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-sm-3\">\r\n    <h2>Опис</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -581,7 +581,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/side-menu/side-menu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  side-menu works!\r\n</p>\r\n<div class=\"jumbotron\">\r\n  <h3>Hello, world!</h3>\r\n  <p>..</p>\r\n</div>\r\n"
+module.exports = "<div class=\"jumbotron\">\r\n  <h3>Про майстерню творчості</h3>\r\n  <p>..</p>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -642,7 +642,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}", ""]);
 
 // exports
 
@@ -1426,7 +1426,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-list/products-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  products-list works!\r\n</p>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-lg-3 col-md-4 col-6\" *ngFor=\"let submenuItem of submenuList\">\r\n    <div>{{submenuItem.description}}</div>\r\n    <hr>\r\n    <img src={{submenuItem.mainImgSrc[0]}} class=\"img-fluid img-thumbnail\">\r\n    <hr>\r\n    <a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n       [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n      productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-3 col-md-4 col-6\" *ngFor=\"let submenuItem of submenuList\">\r\n    <div>{{submenuItem.description}}</div>\r\n    <hr>\r\n    <img src={{submenuItem.mainImgSrc[0]}} class=\"img-fluid\">\r\n    <hr>\r\n    <a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n       [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n      productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1605,7 +1605,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-section/products-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  products-section works!\r\n</p>\r\n<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1695,7 +1695,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-submenu/products-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<nav class=\"breadcrumb\">\r\n\r\n  <!--<li class=\"breadcrumb-item\"> <a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"-->\r\n       <!--[routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/main',-->\r\n        <!--productsSubmenu:  'category/' + category0 + '/main'}}]\">{{category0}}</a> <span class=\"divider\">></span> </li>-->\r\n  <!--<li class=\"breadcrumb-item\" *ngFor=\"let submenuItem of submenuList; let i = index\" >-->\r\n    <!--<a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"-->\r\n       <!--[routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem,-->\r\n        <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem}}]\">{{submenuItem}}</a></li>-->\r\n\r\n  <!--<span class=\"divider\">></span>-->\r\n\r\n  <a class=\"breadcrumb-item active\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n     [routerLink]=\"['/products', {outlets: {primary: 'start/' + category0 + '/main',\r\n    productsSubmenu:  'category/' + category0 + '/main'}}]\">{{category0}}></a>\r\n\r\n\r\n  <a class=\"breadcrumb-item\" *ngFor=\"let submenuItem of submenuList; let i = index\"\r\n    [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n    [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n    productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n\r\n</nav>\r\n"
+module.exports = "<nav class=\"breadcrumb\">\r\n\r\n  <!--<li class=\"breadcrumb-item\"> <a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"-->\r\n       <!--[routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/main',-->\r\n        <!--productsSubmenu:  'category/' + category0 + '/main'}}]\">{{category0}}</a> <span class=\"divider\">></span> </li>-->\r\n  <!--<li class=\"breadcrumb-item\" *ngFor=\"let submenuItem of submenuList; let i = index\" >-->\r\n    <!--<a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"-->\r\n       <!--[routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem,-->\r\n        <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem}}]\">{{submenuItem}}</a></li>-->\r\n\r\n  <!--<span class=\"divider\">></span>-->\r\n\r\n  <a class=\"breadcrumb-item active\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n     [routerLink]=\"['/products', {outlets: {primary: 'start/' + category0 + '/main',\r\n    productsSubmenu:  'category/' + category0 + '/main'}}]\">{{category0}}></a>\r\n\r\n\r\n  <a class=\"breadcrumb-item\" *ngFor=\"let submenuItem of submenuList; let i = index\"\r\n    [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n    [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n    productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -2535,18 +2535,18 @@ var localCatalog = [
             category1: [
                 {
                     name: 'букети з квітів',
-                    description: 'sdfsdfsdfsdfsdfsdf',
-                    mainImgSrc: ['./assets/samples/200x300.png'],
+                    description: 'Живі квіти',
+                    mainImgSrc: ['./assets/images/composition-flowers_wedding-pion.jpg'],
                 },
                 {
                     name: 'букети з цукерок',
                     description: 'Цукерки, декоративні елементи',
-                    mainImgSrc: ['./assets/samples/200x300.png'],
+                    mainImgSrc: ['./assets/images/composition-sweets_delicacy.jpg'],
                 },
                 {
                     name: 'букети з фруктів',
-                    description: 'sdfsdfsdfsdfsdfsdf',
-                    mainImgSrc: ['./assets/samples/200x300.png'],
+                    description: 'Фрукти, овочі та зелень',
+                    mainImgSrc: ['./assets/images/composition-veg-fr_with-pepper.jpg'],
                 }
             ],
         }

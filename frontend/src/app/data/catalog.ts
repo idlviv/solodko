@@ -24,18 +24,18 @@ export const localCatalog: ICatalog[] = [
           [
             {
               name: 'букети з квітів',
-              description: 'sdfsdfsdfsdfsdfsdf',
-              mainImgSrc: ['./assets/samples/200x300.png'],
+              description: 'Живі квіти',
+              mainImgSrc: ['./assets/images/composition-flowers_wedding-pion.jpg'],
             },
             {
               name: 'букети з цукерок',
               description: 'Цукерки, декоративні елементи',
-              mainImgSrc: ['./assets/samples/200x300.png'],
+              mainImgSrc: ['./assets/images/composition-sweets_delicacy.jpg'],
             },
             {
               name: 'букети з фруктів',
-              description: 'sdfsdfsdfsdfsdfsdf',
-              mainImgSrc: ['./assets/samples/200x300.png'],
+              description: 'Фрукти, овочі та зелень',
+              mainImgSrc: ['./assets/images/composition-veg-fr_with-pepper.jpg'],
             }
           ],
       }
