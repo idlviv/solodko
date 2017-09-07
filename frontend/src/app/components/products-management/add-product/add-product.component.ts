@@ -46,7 +46,8 @@ export class AddProductComponent implements OnInit {
           this.isCategory1 = true;
         } else {
         this.isCategory1 = false;
-        document.querySelector('#category1').value='';
+        const category1Element = document.querySelector('#category1');
+        category1Element.nodeValue = '';
       }
     }
     console.log('this.isCategory1', this.isCategory1);
@@ -56,13 +57,13 @@ export class AddProductComponent implements OnInit {
   onAddProductSubmit(form: NgForm) {
 console.log('form.value.showOnMainPage', form.value.showOnMainPage);
     if (this.isCategory1) {
-      const product: IProduct = {
+      this.product = {
         category0: form.value.category0,
         category1: form.value.category1,
         itemNumber: form.value.itemNumber,
         name: form.value.name,
         price: form.value.price || false,
-        mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
+        mainImgSrc: form.value.mainImgSrc || './assets/samples/240x180.png',
         itemDescription: form.value.itemDescription,
         showOnMainPage: form.value.showOnMainPage || false,
         discount: form.value.discount || false,
@@ -72,9 +73,9 @@ console.log('form.value.showOnMainPage', form.value.showOnMainPage);
         },
       };
     } else {
-      const product: IProduct = {
+      this.product = {
         category0: form.value.category0,
-        category1: null,
+        category1: 'noSubCategories',
         itemNumber: form.value.itemNumber,
         name: form.value.name,
         price: form.value.price || false,
@@ -89,9 +90,9 @@ console.log('form.value.showOnMainPage', form.value.showOnMainPage);
       };
     }
 
-    console.log(product);
+    console.log(this.product);
 
-    if (!this.validateService.validateProduct(product)) {
+    if (!this.validateService.validateProduct(this.product)) {
       this.flashMessage.show(
         'fill all fields',
         {
@@ -101,7 +102,7 @@ console.log('form.value.showOnMainPage', form.value.showOnMainPage);
       return false;
     }
 
-    this.productService.addProduct(product)
+    this.productService.addProduct(this.product)
       .subscribe(
         data => {
           if (data.success) {
