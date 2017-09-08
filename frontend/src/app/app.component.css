@@ -1,0 +1,12 @@
+.carousel-item {
+  height: 50px;
+  width: 100%;
+}
+
+.one {
+  background-color: #55a934;
+}
+
+.two {
+  background-color: #a92126;
+}

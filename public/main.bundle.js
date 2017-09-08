@@ -103,7 +103,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".carousel-item {\r\n  height: 50px;\r\n  width: 100%;\r\n}\r\n\r\n.one {\r\n  background-color: #55a934;\r\n}\r\n\r\n.two {\r\n  background-color: #a92126;\r\n}", ""]);
 
 // exports
 
@@ -116,7 +116,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+module.exports = "<app-navbar></app-navbar>\r\n\r\n<!--<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">-->\r\n  <!--<ol class=\"carousel-indicators\">-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\" class=\"active\"></li>-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>-->\r\n  <!--</ol>-->\r\n  <!--<div class=\"carousel-inner\">-->\r\n    <!--<div class=\"carousel-item active one\">-->\r\n\r\n      <!--&lt;!&ndash;<img class=\"d-block w-100\" src=\"./assets/samples/doodles1.png\" alt=\"First slide\">&ndash;&gt;-->\r\n    <!--</div>-->\r\n    <!--<div class=\"carousel-item two\">-->\r\n      <!--&lt;!&ndash;<img class=\"d-block w-100\" src=\"./assets/samples/doodles1.png\" alt=\"Second slide\">&ndash;&gt;-->\r\n    <!--</div>-->\r\n  <!--</div>-->\r\n  <!--</div>-->\r\n\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
