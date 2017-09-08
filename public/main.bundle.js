@@ -370,7 +370,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home-section/home-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -1606,7 +1606,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-section/products-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-6\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
