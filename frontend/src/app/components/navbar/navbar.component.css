@@ -1,3 +1,7 @@
 a {
   text-transform: capitalize;
 }
+
+li.active {
+  border-bottom: 2px #0000ff solid;
+}

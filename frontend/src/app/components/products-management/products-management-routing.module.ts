@@ -12,10 +12,10 @@ const productsRoutes: Routes = [
     path: 'products-management',
     component: ProductsManagementComponent,
     children: [
-      {
-        path: 'start',
-        component: AddProductComponent,
-      },
+      // {
+      //   path: 'start',
+      //   component: AddProductComponent,
+      // },
       {
         path: 'start',
         outlet: 'productsManagementSubmenu',

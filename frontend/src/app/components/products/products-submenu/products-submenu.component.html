@@ -1,4 +1,4 @@
-<nav class="breadcrumb">
+<!--<nav class="breadcrumb">-->
 
   <!--<li class="breadcrumb-item"> <a [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"-->
        <!--[routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/main',-->
@@ -10,14 +10,29 @@
 
   <!--<span class="divider">></span>-->
 
-  <a class="breadcrumb-item active" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
-     [routerLink]="['/products', {outlets: {primary: 'start/' + category0 + '/main',
+  <!--<a class="breadcrumb-item active" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"-->
+     <!--[routerLink]="['/products', {outlets: {primary: 'start/' + category0 + '/main',-->
+    <!--productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}></a>-->
+
+
+  <!--<a class="breadcrumb-item" *ngFor="let submenuItem of submenuList; let i = index"-->
+    <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"-->
+    <!--[routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,-->
+    <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>-->
+
+<!--</nav>-->
+<!--<nav class="breadcrumb">-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active">
+      <a [routerLink]="['/products', {outlets: {primary: 'start/' + category0 + '/main',
     productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}></a>
+    </li>
 
+    <li class="breadcrumb-item" *ngFor="let submenuItem of submenuList; let i = index"
+        [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
 
-  <a class="breadcrumb-item" *ngFor="let submenuItem of submenuList; let i = index"
-    [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
-    [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
+      <a [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
     productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>
-
-</nav>
+    </li>
+   </ol>
+<!--</nav>-->

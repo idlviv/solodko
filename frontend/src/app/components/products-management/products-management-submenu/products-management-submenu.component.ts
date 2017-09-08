@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-products-management-submenu',
@@ -12,18 +12,19 @@ export class ProductsManagementSubmenuComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
-     this.menuList = [
-     {
-       name: 'Редагувати товар',
-       route: 'edit-product',
-     },
-     {
-       name: 'Додати товар',
-       route: 'add-product',
-     },
+    this.menuList = [
+      {
+        name: 'Додати товар',
+        route: 'add-product',
+      },
+      {
+        name: 'Редагувати товар',
+        route: 'edit-product',
+      },
     ];
   }
 }
