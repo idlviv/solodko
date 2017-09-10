@@ -4,6 +4,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
 import {CatalogService} from '../../services/catalog.service';
 import {ICatalog} from '../../interfaces/i-catalog';
+declare var $: any;
 
 @Component({
   selector: 'app-navbar',
@@ -22,6 +23,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.localCatalog = this.catalogService.getCatalog();
+  }
+
+  hide() {
+    if ($('.navbar-toggler').css('display') === 'block') {
+      $('button.navbar-toggler').click();
+    }
   }
 
   onLogoutClick() {

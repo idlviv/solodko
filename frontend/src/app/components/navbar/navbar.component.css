@@ -2,6 +2,14 @@ a {
   text-transform: capitalize;
 }
 
-li.active {
-  border-bottom: 2px #0000ff solid;
+@media (min-width: 991px) {
+  li.active  {
+    border-bottom: 2px #0000ff solid;
+  }
+}
+
+@media (min-width: 991px) {
+  li.active  {
+    font-weight: bold;
+  }
 }
