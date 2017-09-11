@@ -8,12 +8,15 @@ import {ProductsListComponent} from './products-list/products-list.component';
 import {ProductsDetailComponent} from './products-detail/products-detail.component';
 import {ProductsSubmenuComponent} from './products-submenu/products-submenu.component';
 import {SharedModule} from '../shared/shared.module';
+import {MdButtonModule} from '@angular/material';
+
 
 @NgModule({
   imports: [
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
+    MdButtonModule
   ],
   declarations: [
     ProductsComponent,

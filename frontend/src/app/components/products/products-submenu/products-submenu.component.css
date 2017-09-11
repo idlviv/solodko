@@ -3,3 +3,53 @@ li.active {
   font-weight: bold;
 }
 
+.button-root {
+  /*border-bottom: 2px #0000ff solid;*/
+  background: lightslategray;
+  color: #fff
+}
+
+.button-secondary {
+  background: #f3e2f9;
+}
+
+.button-secondary:hover {
+  /*border-bottom: 2px #0000ff solid;*/
+  background: lightslategray;
+  color: #fff
+}
+
+.button-secondary.active {
+  /*border-bottom: 2px #0000ff solid;*/
+  background: darkslategrey;
+  color: #fff
+}
+
+button.active {
+  font-weight: 300;
+}
+
+.button-row {
+  margin: 2px 15px 2px 15px;
+  display: inline-block;
+  align-items: center;
+  justify-content: space-around;
+}
+
+button {
+  line-height: 25px;
+  /*width: 200px;*/
+  height: 25px;
+}
+
+i {
+  vertical-align: bottom;
+}
+
+  .material-icons.md-dark {
+  color: lightslategray;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}

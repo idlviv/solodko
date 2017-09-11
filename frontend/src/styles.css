@@ -1,3 +1,6 @@
-a {
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+a,
+button {
   text-transform: capitalize;
 }

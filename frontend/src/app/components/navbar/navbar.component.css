@@ -3,12 +3,16 @@ a {
 }
 
 @media (min-width: 991px) {
+  li {
+    border-bottom: 2px lightslategray solid
+  }
+
   li.active  {
-    border-bottom: 2px #0000ff solid;
+    border-bottom: 2px darkslategrey solid;
   }
 }
 
-@media (min-width: 991px) {
+@media (max-width: 991px) {
   li.active  {
     font-weight: bold;
   }

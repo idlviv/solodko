@@ -20,6 +20,8 @@ import {ProductService} from './services/product.service';
 import {CatalogService} from './services/catalog.service';
 import {ValidateService} from './services/validate.service';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +38,7 @@ import {ValidateService} from './services/validate.service';
     UsersManagementModule,
     AppRoutingModule,
     FlashMessagesModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     SharedModule,
