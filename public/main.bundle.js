@@ -1991,6 +1991,67 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/shared/menu-h/menu-h.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/menu-h/menu-h.component.html":
+/***/ (function(module, exports) {
+
+module.exports = ""
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/menu-h/menu-h.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuHComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var MenuHComponent = (function () {
+    function MenuHComponent() {
+    }
+    MenuHComponent.prototype.ngOnInit = function () {
+    };
+    return MenuHComponent;
+}());
+MenuHComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-menu-h',
+        template: __webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], MenuHComponent);
+
+//# sourceMappingURL=menu-h.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/shared/page404/page404.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2061,12 +2122,14 @@ Page404Component = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__item_item_component__ = __webpack_require__("../../../../../src/app/components/shared/item/item.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__ = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__ = __webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2080,14 +2143,16 @@ SharedModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_2__item_item_component__["a" /* ItemComponent */],
-            __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */]
+            __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */],
+            __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__["a" /* MenuHComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_2__item_item_component__["a" /* ItemComponent */],
-            __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */]
+            __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */],
+            __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__["a" /* MenuHComponent */]
         ]
     })
 ], SharedModule);
