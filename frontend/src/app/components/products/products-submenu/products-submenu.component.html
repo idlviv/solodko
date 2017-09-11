@@ -21,17 +21,19 @@
     <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>-->
 <!--</nav>-->
 <!--<nav class="breadcrumb">-->
-<div class="button-row">
-  <button md-raised-button class="button-root"
-          [routerLink]="['/products', {outlets: {primary: 'start/' + category0 + '/main',
+<div class="btn-row">
+  <button  class="btn btn-outline-secondary button-root"
+          [routerLink]="['/products', {outlets: {primary: submenuList?
+          'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',
     productsSubmenu:  'category/' + category0 + '/main'}}]"
     [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
     {{category0}}
   </button>
-  <i class="material-icons md-dark">play_arrow</i>
+
+   <i class="material-icons md-dark">play_arrow</i>
 
 
-  <button class="button-secondary" md-raised-button *ngFor="let submenuItem of submenuList"
+  <button class="btn btn-outline-secondary button-secondary" md-raised-button *ngFor="let submenuItem of submenuList"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
           [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
           productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</button>

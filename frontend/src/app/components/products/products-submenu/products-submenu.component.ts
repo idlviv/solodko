@@ -23,6 +23,7 @@ export class ProductsSubmenuComponent implements OnInit {
   prop2 = true;
 
   catalog: ICatalog[];
+  localCatalog: ICatalog[];
 
   submenuList: object[];
 
@@ -37,6 +38,7 @@ export class ProductsSubmenuComponent implements OnInit {
 ) { }
 
   ngOnInit() {
+    this.localCatalog = this.catalogService.getCatalog();
     this.route.params
       .subscribe(params => {
         this.category0 = params.category0;

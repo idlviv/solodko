@@ -8,7 +8,7 @@ import {ProductsListComponent} from './products-list/products-list.component';
 import {ProductsDetailComponent} from './products-detail/products-detail.component';
 import {ProductsSubmenuComponent} from './products-submenu/products-submenu.component';
 import {SharedModule} from '../shared/shared.module';
-import {MdButtonModule} from '@angular/material';
+// import {MdButtonModule} from '@angular/material';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import {MdButtonModule} from '@angular/material';
     CommonModule,
     ProductsRoutingModule,
     SharedModule,
-    MdButtonModule
+    // MdButtonModule
   ],
   declarations: [
     ProductsComponent,
