@@ -116,7 +116,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n\r\n<!--<div id=\"carouselExampleIndicators\" class=\"carousel slide\" data-ride=\"carousel\">-->\r\n  <!--<ol class=\"carousel-indicators\">-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\" class=\"active\"></li>-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>-->\r\n    <!--<li data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>-->\r\n  <!--</ol>-->\r\n  <!--<div class=\"carousel-inner\">-->\r\n    <!--<div class=\"carousel-item active one\">-->\r\n\r\n      <!--&lt;!&ndash;<img class=\"d-block w-100\" src=\"./assets/samples/doodles1.png\" alt=\"First slide\">&ndash;&gt;-->\r\n    <!--</div>-->\r\n    <!--<div class=\"carousel-item two\">-->\r\n      <!--&lt;!&ndash;<img class=\"d-block w-100\" src=\"./assets/samples/doodles1.png\" alt=\"Second slide\">&ndash;&gt;-->\r\n    <!--</div>-->\r\n  <!--</div>-->\r\n  <!--</div>-->\r\n\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -370,7 +370,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home-section/home-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-4 col-md-6 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -453,7 +453,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-9\">\r\n    <h1>Майстерня</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-sm-3\">\r\n    <h2>Опис</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-9\">\r\n    <h1>Майстерня</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-md-3\">\r\n    <h2>Опис</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -642,7 +642,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li.active  {\r\n    border-bottom: 2px #0000ff solid;\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li.active  {\r\n    border-bottom: 2px #0000ff solid;\r\n  }\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li.active  {\r\n    font-weight: bold;\r\n  }\r\n}\r\n", ""]);
 
 // exports
 
