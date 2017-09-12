@@ -4,6 +4,41 @@
   margin: 0 auto;
 }
 
+.jumbotron {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+}
+
+.card-text {
+  font-size: .85rem;
+}
+
+.card{
+  margin-bottom: 2rem;
+  border: 0;
+}
+
+.album {
+  min-height: 26rem; /* Can be removed; just added for demo purposes */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #f7f7f7;
+}
+
 .item-header {
   /*background: #ccc;*/
   margin: 5px auto;
