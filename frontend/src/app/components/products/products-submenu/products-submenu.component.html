@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
+<nav class="navbar navbar-expand navbar-light navbar-width">
   <a class="navbar-brand" [routerLink]="['/products', {outlets: {primary: submenuList?
             'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',
               productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}</a>
@@ -9,7 +9,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav" >
-      <li class="nav-item"  *ngFor="let submenuItem of submenuList"
+      <li class="nav-item nav-item-width"  *ngFor="let submenuItem of submenuList"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link"  [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
             productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>
