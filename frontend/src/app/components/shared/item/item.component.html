@@ -3,12 +3,21 @@
     <img class="card-img-top" src="{{product.mainImgSrc[0]}}" alt="Зображення">
     <div class="card-body">
       <h4 class="card-title">{{product.name}}</h4>
-      <p class="card-text text-muted">{{product.itemDescription}}</p>
+      <p class="card-text item-text text-muted">{{product.itemDescription}}</p>
       <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
 
-    </div>
-    <div class="item-size">
-      <p>Висота {{product.size.height}} x Ширина{{product.size.width}}</p>
+      <p class="card-text item-info-title text-muted">Артикул
+        <span class="item-info-value">{{product.itemNumber}}</span>
+      </p>
+      <p class="card-text item-info-title text-muted">
+        Висота x Ширина
+        <span class="item-info-value">{{product.size.height}}</span>
+        х
+        <span class="item-info-value">{{product.size.width}}</span>
+        см
+      </p>
+
+
     </div>
   </div>
 </div>
