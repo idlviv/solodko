@@ -1,27 +1,19 @@
-<!--<section class="jumbotron text-center">-->
-  <!--<div class="container">-->
-    <!--<h1 class="jumbotron-heading">Album example</h1>-->
-    <!--<p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>-->
-
-  <div class="button-row text-muted col-12">
-
-
-    <button  class="btn btn-outline-secondary button-root"
-             [routerLink]="['/products', {outlets: {primary: submenuList?
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['/products', {outlets: {primary: submenuList?
             'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',
-              productsSubmenu:  'category/' + category0 + '/main'}}]"
-             [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-      {{category0}}
-    </button>
+              productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-
-    <!--<i class="material-icons md-dark">play_arrow</i>-->
-    <button class="btn btn-outline-secondary button-secondary" *ngFor="let submenuItem of submenuList"
-            [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
-            [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
-            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</button>
-
-
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav" >
+      <li class="nav-item"  *ngFor="let submenuItem of submenuList"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link"  [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
+            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>
+      </li>
+    </ul>
   </div>
-  <!--</div>-->
-<!--</section>-->
+</nav>

@@ -1,7 +1,7 @@
-li.active {
-  /*border-bottom: 2px #0000ff solid;*/
-  font-weight: bold;
-}
+/*li.active {*/
+  /*!*border-bottom: 2px #0000ff solid;*!*/
+  /*font-weight: bold;*/
+/*}*/
 
 /*.jumbotron {*/
   /*padding-top: 3rem;*/
@@ -22,72 +22,69 @@ li.active {
   /*max-width: 40rem;*/
 /*}*/
 
-.button-root {
-  /*border-bottom: 2px #0000ff solid;*/
+/*.button-root {*/
+  /*border-bottom: 2px lightslategray solid;*/
+  /*font-weight: 200;*/
+/*}*/
+
+/*.button-root::after {*/
+  /*font-family: "Material Icons";*/
+  /*content: "play_arrow";*/
+  /*text-transform: lowercase;*/
+  /*font-size: 1rem;*/
+  /*vertical-align: middle;*/
+  /*line-height: 1.35rem;*/
+
+/*}*/
+
+/*.button-secondary {*/
+  /*!*border-bottom: 2px lightslategray solid*!*/
+/*}*/
+
+/*.button-secondary:hover {*/
+  /*!*border-bottom: 2px #0000ff solid;*!*/
   /*background: lightslategray;*/
   /*color: #fff;*/
-  border-bottom: 2px lightslategray solid;
-  font-weight: 200;
-}
+/*}*/
 
-.button-root::after {
-  font-family: "Material Icons";
-  content: "play_arrow";
-  text-transform: lowercase;
-  font-size: 1rem;
-  vertical-align: middle;
-  line-height: 1.35rem;
+/*.button-secondary.active {*/
+  /*!*border-bottom: 2px #0000ff solid;*!*/
+  /*!*background: transparent;*!*/
+  /*!*color: #fff*;*!*/
+  /*border-bottom: 2px darkslategrey solid;*/
+/*}*/
 
-}
+/*button.active {*/
+  /*font-weight: 300;*/
+/*}*/
 
-.button-secondary {
-  border-bottom: 2px lightslategray solid
-}
+/*.button-row {*/
+  /*padding-top: 1rem;*/
+  /*padding-bottom: 1rem;*/
+  /*height: 4.5rem;*/
+  /*!*width: 20rem;*!*/
+  /*!*float: left;*!*/
+  /*!*display: inline-block;*!*/
+  /*!*align-items: center;*!*/
+  /*!*justify-content: space-around;*!*/
+/*}*/
 
-.button-secondary:hover {
-  /*border-bottom: 2px #0000ff solid;*/
-  background: lightslategray;
-  color: #fff;
-}
-
-.button-secondary.active {
-  /*border-bottom: 2px #0000ff solid;*/
-  /*background: transparent;*/
-  /*color: #fff*;*/
-  border-bottom: 2px darkslategrey solid;
-}
-
-button.active {
-  font-weight: 300;
-}
-
-.button-row {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  height: 4.5rem;
-  /*width: 20rem;*/
+/*button {*/
+  /*!*display: block;*!*/
   /*float: left;*/
-  /*display: inline-block;*/
-  /*align-items: center;*/
-  /*justify-content: space-around;*/
-}
-
-button {
-  /*display: block;*/
-  float: left;
-  /*padding: 0 .75rem;*/
-  /*width: 200px;*/
-  /*height: 1.35rem;*/
-  line-height: 1.35rem;
-  font-size: 1rem;
-  vertical-align: middle;
-  padding-top: 0.1rem;
-  padding-bottom: 0.3rem;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  width: 10rem;
-  border-radius: 0;
-}
+  /*!*padding: 0 .75rem;*!*/
+  /*!*width: 200px;*!*/
+  /*!*height: 1.35rem;*!*/
+  /*line-height: 1.35rem;*/
+  /*font-size: 1rem;*/
+  /*vertical-align: middle;*/
+  /*padding-top: 0.1rem;*/
+  /*padding-bottom: 0.3rem;*/
+  /*white-space: nowrap;*/
+  /*border: 1px solid transparent;*/
+  /*width: 10rem;*/
+  /*border-radius: 0;*/
+/*}*/
 
 /*i {*/
   /*width: 5%;*/
