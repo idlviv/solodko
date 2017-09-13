@@ -1,5 +1,7 @@
 <nav class="navbar navbar-expand navbar-light navbar-width">
-  <a class="navbar-brand" [routerLink]="['/products', {outlets: {primary: submenuList?
+
+  <a class="navbar-brand"
+     [routerLink]="['/products', {outlets: {primary: submenuList?
             'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',
               productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

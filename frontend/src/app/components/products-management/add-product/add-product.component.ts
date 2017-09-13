@@ -18,6 +18,8 @@ import {ICatalog} from '../../../interfaces/i-catalog';
 
 export class AddProductComponent implements OnInit {
   product: IProduct;
+  category0: any;
+  category1: any;
   catalog: ICatalog[];
   catalogCategory1: any;
   isCategory1: boolean = false;
@@ -38,7 +40,6 @@ export class AddProductComponent implements OnInit {
   }
 
   onSelectCategory0(event) {
-    console.log(event.srcElement.value);
     for (let i = 0; i < this.catalog.length; i++) {
       if (this.catalog[i].category0.name === event.srcElement.value) {
         if (this.catalog[i].category0.category1) {
@@ -50,7 +51,6 @@ export class AddProductComponent implements OnInit {
         category1Element.nodeValue = '';
       }
     }
-    console.log('this.isCategory1', this.isCategory1);
     }
   }
 
