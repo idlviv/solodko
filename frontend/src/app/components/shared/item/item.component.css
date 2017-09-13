@@ -1,6 +1,7 @@
 .card-text {
   font-size: .85rem;
 }
+
 .card-title {
   text-transform: capitalize;
 }
@@ -12,18 +13,40 @@
 
 .card-title {
   min-height: 4rem;
-  padding-bottom: 0.5rem;
+  /*padding-bottom: 0.5rem;*/
   text-align: center;
 }
 
+@media (max-width: 576px) {
+  .card-title {
+    margin-bottom: 0;
+  }
+  .item-text {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .card-title {
+    padding-bottom: 0.5rem;
+  }
+  .item-text {
+    min-height: 8rem;
+    padding-bottom: 0.5rem;
+  }
+  .album {
+    min-height: 28rem;
+  }
+}
+
 .item-text {
-  min-height: 8rem;
-  padding-bottom: 0.5rem;
+  /*min-height: 8rem;*/
+  /*padding-bottom: 0.5rem;*/
   text-align: justify;
 }
 
 .album {
-  min-height: 28rem;
+  /*min-height: 28rem;*/
   padding-bottom: 0.5rem;
   background-color: #f7f7f7;
 }
