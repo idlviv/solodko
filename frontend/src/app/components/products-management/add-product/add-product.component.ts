@@ -83,7 +83,7 @@ export class AddProductComponent implements OnInit {
                 console.log(output);
 
               }
-            return this.freeItemNumber = output;
+            return this.freeItemNumber = this.itemNumberPrefix + output;
           }
           );
 

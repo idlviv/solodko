@@ -52,8 +52,8 @@
           <label class="col-md-4" for="itemNumber">Артикул</label>
           <div class="input-group input-group-sm col-md-8">
 
-            <input type="text" ngModel name="itemNumber" class="form-control form-control-sm"
-                   id="itemNumber" required  value="{{itemNumberPrefix}}{{freeItemNumber}}">
+            <input type="text"  name="itemNumber" class="form-control form-control-sm"
+                   id="itemNumber" required [(ngModel)]="freeItemNumber">
             <!--<span class="input-group-btn input-group-sm" >-->
                <!--<button class="btn btn-secondary" (click)="itemNumberInputEnable()"-->
                        <!--[disabled]="!isItemNumberInputDisabled" type="button">Змінити</button>-->

@@ -5,7 +5,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
-        itemNumberPrefix: 'І',
+        itemNumberPrefix: 'і',
         name: 'іграшки',
       }
   },
@@ -13,7 +13,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
-        itemNumberPrefix: 'В',
+        itemNumberPrefix: 'в',
         name: 'віночки',
       }
   },
@@ -21,7 +21,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
-        itemNumberPrefix: 'Б',
+        itemNumberPrefix: 'б',
         name: 'букети',
         category1:
           [
@@ -47,7 +47,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
-        itemNumberPrefix: 'Д',
+        itemNumberPrefix: 'д',
         name: 'декор',
         category1:
           [
@@ -56,7 +56,7 @@ export const localCatalog: ICatalog[] = [
               itemDescription: 'Весільний декор для вашого свята: бокали, ' +
               'скинька для обручок, свічки, кошичок для цукерок, ' +
               'скринька для подарунків, підв’язка нареченої',
-              mainImgSrc: ['./assets/images/decor_wedding.jpg'],
+              mainImgSrc: ['./assets/images/decor_wedding1.jpg'],
             },
           ],
       }
