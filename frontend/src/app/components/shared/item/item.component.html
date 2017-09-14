@@ -3,13 +3,12 @@
     <img class="card-img-top" src="{{product.mainImgSrc[0]}}" alt="Зображення">
     <div class="card-body">
       <h4 class="card-title">{{product.name}}</h4>
-      <p class="card-text item-text text-muted">{{product.itemDescription}}</p>
-      <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
-
-      <p class="card-text item-info-title text-muted">Артикул
+      <p *ngIf="product.itemDescription" class="card-text item-text text-muted">{{product.itemDescription}}</p>
+      <a *ngIf="parentComponentLink" class="btn btn-dark" [routerLink]="parentComponentLink">Перейти</a>
+      <p *ngIf="product.itemNumber" class="card-text item-info-title text-muted">Артикул
         <span class="item-info-value">{{product.itemNumber}}</span>
       </p>
-      <p class="card-text item-info-title text-muted">
+      <p *ngIf="product.size" class="card-text item-info-title text-muted">
         Висота x Ширина
         <span class="item-info-value">{{product.size.height}}</span>
         х

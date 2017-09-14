@@ -49,11 +49,11 @@ button.active {
   /*align-items: center;*/
   /*justify-content: space-around;*/
 }
-.navbar-width {
-}
+
 .navbar-nav {
   display: block;
 }
+
 .nav-item-width {
   /*display: block;*/
   float: left;

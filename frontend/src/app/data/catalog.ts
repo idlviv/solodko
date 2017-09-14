@@ -5,6 +5,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
+        itemNumberPrefix: 'І',
         name: 'іграшки',
       }
   },
@@ -12,6 +13,7 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
+        itemNumberPrefix: 'В',
         name: 'віночки',
       }
   },
@@ -19,22 +21,23 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
+        itemNumberPrefix: 'Б',
         name: 'букети',
         category1:
           [
             {
               name: 'букети з квітів',
-              description: 'Живі квіти',
+              itemDescription: 'Живі квіти',
               mainImgSrc: ['./assets/images/composition-flowers_wedding-pion.jpg'],
             },
             {
               name: 'букети з цукерок',
-              description: 'Цукерки, декоративні елементи',
+              itemDescription: 'Цукерки, декоративні елементи',
               mainImgSrc: ['./assets/images/composition-sweets_delicacy.jpg'],
             },
             {
               name: 'букети з фруктів',
-              description: 'Фрукти, овочі та зелень',
+              itemDescription: 'Фрукти, овочі та зелень',
               mainImgSrc: ['./assets/images/composition-veg-fr_with-pepper.jpg'],
             }
           ],
@@ -44,15 +47,16 @@ export const localCatalog: ICatalog[] = [
     _id: 'x',
     category0:
       {
+        itemNumberPrefix: 'Д',
         name: 'декор',
         category1:
           [
             {
               name: 'весільний декор',
-              description: 'Весільний декор для вашого свята: бокали, ' +
+              itemDescription: 'Весільний декор для вашого свята: бокали, ' +
               'скинька для обручок, свічки, кошичок для цукерок, ' +
               'скринька для подарунків, підв’язка нареченої',
-              mainImgSrc: ['./assets/samples/200x300.png'],
+              mainImgSrc: ['./assets/images/decor_wedding.jpg'],
             },
           ],
       }

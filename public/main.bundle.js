@@ -748,7 +748,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products-management/add-product/add-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Add product</h2>\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"\r\n                  [(ngModel)]=\"category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" ngModel name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" ngModel name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" ngModel name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"1\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required>\r\n            <span class=\"input-group-addon\">x0000</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" ngModel name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <input type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">\r\n  </form>\r\n"
+module.exports = "<h2 class=\"page-header\">Add product</h2>\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"\r\n                  [(ngModel)]=\"category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" ngModel name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" ngModel name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" ngModel name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required>\r\n            <span class=\"input-group-addon\">x0000</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" ngModel name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <input type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">\r\n  </form>\r\n"
 
 /***/ }),
 
@@ -796,8 +796,26 @@ var AddProductComponent = (function () {
         this.catalog = this.catalogService.getCatalog();
     };
     AddProductComponent.prototype.onSelectCategory0 = function (event) {
+        var _this = this;
+        this.itemNumbersAll = [];
         for (var i = 0; i < this.catalog.length; i++) {
             if (this.catalog[i].category0.name === event.srcElement.value) {
+                this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
+                this.freeItemNumber = this.productService.getQueriedProducts({ 'category0': this.catalog[i].category0.name });
+                this.freeItemNumber
+                    .map(function (item) {
+                    for (var i_1 = 0; i_1 < item.length; i_1++) {
+                        _this.itemNumbersAll.push(item[i_1].itemNumber);
+                    }
+                    console.log('item1', _this.itemNumbersAll);
+                    return _this.itemNumbersAll;
+                })
+                    .subscribe(function (item) { return console.log('item', item); });
+                // for(let i=0; i < this.catalog[i].category0.itemNumber){
+                //
+                // }
+                console.log('this.itemNumberPrefix', this.itemNumberPrefix);
+                console.log('this.freeItemNumber', this.freeItemNumber);
                 if (this.catalog[i].category0.category1) {
                     this.catalogCategory1 = this.catalog[i].category0.category1;
                     this.isCategory1 = true;
@@ -809,6 +827,7 @@ var AddProductComponent = (function () {
                 }
             }
         }
+        console.log('event.srcElement.value', event.srcElement.value);
     };
     AddProductComponent.prototype.onAddProductSubmit = function (form) {
         var _this = this;
@@ -1420,7 +1439,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 8rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1433,7 +1452,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-list/products-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-3 col-md-4 col-6\" *ngFor=\"let submenuItem of submenuList\">\r\n    <div>{{submenuItem.description}}</div>\r\n    <hr>\r\n    <img src={{submenuItem.mainImgSrc[0]}} class=\"img-fluid\">\r\n    <hr>\r\n    <a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n       [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n      productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<!--<div class=\"row\">-->\r\n  <!--<div class=\"col-lg-3 col-md-4 col-6\" *ngFor=\"let product of submenuList\">-->\r\n    <!--<div>{{product.description}}</div>-->\r\n    <!--<hr>-->\r\n    <!--<img src={{product.mainImgSrc[0]}} class=\"img-fluid\">-->\r\n    <!--<hr>-->\r\n    <!--<a [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"-->\r\n       <!--[routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + product.name,-->\r\n      <!--productsSubmenu:  'category/' + category0 + '/' + product.name}}]\">{{product.name}}</a>-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n\r\n<div class=\"row\">\r\n  <div *ngFor=\"let product of submenuList\" class=\"col-lg-3 col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\" [parentComponentLink]=\"[\r\n    '/products', {outlets: {primary: 'category/' + category0 + '/' + product.name,\r\n      productsSubmenu:  'category/' + category0 + '/' + product.name}}\r\n      ]\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n<!--<div class=\"row\">-->\r\n  <!--<div class=\"col-lg-3 col-md-4 col-6\" *ngFor=\"let submenuItem of submenuList\">-->\r\n    <!--<div class=\"card\">-->\r\n      <!--<div class=\"album\">-->\r\n        <!--<img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\">-->\r\n        <!--<div class=\"card-body\">-->\r\n          <!--<h4 class=\"card-title\">{{product.name}}</h4>-->\r\n          <!--<p class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>-->\r\n          <!--&lt;!&ndash;<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>&ndash;&gt;-->\r\n    <!---->\r\n          <!--<p class=\"card-text item-info-title text-muted\">Артикул-->\r\n            <!--<span class=\"item-info-value\">{{product.itemNumber}}</span>-->\r\n          <!--</p>-->\r\n          <!--<p class=\"card-text item-info-title text-muted\">-->\r\n            <!--Висота x Ширина-->\r\n            <!--<span class=\"item-info-value\">{{product.size.height}}</span>-->\r\n            <!--х-->\r\n            <!--<span class=\"item-info-value\">{{product.size.width}}</span>-->\r\n            <!--см-->\r\n          <!--</p>-->\r\n    <!---->\r\n        <!--</div>-->\r\n      <!--</div>-->\r\n    <!--</div>  -->\r\n  <!--</div>-->\r\n<!--</div>-->"
 
 /***/ }),
 
@@ -1689,7 +1708,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*li.active {*/\r\n  /*!*border-bottom: 2px #0000ff solid;*!*/\r\n  /*font-weight: bold;*/\r\n/*}*/\r\n\r\n.button-root {\r\n  border-bottom: 2px lightslategray solid;\r\n  font-weight: 200;\r\n}\r\n\r\n.button-root::after {\r\n  font-family: \"Material Icons\";\r\n  content: \"play_arrow\";\r\n  text-transform: lowercase;\r\n  font-size: 1rem;\r\n  vertical-align: middle;\r\n  line-height: 1.35rem;\r\n\r\n}\r\n\r\n.button-secondary {\r\n  /*border-bottom: 2px lightslategray solid*/\r\n}\r\n\r\n.button-secondary:hover {\r\n  /*border-bottom: 2px #0000ff solid;*/\r\n  background: lightslategray;\r\n  color: #fff;\r\n}\r\n\r\n.button-secondary.active {\r\n  /*border-bottom: 2px #0000ff solid;*/\r\n  /*background: transparent;*/\r\n  /*color: #fff*;*/\r\n  border-bottom: 2px darkslategrey solid;\r\n}\r\n\r\nbutton.active {\r\n  font-weight: 300;\r\n}\r\n\r\n.button-row {\r\n  padding-top: 1rem;\r\n  padding-bottom: 1rem;\r\n  height: 4.5rem;\r\n  /*width: 20rem;*/\r\n  /*float: left;*/\r\n  /*display: inline-block;*/\r\n  /*align-items: center;*/\r\n  /*justify-content: space-around;*/\r\n}\r\n.navbar-width {\r\n}\r\n.navbar-nav {\r\n  display: block;\r\n}\r\n.nav-item-width {\r\n  /*display: block;*/\r\n  float: left;\r\n  /*padding: 0 .75rem;*/\r\n  /*width: 200px;*/\r\n  /*height: 1.35rem;*/\r\n  /*line-height: 1.35rem;*/\r\n  /*font-size: 1rem;*/\r\n  /*vertical-align: middle;*/\r\n  /*padding-top: 0.1rem;*/\r\n  /*padding-bottom: 0.3rem;*/\r\n  white-space: nowrap;\r\n  /*border: 1px solid transparent;*/\r\n  width: 10rem;\r\n  /*border-radius: 0;*/\r\n}\r\n", ""]);
+exports.push([module.i, "/*li.active {*/\r\n  /*!*border-bottom: 2px #0000ff solid;*!*/\r\n  /*font-weight: bold;*/\r\n/*}*/\r\n\r\n.button-root {\r\n  border-bottom: 2px lightslategray solid;\r\n  font-weight: 200;\r\n}\r\n\r\n.button-root::after {\r\n  font-family: \"Material Icons\";\r\n  content: \"play_arrow\";\r\n  text-transform: lowercase;\r\n  font-size: 1rem;\r\n  vertical-align: middle;\r\n  line-height: 1.35rem;\r\n\r\n}\r\n\r\n.button-secondary {\r\n  /*border-bottom: 2px lightslategray solid*/\r\n}\r\n\r\n.button-secondary:hover {\r\n  /*border-bottom: 2px #0000ff solid;*/\r\n  background: lightslategray;\r\n  color: #fff;\r\n}\r\n\r\n.button-secondary.active {\r\n  /*border-bottom: 2px #0000ff solid;*/\r\n  /*background: transparent;*/\r\n  /*color: #fff*;*/\r\n  border-bottom: 2px darkslategrey solid;\r\n}\r\n\r\nbutton.active {\r\n  font-weight: 300;\r\n}\r\n\r\n.button-row {\r\n  padding-top: 1rem;\r\n  padding-bottom: 1rem;\r\n  height: 4.5rem;\r\n  /*width: 20rem;*/\r\n  /*float: left;*/\r\n  /*display: inline-block;*/\r\n  /*align-items: center;*/\r\n  /*justify-content: space-around;*/\r\n}\r\n\r\n.navbar-nav {\r\n  display: block;\r\n}\r\n\r\n.nav-item-width {\r\n  /*display: block;*/\r\n  float: left;\r\n  /*padding: 0 .75rem;*/\r\n  /*width: 200px;*/\r\n  /*height: 1.35rem;*/\r\n  /*line-height: 1.35rem;*/\r\n  /*font-size: 1rem;*/\r\n  /*vertical-align: middle;*/\r\n  /*padding-top: 0.1rem;*/\r\n  /*padding-bottom: 0.3rem;*/\r\n  white-space: nowrap;\r\n  /*border: 1px solid transparent;*/\r\n  width: 10rem;\r\n  /*border-radius: 0;*/\r\n}\r\n", ""]);
 
 // exports
 
@@ -1928,7 +1947,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 8rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n", ""]);
+exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 6rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1941,7 +1960,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\">\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <!--<a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>-->\r\n\r\n      <p class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\">\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-dark\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1975,6 +1994,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__["IProduct"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__["IProduct"]) === "function" && _a || Object)
 ], ItemComponent.prototype, "product", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], ItemComponent.prototype, "parentComponentLink", void 0);
 ItemComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-item',
@@ -2121,12 +2144,14 @@ Page404Component = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__item_item_component__ = __webpack_require__("../../../../../src/app/components/shared/item/item.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__ = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__ = __webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2146,6 +2171,7 @@ SharedModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_5__angular_router__["d" /* RouterModule */]
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_2__item_item_component__["a" /* ItemComponent */],
@@ -2593,33 +2619,36 @@ var localCatalog = [
     {
         _id: 'x',
         category0: {
+            itemNumberPrefix: 'І',
             name: 'іграшки',
         }
     },
     {
         _id: 'x',
         category0: {
+            itemNumberPrefix: 'В',
             name: 'віночки',
         }
     },
     {
         _id: 'x',
         category0: {
+            itemNumberPrefix: 'Б',
             name: 'букети',
             category1: [
                 {
                     name: 'букети з квітів',
-                    description: 'Живі квіти',
+                    itemDescription: 'Живі квіти',
                     mainImgSrc: ['./assets/images/composition-flowers_wedding-pion.jpg'],
                 },
                 {
                     name: 'букети з цукерок',
-                    description: 'Цукерки, декоративні елементи',
+                    itemDescription: 'Цукерки, декоративні елементи',
                     mainImgSrc: ['./assets/images/composition-sweets_delicacy.jpg'],
                 },
                 {
                     name: 'букети з фруктів',
-                    description: 'Фрукти, овочі та зелень',
+                    itemDescription: 'Фрукти, овочі та зелень',
                     mainImgSrc: ['./assets/images/composition-veg-fr_with-pepper.jpg'],
                 }
             ],
@@ -2628,14 +2657,15 @@ var localCatalog = [
     {
         _id: 'x',
         category0: {
+            itemNumberPrefix: 'Д',
             name: 'декор',
             category1: [
                 {
                     name: 'весільний декор',
-                    description: 'Весільний декор для вашого свята: бокали, ' +
+                    itemDescription: 'Весільний декор для вашого свята: бокали, ' +
                         'скинька для обручок, свічки, кошичок для цукерок, ' +
                         'скринька для подарунків, підв’язка нареченої',
-                    mainImgSrc: ['./assets/samples/200x300.png'],
+                    mainImgSrc: ['./assets/images/decor_wedding.jpg'],
                 },
             ],
         }

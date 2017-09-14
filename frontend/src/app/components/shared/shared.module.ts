@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import {ItemComponent} from './item/item.component';
 import {Page404Component} from './page404/page404.component';
 import { MenuHComponent } from './menu-h/menu-h.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MenuHComponent } from './menu-h/menu-h.component';
   ],
   imports: [
     CommonModule,
+    RouterModule
   ],
   exports: [
     ItemComponent,

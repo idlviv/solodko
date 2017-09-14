@@ -23,6 +23,9 @@ export class AddProductComponent implements OnInit {
   catalog: ICatalog[];
   catalogCategory1: any;
   isCategory1: boolean = false;
+  freeItemNumber: any;
+  itemNumberPrefix: any;
+  itemNumbersAll: any;
 
   @Output() updateProducts = new EventEmitter();
 
@@ -40,8 +43,33 @@ export class AddProductComponent implements OnInit {
   }
 
   onSelectCategory0(event) {
+    this.itemNumbersAll = [];
     for (let i = 0; i < this.catalog.length; i++) {
       if (this.catalog[i].category0.name === event.srcElement.value) {
+
+        this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
+        this.freeItemNumber = this.productService.getQueriedProducts(
+          {'category0': this.catalog[i].category0.name});
+        this.freeItemNumber
+          .map(
+            item => {
+              for(let i = 0; i < item.length; i++) {
+                this.itemNumbersAll.push(item[i].itemNumber);
+              }
+              console.log('item1', this.itemNumbersAll);
+              return this.itemNumbersAll
+            }
+          )
+          .subscribe(item => console.log('item', item)
+
+
+          );
+        // for(let i=0; i < this.catalog[i].category0.itemNumber){
+        //
+        // }
+        console.log('this.itemNumberPrefix', this.itemNumberPrefix);
+        console.log('this.freeItemNumber', this.freeItemNumber);
+
         if (this.catalog[i].category0.category1) {
           this.catalogCategory1 = this.catalog[i].category0.category1;
           this.isCategory1 = true;
@@ -52,6 +80,8 @@ export class AddProductComponent implements OnInit {
       }
     }
     }
+    console.log('event.srcElement.value', event.srcElement.value);
+
   }
 
   onAddProductSubmit(form: NgForm) {
