@@ -48,25 +48,32 @@ export class AddProductComponent implements OnInit {
       if (this.catalog[i].category0.name === event.srcElement.value) {
 
         this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
-        this.freeItemNumber = this.productService.getQueriedProducts(
+        let x = this.productService.getQueriedProducts(
           {'category0': this.catalog[i].category0.name});
-        this.freeItemNumber
+        x
           .map(
             item => {
-              for(let i = 0; i < item.length; i++) {
-                this.itemNumbersAll.push(item[i].itemNumber);
+              for (let i = 0; i < item.length; i++) {
+                this.itemNumbersAll.push(+item[i].itemNumber.slice(1));
               }
-              console.log('item1', this.itemNumbersAll);
-              return this.itemNumbersAll
+
+              function compareNumeric(a, b) {
+                if (a > b) return 1;
+                if (a < b) return -1;
+              }
+              this.itemNumbersAll.sort(compareNumeric);
+
+              for (let i = 1; i < this.itemNumbersAll.length; i++) {
+                if (this.itemNumbersAll !== i) {
+                  return this.freeItemNumber = i;
+                }
+              }
+              return this.itemNumbersAll;
             }
           )
           .subscribe(item => console.log('item', item)
-
-
           );
-        // for(let i=0; i < this.catalog[i].category0.itemNumber){
-        //
-        // }
+
         console.log('this.itemNumberPrefix', this.itemNumberPrefix);
         console.log('this.freeItemNumber', this.freeItemNumber);
 

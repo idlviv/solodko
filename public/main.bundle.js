@@ -801,19 +801,27 @@ var AddProductComponent = (function () {
         for (var i = 0; i < this.catalog.length; i++) {
             if (this.catalog[i].category0.name === event.srcElement.value) {
                 this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
-                this.freeItemNumber = this.productService.getQueriedProducts({ 'category0': this.catalog[i].category0.name });
-                this.freeItemNumber
+                var x = this.productService.getQueriedProducts({ 'category0': this.catalog[i].category0.name });
+                x
                     .map(function (item) {
                     for (var i_1 = 0; i_1 < item.length; i_1++) {
-                        _this.itemNumbersAll.push(item[i_1].itemNumber);
+                        _this.itemNumbersAll.push(+item[i_1].itemNumber.slice(1));
                     }
-                    console.log('item1', _this.itemNumbersAll);
+                    function compareNumeric(a, b) {
+                        if (a > b)
+                            return 1;
+                        if (a < b)
+                            return -1;
+                    }
+                    _this.itemNumbersAll.sort(compareNumeric);
+                    for (var i_2 = 1; i_2 < _this.itemNumbersAll.length; i_2++) {
+                        if (_this.itemNumbersAll !== i_2) {
+                            return _this.freeItemNumber = i_2;
+                        }
+                    }
                     return _this.itemNumbersAll;
                 })
                     .subscribe(function (item) { return console.log('item', item); });
-                // for(let i=0; i < this.catalog[i].category0.itemNumber){
-                //
-                // }
                 console.log('this.itemNumberPrefix', this.itemNumberPrefix);
                 console.log('this.freeItemNumber', this.freeItemNumber);
                 if (this.catalog[i].category0.category1) {
