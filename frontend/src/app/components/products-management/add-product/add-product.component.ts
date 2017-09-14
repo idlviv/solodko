@@ -26,7 +26,7 @@ export class AddProductComponent implements OnInit {
   freeItemNumber: any;
   itemNumberPrefix: any;
   itemNumbersAll: any;
-
+  isItemNumberInputDisabled: any = true;
   @Output() updateProducts = new EventEmitter();
 
   constructor(
@@ -40,6 +40,10 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit() {
     this.catalog = this.catalogService.getCatalog();
+  }
+
+  itemNumberInputEnable() {
+    this.isItemNumberInputDisabled = !this.isItemNumberInputDisabled;
   }
 
   onSelectCategory0(event) {
@@ -56,26 +60,32 @@ export class AddProductComponent implements OnInit {
               for (let i = 0; i < item.length; i++) {
                 this.itemNumbersAll.push(+item[i].itemNumber.slice(1));
               }
-
+              console.log('not sorted', this.itemNumbersAll);
               function compareNumeric(a, b) {
                 if (a > b) return 1;
                 if (a < b) return -1;
               }
               this.itemNumbersAll.sort(compareNumeric);
+              console.log('sorted', this.itemNumbersAll);
 
-              for (let i = 1; i < this.itemNumbersAll.length; i++) {
-                if (this.itemNumbersAll !== i) {
-                  return this.freeItemNumber = i;
+              for (let i = 0; i < this.itemNumbersAll.length; i++) {
+                if (this.itemNumbersAll[i] !== i + 1) {
+                  return i + 1;
                 }
               }
-              return this.itemNumbersAll;
+              return this.itemNumbersAll.length + 1;
             }
           )
-          .subscribe(item => console.log('item', item)
-          );
+          .subscribe(item => {
+            let output = item.toString();
+              while (output.length < 3) {
+                output = '0' + output;
+                console.log(output);
 
-        console.log('this.itemNumberPrefix', this.itemNumberPrefix);
-        console.log('this.freeItemNumber', this.freeItemNumber);
+              }
+            return this.freeItemNumber = output;
+          }
+          );
 
         if (this.catalog[i].category0.category1) {
           this.catalogCategory1 = this.catalog[i].category0.category1;
@@ -87,12 +97,10 @@ export class AddProductComponent implements OnInit {
       }
     }
     }
-    console.log('event.srcElement.value', event.srcElement.value);
 
   }
 
   onAddProductSubmit(form: NgForm) {
-console.log('form.value.showOnMainPage', form.value.showOnMainPage);
     if (this.isCategory1) {
       this.product = {
         category0: form.value.category0,
