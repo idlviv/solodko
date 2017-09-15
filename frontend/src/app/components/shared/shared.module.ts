@@ -5,12 +5,14 @@ import {ItemComponent} from './item/item.component';
 import {Page404Component} from './page404/page404.component';
 import { MenuHComponent } from './menu-h/menu-h.component';
 import {RouterModule} from '@angular/router';
+import { ModalImgComponent } from './modal-img/modal-img.component';
 
 @NgModule({
   declarations: [
     ItemComponent,
     Page404Component,
-    MenuHComponent
+    MenuHComponent,
+    ModalImgComponent
   ],
   imports: [
     CommonModule,

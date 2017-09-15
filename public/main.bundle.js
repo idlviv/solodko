@@ -1964,7 +1964,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 6rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n\r\n.modal-body {\r\n  padding: 2px;\r\n}\r\n\r\n.modal-header {\r\n  padding-top: 3px;\r\n  padding-bottom: 3px;\r\n\r\n}", ""]);
+exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 6rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n", ""]);
 
 // exports
 
@@ -1977,7 +1977,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         data-toggle=\"modal\" data-target=\"#exampleModal\">\r\n\r\n    <!-- Modal -->\r\n    <div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n         aria-hidden=\"true\">\r\n      <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n          <div class=\"modal-header\">\r\n            <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{product.name}}</h5>\r\n            <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n              <span aria-hidden=\"true\">&times;</span>\r\n            </button>\r\n          </div>\r\n          <div class=\"modal-body\">\r\n            <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\" data-dismiss=\"modal\">\r\n          </div>\r\n          <!--<div class=\"modal-footer\">-->\r\n            <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\r\n          <!--</div>-->\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         data-toggle=\"modal\" data-target=\"#exampleModal\">\r\n\r\n    <!--<app-modal-img *ngIf=\"!parentComponentLink\" [imgSrc]=\"product.mainImgSrc[0]\"></app-modal-img>-->\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2090,6 +2090,75 @@ MenuHComponent = __decorate([
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/shared/modal-img/modal-img.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\r\n.modal-body {\r\n  padding: 2px;\r\n}\r\n\r\n.modal-header {\r\n  padding-top: 3px;\r\n  padding-bottom: 3px;\r\n\r\n}", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/modal-img/modal-img.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\n     aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{product.name}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\" data-dismiss=\"modal\">\n      </div>\n      <!--<div class=\"modal-footer\">-->\n      <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n      <!--</div>-->\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/modal-img/modal-img.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ModalImgComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__ = __webpack_require__("../../../../../src/app/interfaces/i-product.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ModalImgComponent = (function () {
+    function ModalImgComponent() {
+    }
+    ModalImgComponent.prototype.ngOnInit = function () {
+    };
+    return ModalImgComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__["IProduct"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__interfaces_i_product__["IProduct"]) === "function" && _a || Object)
+], ModalImgComponent.prototype, "product", void 0);
+ModalImgComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-modal-img',
+        template: __webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], ModalImgComponent);
+
+var _a;
+//# sourceMappingURL=modal-img.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/shared/page404/page404.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2162,12 +2231,14 @@ Page404Component = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__ = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__ = __webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modal_img_modal_img_component__ = __webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2184,7 +2255,8 @@ SharedModule = __decorate([
         declarations: [
             __WEBPACK_IMPORTED_MODULE_2__item_item_component__["a" /* ItemComponent */],
             __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */],
-            __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__["a" /* MenuHComponent */]
+            __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__["a" /* MenuHComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__modal_img_modal_img_component__["a" /* ModalImgComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
