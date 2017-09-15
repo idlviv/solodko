@@ -1977,7 +1977,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         data-toggle=\"modal\" data-target=\"#exampleModal\">\r\n\r\n    <!--<app-modal-img *ngIf=\"!parentComponentLink\" [imgSrc]=\"product.mainImgSrc[0]\"></app-modal-img>-->\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         data-toggle=\"modal\" data-target=\"#exampleModal\">\r\n\r\n    <!--<app-modal-img *ngIf=\"!parentComponentLink\" [product]=\"product\"></app-modal-img>-->\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2138,6 +2138,7 @@ var ModalImgComponent = (function () {
     function ModalImgComponent() {
     }
     ModalImgComponent.prototype.ngOnInit = function () {
+        console.log(this.product);
     };
     return ModalImgComponent;
 }());
