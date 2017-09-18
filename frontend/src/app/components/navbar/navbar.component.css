@@ -4,11 +4,17 @@ a {
 
 @media (min-width: 991px) {
   li {
-    border-bottom: 2px lightslategray solid
+    border-bottom: 2px lightslategray solid;
   }
 
   li.active  {
     border-bottom: 2px darkslategrey solid;
+  }
+
+  .navbar {
+    font-size: 1.2rem;
+    box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);
+    height: 5rem;
   }
 }
 
@@ -17,3 +23,10 @@ a {
     font-weight: bold;
   }
 }
+.navbar-brand {
+  font-size: 1.4rem;
+}
+.navbar {
+  box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);
+}
+

@@ -103,7 +103,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".main-banner{\r\n  height: 180px;\r\n  width: 100%;\r\n  background-image: url(" + __webpack_require__("../../../../../src/assets/images/main-banner.png") + ");\r\n}\r\n", ""]);
+exports.push([module.i, ".container-mod {\r\n  /*padding: 3rem 3rem 2rem 3rem;*/\r\n}\r\n", ""]);
 
 // exports
 
@@ -116,7 +116,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\r\n\r\n<!--<div class=\"main-banner\"></div>-->\r\n\r\n\r\n<div class=\"container\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+module.exports = "<app-navbar></app-navbar>\r\n\r\n<!--<div class=\"main-banner\"></div>-->\r\n\r\n\r\n<div class=\"container-fluid px-4 py-5\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -476,28 +476,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var HomeComponent = (function () {
     function HomeComponent() {
     }
-    // products: Object;
-    //
-    // constructor(
-    //   private productService: ProductService,
-    //   private flashMessage: FlashMessagesService
-    // ) { }
-    //
     HomeComponent.prototype.ngOnInit = function () {
-        //   this.productService.getProducts()
-        //     .subscribe(
-        //       (products) => {
-        //         this.products = products;
-        //       },
-        //       (error) => {
-        //         this.flashMessage.show(
-        //           error,
-        //           {
-        //             cssClass: 'alert-danger',
-        //             timeout: 3000
-        //           });
-        //         return false;
-        //       })
     };
     return HomeComponent;
 }());
@@ -645,7 +624,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li {\r\n    border-bottom: 2px lightslategray solid\r\n  }\r\n\r\n  li.active  {\r\n    border-bottom: 2px darkslategrey solid;\r\n  }\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  li.active  {\r\n    font-weight: bold;\r\n  }\r\n}\r\n", ""]);
+exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li {\r\n    border-bottom: 2px lightslategray solid;\r\n  }\r\n\r\n  li.active  {\r\n    border-bottom: 2px darkslategrey solid;\r\n  }\r\n\r\n  .navbar {\r\n    font-size: 1.2rem;\r\n    box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n    height: 5rem;\r\n  }\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  li.active  {\r\n    font-weight: bold;\r\n  }\r\n}\r\n.navbar-brand {\r\n  font-size: 1.4rem;\r\n}\r\n.navbar {\r\n  box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -658,7 +637,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/products-management',\r\n        {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">\r\n          Products Management</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light sticky-top\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/products-management',\r\n        {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">\r\n          Products Management</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -1203,7 +1182,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products-management/products-management-submenu/products-management-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"nav flex-md-column\">\r\n  <li class=\"nav-item\" *ngFor=\"let item of menuList\"\r\n      [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n    <a class=\"nav-link\" [routerLink]=\"['/products-management', {outlets: {primary: item.route}}]\">\r\n      {{item.name}}\r\n    </a>\r\n  </li>\r\n</ul>"
+module.exports = "<ul class=\"nav flex-md-column\">\r\n  <li class=\"nav-item\" *ngFor=\"let item of menuList\"\r\n      [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n    <a class=\"nav-link\" [routerLink]=\"['/products-management', {outlets: {primary: item.route}}]\">\r\n      {{item.name}}\r\n    </a>\r\n  </li>\r\n</ul>\r\n"
 
 /***/ }),
 
@@ -1648,7 +1627,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-section/products-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-3 col-md-4 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\" (imageClick)=\"onImageClick(product)\"></app-item>\r\n  </div>\r\n  <!--<app-modal-img (imageClick)=\"onImageClick(product)\"></app-modal-img>-->\r\n  <app-modal-img [product]=\"chosenProduct\"></app-modal-img>\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1674,7 +1653,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProductsSectionComponent = (function () {
-    // searchQuery: object;
     function ProductsSectionComponent(route, 
         // private productService: ProductService,
         flashMessage) {
@@ -1682,13 +1660,6 @@ var ProductsSectionComponent = (function () {
         this.flashMessage = flashMessage;
     }
     ProductsSectionComponent.prototype.ngOnInit = function () {
-        // this.route.params.subscribe(params => {
-        //   this.searchQuery = {
-        //         'catalog.category0': params.category0,
-        //         'catalog.category1': params.category1 === 'main' ? {$exists: true} : params.category1,
-        //       };
-        //   this.onChangeRoute(this.searchQuery);
-        // });
         var _this = this;
         this.route.data
             .subscribe(function (data) {
@@ -1700,6 +1671,10 @@ var ProductsSectionComponent = (function () {
             });
             return false;
         });
+    };
+    ProductsSectionComponent.prototype.onImageClick = function (product) {
+        this.chosenProduct = product;
+        $('#modalImg').modal('show');
     };
     return ProductsSectionComponent;
 }());
@@ -1977,7 +1952,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         data-toggle=\"modal\" data-target=\"#exampleModal\">\r\n\r\n    <!--<app-modal-img *ngIf=\"!parentComponentLink\" [product]=\"product\"></app-modal-img>-->\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n    <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n         (click)=\"onImageClick(product)\">\r\n\r\n    <!--<img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"-->\r\n         <!--data-toggle=\"modal\" data-target=\"#exampleModal\">-->\r\n\r\n    <!--<app-modal-img *ngIf=\"!parentComponentLink\" [product]=\"product\"></app-modal-img>-->\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn btn-info\" [routerLink]=\"parentComponentLink\">Перейти</a>\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2002,8 +1977,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var ItemComponent = (function () {
     function ItemComponent() {
+        this.imageClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
     }
     ItemComponent.prototype.ngOnInit = function () {
+    };
+    ItemComponent.prototype.onImageClick = function (product) {
+        this.imageClick.emit(product);
     };
     return ItemComponent;
 }());
@@ -2015,6 +1994,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
     __metadata("design:type", Object)
 ], ItemComponent.prototype, "parentComponentLink", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+    __metadata("design:type", Object)
+], ItemComponent.prototype, "imageClick", void 0);
 ItemComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-item',
@@ -2111,7 +2094,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/modal-img/modal-img.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\n     aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{product.name}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\" data-dismiss=\"modal\">\n      </div>\n      <!--<div class=\"modal-footer\">-->\n      <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n      <!--</div>-->\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"modalImg\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\"\r\n     aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div *ngIf=\"product\" class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{product.name}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\" data-dismiss=\"modal\">\r\n      </div>\r\n      <!--<div class=\"modal-footer\">-->\r\n      <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\r\n      <!--</div>-->\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2138,7 +2121,6 @@ var ModalImgComponent = (function () {
     function ModalImgComponent() {
     }
     ModalImgComponent.prototype.ngOnInit = function () {
-        console.log(this.product);
     };
     return ModalImgComponent;
 }());
@@ -2265,6 +2247,7 @@ SharedModule = __decorate([
         ],
         exports: [
             __WEBPACK_IMPORTED_MODULE_2__item_item_component__["a" /* ItemComponent */],
+            __WEBPACK_IMPORTED_MODULE_6__modal_img_modal_img_component__["a" /* ModalImgComponent */],
             __WEBPACK_IMPORTED_MODULE_3__page404_page404_component__["a" /* Page404Component */],
             __WEBPACK_IMPORTED_MODULE_4__menu_h_menu_h_component__["a" /* MenuHComponent */]
         ]
@@ -3186,13 +3169,6 @@ ValidateService = __decorate([
 ], ValidateService);
 
 //# sourceMappingURL=validate.service.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/assets/images/main-banner.png":
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAAAoCAMAAAA2TQ8LAAAALVBMVEX9/f3////t7e3x8fHz8/P8/Pzu7u709PT29vbw8PD09PX7+/v6+vr19fX5+fk0jMsZAAAAiUlEQVR42u2VOxLAIAhEg9/4vf9xE9SMnRUwKdgCcSletbMXCoaMsda5uXtP5fMDYCmE+X4nKl8GECN+71f7ROHLAFLKGZdScNYK0BpuFL4MAMc6DPU+XwpfBsCT3u3zAw5hIfH5AYewkPj8gENYSHx+AEe4UGIA7WTtZO1k7WTtZO1k7eR/dPIDDIorwW0h/X0AAAAASUVORK5CYII="
 
 /***/ }),
 

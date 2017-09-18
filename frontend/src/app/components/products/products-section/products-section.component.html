@@ -1,5 +1,8 @@
 <div class="row">
   <div *ngFor="let product of products" class="col-lg-3 col-md-4 col-sm-6 col-12">
-    <app-item [product]="product"></app-item>
+    <app-item [product]="product" (imageClick)="onImageClick(product)"></app-item>
   </div>
+  <!--<app-modal-img (imageClick)="onImageClick(product)"></app-modal-img>-->
+  <app-modal-img [product]="chosenProduct"></app-modal-img>
+
 </div>

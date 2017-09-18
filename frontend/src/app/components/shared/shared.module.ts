@@ -20,6 +20,7 @@ import { ModalImgComponent } from './modal-img/modal-img.component';
   ],
   exports: [
     ItemComponent,
+    ModalImgComponent,
     Page404Component,
     MenuHComponent
   ]

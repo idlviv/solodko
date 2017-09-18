@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {IProduct} from "../../../interfaces/i-product";
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {IProduct} from '../../../interfaces/i-product';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -10,10 +10,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ItemComponent implements OnInit {
   @Input() product: IProduct;
   @Input() parentComponentLink: any;
+  @Output() imageClick = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
 
+  onImageClick(product: IProduct) {
+    this.imageClick.emit(product);
   }
 }
