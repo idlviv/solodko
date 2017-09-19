@@ -65,8 +65,16 @@
   font-weight: 500;
 }
 
-
-
 .img-container {
   position: relative;
+}
+
+.button-light {
+  position: absolute;
+  top: calc(50% - 1.5rem);
+  top: -webkit-calc(50% - 1.5rem);
+  top: -moz-calc(50% - 1.5rem);
+  left: calc(100% - 1.5rem);
+  top: -webkit-calc(100% - 1.5rem);
+  top: -moz-calc(100% - 1.5rem);
 }

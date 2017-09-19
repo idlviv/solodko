@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 
 import {config} from '../app.config';
 import {localCatalog} from '../data/catalog'
+import {ICatalog, ISubmenuList} from '../interfaces/i-catalog';
 
 @Injectable()
 export class CatalogService {
@@ -20,10 +21,11 @@ export class CatalogService {
     //   .map(res => res.json());
   }
 
-  getQueriedCatalog(params) {
+  getQueriedCatalog(params) : ICatalog {
     for(let i = 0; i < localCatalog.length; i++){
       if (params.category0 === localCatalog[i].category0.name) {
-        return localCatalog[i].category0.category1;
+        return (localCatalog[i]);
+        // return localCatalog[i].category0.category1;
       }
     }
 

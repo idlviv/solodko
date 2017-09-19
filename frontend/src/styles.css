@@ -5,32 +5,46 @@ button {
   text-transform: capitalize;
 }
 
-.button-primary {
-  position: absolute;
-  top: calc(50% - 1.5rem);
-  top: -webkit-calc(50% - 1.5rem);
-  top: -moz-calc(50% - 1.5rem);
-  left: calc(100% - 1.5rem);
-  top: -webkit-calc(100% - 1.5rem);
-  top: -moz-calc(100% - 1.5rem);
+.button-light,
+.button-action {
   padding: 0;
   border-radius: 100%;
   width: 3rem;
   height: 3rem;
-  color: #000;
-  background-color: #fff;
-  border-color: #fff;
-  box-shadow: 0 .6rem 1rem rgba(0,0,0,.25);
+  box-shadow: .6rem .6rem 2rem 0.1rem rgba(0,0,0,.25);
 }
 
-.button-primary:hover {
-  background-color: #15889d;
-  color: #fff;
-  border-color: #17a2b8;
-}
-
-.button-primary-icon {
+.button-light-icon,
+.button-action-icon {
   line-height: 3rem;
   box-sizing: border-box;
   font-size: 1.5rem;
 }
+
+.button-light {
+  color: #000;
+  background-color: #fff;
+  border-color:  #fff;
+}
+
+.button-light:hover {
+  color: #fff;
+  background-color: #15889d;
+  border-color: #17a2b8;
+}
+
+.button-action {
+  color: #fff;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.button-action:hover {
+  color: #000;
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+
+
+

@@ -4,8 +4,8 @@
 
     <div class="img-container clear-fix">
 
-      <a *ngIf="parentComponentLink" class="btn button-primary" [routerLink]="parentComponentLink">
-        <i class="material-icons button-primary-icon">arrow_forward</i></a>
+      <a *ngIf="parentComponentLink" class="btn button-light" [routerLink]="parentComponentLink">
+        <i class="material-icons button-light-icon">arrow_forward</i></a>
 
       <img class="card-img-top" src="{{product.mainImgSrc[0]}}" alt="Зображення"
            (click)="onImageClick(product)">

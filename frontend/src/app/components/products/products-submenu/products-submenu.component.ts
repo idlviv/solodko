@@ -8,6 +8,7 @@ import {AppComponent} from '../../../app.component';
 import {CatalogService} from '../../../services/catalog.service';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import {localCatalog} from '../../../data/catalog';
 
 @Component({
   selector: 'app-products-submenu',
@@ -25,7 +26,8 @@ export class ProductsSubmenuComponent implements OnInit {
   catalog: ICatalog[];
   localCatalog: ICatalog[];
 
-  submenuList: object[];
+  category0Icon: string;
+  subMenuList: object;
 
   constructor(
     private productService: ProductService,
@@ -42,8 +44,18 @@ export class ProductsSubmenuComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         this.category0 = params.category0;
+        for (let i=1; i < this.localCatalog.length; i++) {
+          if (this.localCatalog[i].category0.name === this.category0) {
+            // this.category0 = this.localCatalog
+
+          }
+        }
         this.category1 = params.category1;
-        this.submenuList = this.catalogService.getQueriedCatalog(params);
+
+        this.category0Icon = this.catalogService.getQueriedCatalog(params).category0.icon;
+        this.subMenuList = this.catalogService.getQueriedCatalog(params).category0.category1;
+          console.log('this.submenuList', this.subMenuList);
+          console.log('this.category0Icon', this.category0Icon);
       },
       (error) => {
         this.flashMessage.show(

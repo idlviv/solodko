@@ -3,7 +3,9 @@
   <a class="navbar-brand"
      [routerLink]="['/products', {outlets: {primary: submenuList?
             'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',
-              productsSubmenu:  'category/' + category0 + '/main'}}]">{{category0}}</a>
+              productsSubmenu:  'category/' + category0 + '/main'}}]">
+    <span><i [ngClass]="category0Icon"></i></span>
+    {{category0}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

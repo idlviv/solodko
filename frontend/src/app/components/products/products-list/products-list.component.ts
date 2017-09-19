@@ -36,8 +36,7 @@ export class ProductsListComponent implements OnInit {
       .subscribe(params => {
           this.category0 = params.category0;
           this.category1 = params.category1;
-          this.submenuList = this.catalogService.getQueriedCatalog(params);
-
+          this.submenuList = this.catalogService.getQueriedCatalog(params).category0.category1;
         },
         (error) => {
           this.flashMessage.show(

@@ -714,7 +714,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".ng-valid[required], .ng-valid.required  {\r\n  border-left: 5px solid #42A948; /* green */\r\n}\r\n\r\n.ng-invalid:not(form)  {\r\n  border-left: 5px solid #a94442; /* red */\r\n}\r\n\r\n/*form.ng-invalid {*/\r\n  /*border-top: 5px solid #a94442; !* red *!*/\r\n/*}*/\r\n\r\n/*.left-span {*/\r\n  /*width: 120px;*/\r\n/*}*/\r\n\r\n/*.right-span {*/\r\n  /*width: 70px;*/\r\n/*}*/\r\n\r\n.input-group-sm {\r\n  padding: 0;\r\n}\r\n\r\n#itemNumber {\r\n  letter-spacing: 0.5rem\r\n}\r\n", ""]);
+exports.push([module.i, ".ng-valid[required], .ng-valid.required  {\r\n  border-left: 5px solid #42A948;\r\n}\r\n\r\n.ng-invalid:not(form)  {\r\n  border-left: 5px solid #dc3545;\r\n}\r\n\r\n.input-group-sm {\r\n  padding: 0;\r\n}\r\n\r\n#itemNumber {\r\n  letter-spacing: 0.5rem\r\n}\r\n", ""]);
 
 // exports
 
@@ -727,7 +727,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products-management/add-product/add-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Add product</h2>\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"\r\n                  [(ngModel)]=\"category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" ngModel name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" ngModel name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" ngModel name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"freeItemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" ngModel name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <input type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">\r\n  </form>\r\n"
+module.exports = "<h2 class=\"page-header\">Add product</h2>\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"\r\n                  [(ngModel)]=\"category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" ngModel name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" ngModel name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" ngModel name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"freeItemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" ngModel name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <button class=\"btn button-action\" [disabled]=\"!addProductForm.form.valid\">\r\n    <i class=\"material-icons button-action-icon\">done</i></button>\r\n    <!--<input type=\"submit\" class=\"btn button-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">-->\r\n  </form>\r\n"
 
 /***/ }),
 
@@ -1494,7 +1494,7 @@ var ProductsListComponent = (function () {
             .subscribe(function (params) {
             _this.category0 = params.category0;
             _this.category1 = params.category1;
-            _this.submenuList = _this.catalogService.getQueriedCatalog(params);
+            _this.submenuList = _this.catalogService.getQueriedCatalog(params).category0.category1;
         }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
@@ -1713,7 +1713,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/products/products-submenu/products-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand navbar-light navbar-width\">\r\n\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/products', {outlets: {primary: submenuList?\r\n            'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',\r\n              productsSubmenu:  'category/' + category0 + '/main'}}]\">{{category0}}</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav\" >\r\n      <li class=\"nav-item nav-item-width\"  *ngFor=\"let submenuItem of submenuList\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"  [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand navbar-light navbar-width\">\r\n\r\n  <a class=\"navbar-brand\"\r\n     [routerLink]=\"['/products', {outlets: {primary: submenuList?\r\n            'start/' + category0 + '/main': 'category/'+ category0 +'/noSubCategories',\r\n              productsSubmenu:  'category/' + category0 + '/main'}}]\">\r\n    <span><i [ngClass]=\"category0Icon\"></i></span>\r\n    {{category0}}</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav\" >\r\n      <li class=\"nav-item nav-item-width\"  *ngFor=\"let submenuItem of submenuList\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"  [routerLink]=\"['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,\r\n            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]\">{{submenuItem.name}}</a>\r\n      </li>\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -1770,8 +1770,16 @@ var ProductsSubmenuComponent = (function () {
         this.route.params
             .subscribe(function (params) {
             _this.category0 = params.category0;
+            for (var i = 1; i < _this.localCatalog.length; i++) {
+                if (_this.localCatalog[i].category0.name === _this.category0) {
+                    // this.category0 = this.localCatalog
+                }
+            }
             _this.category1 = params.category1;
-            _this.submenuList = _this.catalogService.getQueriedCatalog(params);
+            _this.category0Icon = _this.catalogService.getQueriedCatalog(params).category0.icon;
+            _this.subMenuList = _this.catalogService.getQueriedCatalog(params).category0.category1;
+            console.log('this.submenuList', _this.subMenuList);
+            console.log('this.category0Icon', _this.category0Icon);
         }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
@@ -1939,7 +1947,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n  padding-left: .7rem;\r\n  padding-right: .7rem;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 6rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n\r\n\r\n\r\n.img-container {\r\n  position: relative;\r\n}", ""]);
+exports.push([module.i, ".card-text {\r\n  font-size: .85rem;\r\n}\r\n\r\n.card-title {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.card {\r\n  margin-bottom: 2rem;\r\n  border: 0;\r\n  padding-left: .7rem;\r\n  padding-right: .7rem;\r\n}\r\n\r\n.card-title {\r\n  min-height: 4rem;\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: center;\r\n}\r\n\r\n@media (max-width: 576px) {\r\n  .card-title {\r\n    margin-bottom: 0;\r\n  }\r\n  .item-text {\r\n    margin-bottom: 0;\r\n  }\r\n}\r\n\r\n@media (min-width: 576px) {\r\n  .card-title {\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .item-text {\r\n    min-height: 6rem;\r\n    padding-bottom: 0.5rem;\r\n  }\r\n  .album {\r\n    min-height: 28rem;\r\n  }\r\n}\r\n\r\n.item-text {\r\n  /*min-height: 8rem;*/\r\n  /*padding-bottom: 0.5rem;*/\r\n  text-align: justify;\r\n}\r\n\r\n.album {\r\n  /*min-height: 28rem;*/\r\n  padding-bottom: 0.5rem;\r\n  background-color: #f7f7f7;\r\n}\r\n\r\n.item-info-title {\r\n  font-size: .65rem;\r\n  padding-bottom: 0;\r\n  margin-bottom: 0;\r\n  text-align: right;\r\n}\r\n\r\n.item-info-value {\r\n  font-size: .85rem;\r\n  font-weight: 500;\r\n}\r\n\r\n.img-container {\r\n  position: relative;\r\n}\r\n\r\n.button-light {\r\n  position: absolute;\r\n  top: calc(50% - 1.5rem);\r\n  top: -moz-calc(50% - 1.5rem);\r\n  left: calc(100% - 1.5rem);\r\n  top: -moz-calc(100% - 1.5rem);\r\n}", ""]);
 
 // exports
 
@@ -1952,7 +1960,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n\r\n\r\n    <div class=\"img-container clear-fix\">\r\n\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn button-primary\" [routerLink]=\"parentComponentLink\">\r\n        <i class=\"material-icons button-primary-icon\">arrow_forward</i></a>\r\n\r\n      <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n           (click)=\"onImageClick(product)\">\r\n    </div>\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n\r\n\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card\">\r\n  <div class=\"album\">\r\n\r\n\r\n    <div class=\"img-container clear-fix\">\r\n\r\n      <a *ngIf=\"parentComponentLink\" class=\"btn button-light\" [routerLink]=\"parentComponentLink\">\r\n        <i class=\"material-icons button-light-icon\">arrow_forward</i></a>\r\n\r\n      <img class=\"card-img-top\" src=\"{{product.mainImgSrc[0]}}\" alt=\"Зображення\"\r\n           (click)=\"onImageClick(product)\">\r\n    </div>\r\n\r\n    <div class=\"card-body\">\r\n      <h4 class=\"card-title\">{{product.name}}</h4>\r\n      <p *ngIf=\"product.itemDescription\" class=\"card-text item-text text-muted\">{{product.itemDescription}}</p>\r\n\r\n\r\n      <p *ngIf=\"product.itemNumber\" class=\"card-text item-info-title text-muted\">Артикул\r\n        <span class=\"item-info-value\">{{product.itemNumber}}</span>\r\n      </p>\r\n      <p *ngIf=\"product.size\" class=\"card-text item-info-title text-muted\">\r\n        Висота x Ширина\r\n        <span class=\"item-info-value\">{{product.size.height}}</span>\r\n        х\r\n        <span class=\"item-info-value\">{{product.size.width}}</span>\r\n        см\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2694,6 +2702,7 @@ var localCatalog = [
         category0: {
             itemNumberPrefix: 'і',
             name: 'іграшки',
+            icon: 'fa fa-flower',
         }
     },
     {
@@ -2701,6 +2710,7 @@ var localCatalog = [
         category0: {
             itemNumberPrefix: 'в',
             name: 'віночки',
+            icon: '',
         }
     },
     {
@@ -2708,20 +2718,24 @@ var localCatalog = [
         category0: {
             itemNumberPrefix: 'б',
             name: 'букети',
+            icon: '',
             category1: [
                 {
                     name: 'букети з квітів',
                     itemDescription: 'Живі квіти',
+                    icon: '',
                     mainImgSrc: ['./assets/images/composition-flowers_wedding-pion.jpg'],
                 },
                 {
                     name: 'букети з цукерок',
                     itemDescription: 'Цукерки, декоративні елементи',
+                    icon: '',
                     mainImgSrc: ['./assets/images/composition-sweets_delicacy.jpg'],
                 },
                 {
                     name: 'букети з фруктів',
                     itemDescription: 'Фрукти, овочі та зелень',
+                    icon: '',
                     mainImgSrc: ['./assets/images/composition-veg-fr_with-pepper.jpg'],
                 }
             ],
@@ -2732,12 +2746,14 @@ var localCatalog = [
         category0: {
             itemNumberPrefix: 'д',
             name: 'декор',
+            icon: '',
             category1: [
                 {
                     name: 'весільний декор',
                     itemDescription: 'Весільний декор для вашого свята: бокали, ' +
                         'скинька для обручок, свічки, кошичок для цукерок, ' +
                         'скринька для подарунків, підв’язка нареченої',
+                    icon: '',
                     mainImgSrc: ['./assets/images/decor_wedding1.jpg'],
                 },
             ],
@@ -2927,7 +2943,8 @@ var CatalogService = (function () {
     CatalogService.prototype.getQueriedCatalog = function (params) {
         for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */].length; i++) {
             if (params.category0 === __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.name) {
-                return __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.category1;
+                return (__WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i]);
+                // return localCatalog[i].category0.category1;
             }
         }
         // return this.http.get(
