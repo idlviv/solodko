@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/deeppurple-amber.css"), "");
 
 // module
-exports.push([module.i, "a,\r\nbutton {\r\n  text-transform: capitalize;\r\n}\r\n", ""]);
+exports.push([module.i, "a,\r\nbutton {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.button-primary {\r\n  position: absolute;\r\n  top: calc(50% - 1.5rem);\r\n  top: -moz-calc(50% - 1.5rem);\r\n  left: calc(100% - 1.5rem);\r\n  top: -moz-calc(100% - 1.5rem);\r\n  padding: 0;\r\n  border-radius: 100%;\r\n  width: 3rem;\r\n  height: 3rem;\r\n  color: #000;\r\n  background-color: #fff;\r\n  border-color: #fff;\r\n  box-shadow: 0 .6rem 1rem rgba(0,0,0,.25);\r\n}\r\n\r\n.button-primary:hover {\r\n  background-color: #15889d;\r\n  color: #fff;\r\n  border-color: #17a2b8;\r\n}\r\n\r\n.button-primary-icon {\r\n  line-height: 3rem;\r\n  box-sizing: border-box;\r\n  font-size: 1.5rem;\r\n}", ""]);
 
 // exports
 

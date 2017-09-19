@@ -9,6 +9,8 @@
 .card {
   margin-bottom: 2rem;
   border: 0;
+  padding-left: .7rem;
+  padding-right: .7rem;
 }
 
 .card-title {
@@ -61,4 +63,10 @@
 .item-info-value {
   font-size: .85rem;
   font-weight: 500;
+}
+
+
+
+.img-container {
+  position: relative;
 }
