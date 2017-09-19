@@ -27,7 +27,7 @@ export class ProductsSubmenuComponent implements OnInit {
   localCatalog: ICatalog[];
 
   category0Icon: string;
-  subMenuList: object;
+  submenuList: object;
 
   constructor(
     private productService: ProductService,
@@ -53,8 +53,8 @@ export class ProductsSubmenuComponent implements OnInit {
         this.category1 = params.category1;
 
         this.category0Icon = this.catalogService.getQueriedCatalog(params).category0.icon;
-        this.subMenuList = this.catalogService.getQueriedCatalog(params).category0.category1;
-          console.log('this.submenuList', this.subMenuList);
+        this.submenuList = this.catalogService.getQueriedCatalog(params).category0.category1;
+          console.log('this.submenuList', this.submenuList);
           console.log('this.category0Icon', this.category0Icon);
       },
       (error) => {

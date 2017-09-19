@@ -12,12 +12,25 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav" >
-      <li class="nav-item nav-item-width"  *ngFor="let submenuItem of submenuList"
-          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link"  [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
-            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>
-      </li>
+    <ul class="navbar-nav">
+
+      <div class="button-container">
+
+        <li class="nav-item nav-item-width"  *ngFor="let submenuItem of submenuList"
+            [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+
+          <a class="nav-link"  [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,
+            productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">
+            <i [ngClass]="submenuItem.icon"></i> {{submenuItem.name}}</a>
+        </li>
+
+      </div>
+
+      <!--<li class="nav-item nav-item-width"  *ngFor="let submenuItem of submenuList"-->
+          <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link"  [routerLink]="['/products', {outlets: {primary: 'category/' + category0 + '/' + submenuItem.name,-->
+            <!--productsSubmenu:  'category/' + category0 + '/' + submenuItem.name}}]">{{submenuItem.name}}</a>-->
+      <!--</li>-->
     </ul>
   </div>
 </nav>

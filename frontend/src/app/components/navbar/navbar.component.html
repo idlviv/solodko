@@ -15,6 +15,7 @@
            [routerLink]="['/products', {outlets: {primary: catalogItem.category0.category1?
             'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',
            productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]">
+          <!--<i [ngClass]="catalogItem.category0.icon"></i>-->
           {{catalogItem.category0.name}}</a></li>
     </ul>
 

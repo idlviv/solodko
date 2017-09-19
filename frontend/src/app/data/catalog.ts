@@ -7,7 +7,7 @@ export const localCatalog: ICatalog[] = [
       {
         itemNumberPrefix: 'і',
         name: 'іграшки',
-        icon: 'fa fa-flower',
+        icon: '',
       }
   },
   {

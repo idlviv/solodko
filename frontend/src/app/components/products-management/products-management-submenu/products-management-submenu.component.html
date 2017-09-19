@@ -1,8 +1,11 @@
-<ul class="nav flex-md-column">
-  <li class="nav-item" *ngFor="let item of menuList"
-      [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-    <a class="nav-link" [routerLink]="['/products-management', {outlets: {primary: item.route}}]">
-      {{item.name}}
-    </a>
-  </li>
-</ul>
+<nav class="bg-light sidebar">
+  <ul class="nav flex-md-column nav-pills">
+    <li class="nav-item" *ngFor="let item of menuList">
+      <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/products-management', {outlets: {primary: item.route}}]">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</nav>
+
