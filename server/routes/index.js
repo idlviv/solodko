@@ -9,7 +9,6 @@ let path = require('path');
 router.use('/', express.static(path.join(__dirname, '/../../public'), {redirect: false}));
 
 router.get('*', function(req, res, next) {
-
   res.sendFile(path.resolve('public/index.html'));
 });
 
