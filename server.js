@@ -12,10 +12,11 @@ const app = express();
 
 const users = require('./server/routes/users');
 const products = require('./server/routes/products');
+const index = require('./server/routes');
 
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -33,9 +34,11 @@ require('./server/config/passport')(passport);
 app.use('/api', users);
 app.use('/api', products);
 
-app.use('/', (req,res) => {
-  res.sendFile(path.join(__dirname, '/public'));
-});
+app.use('/', index);
+
+// app.use('/', (req,res) => {
+//   res.sendFile(path.join(__dirname, '/public'));
+// });
 
 app.use('*', function(req, res) {
   res.redirect('/');
