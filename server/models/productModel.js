@@ -48,7 +48,7 @@ const ProductSchema = mongoose.Schema({
 let ProductModel = mongoose.model('products', ProductSchema);
 module.exports = ProductModel;
 
-module.exports.getProducts = function() {
+ProductSchema.method.getProducts = function() {
       return new Promise((resolve, reject) => {
         ProductModel.find()
           .then((products) => resolve(products))
