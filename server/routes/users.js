@@ -35,9 +35,17 @@ router.post('/authenticate', function(req, res, next) {
       UserModel.comparePassword(password, user.password)
         .then((isMatch) => {
           if (isMatch) {
-            const token = jwt.sign(user, config.get('MONGOOSE_SECRET'), {
-              expiresIn: 604800 //1 week
-            });
+            // payload що передаю в jwt це юзер, можу добавити будь-які дані
+
+            const token = jwt.sign(
+              {
+                sub: user,
+                iat: new Date().getTime(),
+                exp: new Date().setDate(new Date().getTime() + 604800), // or setDate(new Date().getDate() + 7) //7 days
+              },
+              config.get('MONGOOSE_SECRET')
+              // {expiresIn: 604800} //1 week
+            );
             res.json({
               success: true, token: 'JWT ' + token, user: {
                 _id: user._id, username: user.username,

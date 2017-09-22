@@ -22,11 +22,10 @@ module.exports = function(passport) {
   // також передається ф-я done, що обробляє кінцевий рез-т
   // (після операцій з jwtPayload) і поертає відповідь на запрос
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-    console.log(jwtPayload);
-
+    console.log('jwtPayload', jwtPayload);
     // на основі _id (витягнутого з токена) робить пошук
     // в базі, чи є такий юзер, і ф-я done повертає відповідь
-    UserModel.getUserById(jwtPayload._doc._id)
+    UserModel.getUserById(jwtPayload.sub._id)
       .then((user) => {
         if (user) {
           done(null, user);
