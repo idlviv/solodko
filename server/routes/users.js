@@ -22,48 +22,76 @@ router.post('/register',
     .catch((error) => res.json(error));
 });
 
-router.post('/authenticate', function(req, res, next) {
-  const username = req.body.username;
-  const password = req.body.password;
+router.post('/authenticate',
+  passport.authenticate('local', {session: false}),
 
-  UserModel.getUserByUsername(username)
-    .then((user) => {
+  function(req, res, next) {
+    console.log('router - LocalStrategy - authenticated');
+    const user = req.body.username;
 
-      if (!user) {
-        return res.json({success: false, msg: 'User not found'});
+    // payload що передаю в jwt це юзер, можу добавити будь-які дані
+    const token = jwt.sign(
+      {
+        sub: user,
+        iat: new Date().getTime(),
+        exp: new Date().getTime() + 604800 // or setDate(new Date().getDate() + 7) //7 days
+      },
+      config.get('MONGOOSE_SECRET')
+      // {expiresIn: 604800} //1 week
+    );
+    res.json({
+      success: true, token: 'JWT ' + token, user: {
+        _id: user._id,
+        username: user.username,
+        name: user.name,
+        email: user.email
       }
-      UserModel.comparePassword(password, user.password)
-        .then((isMatch) => {
-          if (isMatch) {
-            // payload що передаю в jwt це юзер, можу добавити будь-які дані
+    });
 
-            const token = jwt.sign(
-              {
-                sub: user,
-                iat: new Date().getTime(),
-                exp: new Date().setDate(new Date().getTime() + 604800), // or setDate(new Date().getDate() + 7) //7 days
-              },
-              config.get('MONGOOSE_SECRET')
-              // {expiresIn: 604800} //1 week
-            );
-            res.json({
-              success: true, token: 'JWT ' + token, user: {
-                _id: user._id, username: user.username,
-                name: user.name, email: user.email
-              }
-            });
-          } else {
-            return res.json({success: false, msg: 'Wrong password'});
-          }
-        })
-        .catch((error) => {
-          throw error;
-        });
-    })
-  .catch((error) => {
-    throw error;
-  });
 });
+
+// router.post('/authenticate', function(req, res, next) {
+//   const username = req.body.username;
+//   const password = req.body.password;
+//
+//   UserModel.getUserByUsername(username)
+//     .then((user) => {
+//
+//       if (!user) {
+//         return res.json({success: false, msg: 'User not found'});
+//       }
+//       UserModel.comparePassword(password, user.password)
+//         .then((isMatch) => {
+//           if (isMatch) {
+//             // payload що передаю в jwt це юзер, можу добавити будь-які дані
+//
+//             const token = jwt.sign(
+//               {
+//                 sub: user,
+//                 iat: new Date().getTime(),
+//                 exp: new Date().setDate(new Date().getTime() + 604800), // or setDate(new Date().getDate() + 7) //7 days
+//               },
+//               config.get('MONGOOSE_SECRET')
+//               // {expiresIn: 604800} //1 week
+//             );
+//             res.json({
+//               success: true, token: 'JWT ' + token, user: {
+//                 _id: user._id, username: user.username,
+//                 name: user.name, email: user.email
+//               }
+//             });
+//           } else {
+//             return res.json({success: false, msg: 'Wrong password'});
+//           }
+//         })
+//         .catch((error) => {
+//           throw error;
+//         });
+//     })
+//   .catch((error) => {
+//     throw error;
+//   });
+// });
 
 // роутер отримує хедер з токеном від auth.service (front)
 // passport.authenticate робить запит до passport -> config/passport

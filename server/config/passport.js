@@ -1,6 +1,8 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
 
+const LocalStrategy = require('passport-local').Strategy;
+
 const UserModel = require('../models/userModel');
 const config = require('./');
 
@@ -21,8 +23,11 @@ module.exports = function(passport) {
   // і передається в колбек як jwtPayload,
   // також передається ф-я done, що обробляє кінцевий рез-т
   // (після операцій з jwtPayload) і поертає відповідь на запрос
+
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-    console.log('jwtPayload', jwtPayload);
+    console.log('config/passport - JwtStrategy');
+
+    // console.log('jwtPayload', jwtPayload);
     // на основі _id (витягнутого з токена) робить пошук
     // в базі, чи є такий юзер, і ф-я done повертає відповідь
     UserModel.getUserById(jwtPayload.sub._id)
@@ -37,4 +42,33 @@ module.exports = function(passport) {
         done(error, false);
       });
   }));
+
+  passport.use(new LocalStrategy((username, password, done) => {
+      console.log('config/passport - LocalStrategy');
+      console.log('config/passport - LocalStrategy - username', username);
+      console.log('config/passport - LocalStrategy - password', password);
+      UserModel.getUserByUsername(username)
+        .then((user) => {
+          if (!user) {
+            return done(null, false);
+          }
+          UserModel.comparePassword(password, user.password)
+            .then((isMatch) => {
+              if (!isMatch) {
+                return done(null, false);
+              } else {
+                return done(null, true);
+              }
+            })
+            .catch((err) => {
+              return done(err);
+            });
+        })
+        .catch((err) => {
+          return done(err);
+        });
+    }
+
+  ))
+
 };

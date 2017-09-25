@@ -2406,6 +2406,13 @@ var LoginComponent = (function () {
                 });
                 _this.router.navigate(['/login']);
             }
+        }, function (err) {
+            console.log(err);
+            _this.flashMessage.show(err.status + ' ' + err.statusText, {
+                cssClass: 'alert-danger',
+                timeout: 5000
+            });
+            _this.router.navigate(['/login']);
         });
     };
     return LoginComponent;

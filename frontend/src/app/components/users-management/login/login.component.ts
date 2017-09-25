@@ -49,7 +49,18 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/login']);
         }
 
-      });
+      },err => {
+          console.log(err);
+          this.flashMessage.show(
+            err.status + ' ' + err.statusText,
+            {
+              cssClass: 'alert-danger',
+              timeout: 5000
+            });
+          this.router.navigate(['/login']);
+        }
+      )
+
   }
 
 }

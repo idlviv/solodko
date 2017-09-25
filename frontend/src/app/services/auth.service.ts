@@ -33,6 +33,7 @@ export class AuthService {
       user,
       {headers: headers})
       .map(res => res.json());
+
   }
 
   // profile.component підписується на getProfile
