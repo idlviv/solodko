@@ -2389,7 +2389,6 @@ var LoginComponent = (function () {
             username: form.value.username,
             password: form.value.password,
         };
-        console.log('user', this.user);
         this.authService.authUser(this.user)
             .subscribe(function (data) {
             if (data.success) {
@@ -2408,7 +2407,6 @@ var LoginComponent = (function () {
                 _this.router.navigate(['/login']);
             }
         }, function (err) {
-            console.log(err);
             _this.flashMessage.show(err, 
             // err.status + ' ' + err.statusText,
             {
@@ -2943,6 +2941,7 @@ var AuthService = (function () {
         // і цей юзер передається в profile.component
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
+        console.log('auth service -token', this.authToken);
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })

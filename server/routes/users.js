@@ -2,53 +2,20 @@ let express = require('express');
 let router = express.Router();
 let passport = require('passport');
 let jwt = require('jsonwebtoken');
+let UserController = require('../controllers/userController');
 
-let UserModel = require('../models/userModel');
 const config = require('../config');
 
 // реєстрація і повернення результату в фронт
 router.post('/register',
   passport.authenticate('jwt', {session: false}),
-  function(req, res, next) {
-  let newUser = new UserModel({
-    name: req.body.name,
-    email: req.body.email,
-    username: req.body.username,
-    password: req.body.password,
-  });
-  // повертає обєкт (success..)
-  UserModel.addUser(newUser)
-    .then((result) => res.json(result))
-    .catch((error) => res.json(error));
-});
+  UserController.userRegistration
+  );
 
 router.post('/authenticate',
   passport.authenticate('local', {session: false}),
-
-  function(req, res, next) {
-    console.log('router - LocalStrategy - authenticated');
-    const user = req.body.username;
-
-    // payload що передаю в jwt це юзер, можу добавити будь-які дані
-    const token = jwt.sign(
-      {
-        sub: user,
-        iat: new Date().getTime(),
-        exp: new Date().getTime() + 604800 // or setDate(new Date().getDate() + 7) //7 days
-      },
-      config.get('MONGOOSE_SECRET')
-      // {expiresIn: 604800} //1 week
-    );
-    res.json({
-      success: true, token: 'JWT ' + token, user: {
-        _id: user._id,
-        username: user.username,
-        name: user.name,
-        email: user.email
-      }
-    });
-
-});
+  UserController.userAuthentication
+);
 
 // router.post('/authenticate', function(req, res, next) {
 //   const username = req.body.username;
@@ -100,9 +67,8 @@ router.post('/authenticate',
 // якщо ні, то далі не пускає - 401 Unauthorized
 router.get(
   '/profile', passport.authenticate('jwt', {session: false}),
-  (req, res, next) => {
-    res.json({user: req.user});
-  });
+  UserController.userProfile
+);
 
 // router.get('/validate', function(req, res, next) {
 //   res.json({user: req.user});

@@ -62,6 +62,8 @@ export class AuthService {
     // і цей юзер передається в profile.component
     let headers = new Headers();
     this.loadToken();
+    console.log('auth service -token', this.authToken);
+
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.get(

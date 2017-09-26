@@ -11,7 +11,7 @@ import {NgForm} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  user: Object
+  user: Object;
 
   constructor(
     private authService: AuthService,
@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
       username: form.value.username,
       password: form.value.password,
     };
-    console.log('user', this.user);
 
     this.authService.authUser(this.user)
       .subscribe((data) => {
@@ -52,7 +51,6 @@ export class LoginComponent implements OnInit {
         }
 
       },err => {
-          console.log(err);
           this.flashMessage.show(
             err,
             // err.status + ' ' + err.statusText,

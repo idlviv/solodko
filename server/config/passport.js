@@ -22,13 +22,12 @@ module.exports = function(passport) {
   // з токена на основі секрета виділяється юзер
   // і передається в колбек як jwtPayload,
   // також передається ф-я done, що обробляє кінцевий рез-т
-  // (після операцій з jwtPayload) і поертає відповідь на запросf
+  // (після операцій з jwtPayload) і поертає відповідь на запрос
 
 
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
     console.log('config/passport - JwtStrategy');
-
-    // console.log('jwtPayload', jwtPayload);
+    console.log('jwtPayload', jwtPayload);
     // на основі _id (витягнутого з токена) робить пошук
     // в базі, чи є такий юзер, і ф-я done повертає відповідь
     UserModel.getUserById(jwtPayload.sub._id)
@@ -46,8 +45,8 @@ module.exports = function(passport) {
 
   passport.use(new LocalStrategy((username, password, done) => {
       console.log('config/passport - LocalStrategy');
-      console.log('config/passport - LocalStrategy - username', username);
-      console.log('config/passport - LocalStrategy - password', password);
+      // console.log('config/passport - LocalStrategy - username', username);
+      // console.log('config/passport - LocalStrategy - password', password);
       UserModel.getUserByUsername(username)
         .then((user) => {
           if (!user) {
