@@ -22,7 +22,8 @@ module.exports = function(passport) {
   // з токена на основі секрета виділяється юзер
   // і передається в колбек як jwtPayload,
   // також передається ф-я done, що обробляє кінцевий рез-т
-  // (після операцій з jwtPayload) і поертає відповідь на запрос
+  // (після операцій з jwtPayload) і поертає відповідь на запросf
+
 
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
     console.log('config/passport - JwtStrategy');

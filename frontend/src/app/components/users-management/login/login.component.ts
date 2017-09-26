@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: String;
-  password: String;
+
+  user: Object
 
   constructor(
     private authService: AuthService,
@@ -21,13 +22,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLoginSubmit() {
-    const user = {
-      username: this.username,
-      password: this.password,
+  onLoginSubmit(form: NgForm) {
+    this.user = {
+      username: form.value.username,
+      password: form.value.password,
     };
+    console.log('user', this.user);
 
-    this.authService.authUser(user)
+    this.authService.authUser(this.user)
       .subscribe((data) => {
         if (data.success) {
           this.authService.storeUserData(data.token, data.user);
@@ -52,7 +54,8 @@ export class LoginComponent implements OnInit {
       },err => {
           console.log(err);
           this.flashMessage.show(
-            err.status + ' ' + err.statusText,
+            err,
+            // err.status + ' ' + err.statusText,
             {
               cssClass: 'alert-danger',
               timeout: 5000

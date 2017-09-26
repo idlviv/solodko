@@ -1,16 +1,17 @@
 <h2 class="page-header">Login</h2>
-<form (submit)="onLoginSubmit()">
+<form (ngSubmit)="onLoginSubmit(loginForm); loginForm.reset()" #loginForm="ngForm">
 
   <div class="form-group">
     <label for="username">UserName</label>
-    <input type="text" [(ngModel)]="username"
+    <input type="text" ngModel required
            name="username" class="form-control" id="username">
   </div>
 
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" [(ngModel)]="password"
+    <input type="password" ngModel required
            name="password" class="form-control" id="password">
   </div>
-  <input type="submit" class="btn btn-primary" value="Submit">
+  <button class="btn btn-primary"
+          [disabled]="!loginForm.form.valid">Увійти</button>
 </form>

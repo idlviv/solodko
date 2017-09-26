@@ -2348,7 +2348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users-management/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (submit)=\"onLoginSubmit()\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" [(ngModel)]=\"username\"\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" [(ngModel)]=\"password\"\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\r\n</form>"
+module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" ngModel required\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" ngModel required\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\"\r\n          [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n</form>"
 
 /***/ }),
 
@@ -2383,13 +2383,14 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
-    LoginComponent.prototype.onLoginSubmit = function () {
+    LoginComponent.prototype.onLoginSubmit = function (form) {
         var _this = this;
-        var user = {
-            username: this.username,
-            password: this.password,
+        this.user = {
+            username: form.value.username,
+            password: form.value.password,
         };
-        this.authService.authUser(user)
+        console.log('user', this.user);
+        this.authService.authUser(this.user)
             .subscribe(function (data) {
             if (data.success) {
                 _this.authService.storeUserData(data.token, data.user);
@@ -2408,7 +2409,9 @@ var LoginComponent = (function () {
             }
         }, function (err) {
             console.log(err);
-            _this.flashMessage.show(err.status + ' ' + err.statusText, {
+            _this.flashMessage.show(err, 
+            // err.status + ' ' + err.statusText,
+            {
                 cssClass: 'alert-danger',
                 timeout: 5000
             });
@@ -2654,6 +2657,13 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__login_login_component__ = __webpack_require__("../../../../../src/app/components/users-management/login/login.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__profile_profile_component__ = __webpack_require__("../../../../../src/app/components/users-management/profile/profile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__register_register_component__ = __webpack_require__("../../../../../src/app/components/users-management/register/register.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/add/observable/throw.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_throw___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_add_observable_throw__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_CustomErrorHandler__ = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2665,6 +2675,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+
+
+// import {Observable} from 'rxjs/Observable';
 
 
 
@@ -2690,6 +2705,7 @@ UsersManagementModule = __decorate([
         providers: [
             __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */],
             __WEBPACK_IMPORTED_MODULE_4__guards_auth_guard__["a" /* AuthGuard */],
+            __WEBPACK_IMPORTED_MODULE_12__services_CustomErrorHandler__["a" /* CustomErrorHandler */],
         ]
     })
 ], UsersManagementModule);
@@ -2824,6 +2840,42 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/CustomErrorHandler.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomErrorHandler; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var CustomErrorHandler = (function () {
+    function CustomErrorHandler() {
+    }
+    CustomErrorHandler.prototype.httpErrorHandler = function (err) {
+        if (err.status === 401) {
+            this.statusText = 'Невірне ім\'я користувача або пароль';
+            return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(this.statusText);
+        }
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw('Помилка сервера');
+    };
+    return CustomErrorHandler;
+}());
+CustomErrorHandler = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+], CustomErrorHandler);
+
+//# sourceMappingURL=CustomErrorHandler.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/auth.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2831,11 +2883,10 @@ var _a, _b;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt__ = __webpack_require__("../../../../angular2-jwt/angular2-jwt.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_config__ = __webpack_require__("../../../../../src/app/app.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt__ = __webpack_require__("../../../../angular2-jwt/angular2-jwt.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_config__ = __webpack_require__("../../../../../src/app/app.config.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CustomErrorHandler__ = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2847,12 +2898,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+//
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
 
 
 
 var AuthService = (function () {
-    function AuthService(http) {
+    function AuthService(http, customErrorHandler) {
         this.http = http;
+        this.customErrorHandler = customErrorHandler;
     }
     // register.component підписується на registerUser
     // юзер з хедером передається на сервер
@@ -2861,15 +2917,23 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__app_config__["a" /* config */].serverUrl + 'api/register', user, { headers: headers })
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_4__app_config__["a" /* config */].serverUrl + 'api/authenticate', user, { headers: headers })
-            .map(function (res) { return res.json(); });
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/authenticate', user, { headers: headers })
+            .map(function (res) { return res.json(); })
+            .catch(this.customErrorHandler.httpErrorHandler);
     };
+    //
+    // _errorHandler(err: Response) {
+    //   if (err.status === 401) {
+    //     console.log('err', err);
+    //     return Observable.throw(err);
+    //   }
+    // }
     // profile.component підписується на getProfile
     AuthService.prototype.getProfile = function () {
         // береться токен юзера loadToken() з localStorage
@@ -2881,7 +2945,7 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -2894,7 +2958,7 @@ var AuthService = (function () {
         this.authToken = localStorage.getItem('token');
     };
     AuthService.prototype.loggedIn = function () {
-        return Object(__WEBPACK_IMPORTED_MODULE_3_angular2_jwt__["tokenNotExpired"])();
+        return Object(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["tokenNotExpired"])();
     };
     AuthService.prototype.logout = function () {
         this.authToken = null;
@@ -2905,10 +2969,10 @@ var AuthService = (function () {
 }());
 AuthService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__CustomErrorHandler__["a" /* CustomErrorHandler */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__CustomErrorHandler__["a" /* CustomErrorHandler */]) === "function" && _b || Object])
 ], AuthService);
 
-var _a;
+var _a, _b;
 //# sourceMappingURL=auth.service.js.map
 
 /***/ }),

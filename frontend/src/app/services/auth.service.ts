@@ -1,15 +1,25 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import 'rxjs/add/operator/map';
+
+import {Observable} from 'rxjs/Observable';
+//
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+
 import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
+import {CustomErrorHandler} from './CustomErrorHandler';
 
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
 
-  constructor(private http: Http) {}
+  constructor(
+    private http: Http,
+    private customErrorHandler: CustomErrorHandler
+  ) {}
 
   // register.component підписується на registerUser
   // юзер з хедером передається на сервер
@@ -32,9 +42,16 @@ export class AuthService {
       config.serverUrl + 'api/authenticate',
       user,
       {headers: headers})
-      .map(res => res.json());
-
+      .map(res => res.json())
+      .catch(this.customErrorHandler.httpErrorHandler);
   }
+  //
+  // _errorHandler(err: Response) {
+  //   if (err.status === 401) {
+  //     console.log('err', err);
+  //     return Observable.throw(err);
+  //   }
+  // }
 
   // profile.component підписується на getProfile
   getProfile() {

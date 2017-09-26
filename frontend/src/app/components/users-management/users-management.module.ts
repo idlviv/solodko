@@ -10,6 +10,13 @@ import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 import {RegisterComponent} from './register/register.component';
 
+// import {Observable} from 'rxjs/Observable';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
+import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 
 @NgModule({
   declarations: [
@@ -24,9 +31,11 @@ import {RegisterComponent} from './register/register.component';
   ],
   exports: [
   ],
+
   providers: [
     AuthService,
     AuthGuard,
+    CustomErrorHandler,
   ]
 })
 export class UsersManagementModule {}
