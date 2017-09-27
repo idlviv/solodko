@@ -9,7 +9,7 @@ const config = require('./');
 
 //Виконується при ініціалізації паспорта
 module.exports = function(passport) {
-  log.info('config/passport - initialization');
+  log.verbose('config/passport - initialization');
   let opts = {};
 
   // Реквест в хедері передає JWT token,
@@ -24,28 +24,29 @@ module.exports = function(passport) {
   // і передається в колбек як jwtPayload,
   // також передається ф-я done, що обробляє кінцевий рез-т
   // (після операцій з jwtPayload) і поертає відповідь на запрос
-  passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
-    console.log('config/passport - JwtStrategy');
-    console.log('jwtPayload', jwtPayload);
-    // на основі _id (витягнутого з токена) робить пошук
-    // в базі, чи є такий юзер, і ф-я done повертає відповідь
-    UserModel.getUserById(jwtPayload.sub._id)
-      .then((user) => {
-        if (user) {
-          done(null, user);
-        } else {
-          done(null, false);
-        }
-      })
-      .catch((error) => {
-        done(error, false);
-      });
-  }));
 
-  passport.use(new LocalStrategy((username, password, done) => {
-      console.log('config/passport - LocalStrategy');
-      // console.log('config/passport - LocalStrategy - username', username);
-      // console.log('config/passport - LocalStrategy - password', password);
+  passport.use(
+    new JwtStrategy(opts, (jwtPayload, done) => {
+      log.verbose('config/passport - JwtStrategy');
+      // на основі _id (витягнутого з токена) робить пошук
+      // в базі, чи є такий юзер, і ф-я done повертає відповідь
+      UserModel.getUserById(jwtPayload.sub._id)
+        .then((user) => {
+          if (user) {
+            done(null, user);
+          } else {
+            done(null, false);
+          }
+        })
+        .catch((error) => {
+          done(error, false);
+        });
+    }
+  ));
+
+  passport.use(
+    new LocalStrategy((username, password, done) => {
+      log.verbose('config/passport - LocalStrategy');
       UserModel.getUserByUsername(username)
         .then((user) => {
           if (!user) {
@@ -67,7 +68,5 @@ module.exports = function(passport) {
           return done(err);
         });
     }
-
-  ))
-
+  ));
 };

@@ -2348,7 +2348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users-management/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Login</h2>\r\n<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" ngModel required\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" ngModel required\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\"\r\n          [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n</form>"
+module.exports = "<h2 class=\"page-header\">Увійти</h2>\r\n<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" ngModel required\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" ngModel required\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\"\r\n          [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n</form>"
 
 /***/ }),
 
@@ -2537,7 +2537,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users-management/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Register</h2>\r\n<form (submit)=\"onRegisterSubmit()\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input type=\"text\" [(ngModel)]=\"name\" name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" [(ngModel)]=\"username\" name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input type=\"text\" [(ngModel)]=\"email\" name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" [(ngModel)]=\"password\" name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <input type=\"submit\" class=\"btn btn-primary\" value=\"Submit\">\r\n</form>"
+module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\r\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\r\n</form>"
 
 /***/ }),
 
@@ -2575,13 +2575,13 @@ var RegisterComponent = (function () {
     }
     RegisterComponent.prototype.ngOnInit = function () {
     };
-    RegisterComponent.prototype.onRegisterSubmit = function () {
+    RegisterComponent.prototype.onRegisterSubmit = function (form) {
         var _this = this;
         var user = {
-            name: this.name,
-            email: this.email,
-            username: this.username,
-            password: this.password
+            name: form.value.name,
+            email: form.value.email,
+            username: form.value.username,
+            password: form.value.password
         };
         // validateService перевіряє валідність даних
         if (!this.validateService.validateRegister(user)) {
@@ -2606,7 +2606,7 @@ var RegisterComponent = (function () {
                     cssClass: 'alert-success',
                     timeout: 3000
                 });
-                _this.router.navigate(['/login']);
+                // this.router.navigate(['/login']);
             }
             else {
                 _this.flashMessage.show('Registration failed', {
@@ -2925,13 +2925,6 @@ var AuthService = (function () {
             .map(function (res) { return res.json(); })
             .catch(this.customErrorHandler.httpErrorHandler);
     };
-    //
-    // _errorHandler(err: Response) {
-    //   if (err.status === 401) {
-    //     console.log('err', err);
-    //     return Observable.throw(err);
-    //   }
-    // }
     // profile.component підписується на getProfile
     AuthService.prototype.getProfile = function () {
         // береться токен юзера loadToken() з localStorage
@@ -2941,11 +2934,13 @@ var AuthService = (function () {
         // і цей юзер передається в profile.component
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
-        console.log('auth service -token', this.authToken);
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
-            .map(function (res) { return res.json(); });
+            .map(function (res) {
+            console.log(res.json());
+            return res.json();
+        });
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('token', token);

@@ -45,15 +45,8 @@ export class AuthService {
       .map(res => res.json())
       .catch(this.customErrorHandler.httpErrorHandler);
   }
-  //
-  // _errorHandler(err: Response) {
-  //   if (err.status === 401) {
-  //     console.log('err', err);
-  //     return Observable.throw(err);
-  //   }
-  // }
 
-  // profile.component підписується на getProfile
+    // profile.component підписується на getProfile
   getProfile() {
     // береться токен юзера loadToken() з localStorage
     // формується запит який містить в хедері токен
@@ -62,14 +55,16 @@ export class AuthService {
     // і цей юзер передається в profile.component
     let headers = new Headers();
     this.loadToken();
-    console.log('auth service -token', this.authToken);
 
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.get(
       config.serverUrl + 'api/profile',
       {headers: headers})
-      .map(res => res.json());
+      .map(res => {
+        console.log(res.json());
+        return res.json()
+      });
   }
 
   storeUserData(token, user) {

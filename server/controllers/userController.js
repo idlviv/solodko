@@ -3,6 +3,7 @@ let jwt = require('jsonwebtoken');
 let UserModel = require('../models/userModel');
 const log = require('../config/winston')(module);
 
+// зареєструвати в базі нового користувача
 module.exports.userRegistration = function(req, res, next) {
   let newUser = new UserModel({
     name: req.body.name,
@@ -11,29 +12,37 @@ module.exports.userRegistration = function(req, res, next) {
     password: req.body.password,
   });
   // повертає обєкт (success..)
-  console.log('user Controller- newUser', newUser);
+  log.verbose('user Controller- newUser', newUser);
   UserModel.addUser(newUser)
     .then((result) => res.json(result))
     .catch((error) => res.json(error));
 };
 
-
-module.exports.userAuthentication = function(req, res, next) {
-  console.log('router - LocalStrategy - authenticated');
-  const user = req.user._doc;
-  // payload що передаю в jwt це юзер, можу добавити будь-які дані
-  const token = jwt.sign(
+createToken = function(user) {
+  return jwt.sign(
     {
-      sub: user,
+      sub: {
+        _id: user._id,
+      },
       iat: new Date().getTime(),
       exp: new Date().getTime() + 604800 // or setDate(new Date().getDate() + 7) //7 days
     },
     config.get('MONGOOSE_SECRET')
     // {expiresIn: 604800} //1 week
   );
-  console.log(user);
+};
+
+//створити токен при вході користувача і передати в фронт
+module.exports.userAuthentication = function(req, res, next) {
+  log.verbose('router - LocalStrategy - authenticated');
+
+  const user = req.user._doc;
+  // в payload записую тільки id юзера, можу добавити будь-які дані
+  const TOKEN = createToken(user);
+  // в фронт при вході даю всі дані, крім пароля
   res.status(200).json({
-    success: true, token: 'JWT ' + token, user: {
+    success: true, token: 'JWT ' + TOKEN,
+    user: {
       _id: user._id,
       username: user.username,
       name: user.name,
@@ -43,6 +52,14 @@ module.exports.userAuthentication = function(req, res, next) {
 };
 
 module.exports.userProfile = function(req, res, next) {
-  log.info(req.user);
-  res.json({user: req.user});
+  //паспорт після валідації передає юзера в полі req.user._doc
+  //.json сам знайде _doc і виділить користувача тому можна передати просто req.user,
+  // якщо хочу передати всього користівача. Але даю все, крім пароля
+  const user = req.user._doc;
+  res.status(200).json({user: {
+    _id: user._id,
+    username: user.username,
+    name: user.name,
+    email: user.email
+  }});
 };

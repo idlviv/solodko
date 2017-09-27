@@ -1,20 +1,20 @@
-<h2 class="page-header">Register</h2>
-<form (submit)="onRegisterSubmit()">
+<h2 class="page-header">Зареєструвати нового користувача</h2>
+<form (ngSubmit)="onRegisterSubmit(registerForm); registerForm.reset()" #registerForm="ngForm">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" [(ngModel)]="name" name="name" class="form-control" id="name">
+    <input ngModel required name="name" class="form-control" id="name">
   </div>
   <div class="form-group">
     <label for="username">UserName</label>
-    <input type="text" [(ngModel)]="username" name="username" class="form-control" id="username">
+    <input ngModel required name="username" class="form-control" id="username">
   </div>
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="text" [(ngModel)]="email" name="email" class="form-control" id="email">
+    <input ngModel required name="email" class="form-control" id="email">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password">
+    <input ngModel required name="password" class="form-control" id="password">
   </div>
-  <input type="submit" class="btn btn-primary" value="Submit">
+  <button class="btn btn-primary" [disabled]="!registerForm.form.valid">Зареэструватись</button>
 </form>

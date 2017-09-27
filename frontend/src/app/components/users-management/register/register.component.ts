@@ -3,6 +3,7 @@ import {ValidateService} from '../../../services/validate.service';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -20,18 +21,17 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-
   ) {}
 
   ngOnInit() {
   }
 
-  onRegisterSubmit() {
+  onRegisterSubmit(form: NgForm) {
     const user = {
-      name: this.name,
-      email: this.email,
-      username: this.username,
-      password: this.password
+      name: form.value.name,
+      email: form.value.email,
+      username: form.value.username,
+      password: form.value.password
     };
     // validateService перевіряє валідність даних
     if (!this.validateService.validateRegister(user)) {
@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
             cssClass: 'alert-success',
             timeout: 3000
           });
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
       } else {
         this.flashMessage.show(
           'Registration failed',
