@@ -1,5 +1,6 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const log = require('./winston')(module);
 
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -8,7 +9,7 @@ const config = require('./');
 
 //Виконується при ініціалізації паспорта
 module.exports = function(passport) {
-  console.log('config/passport - initialization');
+  log.info('config/passport - initialization');
   let opts = {};
 
   // Реквест в хедері передає JWT token,
@@ -23,8 +24,6 @@ module.exports = function(passport) {
   // і передається в колбек як jwtPayload,
   // також передається ф-я done, що обробляє кінцевий рез-т
   // (після операцій з jwtPayload) і поертає відповідь на запрос
-
-
   passport.use(new JwtStrategy(opts, (jwtPayload, done) => {
     console.log('config/passport - JwtStrategy');
     console.log('jwtPayload', jwtPayload);
@@ -57,7 +56,7 @@ module.exports = function(passport) {
               if (!isMatch) {
                 return done(null, false);
               } else {
-                return done(null, true);
+                return done(null, user);
               }
             })
             .catch((err) => {

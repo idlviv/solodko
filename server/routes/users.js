@@ -3,6 +3,7 @@ let router = express.Router();
 let passport = require('passport');
 let jwt = require('jsonwebtoken');
 let UserController = require('../controllers/userController');
+const log = require('../config/winston')(module);
 
 const config = require('../config');
 

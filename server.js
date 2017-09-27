@@ -7,6 +7,7 @@ const mongoose = require('./server/libs/mongoose');
 const config = require('./server/config');
 const errorhandler = require('errorhandler');
 const HttpError = require('./server/error').HttpError;
+const log = require('./server/config/winston')(module);
 
 const app = express();
 
@@ -16,6 +17,9 @@ const index = require('./server/routes');
 
 app.use(cors());
 
+// log.info('fef');
+// log.debug('sdfsdf');
+// log.error('sdfsdf');
 // app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.json());

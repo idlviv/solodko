@@ -1,6 +1,7 @@
 const config = require('../config');
 let jwt = require('jsonwebtoken');
 let UserModel = require('../models/userModel');
+const log = require('../config/winston')(module);
 
 module.exports.userRegistration = function(req, res, next) {
   let newUser = new UserModel({
@@ -16,9 +17,10 @@ module.exports.userRegistration = function(req, res, next) {
     .catch((error) => res.json(error));
 };
 
+
 module.exports.userAuthentication = function(req, res, next) {
   console.log('router - LocalStrategy - authenticated');
-  const user = req.body.username;
+  const user = req.user._doc;
   // payload що передаю в jwt це юзер, можу добавити будь-які дані
   const token = jwt.sign(
     {
@@ -41,6 +43,6 @@ module.exports.userAuthentication = function(req, res, next) {
 };
 
 module.exports.userProfile = function(req, res, next) {
-  console.log(req.user);
+  log.info(req.user);
   res.json({user: req.user});
 };
