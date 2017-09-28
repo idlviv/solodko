@@ -6,10 +6,12 @@ import {ProductsManagementComponent} from './products-management.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
 import {ProductsManagementSubmenuComponent} from './products-management-submenu/products-management-submenu.component';
 import {AddProductComponent} from './add-product/add-product.component';
+import {AuthAdminGuard} from '../../guards/auth-admin.guard';
 
 const productsRoutes: Routes = [
   {
     path: 'products-management',
+    canActivateChild: [AuthAdminGuard],
     component: ProductsManagementComponent,
     children: [
       // {

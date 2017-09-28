@@ -44,7 +44,7 @@ export class ProductsSubmenuComponent implements OnInit {
     this.route.params
       .subscribe(params => {
         this.category0 = params.category0;
-        for (let i=1; i < this.localCatalog.length; i++) {
+        for (let i = 1; i < this.localCatalog.length; i++) {
           if (this.localCatalog[i].category0.name === this.category0) {
             // this.category0 = this.localCatalog
 

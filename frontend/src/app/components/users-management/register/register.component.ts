@@ -11,10 +11,11 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  name: String;
-  username: String;
-  email: String;
-  password: String;
+  name:  string;
+  username:  string;
+  email:  string;
+  password:  string;
+  role: string;
 
   constructor(
     private validateService: ValidateService,
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit {
       name: form.value.name,
       email: form.value.email,
       username: form.value.username,
-      password: form.value.password
+      password: form.value.password,
     };
     // validateService перевіряє валідність даних
     if (!this.validateService.validateRegister(user)) {

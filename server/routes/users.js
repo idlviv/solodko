@@ -7,6 +7,11 @@ const log = require('../config/winston')(module);
 
 const config = require('../config');
 
+router.get('/role',
+  passport.authenticate('jwt', {session: false}),
+  UserController.userRole
+  );
+
 // реєстрація і повернення результату в фронт
 router.post('/register',
   passport.authenticate('jwt', {session: false}),

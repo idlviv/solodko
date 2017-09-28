@@ -10,6 +10,7 @@ import {Observable} from 'rxjs/Observable';
 import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
 import {CustomErrorHandler} from './CustomErrorHandler';
+import {IUser} from '../interfaces/i-user';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,7 @@ export class AuthService {
 
   // register.component підписується на registerUser
   // юзер з хедером передається на сервер
-  registerUser(user) {
+  registerUser(user: IUser) {
     const headers = new Headers();
     this.loadToken();
     headers.append('Authorization', this.authToken);
@@ -53,7 +54,7 @@ export class AuthService {
     // якщо токен валідний і є такий юзер то сервер
     // відповідаю даними юзера (розшифровує токен)
     // і цей юзер передається в profile.component
-    let headers = new Headers();
+    const headers = new Headers();
     this.loadToken();
 
     headers.append('Authorization', this.authToken);
@@ -62,8 +63,7 @@ export class AuthService {
       config.serverUrl + 'api/profile',
       {headers: headers})
       .map(res => {
-        console.log(res.json());
-        return res.json()
+        return res.json();
       });
   }
 
@@ -76,6 +76,20 @@ export class AuthService {
 
   loadToken() {
       this.authToken = localStorage.getItem('token');
+  }
+
+  loggedInAdmin(): Observable<string> {
+  const headers = new Headers();
+    this.loadToken();
+
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(
+      config.serverUrl + 'api/role',
+  {headers: headers})
+      .map(res => {
+    return res.json();
+});
   }
 
   loggedIn() {

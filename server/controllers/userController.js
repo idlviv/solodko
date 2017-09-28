@@ -3,6 +3,13 @@ let jwt = require('jsonwebtoken');
 let UserModel = require('../models/userModel');
 const log = require('../config/winston')(module);
 
+module.exports.userRole = function(req, res, next) {
+  const user = req.user._doc;
+  console.log('role');
+  log.info(user.role);
+  res.status(200).json(user.role);
+};
+
 // зареєструвати в базі нового користувача
 module.exports.userRegistration = function(req, res, next) {
   let newUser = new UserModel({
@@ -46,7 +53,8 @@ module.exports.userAuthentication = function(req, res, next) {
       _id: user._id,
       username: user.username,
       name: user.name,
-      email: user.email
+      email: user.email,
+      role: user.role,
     }
   });
 };

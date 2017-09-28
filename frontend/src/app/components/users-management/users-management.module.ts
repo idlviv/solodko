@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import {AuthService} from '../../services/auth.service';
-import {AuthGuard} from '../../guards/auth.guard';
 
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
@@ -34,7 +33,6 @@ import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 
   providers: [
     AuthService,
-    AuthGuard,
     CustomErrorHandler,
   ]
 })

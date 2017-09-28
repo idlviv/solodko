@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/users-management/profile/profile.
 import { Page404Component } from './components/shared/page404/page404.component';
 
 import {AuthGuard} from './guards/auth.guard';
+import {AuthAdminGuard} from './guards/auth-admin.guard';
 
 const appRoutes: Routes = [
   { path: 'home',
@@ -17,12 +18,12 @@ const appRoutes: Routes = [
   { path: 'products',
     loadChildren: './components/products/products.module#ProductsModule'
   },
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard, AuthAdminGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
-  { path: 'products-management',
+  {path: 'products-management',
     loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
-    canActivate: [AuthGuard]},
+    },
   // {path: 'product-management', component:  ProductsManagementComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },

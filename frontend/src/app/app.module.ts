@@ -19,8 +19,10 @@ import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
 import {CatalogService} from './services/catalog.service';
 import {ValidateService} from './services/validate.service';
+import {AuthGuard} from './guards/auth.guard';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthAdminGuard} from './guards/auth-admin.guard';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ProductService,
     ProductResolverService,
     ValidateService,
+    AuthGuard,
+    AuthAdminGuard,
+
   ],
   bootstrap: [AppComponent]
 })
