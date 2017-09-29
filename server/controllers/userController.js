@@ -30,6 +30,7 @@ createToken = function(user) {
     {
       sub: {
         _id: user._id,
+        role: user.role
       },
       iat: new Date().getTime(),
       exp: new Date().getTime() + 604800 // or setDate(new Date().getDate() + 7) //7 days

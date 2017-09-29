@@ -2820,7 +2820,7 @@ var AuthAdminGuard = (function () {
     }
     AuthAdminGuard.prototype.canActivate = function (route, state) {
         var _this = this;
-        return this.authService.loggedInAdmin()
+        return this.authService.loggedInRole()
             .map(function (result) {
             if (result === 'ADMIN') {
                 console.log('authGuardAdmin - canActivate', result);
@@ -2842,7 +2842,7 @@ var AuthAdminGuard = (function () {
     };
     AuthAdminGuard.prototype.canActivateChild = function (route, state) {
         var _this = this;
-        return this.authService.loggedInAdmin()
+        return this.authService.loggedInRole()
             .map(function (result) {
             if (result === 'ADMIN') {
                 console.log('authGuardAdmin - canActivateChild', result);
@@ -3034,17 +3034,34 @@ var AuthService = (function () {
     AuthService.prototype.loadToken = function () {
         this.authToken = localStorage.getItem('token');
     };
-    AuthService.prototype.loggedInAdmin = function () {
+    AuthService.prototype.loggedInRole = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/role', { headers: headers })
-            .map(function (res) {
-            return res.json();
-        });
+            .map(function (res) { return res.json(); });
     };
+    // showForUser(): boolean {
+    //   if (!tokenNotExpired()) {
+    //     return false;
+    //   }
+    //   this.loadToken();
+    //   let jwtData = this.authToken.split('.')[1];
+    //   let decodedJwtJsonData = window.atob(jwtData);
+    //   let decodedJwtData = JSON.parse(decodedJwtJsonData);
+    //
+    //   let role = decodedJwtData.sub.role;
+    //
+    //   console.log('jwtData: ' + jwtData);
+    //   console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
+    //   console.log('decodedJwtData: ' + decodedJwtData);
+    //   console.log('Is admin: ' + role);
+    //
+    //   return role === 'USER';
+    // }
     AuthService.prototype.loggedIn = function () {
+        console.log('loggedIn');
         return Object(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["tokenNotExpired"])();
     };
     AuthService.prototype.logout = function () {

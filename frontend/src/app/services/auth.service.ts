@@ -11,6 +11,7 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
 import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
+import {subscribeOn} from 'rxjs/operator/subscribeOn';
 
 @Injectable()
 export class AuthService {
@@ -75,10 +76,10 @@ export class AuthService {
   }
 
   loadToken() {
-      this.authToken = localStorage.getItem('token');
+    this.authToken = localStorage.getItem('token');
   }
 
-  loggedInAdmin(): Observable<string> {
+  loggedInRole(): Observable<string> {
   const headers = new Headers();
     this.loadToken();
 
@@ -87,12 +88,30 @@ export class AuthService {
     return this.http.get(
       config.serverUrl + 'api/role',
   {headers: headers})
-      .map(res => {
-    return res.json();
-});
+      .map(res => res.json());
   }
 
+  // showForUser(): boolean {
+  //   if (!tokenNotExpired()) {
+  //     return false;
+  //   }
+  //   this.loadToken();
+  //   let jwtData = this.authToken.split('.')[1];
+  //   let decodedJwtJsonData = window.atob(jwtData);
+  //   let decodedJwtData = JSON.parse(decodedJwtJsonData);
+  //
+  //   let role = decodedJwtData.sub.role;
+  //
+  //   console.log('jwtData: ' + jwtData);
+  //   console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
+  //   console.log('decodedJwtData: ' + decodedJwtData);
+  //   console.log('Is admin: ' + role);
+  //
+  //   return role === 'USER';
+  // }
+
   loggedIn() {
+    console.log('loggedIn');
     return tokenNotExpired();
   }
 
