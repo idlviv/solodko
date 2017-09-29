@@ -49,5 +49,11 @@ button {
   padding-bottom: 1rem;
 }
 
+.progress {
+  /*display: block;*/
+  height: .2rem;
+  margin: auto;
+  /*width: 50%;*/
+}
 
 
