@@ -3064,6 +3064,9 @@ var AuthService = (function () {
         console.log('loggedIn');
         return Object(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__["tokenNotExpired"])();
     };
+    // getCSRFCookie() {
+    //   return 'sdfdfgdfgdfg'
+    // }
     AuthService.prototype.logout = function () {
         this.authToken = null;
         this.user = null;
@@ -3235,11 +3238,14 @@ var ProductService = (function () {
     ProductService.prototype.getQueriedProducts = function (searchQuery) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.set('Content-Type', 'application/json');
+        // const data = {key: this.authService.getCSRFCookie()};
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["URLSearchParams"]();
         // params.set('category', 'Toys');
         params.set('obj', JSON.stringify(searchQuery));
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["RequestOptions"]({ headers: headers, params: params });
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_config__["a" /* config */].serverUrl + 'api/getQueriedProducts', options)
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_4__app_config__["a" /* config */].serverUrl + 'api/getQueriedProducts', 
+        // data,
+        options)
             .map(function (res) { return res.json(); });
     };
     ProductService.prototype.addProduct = function (product) {

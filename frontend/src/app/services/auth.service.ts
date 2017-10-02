@@ -115,6 +115,10 @@ export class AuthService {
     return tokenNotExpired();
   }
 
+  // getCSRFCookie() {
+  //   return 'sdfdfgdfgdfg'
+  // }
+
   logout() {
     this.authToken = null;
     this.user = null;

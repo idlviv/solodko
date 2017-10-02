@@ -20,10 +20,11 @@ export class ProductService {
         .map(res => res.json());
   }
 
+
   getQueriedProducts(searchQuery) {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-
+    // const data = {key: this.authService.getCSRFCookie()};
     const params = new URLSearchParams();
     // params.set('category', 'Toys');
     params.set('obj', JSON.stringify(searchQuery));
@@ -31,6 +32,7 @@ export class ProductService {
     const options = new RequestOptions({ headers: headers, params: params });
       return this.http.get(
         config.serverUrl + 'api/getQueriedProducts',
+        // data,
         options)
         .map(res => res.json());
   }

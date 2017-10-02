@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('./server/libs/mongoose');
@@ -8,6 +9,7 @@ const config = require('./server/config');
 const errorhandler = require('errorhandler');
 const HttpError = require('./server/error').HttpError;
 const log = require('./server/config/winston')(module);
+const csrf = require('csurf');
 
 const app = express();
 
@@ -15,7 +17,23 @@ const users = require('./server/routes/users');
 const products = require('./server/routes/products');
 const index = require('./server/routes');
 
-app.use(cors());
+const cookieOptions = {
+  key: 'XSRF-TOKEN',
+  secure: false,
+  httpOnly: false,
+  maxAge: 3600
+};
+
+const corsOptions = {
+  origin: 'http://localhost:8080',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+const csrfProtection = csrf({cookie: cookieOptions});
+app.use(cors(corsOptions));
+// app.use(cors());
+app.use(cookieParser());
+// app.use(csrfProtection);
 
 // log.info('fef');
 // log.debug('sdfsdf');
@@ -50,6 +68,7 @@ app.use('*', function(req, res) {
 
 app.use(function(err, req, res, next) {
   console.log('id express catch error ' + err);
+  // if (err.code !== 'EBADCSRFTOKEN') {return next(err)};
   if (typeof err === 'number') { //next(404);
     err = new HttpError(err);
   }
