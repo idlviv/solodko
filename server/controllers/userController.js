@@ -47,6 +47,14 @@ module.exports.userAuthentication = function(req, res, next) {
   const user = req.user._doc;
   // в payload записую тільки id юзера, можу добавити будь-які дані
   const TOKEN = createToken(user);
+  // const cookieOptions = {
+  //   httpOnly: true,
+  //   secure: true,
+  //   maxAge: 3600,
+  // };
+  //
+  // res.cookie('token', 'JWT ' + TOKEN, cookieOptions);
+
   // в фронт при вході даю всі дані, крім пароля
   res.status(200).json({
     success: true, token: 'JWT ' + TOKEN,
