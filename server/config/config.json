@@ -1,5 +1,10 @@
 {
   "port": 8080,
+  "cookieOptions": {
+    "secure": true,
+    "httpOnly": false,
+    "maxAge": 360000
+  },
   "session": {
     "secret": "brad",
     "key": "sid",

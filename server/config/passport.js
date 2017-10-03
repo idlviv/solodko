@@ -44,7 +44,7 @@ module.exports = function(passport) {
     }
   ));
 
-  passport.use(
+  passport.use('local.signin',
     new LocalStrategy((username, password, done) => {
       log.verbose('config/passport - LocalStrategy');
       UserModel.getUserByUsername(username)

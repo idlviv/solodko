@@ -19,7 +19,7 @@ router.post('/register',
   );
 
 router.post('/authenticate',
-  passport.authenticate('local', {session: false}),
+  passport.authenticate('local.signin', {session: false}),
   UserController.userAuthentication
 );
 
