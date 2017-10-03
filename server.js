@@ -17,8 +17,15 @@ const users = require('./server/routes/users');
 const products = require('./server/routes/products');
 const index = require('./server/routes');
 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cookieParser());
+
 const cookieOptions = {
-  key: 'XSRF-TOKEN',
+  // key: 'XSRF-TOKEN',
   secure: false,
   httpOnly: false,
   maxAge: 3600
@@ -28,22 +35,30 @@ const corsOptions = {
   origin: 'http://localhost:8080',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-
-const csrfProtection = csrf({cookie: cookieOptions});
 app.use(cors(corsOptions));
 // app.use(cors());
-app.use(cookieParser());
-// app.use(csrfProtection);
 
-// log.info('fef');
-// log.debug('sdfsdf');
-// log.error('sdfsdf');
+//в csrf передається або { cookie: true } або замість true опції
+//це автоматично відключає роботу модуля через сесії і відслідковує через кукі
+//перед модулем має бути включений cookieParser()
+// const csrfProtection = csrf({cookie: cookieOptions});
+
+
+app.use(csrf({cookie: true}));
+
+app.use(function(req, res, next) {
+  res.cookie(
+    'XSRF-TOKEN',
+    req.csrfToken(),
+    cookieOptions);
+  next();
+});
+
+// log.info('info');
+// log.debug('debug');
+// log.error('error');
 // app.use(express.static(path.join(__dirname, '/public')));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 // console.log(config.get('process.env.MONGOOSE_URI'));
 // console.log(config.get('NODE_ENV'));
 
@@ -68,7 +83,12 @@ app.use('*', function(req, res) {
 
 app.use(function(err, req, res, next) {
   console.log('id express catch error ' + err);
-  // if (err.code !== 'EBADCSRFTOKEN') {return next(err)};
+  if (err.code !== 'EBADCSRFTOKEN') {
+    res.status(403);
+    res.send('form tampered with');
+    // return next(err);
+  };
+
   if (typeof err === 'number') { //next(404);
     err = new HttpError(err);
   }
