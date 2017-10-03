@@ -1,7 +1,7 @@
 {
   "port": 8080,
   "cookieOptions": {
-    "secure": true,
+    "secure": false,
     "httpOnly": false,
     "maxAge": 360000
   },
