@@ -1,7 +1,6 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import { ProductsManagementComponent } from './components/products-management/products-management.component';
 import { RegisterComponent } from './components/users-management/register/register.component';
 import { LoginComponent } from './components/users-management/login/login.component';
 import { DashboardComponent } from './components/users-management/dashboard/dashboard.component';

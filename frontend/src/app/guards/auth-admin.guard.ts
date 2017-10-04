@@ -13,7 +13,6 @@ export class AuthAdminGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
-
     return this.authService.loggedInRole()
       .map((result) => {
         if (result === 'Admin') {
