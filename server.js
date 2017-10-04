@@ -10,70 +10,41 @@ const errorhandler = require('errorhandler');
 const HttpError = require('./server/error').HttpError;
 const log = require('./server/config/winston')(module);
 const csrf = require('csurf');
-
+const csrfCookie = require('./server/libs/csrf');
 const app = express();
 
-const users = require('./server/routes/users');
-const products = require('./server/routes/products');
-const index = require('./server/routes');
+
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
-const cookieOptions = {
-  // key: 'XSRF-TOKEN',
-  secure: false,
-  httpOnly: false,
-  maxAge: 3600,
-};
-
-const corsOptions = {
-  origin: 'http://localhost:8080',
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-app.use(cors(corsOptions));
-// app.use(cors());
+app.use(cors(config.get('corsOptions')));
 
 //в csrf передається або { cookie: true } або замість true опції
 //це автоматично відключає роботу модуля через сесії і відслідковує через кукі
 //перед модулем має бути включений cookieParser()
-
-app.use(csrf({cookie: config.get('cookieOptions')}),
-  function(req, res, next) {
-    res.cookie(
-      'XSRF-TOKEN',
-      req.csrfToken(),
-      config.get('cookieOptions')
-    );
-    next();
-  }
-  );
-
-// app.use(csrf({cookie: true}));
-
-// app.use(function(req, res, next) {
-//   res.cookie(
-//     'XSRF-TOKEN',
-//     req.csrfToken());
-//   next();
-// });
+//віддає cookie з імя"м _csrf - це не токен, а секрет
+app.use(csrf({cookie: config.get('cookieCsrfOptions')}));
+//встановлюю cookie XSRF-TOKEN зі значенням = токену
+//Анрулар автоматично знаходить його і з кожною формою повертає в хедері
+app.use(csrfCookie);
 
 // log.info('info');
 // log.debug('debug');
 // log.error('error');
-// app.use(express.static(path.join(__dirname, '/public')));
 
-// console.log(config.get('process.env.MONGOOSE_URI'));
-// console.log(config.get('NODE_ENV'));
+// app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(require('./server/middleware/sendHttpError'));
 
 app.use(passport.initialize());
 app.use(passport.session());
 require('./server/config/passport')(passport);
+
+const users = require('./server/routes/users');
+const products = require('./server/routes/products');
+const index = require('./server/routes');
 
 app.use('/api', users);
 app.use('/api', products);
@@ -113,8 +84,10 @@ app.use(function(err, req, res, next) {
       res.sendHttpError(err);
     }
   }
-
 });
 
 app.listen(process.env.PORT || config.get('port'),
-  () => console.log('Server on port ' + config.get('port') || process.env.PORT));
+  () => console.log(
+    'Server on port ' + config.get('port') ||
+    process.env.PORT
+  ));

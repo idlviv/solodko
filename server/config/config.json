@@ -1,17 +1,12 @@
 {
   "port": 8080,
-  "cookieOptions": {
+  "corsOptions": {
+    "origin": "http://localhost:8080",
+    "optionsSuccessStatus": 200
+  },
+  "cookieCsrfOptions": {
     "secure": false,
     "httpOnly": false,
     "maxAge": 360000
-  },
-  "session": {
-    "secret": "brad",
-    "key": "sid",
-    "cookie": {
-      "path": "/",
-      "httpOnly": true,
-      "maxAge": null
-    }
   }
 }

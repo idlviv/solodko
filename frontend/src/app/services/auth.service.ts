@@ -111,7 +111,7 @@ export class AuthService {
   // }
 
   loggedIn() {
-    console.log('loggedIn');
+    // console.log('loggedIn');
     return tokenNotExpired();
   }
 

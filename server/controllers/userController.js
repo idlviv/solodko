@@ -4,9 +4,14 @@ let UserModel = require('../models/userModel');
 const log = require('../config/winston')(module);
 
 module.exports.userRole = function(req, res, next) {
+  // UserModel.getUserById(req.user._doc._id)
+  //   .then((user) => {
+  //     log.info('role', user.role);
+  //     return res.status(200).json(user.role);
+  //   })
+  //   .catch((error) => res.json(error));
   const user = req.user._doc;
-  console.log('role');
-  log.info(user.role);
+  log.info('role', user.role);
   res.status(200).json(user.role);
 };
 

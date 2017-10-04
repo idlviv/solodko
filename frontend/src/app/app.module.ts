@@ -23,6 +23,7 @@ import {AuthGuard} from './guards/auth.guard';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthAdminGuard} from './guards/auth-admin.guard';
+import {AuthMenuGuard} from './guards/auth-menu.guard';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import {AuthAdminGuard} from './guards/auth-admin.guard';
     ValidateService,
     AuthGuard,
     AuthAdminGuard,
+    AuthMenuGuard,
 
   ],
   bootstrap: [AppComponent]

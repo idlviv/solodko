@@ -6,6 +6,7 @@ const db = config.get('MONGOOSE_URI');
 // console.log(config.get('MONGOOSE_URI'));
 // const db = config.get('mongoose:uri');
 // const options = config.get('mongoose:options');
+// mongoose.set('debug', true);
 
 mongoose.connect(db, {useMongoClient: true})
   .then(

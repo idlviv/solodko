@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateChild} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs/Observable';
@@ -16,7 +16,7 @@ export class AuthAdminGuard implements CanActivate, CanActivateChild {
 
     return this.authService.loggedInRole()
       .map((result) => {
-        if (result === 'ADMIN') {
+        if (result === 'Admin') {
           console.log('authGuardAdmin - canActivate', result);
           return true;
         } else {
@@ -39,7 +39,7 @@ export class AuthAdminGuard implements CanActivate, CanActivateChild {
 
     return this.authService.loggedInRole()
       .map((result) => {
-        if (result === 'ADMIN') {
+        if (result === 'Admin') {
           console.log('authGuardAdmin - canActivateChild', result);
           return true;
         } else {
