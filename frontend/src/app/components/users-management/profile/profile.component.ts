@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     this.authService.getProfile()
       .subscribe(
         (profile) => {
-          this.user = profile.user},
+          this.user = profile},
         (error) => {
           this.flashMessage.show(
             error,

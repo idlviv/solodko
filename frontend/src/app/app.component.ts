@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CatalogService} from './services/catalog.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {ICatalog} from './interfaces/i-catalog';
+import {NavigationStart, Router} from '@angular/router';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +13,10 @@ import {ICatalog} from './interfaces/i-catalog';
 export class AppComponent implements OnInit {
   public catalog: ICatalog[];
 
-  constructor(private catalogService: CatalogService,
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private catalogService: CatalogService,
               private flashMessage: FlashMessagesService) { }
 
   ngOnInit() {

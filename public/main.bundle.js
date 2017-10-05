@@ -131,6 +131,8 @@ module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__ = __webpack_require__("../../../../../src/app/services/catalog.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -143,8 +145,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var AppComponent = (function () {
-    function AppComponent(catalogService, flashMessage) {
+    function AppComponent(router, authService, catalogService, flashMessage) {
+        this.router = router;
+        this.authService = authService;
         this.catalogService = catalogService;
         this.flashMessage = flashMessage;
     }
@@ -173,10 +179,10 @@ AppComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _d || Object])
 ], AppComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -663,7 +669,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light sticky-top\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/products-management',\r\n        {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">\r\n          Products Management</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"!authService.loggedIn()\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"isAdmin\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register{{isAdmin}}</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"authService.loggedIn()\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light sticky-top\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n    <span  *ngIf=\"user && user.role !== 'Guest'\" class=\"navbar-text\">\r\n      <i class=\"material-icons\">person</i> {{user.role}}\r\n    </span>\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Manager' ||user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/products-management',\r\n        {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">\r\n          Products</a></li>\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Guest'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Admin'\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -704,47 +710,34 @@ var NavbarComponent = (function () {
         this.router = router;
         this.flashMessage = flashMessage;
         this.catalogService = catalogService;
+        this.guest = {
+            name: '',
+            email: '',
+            username: '',
+            password: '',
+            role: 'Guest',
+        };
+        this.user = this.guest;
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.localCatalog = this.catalogService.getCatalog();
-        // this.authMenuGuard.canActivateMenuAdmin()
-        //   .subscribe(isAdmin => this.isAdmin = isAdmin);
-        // this.isAdmin =
         this.router.events
             .filter(function (event) { return event instanceof __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* NavigationStart */]; })
-            .subscribe(function () {
-            _this.authService.loggedInRole()
-                .subscribe(function (result) {
-                if (result === 'Admin') {
-                    console.log('authMenuGuard - isAdmin', result);
-                    return _this.isAdmin = true;
-                }
-                else {
-                    console.log('authMenuGuard - isAdmin', result);
-                    return _this.isAdmin = false;
-                }
-            }, function (err) {
-                console.log('authMenuGuard - isAdmin - false', err);
-                _this.isAdmin = false;
-                console.log('this.isAdmin - on error', _this.isAdmin);
-                return _this.isAdmin;
-                // throw err;
-            });
-        });
-        // this.isAdmin = this.authMenuGuard.isAdmin()
-        //     .subscribe(isAdmin => {
-        //       console.log('isAdmin', isAdmin);
-        //
-        //       return isAdmin;
-        //     },
-        //       (err) => false
-        //   );
+            .subscribe(function () { return _this.checkUser(); });
     };
     NavbarComponent.prototype.hide = function () {
         if ($('.navbar-toggler').css('display') === 'block') {
             $('button.navbar-toggler').click();
         }
+    };
+    NavbarComponent.prototype.checkUser = function () {
+        var _this = this;
+        console.log('check user');
+        this.authService.getProfile()
+            .subscribe(function (user) {
+            return _this.user = user;
+        }, function (err) { return _this.user = _this.guest; });
     };
     NavbarComponent.prototype.onLogoutClick = function () {
         this.authService.logout();
@@ -2559,7 +2552,7 @@ var ProfileComponent = (function () {
         // підписується на юзера з auth.service
         this.authService.getProfile()
             .subscribe(function (profile) {
-            _this.user = profile.user;
+            _this.user = profile;
         }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
@@ -2940,28 +2933,6 @@ var AuthMenuGuard = (function () {
         this.authService = authService;
         this.router = router;
     }
-    AuthMenuGuard.prototype.isAdmin = function () {
-        var _this = this;
-        return this.router.events
-            .filter(function (event) { return event instanceof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* NavigationStart */]; })
-            .map(function () {
-            return _this.authService.loggedInRole()
-                .subscribe(function (result) {
-                if (result === 'Admin') {
-                    console.log('authMenuGuard - isAdmin', result);
-                    return true;
-                }
-                else {
-                    console.log('authMenuGuard - isAdmin', result);
-                    return false;
-                }
-            }, function (err) {
-                console.log('authMenuGuard - isAdmin - false', err);
-                // return false;
-                throw err;
-            });
-        });
-    };
     return AuthMenuGuard;
 }());
 AuthMenuGuard = __decorate([
@@ -3050,7 +3021,7 @@ var CustomErrorHandler = (function () {
     }
     CustomErrorHandler.prototype.httpErrorHandler = function (err) {
         if (err.status === 401) {
-            this.statusText = 'Невірне ім\'я користувача або пароль';
+            this.statusText = 'Не авторизовано';
             return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw(this.statusText);
         }
         return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].throw('Помилка сервера');
@@ -3116,6 +3087,10 @@ var AuthService = (function () {
             .map(function (res) { return res.json(); })
             .catch(this.customErrorHandler.httpErrorHandler);
     };
+    AuthService.prototype.updateUser = function () {
+        this.getProfile()
+            .subscribe();
+    };
     // profile.component підписується на getProfile
     AuthService.prototype.getProfile = function () {
         // береться токен юзера loadToken() з localStorage
@@ -3129,8 +3104,10 @@ var AuthService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
             .map(function (res) {
+            // console.log('res', res.json());
             return res.json();
-        });
+        })
+            .catch(this.customErrorHandler.httpErrorHandler);
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('token', token);
@@ -3144,14 +3121,13 @@ var AuthService = (function () {
     AuthService.prototype.loggedInRole = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
-        console.log('role');
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/role', { headers: headers })
             .map(function (res) {
-            console.log('res', res);
             return res.json();
-        });
+        })
+            .catch(this.customErrorHandler.httpErrorHandler);
     };
     // showForUser(): boolean {
     //   if (!tokenNotExpired()) {

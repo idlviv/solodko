@@ -8,6 +8,7 @@ import {ICatalog} from '../../interfaces/i-catalog';
 import {AuthAdminGuard} from '../../guards/auth-admin.guard';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
+import {IUser} from '../../interfaces/i-user';
 declare var $: any;
 
 @Component({
@@ -17,7 +18,16 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   localCatalog: ICatalog[];
-  isAdmin: boolean;
+  guest: IUser = {
+    name: '',
+    email: '',
+    username: '',
+    password: '',
+    role: 'Guest',
+  };
+  user: IUser = this.guest;
+  // user = {} as IUser;
+  role: string;
 
   constructor(
     public authService: AuthService,
@@ -31,47 +41,27 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.localCatalog = this.catalogService.getCatalog();
-    // this.authMenuGuard.canActivateMenuAdmin()
-    //   .subscribe(isAdmin => this.isAdmin = isAdmin);
 
-  // this.isAdmin =
-    this.router.events
-        .filter(event => event instanceof NavigationStart)
-        .subscribe(() => {
-
-          this.authService.loggedInRole()
-            .subscribe(
-              (result) => {
-                if (result === 'Admin') {
-                  console.log('authMenuGuard - isAdmin', result);
-                  return this.isAdmin = true;
-                } else {
-                  console.log('authMenuGuard - isAdmin', result);
-                  return this.isAdmin = false;
-                }
-              },
-              (err) => {
-                console.log('authMenuGuard - isAdmin - false', err);
-                this.isAdmin = false;
-                console.log('this.isAdmin - on error', this.isAdmin);
-                return this.isAdmin;
-                // throw err;
-              });
-      });
-    // this.isAdmin = this.authMenuGuard.isAdmin()
-    //     .subscribe(isAdmin => {
-    //       console.log('isAdmin', isAdmin);
-    //
-    //       return isAdmin;
-    //     },
-    //       (err) => false
-    //   );
-}
+      this.router.events
+          .filter(event => event instanceof NavigationStart)
+          .subscribe(() => this.checkUser())
+  }
 
   hide() {
     if ($('.navbar-toggler').css('display') === 'block') {
       $('button.navbar-toggler').click();
     }
+  }
+
+
+  checkUser() {
+    console.log('check user');
+    this.authService.getProfile()
+      .subscribe (user => {
+        return this.user = user;
+        },
+        err => this.user = this.guest
+      )
   }
 
   onLogoutClick() {

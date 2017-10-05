@@ -18,26 +18,36 @@
           <!--<i [ngClass]="catalogItem.category0.icon"></i>-->
           {{catalogItem.category0.name}}</a></li>
     </ul>
-
+    <span  *ngIf="user && user.role !== 'Guest'" class="navbar-text">
+      <i class="material-icons">person</i> {{user.role}}
+    </span>
     <ul class="nav navbar-nav navbar-right" (click)="hide()">
-      <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a></li>
 
-      <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']"
+
+
+      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a></li>
+
+      <li class="nav-item" *ngIf="user && user.role === 'Manager' ||user.role === 'Admin'"
+          [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/products-management',
         {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]">
-          Products Management</a></li>
+          Products</a></li>
 
-      <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/profile']">Profile</a></li>
-      <li class="nav-item" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+      <li class="nav-item" *ngIf="user && user.role === 'Guest'"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/login']">Login</a></li>
-      <li class="nav-item" *ngIf="isAdmin" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/register']">Register{{isAdmin}}</a></li>
-      <li class="nav-item" *ngIf="authService.loggedIn()">
+      <li class="nav-item" *ngIf="user && user.role === 'Admin'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/register']">Register</a></li>
+      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'">
         <a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a></li>
 
     </ul>
+
   </div>
 </nav>

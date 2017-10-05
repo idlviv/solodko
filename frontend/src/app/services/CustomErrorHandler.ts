@@ -9,14 +9,13 @@ export class CustomErrorHandler {
 
   httpErrorHandler(err: Response) {
       if (err.status === 401){
-        this.statusText = 'Невірне ім\'я користувача або пароль';
+        this.statusText = 'Не авторизовано';
         return Observable.throw(this.statusText);
       }
 
+
       return Observable.throw('Помилка сервера');
     }
-
-
 }
 
 

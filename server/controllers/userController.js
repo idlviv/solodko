@@ -78,10 +78,11 @@ module.exports.userProfile = function(req, res, next) {
   //.json сам знайде _doc і виділить користувача тому можна передати просто req.user,
   // якщо хочу передати всього користівача. Але даю все, крім пароля
   const user = req.user._doc;
-  res.status(200).json({user: {
+  res.status(200).json({
     _id: user._id,
     username: user.username,
     name: user.name,
-    email: user.email
-  }});
+    email: user.email,
+    role: user.role
+  });
 };

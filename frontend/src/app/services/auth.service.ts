@@ -11,7 +11,6 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
 import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
-import {subscribeOn} from 'rxjs/operator/subscribeOn';
 
 @Injectable()
 export class AuthService {
@@ -48,6 +47,11 @@ export class AuthService {
       .catch(this.customErrorHandler.httpErrorHandler);
   }
 
+  updateUser() {
+    this.getProfile()
+      .subscribe()
+  }
+
     // profile.component підписується на getProfile
   getProfile() {
     // береться токен юзера loadToken() з localStorage
@@ -64,9 +68,11 @@ export class AuthService {
       config.serverUrl + 'api/profile',
       {headers: headers})
       .map(res => {
+        // console.log('res', res.json());
         return res.json();
-      });
-  }
+      })
+      .catch(this.customErrorHandler.httpErrorHandler);
+    }
 
   storeUserData(token, user) {
     localStorage.setItem('token', token);
@@ -82,17 +88,15 @@ export class AuthService {
   loggedInRole(): Observable<string> {
     const headers = new Headers();
     this.loadToken();
-    console.log('role');
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.get(
       config.serverUrl + 'api/role',
   {headers: headers})
       .map(res => {
-        console.log('res', res);
         return res.json();
-      }
-      );
+      })
+      .catch(this.customErrorHandler.httpErrorHandler);
   }
 
   // showForUser(): boolean {

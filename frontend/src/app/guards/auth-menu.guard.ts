@@ -10,29 +10,29 @@ export class AuthMenuGuard {
   constructor(private authService: AuthService,
               private router: Router) {}
 
-  isAdmin(): Observable<Subscription> {
-    return this.router.events
-      .filter(event => event instanceof NavigationStart)
-      .map(() => {
-        return this.authService.loggedInRole()
-          .subscribe(
-            (result) => {
-            if (result === 'Admin') {
-              console.log('authMenuGuard - isAdmin', result);
-              return true;
-            } else {
-              console.log('authMenuGuard - isAdmin', result);
-              return false;
-            }
-          },
-            (err) => {
-              console.log('authMenuGuard - isAdmin - false', err);
-              // return false;
-              throw err;
-            }
-          );
-      });
-  }
+  // isAdmin(): Observable<Subscription> {
+  //   return this.router.events
+  //     .filter(event => event instanceof NavigationStart)
+  //     .map(() => {
+  //       return this.authService.loggedInRole()
+  //         .subscribe(
+  //           (result) => {
+  //           if (result === 'Admin') {
+  //             console.log('authMenuGuard - isAdmin', result);
+  //             return true;
+  //           } else {
+  //             console.log('authMenuGuard - isAdmin', result);
+  //             return false;
+  //           }
+  //         },
+  //           (err) => {
+  //             console.log('authMenuGuard - isAdmin - false', err);
+  //             // return false;
+  //             throw err;
+  //           }
+  //         );
+  //     });
+  // }
 
   // canActivateMenuAdmin(): Observable<boolean> {
   //   return this.authService.loggedInRole()
