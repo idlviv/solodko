@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {AuthMenuGuard} from '../../guards/auth-menu.guard';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {Router, GuardsCheckEnd, Event, NavigationStart} from '@angular/router';
+import {Router, NavigationStart} from '@angular/router';
 import {CatalogService} from '../../services/catalog.service';
 import {ICatalog} from '../../interfaces/i-catalog';
-import {AuthAdminGuard} from '../../guards/auth-admin.guard';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import {IUser} from '../../interfaces/i-user';
@@ -31,9 +29,6 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public authService: AuthService,
-    public authAdminGuard: AuthAdminGuard,
-    private authMenuGuard: AuthMenuGuard,
-
     private router: Router,
     private flashMessage: FlashMessagesService,
     private catalogService: CatalogService
@@ -44,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
       this.router.events
           .filter(event => event instanceof NavigationStart)
-          .subscribe(() => this.checkUser())
+          .subscribe(() => this.checkUser());
   }
 
   hide() {
@@ -56,12 +51,11 @@ export class NavbarComponent implements OnInit {
 
   checkUser() {
     console.log('check user');
-    this.authService.getProfile()
+    return this.authService.getProfile()
       .subscribe (user => {
         return this.user = user;
-        },
-        err => this.user = this.guest
-      )
+        }, err => this.user = this.guest
+      );
   }
 
   onLogoutClick() {

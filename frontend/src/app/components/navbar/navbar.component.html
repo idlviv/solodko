@@ -19,7 +19,7 @@
           {{catalogItem.category0.name}}</a></li>
     </ul>
     <span  *ngIf="user && user.role !== 'Guest'" class="navbar-text">
-      <i class="material-icons">person</i> {{user.role}}
+      <i class="material-icons">person</i> {{user.role}}, {{user.name}}
     </span>
     <ul class="nav navbar-nav navbar-right" (click)="hide()">
 

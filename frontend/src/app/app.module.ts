@@ -23,14 +23,13 @@ import {AuthGuard} from './guards/auth.guard';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthAdminGuard} from './guards/auth-admin.guard';
-import {AuthMenuGuard} from './guards/auth-menu.guard';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
-
+import {AuthManagerGuard} from './guards/auth-manager.guard';
 
 @NgModule({
   declarations: [
@@ -61,7 +60,7 @@ import 'rxjs/add/operator/take';
     ValidateService,
     AuthGuard,
     AuthAdminGuard,
-    AuthMenuGuard,
+    AuthManagerGuard,
 
   ],
   bootstrap: [AppComponent]

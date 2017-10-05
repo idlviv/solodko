@@ -53,7 +53,7 @@ export class AuthService {
   }
 
     // profile.component підписується на getProfile
-  getProfile() {
+  getProfile(): Observable<IUser> {
     // береться токен юзера loadToken() з localStorage
     // формується запит який містить в хедері токен
     // якщо токен валідний і є такий юзер то сервер

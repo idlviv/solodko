@@ -33,6 +33,7 @@ export class RegisterComponent implements OnInit {
       email: form.value.email,
       username: form.value.username,
       password: form.value.password,
+      role: 'User',
     };
     // validateService перевіряє валідність даних
     if (!this.validateService.validateRegister(user)) {
