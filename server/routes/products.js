@@ -52,10 +52,19 @@ router.post(
       console.log('Server - ProductModel - authenticated');
       let newProduct = new ProductModel(req.body);
       // let newProduct = new ProductModel({
+      //   category0: req.body.category0,
+      //   category1: req.body.category1,
       //   itemNumber: req.body.itemNumber,
       //   name: req.body.name,
       //   price: req.body.price,
       //   mainImgSrc: req.body.mainImgSrc,
+      //   itemDescription: req.body.itemDescription,
+      //   showOnMainPage: req.body.itemDescription,
+      //   discount: req.body.discount,
+      //   size: {
+      //     width: req.body.size.width,
+      //     height: req.body.size.height,
+      //   }
       // });
       // повертає обєкт (success..)
       ProductModel.addProduct(newProduct)
