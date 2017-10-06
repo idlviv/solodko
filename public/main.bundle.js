@@ -339,7 +339,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  admin-panel-submenu works!\n</p>\n"
+module.exports = "<p>\r\n  admin-panel-submenu works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -400,7 +400,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/admin-panel.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-2\">\n    <router-outlet name=\"AdminPanelSubmenu\"></router-outlet>\n  </div>\n  <div class=\"col-md-10\">\n    <router-outlet></router-outlet>\n  </div>\n</div>\n"
+module.exports = "<!--<div class=\"row\">-->\r\n  <!--<div class=\"col-md-2\">-->\r\n    <!--<router-outlet name=\"AdminPanelSubmenu\"></router-outlet>-->\r\n  <!--</div>-->\r\n  <!--<div class=\"col-md-10\">-->\r\n    <!--<router-outlet></router-outlet>-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n"
 
 /***/ }),
 
