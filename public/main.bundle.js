@@ -237,12 +237,14 @@ var config = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_24_rxjs_add_operator_take__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__guards_auth_manager_guard__ = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__guards_auth_user_guard__ = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__components_admin_panel_admin_panel_module__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -290,6 +292,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_9__components_home_home_module__["a" /* HomeModule */],
             __WEBPACK_IMPORTED_MODULE_10__components_shared_shared_module__["a" /* SharedModule */],
             __WEBPACK_IMPORTED_MODULE_11__components_users_management_users_management_module__["a" /* UsersManagementModule */],
+            __WEBPACK_IMPORTED_MODULE_27__components_admin_panel_admin_panel_module__["a" /* AdminPanelModule */],
             __WEBPACK_IMPORTED_MODULE_7__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesModule"],
             __WEBPACK_IMPORTED_MODULE_18__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
@@ -312,6 +315,102 @@ AppModule = __decorate([
 ], AppModule);
 
 //# sourceMappingURL=app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/admin-panel.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/admin-panel.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  admin-panel works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/admin-panel.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var AdminPanelComponent = (function () {
+    function AdminPanelComponent() {
+    }
+    AdminPanelComponent.prototype.ngOnInit = function () {
+    };
+    return AdminPanelComponent;
+}());
+AdminPanelComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-admin-panel',
+        template: __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], AdminPanelComponent);
+
+//# sourceMappingURL=admin-panel.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/admin-panel.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__admin_panel_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.component.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var AdminPanelModule = (function () {
+    function AdminPanelModule() {
+    }
+    return AdminPanelModule;
+}());
+AdminPanelModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"]
+        ],
+        declarations: [__WEBPACK_IMPORTED_MODULE_2__admin_panel_component__["a" /* AdminPanelComponent */]]
+    })
+], AdminPanelModule);
+
+//# sourceMappingURL=admin-panel.module.js.map
 
 /***/ }),
 

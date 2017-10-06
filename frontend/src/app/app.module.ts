@@ -30,6 +30,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import {AuthManagerGuard} from './guards/auth-manager.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
+import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {AuthUserGuard} from './guards/auth-user.guard';
     HomeModule,
     SharedModule,
     UsersManagementModule,
+    AdminPanelModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
