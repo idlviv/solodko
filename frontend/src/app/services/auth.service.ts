@@ -47,11 +47,6 @@ export class AuthService {
       .catch(this.customErrorHandler.httpErrorHandler);
   }
 
-  updateUser() {
-    this.getProfile()
-      .subscribe()
-  }
-
     // profile.component підписується на getProfile
   getProfile(): Observable<IUser> {
     // береться токен юзера loadToken() з localStorage
@@ -99,33 +94,9 @@ export class AuthService {
       .catch(this.customErrorHandler.httpErrorHandler);
   }
 
-  // showForUser(): boolean {
-  //   if (!tokenNotExpired()) {
-  //     return false;
-  //   }
-  //   this.loadToken();
-  //   let jwtData = this.authToken.split('.')[1];
-  //   let decodedJwtJsonData = window.atob(jwtData);
-  //   let decodedJwtData = JSON.parse(decodedJwtJsonData);
-  //
-  //   let role = decodedJwtData.sub.role;
-  //
-  //   console.log('jwtData: ' + jwtData);
-  //   console.log('decodedJwtJsonData: ' + decodedJwtJsonData);
-  //   console.log('decodedJwtData: ' + decodedJwtData);
-  //   console.log('Is admin: ' + role);
-  //
-  //   return role === 'USER';
-  // }
-
   loggedIn() {
-    // console.log('loggedIn');
     return tokenNotExpired();
   }
-
-  // getCSRFCookie() {
-  //   return 'sdfdfgdfgdfg'
-  // }
 
   logout() {
     this.authToken = null;

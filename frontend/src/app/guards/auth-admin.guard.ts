@@ -13,13 +13,13 @@ export class AuthAdminGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.loggedInRole()
+    return this.authService.getProfile()
       .map((result) => {
-        if (result === 'Admin') {
-          console.log('authGuardAdmin - canActivate', result);
+        if (result.role === 'Admin') {
+          console.log('authGuardAdmin - canActivate', result.role);
           return true;
         } else {
-          console.log('authGuardAdmin - canActivate', result);
+          console.log('authGuardAdmin - canActivate', result.role);
           this.router.navigate(['/login']);
           return false;
         }
@@ -36,13 +36,13 @@ export class AuthAdminGuard implements CanActivate, CanActivateChild {
   canActivateChild(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
 
-    return this.authService.loggedInRole()
+    return this.authService.getProfile()
       .map((result) => {
-        if (result === 'Admin') {
-          console.log('authGuardAdmin - canActivateChild', result);
+        if (result.role === 'Admin') {
+          console.log('authGuardAdmin - canActivateChild', result.role);
           return true;
         } else {
-          console.log('authGuardAdmin - canActivateChild', result);
+          console.log('authGuardAdmin - canActivateChild', result.role);
           this.router.navigate(['/login']);
           return false;
         }

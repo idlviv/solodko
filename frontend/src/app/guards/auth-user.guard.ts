@@ -4,7 +4,7 @@ import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class AuthManagerGuard implements CanActivate, CanActivateChild {
+export class AuthUserGuard implements CanActivate, CanActivateChild {
 
   constructor(
     private authService: AuthService,
@@ -15,7 +15,7 @@ export class AuthManagerGuard implements CanActivate, CanActivateChild {
               state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.getProfile()
       .map((result) => {
-        if (result.role === 'Admin' || result.role ===  'Manager') {
+        if (result.role === 'Admin' || result.role ===  'Manager' || result.role ===  'User') {
           console.log('authManagerGuard - canActivate', result.role);
           return true;
         } else {
@@ -31,7 +31,7 @@ export class AuthManagerGuard implements CanActivate, CanActivateChild {
 
     return this.authService.getProfile()
       .map((result) => {
-        if (result.role === 'Admin' || result.role ===  'Manager') {
+        if (result.role === 'Admin' || result.role ===  'Manager' || result.role ===  'User') {
           console.log('authManagerGuard - canActivateChild', result.role);
           return true;
         } else {

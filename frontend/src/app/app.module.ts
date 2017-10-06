@@ -19,7 +19,6 @@ import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
 import {CatalogService} from './services/catalog.service';
 import {ValidateService} from './services/validate.service';
-import {AuthGuard} from './guards/auth.guard';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AuthAdminGuard} from './guards/auth-admin.guard';
@@ -30,6 +29,7 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import {AuthManagerGuard} from './guards/auth-manager.guard';
+import {AuthUserGuard} from './guards/auth-user.guard';
 
 @NgModule({
   declarations: [
@@ -58,10 +58,9 @@ import {AuthManagerGuard} from './guards/auth-manager.guard';
     ProductService,
     ProductResolverService,
     ValidateService,
-    AuthGuard,
     AuthAdminGuard,
     AuthManagerGuard,
-
+    AuthUserGuard,
   ],
   bootstrap: [AppComponent]
 })

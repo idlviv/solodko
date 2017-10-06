@@ -35,27 +35,26 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.localCatalog = this.catalogService.getCatalog();
 
+    // On each change of route check user rights (getProfile)
       this.router.events
           .filter(event => event instanceof NavigationStart)
-          .subscribe(() => this.checkUser());
+          .subscribe(() => {
+
+            this.authService.getProfile()
+                .subscribe (
+                  user => this.user = user,
+                  err => this.user = this.guest
+                );
+          });
   }
 
   hide() {
     if ($('.navbar-toggler').css('display') === 'block') {
       $('button.navbar-toggler').click();
     }
-  }
-
-
-  checkUser() {
-    console.log('check user');
-    return this.authService.getProfile()
-      .subscribe (user => {
-        return this.user = user;
-        }, err => this.user = this.guest
-      );
   }
 
   onLogoutClick() {

@@ -7,8 +7,8 @@ import { DashboardComponent } from './components/users-management/dashboard/dash
 import { ProfileComponent } from './components/users-management/profile/profile.component';
 import { Page404Component } from './components/shared/page404/page404.component';
 
-import {AuthGuard} from './guards/auth.guard';
 import {AuthAdminGuard} from './guards/auth-admin.guard';
+import {AuthUserGuard} from './guards/auth-user.guard';
 
 const appRoutes: Routes = [
   { path: 'home',
@@ -17,14 +17,14 @@ const appRoutes: Routes = [
   { path: 'products',
     loadChildren: './components/products/products.module#ProductsModule'
   },
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard, AuthAdminGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthUserGuard]},
   {path: 'products-management',
     loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
     },
   // {path: 'product-management', component:  ProductsManagementComponent, canActivate: [AuthGuard]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthUserGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
