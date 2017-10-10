@@ -13,7 +13,7 @@
 <div class="row">
   <div *ngFor="let product of submenuList" class="col-lg-3 col-md-4 col-sm-6 col-12">
     <app-item [product]="product" [parentComponentLink]="[
-    '/products', {outlets: {primary: 'category/' + category0 + '/' + product.name,
+    '/products/ch', {outlets: {primary: 'category/' + category0 + '/' + product.name,
       productsSubmenu:  'category/' + category0 + '/' + product.name}}
       ]"></app-item>
   </div>
