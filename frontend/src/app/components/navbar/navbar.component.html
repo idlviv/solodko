@@ -38,7 +38,7 @@
 
       <li class="nav-item" *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/admin/ch', 'edit-product']">Admin</a></li>
+        <a class="nav-link" [routerLink]="['/admin', 'ch', 'edit-product']">Admin</a></li>
       <!--, {outlets: {primary: 'z', adminPanelSubmenu: 'z'}}-->
 
       <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
