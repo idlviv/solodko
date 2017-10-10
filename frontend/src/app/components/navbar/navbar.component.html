@@ -12,7 +12,7 @@
       <li *ngFor="let catalogItem of localCatalog" class="nav-item" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link"
-           [routerLink]="['/products', {outlets: {primary: catalogItem.category0.category1?
+           [routerLink]="['/products/ch', {outlets: {primary: catalogItem.category0.category1?
             'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',
            productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]">
           <!--<i [ngClass]="catalogItem.category0.icon"></i>-->
@@ -29,14 +29,20 @@
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
           <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a></li>
 
-      <li class="nav-item" *ngIf="user && user.role === 'Manager' ||user.role === 'Admin'"
-          [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/products-management',
-        {outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]">
-          Products</a></li>
+      <!--<li class="nav-item" *ngIf="user && user.role === 'Manager' ||user.role === 'Admin'"-->
+          <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link" [routerLink]="['/products-management',-->
+        <!--{outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]">-->
+          <!--Products</a></li>-->
 
-      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'"
+
+      <li class="nav-item" *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/admin/ch', 'edit-product']">
+          A</a></li>
+      <!--, {outlets: {primary: 'z', adminPanelSubmenu: 'z'}}-->
+
+      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/profile']">Profile</a></li>
       <li class="nav-item" *ngIf="user && user.role === 'Guest'"

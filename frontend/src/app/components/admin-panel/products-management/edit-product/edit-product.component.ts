@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {ProductService} from '../../../services/product.service';
+import {ProductService} from '../../../../services/product.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
-import {IProduct} from '../../../interfaces/i-product';
+import {IProduct} from '../../../../interfaces/i-product';
 
 @Component({
   moduleId: module.id,

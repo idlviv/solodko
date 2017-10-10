@@ -1,3 +1,11 @@
-<p>
-  admin-panel-submenu works!
-</p>
+<nav class="bg-light sidebar">
+  <ul class="nav flex-md-column nav-pills">
+    <li class="nav-item" *ngFor="let item of menuList">
+      <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/admin/ch', {outlets: {primary: item.route}}]">
+        {{item.name}}
+      </a>
+    </li>
+  </ul>
+</nav>
+<!--<p>admin  side</p>-->

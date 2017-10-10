@@ -1,13 +1,13 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {ValidateService} from '../../../services/validate.service';
-import {ProductService} from '../../../services/product.service';
+import {ValidateService} from '../../../../services/validate.service';
+import {ProductService} from '../../../../services/product.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
-import {AuthService} from '../../../services/auth.service';
-import {IProduct} from '../../../interfaces/i-product';
+import {AuthService} from '../../../../services/auth.service';
+import {IProduct} from '../../../../interfaces/i-product';
 import {NgForm} from '@angular/forms';
-import {CatalogService} from '../../../services/catalog.service';
-import {ICatalog} from '../../../interfaces/i-catalog';
+import {CatalogService} from '../../../../services/catalog.service';
+import {ICatalog} from '../../../../interfaces/i-catalog';
 
 @Component({
   moduleId: module.id,

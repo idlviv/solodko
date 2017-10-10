@@ -8,7 +8,7 @@ import {ProductResolverService} from '../../services/product-resolver.service';
 
 const homeRoutes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: HomeComponent,
     children: [
       {
@@ -41,5 +41,5 @@ const homeRoutes: Routes = [
   exports: [RouterModule]
 })
 
-export class HomeRoutingModule{}
+export class HomeRoutingModule {}
 

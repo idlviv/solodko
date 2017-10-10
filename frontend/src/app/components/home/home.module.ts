@@ -14,9 +14,9 @@ import {HomeRoutingModule} from './home-routing.module';
     SideMenuComponent
   ],
   imports: [
-    HomeRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+    HomeRoutingModule,
   ],
   exports: []
 

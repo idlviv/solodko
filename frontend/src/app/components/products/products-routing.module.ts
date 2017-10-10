@@ -10,7 +10,7 @@ import {ProductResolverService} from '../../services/product-resolver.service';
 
 const productsRoutes: Routes = [
   {
-    path: 'products',
+    path: 'ch',
     component: ProductsComponent,
     children: [
       {
@@ -32,8 +32,8 @@ const productsRoutes: Routes = [
         path: '**',
         component: Page404Component
       },
-
     ],
+
   },
 ];
 

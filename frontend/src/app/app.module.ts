@@ -9,11 +9,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import {ProductsModule} from './components/products/products.module';
-import {HomeModule} from './components/home/home.module';
+// import {ProductsModule} from './components/products/products.module';
+// import {HomeModule} from './components/home/home.module';
 import {SharedModule} from './components/shared/shared.module';
 import {UsersManagementModule} from './components/users-management/users-management.module';
-import {ProductsManagementModule} from './components/products-management/products-management.module';
+// import {ProductsManagementModule} from './components/products-management/products-management.module';
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
@@ -30,7 +30,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/take';
 import {AuthManagerGuard} from './guards/auth-manager.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
-import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
+// import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
 
 @NgModule({
   declarations: [
@@ -41,15 +41,16 @@ import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
     CommonModule,
     BrowserModule,
     HttpModule,
-    ProductsModule,
-    ProductsManagementModule,
-    HomeModule,
+    // ProductsModule,
+    // ProductsManagementModule,
+    // HomeModule,
     SharedModule,
     UsersManagementModule,
-    AdminPanelModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
+    // AdminPanelModule,
+
   ],
   exports: [
     SharedModule,

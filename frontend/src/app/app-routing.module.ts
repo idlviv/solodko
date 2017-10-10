@@ -9,10 +9,11 @@ import { Page404Component } from './components/shared/page404/page404.component'
 
 import {AuthAdminGuard} from './guards/auth-admin.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
+import {AuthManagerGuard} from './guards/auth-manager.guard';
 
 const appRoutes: Routes = [
   { path: 'home',
-    loadChildren: './components/home/home-routing.module#HomeRoutingModule'
+    loadChildren: './components/home/home.module#HomeModule'
   },
   { path: 'products',
     loadChildren: './components/products/products.module#ProductsModule'
@@ -20,14 +21,30 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthUserGuard]},
-  {path: 'products-management',
-    loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
-    },
-  // {path: 'product-management', component:  ProductsManagementComponent, canActivate: [AuthGuard]},
+  // {path: 'products-management',
+  //   loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
+  //   },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthUserGuard]},
+  {path: 'admin',
+
+    // component: AdminPanelComponent,
+    // children: [
+    //   {
+    //     path: 'z',
+    //     outlet: 'adminPanelSubmenu',
+    //     component: DashboardComponent,
+    //   },
+    //   {
+    //     path: 'z',
+    //     component: ProfileComponent,
+    //   },
+    // ]
+    loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
+
 
 @NgModule({
   imports: [

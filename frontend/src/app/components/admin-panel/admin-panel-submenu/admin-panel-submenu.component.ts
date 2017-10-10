@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-panel-submenu.component.css']
 })
 export class AdminPanelSubmenuComponent implements OnInit {
+  menuList: object[];
 
   constructor() { }
 
   ngOnInit() {
+    this.menuList = [
+      {
+        name: 'Додати товар',
+        route: 'add-product',
+      },
+      {
+        name: 'Редагувати товар',
+        route: 'edit-product',
+      },
+    ];
   }
 
 }
