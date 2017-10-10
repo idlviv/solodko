@@ -7,11 +7,8 @@ import {AuthService} from '../../services/auth.service';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
-import {RegisterComponent} from './register/register.component';
 
 // import {Observable} from 'rxjs/Observable';
-
-
 
 import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 
@@ -20,7 +17,6 @@ import {CustomErrorHandler} from '../../services/CustomErrorHandler';
     DashboardComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -34,4 +30,4 @@ import {CustomErrorHandler} from '../../services/CustomErrorHandler';
     CustomErrorHandler,
   ]
 })
-export class UsersManagementModule {}
+export class UsersModule {}

@@ -13,6 +13,7 @@ import {AdminPanelSubmenuComponent} from './admin-panel-submenu/admin-panel-subm
 import {ProductsManagementComponent} from './products-management/products-management.component';
 import {AddProductComponent} from './products-management/add-product/add-product.component';
 import {EditProductComponent} from './products-management/edit-product/edit-product.component';
+import {AddUserComponent} from './users-management/add-user/add-user.component';
 
 const adminRoutes: Routes = [
   {
@@ -27,6 +28,11 @@ const adminRoutes: Routes = [
       {
         path: 'edit-product',
         component: EditProductComponent,
+      },
+      {
+        path: 'add-user',
+        canActivate: [AuthAdminGuard],
+        component: AddUserComponent,
       },
       {
         path: '',

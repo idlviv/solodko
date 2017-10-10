@@ -20,6 +20,10 @@ export class AdminPanelSubmenuComponent implements OnInit {
         name: 'Редагувати товар',
         route: 'edit-product',
       },
+      {
+        name: 'Додати користувача',
+        route: 'add-user',
+      },
     ];
   }
 

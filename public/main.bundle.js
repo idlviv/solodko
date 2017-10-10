@@ -40,13 +40,11 @@ webpackAsyncContext.id = "../../../../../src/$$_gendir lazy recursive";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_users_management_register_register_component__ = __webpack_require__("../../../../../src/app/components/users-management/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_users_management_login_login_component__ = __webpack_require__("../../../../../src/app/components/users-management/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_users_management_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/components/users-management/dashboard/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_users_management_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/users-management/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_shared_page404_page404_component__ = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__guards_auth_admin_guard__ = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__guards_auth_user_guard__ = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_users_login_login_component__ = __webpack_require__("../../../../../src/app/components/users/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_users_dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/components/users/dashboard/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_users_profile_profile_component__ = __webpack_require__("../../../../../src/app/components/users/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_shared_page404_page404_component__ = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__guards_auth_user_guard__ = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -55,8 +53,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 
 
-
-
+// import { RegisterComponent } from './components/users/register/register.component';
 
 
 
@@ -69,13 +66,13 @@ var appRoutes = [
     { path: 'products',
         loadChildren: './components/products/products.module#ProductsModule'
     },
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_2__components_users_management_register_register_component__["a" /* RegisterComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_7__guards_auth_admin_guard__["a" /* AuthAdminGuard */]] },
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_3__components_users_management_login_login_component__["a" /* LoginComponent */] },
-    { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_4__components_users_management_dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_8__guards_auth_user_guard__["a" /* AuthUserGuard */]] },
+    // {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
+    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_2__components_users_login_login_component__["a" /* LoginComponent */] },
+    { path: 'dashboard', component: __WEBPACK_IMPORTED_MODULE_3__components_users_dashboard_dashboard_component__["a" /* DashboardComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_user_guard__["a" /* AuthUserGuard */]] },
     // {path: 'products-management',
     //   loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
     //   },
-    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_5__components_users_management_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_8__guards_auth_user_guard__["a" /* AuthUserGuard */]] },
+    { path: 'profile', component: __WEBPACK_IMPORTED_MODULE_4__components_users_profile_profile_component__["a" /* ProfileComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_user_guard__["a" /* AuthUserGuard */]] },
     { path: 'admin',
         // component: AdminPanelComponent,
         // children: [
@@ -92,7 +89,7 @@ var appRoutes = [
         loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
     },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: '**', component: __WEBPACK_IMPORTED_MODULE_6__components_shared_page404_page404_component__["a" /* Page404Component */] },
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_5__components_shared_page404_page404_component__["a" /* Page404Component */] },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -231,7 +228,7 @@ var config = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_routing_module__ = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_shared_shared_module__ = __webpack_require__("../../../../../src/app/components/shared/shared.module.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_users_management_users_management_module__ = __webpack_require__("../../../../../src/app/components/users-management/users-management.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_users_users_module__ = __webpack_require__("../../../../../src/app/components/users/users.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_url_serializer_service__ = __webpack_require__("../../../../../src/app/services/url-serializer.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_product_resolver_service__ = __webpack_require__("../../../../../src/app/services/product-resolver.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_product_service__ = __webpack_require__("../../../../../src/app/services/product.service.ts");
@@ -304,7 +301,7 @@ AppModule = __decorate([
             // ProductsManagementModule,
             // HomeModule,
             __WEBPACK_IMPORTED_MODULE_8__components_shared_shared_module__["a" /* SharedModule */],
-            __WEBPACK_IMPORTED_MODULE_9__components_users_management_users_management_module__["a" /* UsersManagementModule */],
+            __WEBPACK_IMPORTED_MODULE_9__components_users_users_module__["a" /* UsersModule */],
             __WEBPACK_IMPORTED_MODULE_7__app_routing_module__["a" /* AppRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4_angular2_flash_messages__["FlashMessagesModule"],
             __WEBPACK_IMPORTED_MODULE_15__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
@@ -351,7 +348,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light sticky-top\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products/ch', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n    <span  *ngIf=\"user && user.role !== 'Guest'\" class=\"navbar-text\">\r\n      <i class=\"material-icons\">person</i> {{user.role}}, {{user.name}}\r\n    </span>\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'Manager' ||user.role === 'Admin'\"-->\r\n          <!--[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/products-management',-->\r\n        <!--{outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">-->\r\n          <!--Products</a></li>-->\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/admin/ch', 'edit-product']\">\r\n          A</a></li>\r\n      <!--, {outlets: {primary: 'z', adminPanelSubmenu: 'z'}}-->\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Guest'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Admin'\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light sticky-top\">\r\n  <a class=\"navbar-brand\" href=\"#\">Творча Майстерня</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products/ch', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n    <span  *ngIf=\"user && user.role !== 'Guest'\" class=\"navbar-text\">\r\n      <i class=\"material-icons\">person</i> {{user.role}}, {{user.name}}\r\n    </span>\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/dashboard']\">Dashboard</a></li>\r\n\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'Manager' ||user.role === 'Admin'\"-->\r\n          <!--[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/products-management',-->\r\n        <!--{outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]\">-->\r\n          <!--Products</a></li>-->\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/admin/ch', 'edit-product']\">Admin</a></li>\r\n      <!--, {outlets: {primary: 'z', adminPanelSubmenu: 'z'}}-->\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile</a></li>\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Guest'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a></li>\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'Admin'\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>-->\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">Logout</a></li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -763,7 +760,7 @@ SharedModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/dashboard/dashboard.component.css":
+/***/ "../../../../../src/app/components/users/dashboard/dashboard.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -781,14 +778,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/dashboard/dashboard.component.html":
+/***/ "../../../../../src/app/components/users/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<h2>Dashboard</h2>\r\n<p>\r\n  Welcome to dashboard!\r\n</p>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/dashboard/dashboard.component.ts":
+/***/ "../../../../../src/app/components/users/dashboard/dashboard.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -814,8 +811,8 @@ var DashboardComponent = (function () {
 DashboardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-dashboard',
-        template: __webpack_require__("../../../../../src/app/components/users-management/dashboard/dashboard.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/users-management/dashboard/dashboard.component.css")]
+        template: __webpack_require__("../../../../../src/app/components/users/dashboard/dashboard.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/users/dashboard/dashboard.component.css")]
     }),
     __metadata("design:paramtypes", [])
 ], DashboardComponent);
@@ -824,7 +821,7 @@ DashboardComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/login/login.component.css":
+/***/ "../../../../../src/app/components/users/login/login.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -842,14 +839,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/login/login.component.html":
+/***/ "../../../../../src/app/components/users/login/login.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<h2 class=\"page-header\">Увійти</h2>\r\n<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" ngModel required\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" ngModel required\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\"\r\n          [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n</form>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/login/login.component.ts":
+/***/ "../../../../../src/app/components/users/login/login.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -918,8 +915,8 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-login',
-        template: __webpack_require__("../../../../../src/app/components/users-management/login/login.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/users-management/login/login.component.css")]
+        template: __webpack_require__("../../../../../src/app/components/users/login/login.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/users/login/login.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object])
 ], LoginComponent);
@@ -929,7 +926,7 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/profile/profile.component.css":
+/***/ "../../../../../src/app/components/users/profile/profile.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -947,14 +944,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/profile/profile.component.html":
+/***/ "../../../../../src/app/components/users/profile/profile.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">username: {{user.username}}</li>\r\n    <li class=\"list-group-item\">email: {{user.email}}</li>\r\n  </ul>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/profile/profile.component.ts":
+/***/ "../../../../../src/app/components/users/profile/profile.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1002,8 +999,8 @@ var ProfileComponent = (function () {
 ProfileComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-profile',
-        template: __webpack_require__("../../../../../src/app/components/users-management/profile/profile.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/users-management/profile/profile.component.css")]
+        template: __webpack_require__("../../../../../src/app/components/users/profile/profile.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/users/profile/profile.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object])
 ], ProfileComponent);
@@ -1013,153 +1010,25 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users-management/register/register.component.css":
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/users-management/register/register.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\r\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\r\n</form>"
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/users-management/register/register.component.ts":
+/***/ "../../../../../src/app/components/users/users.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var RegisterComponent = (function () {
-    function RegisterComponent(validateService, authService, router, flashMessage) {
-        this.validateService = validateService;
-        this.authService = authService;
-        this.router = router;
-        this.flashMessage = flashMessage;
-    }
-    RegisterComponent.prototype.ngOnInit = function () {
-    };
-    RegisterComponent.prototype.onRegisterSubmit = function (form) {
-        var _this = this;
-        var user = {
-            name: form.value.name,
-            email: form.value.email,
-            username: form.value.username,
-            password: form.value.password,
-            role: 'User',
-        };
-        // validateService перевіряє валідність даних
-        if (!this.validateService.validateRegister(user)) {
-            this.flashMessage.show('fill all fields', {
-                cssClass: 'alert-danger',
-                timeout: 3000
-            });
-            return false;
-        }
-        if (!this.validateService.validateEmail(user.email)) {
-            this.flashMessage.show('enter valid email', {
-                cssClass: 'alert-danger',
-                timeout: 3000
-            });
-            return false;
-        }
-        // підписка на authService.registerUser для реєстрації
-        this.authService.registerUser(user)
-            .subscribe(function (data) {
-            if (data.success) {
-                _this.flashMessage.show('Registration successful', {
-                    cssClass: 'alert-success',
-                    timeout: 3000
-                });
-                // this.router.navigate(['/login']);
-            }
-            else {
-                _this.flashMessage.show('Registration failed', {
-                    cssClass: 'alert-danger',
-                    timeout: 3000
-                });
-                _this.router.navigate(['/register']);
-            }
-        }, function (error) {
-            if (error.status === 401) {
-                _this.flashMessage.show('Please login', {
-                    cssClass: 'alert-danger',
-                    timeout: 3000
-                });
-                _this.router.navigate(['/login']);
-            }
-        });
-    };
-    return RegisterComponent;
-}());
-RegisterComponent = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-register',
-        template: __webpack_require__("../../../../../src/app/components/users-management/register/register.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/users-management/register/register.component.css")]
-    }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === "function" && _d || Object])
-], RegisterComponent);
-
-var _a, _b, _c, _d;
-//# sourceMappingURL=register.component.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/users-management/users-management.module.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersManagementModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/components/users-management/dashboard/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login_component__ = __webpack_require__("../../../../../src/app/components/users-management/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__profile_profile_component__ = __webpack_require__("../../../../../src/app/components/users-management/profile/profile.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__register_register_component__ = __webpack_require__("../../../../../src/app/components/users-management/register/register.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_CustomErrorHandler__ = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/components/users/dashboard/dashboard.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__login_login_component__ = __webpack_require__("../../../../../src/app/components/users/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__profile_profile_component__ = __webpack_require__("../../../../../src/app/components/users/profile/profile.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_CustomErrorHandler__ = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-
 
 
 
@@ -1169,18 +1038,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 // import {Observable} from 'rxjs/Observable';
 
-var UsersManagementModule = (function () {
-    function UsersManagementModule() {
+var UsersModule = (function () {
+    function UsersModule() {
     }
-    return UsersManagementModule;
+    return UsersModule;
 }());
-UsersManagementModule = __decorate([
+UsersModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         declarations: [
             __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__["a" /* DashboardComponent */],
             __WEBPACK_IMPORTED_MODULE_5__login_login_component__["a" /* LoginComponent */],
             __WEBPACK_IMPORTED_MODULE_6__profile_profile_component__["a" /* ProfileComponent */],
-            __WEBPACK_IMPORTED_MODULE_7__register_register_component__["a" /* RegisterComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
@@ -1189,12 +1057,12 @@ UsersManagementModule = __decorate([
         exports: [],
         providers: [
             __WEBPACK_IMPORTED_MODULE_3__services_auth_service__["a" /* AuthService */],
-            __WEBPACK_IMPORTED_MODULE_8__services_CustomErrorHandler__["a" /* CustomErrorHandler */],
+            __WEBPACK_IMPORTED_MODULE_7__services_CustomErrorHandler__["a" /* CustomErrorHandler */],
         ]
     })
-], UsersManagementModule);
+], UsersModule);
 
-//# sourceMappingURL=users-management.module.js.map
+//# sourceMappingURL=users.module.js.map
 
 /***/ }),
 

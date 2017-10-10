@@ -7,17 +7,25 @@ webpackJsonp(["admin-panel.module"],{
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelRoutingModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__guards_auth_manager_guard__ = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__admin_panel_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_panel_submenu_admin_panel_submenu_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__products_management_add_product_add_product_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__products_management_edit_product_edit_product_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/products-management/edit-product/edit-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__guards_auth_admin_guard__ = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__guards_auth_manager_guard__ = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_panel_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_panel_submenu_admin_panel_submenu_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__products_management_add_product_add_product_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__products_management_edit_product_edit_product_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/products-management/edit-product/edit-product.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__users_management_add_user_add_user_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+// import {ProductsManagementComponent} from './products-management.component';
+// import {EditProductComponent} from './products/edit-product/edit-product.component';
+// import {ProductsManagementSubmenuComponent} from './products-management-submenu/products-management-submenu.component';
+// import {AddProductComponent} from './products/add-product/add-product.component';
 
 
 
@@ -28,21 +36,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var adminRoutes = [
     {
         path: 'ch',
-        canActivateChild: [__WEBPACK_IMPORTED_MODULE_2__guards_auth_manager_guard__["a" /* AuthManagerGuard */]],
-        component: __WEBPACK_IMPORTED_MODULE_3__admin_panel_component__["a" /* AdminPanelComponent */],
+        canActivateChild: [__WEBPACK_IMPORTED_MODULE_3__guards_auth_manager_guard__["a" /* AuthManagerGuard */]],
+        component: __WEBPACK_IMPORTED_MODULE_4__admin_panel_component__["a" /* AdminPanelComponent */],
         children: [
             {
                 path: 'add-product',
-                component: __WEBPACK_IMPORTED_MODULE_5__products_management_add_product_add_product_component__["a" /* AddProductComponent */],
+                component: __WEBPACK_IMPORTED_MODULE_6__products_management_add_product_add_product_component__["a" /* AddProductComponent */],
             },
             {
                 path: 'edit-product',
-                component: __WEBPACK_IMPORTED_MODULE_6__products_management_edit_product_edit_product_component__["a" /* EditProductComponent */],
+                component: __WEBPACK_IMPORTED_MODULE_7__products_management_edit_product_edit_product_component__["a" /* EditProductComponent */],
+            },
+            {
+                path: 'add-user',
+                canActivate: [__WEBPACK_IMPORTED_MODULE_2__guards_auth_admin_guard__["a" /* AuthAdminGuard */]],
+                component: __WEBPACK_IMPORTED_MODULE_8__users_management_add_user_add_user_component__["a" /* AddUserComponent */],
             },
             {
                 path: '',
                 outlet: 'adminPanelSubmenu',
-                component: __WEBPACK_IMPORTED_MODULE_4__admin_panel_submenu_admin_panel_submenu_component__["a" /* AdminPanelSubmenuComponent */],
+                component: __WEBPACK_IMPORTED_MODULE_5__admin_panel_submenu_admin_panel_submenu_component__["a" /* AdminPanelSubmenuComponent */],
             },
         ],
     },
@@ -118,6 +131,10 @@ var AdminPanelSubmenuComponent = (function () {
             {
                 name: 'Редагувати товар',
                 route: 'edit-product',
+            },
+            {
+                name: 'Додати користувача',
+                route: 'add-user',
             },
         ];
     };
@@ -210,12 +227,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_panel_routing_module__ = __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel-routing.module.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__products_management_products_management_module__ = __webpack_require__("../../../../../src/app/components/admin-panel/products-management/products-management.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__users_management_users_management_module__ = __webpack_require__("../../../../../src/app/components/admin-panel/users-management/users-management.module.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -240,6 +259,7 @@ AdminPanelModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__admin_panel_routing_module__["a" /* AdminPanelRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__products_management_products_management_module__["a" /* ProductsManagementModule */],
+            __WEBPACK_IMPORTED_MODULE_7__users_management_users_management_module__["a" /* UsersManagementModule */],
         ],
     })
 ], AdminPanelModule);
@@ -743,6 +763,240 @@ ProductsManagementModule = __decorate([
 ], ProductsManagementModule);
 
 //# sourceMappingURL=products-management.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">UserName</label>\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\n  </div>\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\n</form>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AddUserComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var AddUserComponent = (function () {
+    function AddUserComponent(validateService, authService, router, flashMessage) {
+        this.validateService = validateService;
+        this.authService = authService;
+        this.router = router;
+        this.flashMessage = flashMessage;
+    }
+    AddUserComponent.prototype.ngOnInit = function () {
+    };
+    AddUserComponent.prototype.onRegisterSubmit = function (form) {
+        var _this = this;
+        var user = {
+            name: form.value.name,
+            email: form.value.email,
+            username: form.value.username,
+            password: form.value.password,
+            role: 'User',
+        };
+        // validateService перевіряє валідність даних
+        if (!this.validateService.validateRegister(user)) {
+            this.flashMessage.show('fill all fields', {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+            return false;
+        }
+        if (!this.validateService.validateEmail(user.email)) {
+            this.flashMessage.show('enter valid email', {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+            return false;
+        }
+        // підписка на authService.registerUser для реєстрації
+        this.authService.registerUser(user)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.flashMessage.show('Registration successful', {
+                    cssClass: 'alert-success',
+                    timeout: 3000
+                });
+                // this.router.navigate(['/login']);
+            }
+            else {
+                _this.flashMessage.show('Registration failed', {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+                _this.router.navigate(['/register']);
+            }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.flashMessage.show('Please login', {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+                _this.router.navigate(['/login']);
+            }
+        });
+    };
+    return AddUserComponent;
+}());
+AddUserComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-add-user',
+        template: __webpack_require__("../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.css")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === "function" && _d || Object])
+], AddUserComponent);
+
+var _a, _b, _c, _d;
+//# sourceMappingURL=add-user.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/users-management.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/users-management.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  users-management works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/users-management.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersManagementComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var UsersManagementComponent = (function () {
+    function UsersManagementComponent() {
+    }
+    UsersManagementComponent.prototype.ngOnInit = function () {
+    };
+    return UsersManagementComponent;
+}());
+UsersManagementComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-users-management',
+        template: __webpack_require__("../../../../../src/app/components/admin-panel/users-management/users-management.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/admin-panel/users-management/users-management.component.css")]
+    }),
+    __metadata("design:paramtypes", [])
+], UsersManagementComponent);
+
+//# sourceMappingURL=users-management.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/admin-panel/users-management/users-management.module.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsersManagementModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__users_management_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/users-management/users-management.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__add_user_add_user_component__ = __webpack_require__("../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+
+
+var UsersManagementModule = (function () {
+    function UsersManagementModule() {
+    }
+    return UsersManagementModule;
+}());
+UsersManagementModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormsModule */]
+        ],
+        exports: [
+            __WEBPACK_IMPORTED_MODULE_2__users_management_component__["a" /* UsersManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_3__add_user_add_user_component__["a" /* AddUserComponent */],
+        ],
+        declarations: [
+            __WEBPACK_IMPORTED_MODULE_2__users_management_component__["a" /* UsersManagementComponent */],
+            __WEBPACK_IMPORTED_MODULE_3__add_user_add_user_component__["a" /* AddUserComponent */],
+        ]
+    })
+], UsersManagementModule);
+
+//# sourceMappingURL=users-management.module.js.map
 
 /***/ })
 

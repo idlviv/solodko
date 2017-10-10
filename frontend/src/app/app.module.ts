@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import {ProductsModule} from './components/products/products.module';
 // import {HomeModule} from './components/home/home.module';
 import {SharedModule} from './components/shared/shared.module';
-import {UsersManagementModule} from './components/users-management/users-management.module';
+import {UsersModule} from './components/users/users.module';
 // import {ProductsManagementModule} from './components/products-management/products-management.module';
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {ProductResolverService} from './services/product-resolver.service';
@@ -45,7 +45,7 @@ import {AuthUserGuard} from './guards/auth-user.guard';
     // ProductsManagementModule,
     // HomeModule,
     SharedModule,
-    UsersManagementModule,
+    UsersModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
