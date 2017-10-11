@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
   };
   user: IUser = this.guest;
   // user = {} as IUser;
-  role: string;
+  role = '';
 
   constructor(
     public authService: AuthService,

@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import {AuthService} from '../../services/auth.service';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import {ProfileComponent} from './profile/profile.component';
 
@@ -14,7 +13,6 @@ import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
     LoginComponent,
     ProfileComponent,
   ],

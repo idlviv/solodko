@@ -1,6 +1,9 @@
 a {
   text-transform: capitalize;
+
 }
+
+
 
 @media (min-width: 991px) {
   li {
@@ -28,5 +31,10 @@ a {
 }
 .navbar {
   box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);
+}
+
+.material-icons {
+  vertical-align: middle;
+
 }
 
