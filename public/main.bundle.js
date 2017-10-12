@@ -132,6 +132,8 @@ module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__interfaces_i_user__ = __webpack_require__("../../../../../src/app/interfaces/i-user.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__interfaces_i_user___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__interfaces_i_user__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -146,14 +148,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AppComponent = (function () {
     function AppComponent(router, authService, catalogService, flashMessage) {
         this.router = router;
         this.authService = authService;
         this.catalogService = catalogService;
         this.flashMessage = flashMessage;
+        this.guest = {
+            name: '',
+            email: '',
+            username: '',
+            password: '',
+            role: 'Guest',
+        };
+        // loggedUser: IUser;
+        this.user = this.guest;
     }
     AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.getLoggedUser()
+            .subscribe(function (user) { return _this.user = user; });
+        this.router.events
+            .filter(function (event) { return event instanceof __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* NavigationStart */]; })
+            .subscribe(function () {
+            _this.authService.getProfile()
+                .subscribe(function (user) {
+                // this.user = user;
+                _this.authService.logUserIn(user);
+            }, function (err) {
+                // this.user = this.guest;
+                _this.authService.logUserOut(_this.guest);
+            });
+        });
         // this.catalogService.getCatalog()
         //   .subscribe(
         //       catalog => {
@@ -172,16 +199,20 @@ var AppComponent = (function () {
     };
     return AppComponent;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__interfaces_i_user__["IUser"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__interfaces_i_user__["IUser"]) === "function" && _a || Object)
+], AppComponent.prototype, "user", void 0);
 AppComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
         styles: [__webpack_require__("../../../../../src/app/app.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_auth_service__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_catalog_service__["a" /* CatalogService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _e || Object])
 ], AppComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -233,6 +264,7 @@ var config = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_add_operator_take___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_add_operator_take__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__guards_auth_manager_guard__ = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__guards_auth_user_guard__ = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -252,6 +284,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // import {ProductsManagementModule} from './components/products-management/products-management.module';
+
 
 
 
@@ -303,6 +336,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_16__guards_auth_admin_guard__["a" /* AuthAdminGuard */],
             __WEBPACK_IMPORTED_MODULE_22__guards_auth_manager_guard__["a" /* AuthManagerGuard */],
             __WEBPACK_IMPORTED_MODULE_23__guards_auth_user_guard__["a" /* AuthUserGuard */],
+            __WEBPACK_IMPORTED_MODULE_24__services_auth_service__["a" /* AuthService */],
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
     })
@@ -320,7 +354,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n\r\n}\r\n\r\n\r\n\r\n@media (min-width: 991px) {\r\n  li {\r\n    border-bottom: 2px lightslategray solid;\r\n  }\r\n\r\n  li.active  {\r\n    border-bottom: 2px darkslategrey solid;\r\n  }\r\n\r\n  .navbar {\r\n    font-size: 1.2rem;\r\n    box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n    height: 5rem;\r\n  }\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  li.active  {\r\n    font-weight: bold;\r\n  }\r\n}\r\n.navbar-brand {\r\n  font-size: 1.4rem;\r\n}\r\n.navbar {\r\n  box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n}\r\n\r\n.material-icons {\r\n  vertical-align: middle;\r\n\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "a {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.dropdown{\r\n  cursor: pointer;\r\n}\r\n\r\n@media (min-width: 991px) {\r\n  li {\r\n    border-bottom: 2px lightslategray solid;\r\n  }\r\n\r\n  li.active  {\r\n    border-bottom: 2px darkslategrey solid;\r\n  }\r\n\r\n  .navbar {\r\n    font-size: 1.2rem;\r\n    box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n    height: 5rem;\r\n  }\r\n}\r\n\r\n@media (max-width: 991px) {\r\n  li.active  {\r\n    font-weight: bold;\r\n  }\r\n}\r\n.navbar-brand {\r\n  font-size: 1.4rem;\r\n}\r\n.navbar {\r\n  box-shadow: 0 .2rem 1rem rgba(0,0,0,.25);\r\n}\r\n\r\n.material-icons {\r\n  vertical-align: middle;\r\n\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -377,18 +411,25 @@ var NavbarComponent = (function () {
         };
         this.user = this.guest;
         // user = {} as IUser;
+        // @Input()
+        // user: IUser;
         this.role = '';
     }
     NavbarComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.localCatalog = this.catalogService.getCatalog();
+        this.authService.getLoggedUser()
+            .subscribe(function (user) { return _this.user = user; });
         // On each change of route check user rights (getProfile)
-        this.router.events
-            .filter(function (event) { return event instanceof __WEBPACK_IMPORTED_MODULE_3__angular_router__["c" /* NavigationStart */]; })
-            .subscribe(function () {
-            _this.authService.getProfile()
-                .subscribe(function (user) { return _this.user = user; }, function (err) { return _this.user = _this.guest; });
-        });
+        //   this.router.events
+        //       .filter(event => event instanceof NavigationStart)
+        //       .subscribe(() => {
+        // this.authService.getProfile()
+        //     .subscribe (
+        //       user => this.user = user,
+        //       err => this.user = this.guest
+        //     );
+        // });
     };
     NavbarComponent.prototype.hide = function () {
         if ($('.navbar-toggler').css('display') === 'block') {
@@ -1277,6 +1318,14 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/interfaces/i-user.ts":
+/***/ (function(module, exports) {
+
+;
+//# sourceMappingURL=i-user.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/CustomErrorHandler.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1324,6 +1373,8 @@ CustomErrorHandler = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_jwt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_jwt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_config__ = __webpack_require__("../../../../../src/app/app.config.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__CustomErrorHandler__ = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__ = __webpack_require__("../../../../rxjs/ReplaySubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1342,11 +1393,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
     function AuthService(http, customErrorHandler) {
         this.http = http;
         this.customErrorHandler = customErrorHandler;
+        this._logging = new __WEBPACK_IMPORTED_MODULE_5_rxjs_ReplaySubject__["ReplaySubject"]();
     }
+    // create Observable for user login watch
+    AuthService.prototype.logUserIn = function (user) {
+        this._logging.next(user);
+    };
+    AuthService.prototype.logUserOut = function (user) {
+        this._logging.next(user);
+    };
+    AuthService.prototype.getLoggedUser = function () {
+        return this._logging.asObservable();
+    };
+    // end of observable
     // register.component підписується на registerUser
     // юзер з хедером передається на сервер
     AuthService.prototype.registerUser = function (user) {
@@ -1376,9 +1440,10 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
-            .map(function (res) {
+            .map(function (user) {
             // console.log('res', res.json());
-            return res.json();
+            // this.logUserIn(user.json());
+            return user.json();
         })
             .catch(this.customErrorHandler.httpErrorHandler);
     };

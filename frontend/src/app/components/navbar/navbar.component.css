@@ -1,9 +1,10 @@
 a {
   text-transform: capitalize;
-
 }
 
-
+.dropdown{
+  cursor: pointer;
+}
 
 @media (min-width: 991px) {
   li {

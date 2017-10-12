@@ -1,9 +1,10 @@
 <nav class="bg-light sidebar">
   <ul class="nav flex-md-column nav-pills">
-    <li class="nav-item" *ngFor="let item of menuList">
-      <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
-         [routerLink]="['/admin/ch', {outlets: {primary: item.route}}]">
-        {{item.name}}
+    <li class="nav-item" *ngFor="let menuItem of menuList">
+      <a *ngIf="checkPermission(user, menuItem)"
+         class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}"
+         [routerLink]="['/admin/ch', {outlets: {primary: menuItem.route}}]">
+        {{menuItem.name}}
       </a>
     </li>
   </ul>

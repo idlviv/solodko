@@ -8,7 +8,7 @@ export class CustomErrorHandler {
   statusText: string;
 
   httpErrorHandler(err: Response) {
-      if (err.status === 401){
+      if (err.status === 401) {
         this.statusText = 'Не авторизовано';
         return Observable.throw(this.statusText);
       }

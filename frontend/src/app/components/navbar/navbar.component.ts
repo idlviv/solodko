@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router, NavigationStart} from '@angular/router';
@@ -25,6 +25,10 @@ export class NavbarComponent implements OnInit {
   };
   user: IUser = this.guest;
   // user = {} as IUser;
+
+  // @Input()
+  // user: IUser;
+
   role = '';
 
   constructor(
@@ -38,17 +42,21 @@ export class NavbarComponent implements OnInit {
 
     this.localCatalog = this.catalogService.getCatalog();
 
-    // On each change of route check user rights (getProfile)
-      this.router.events
-          .filter(event => event instanceof NavigationStart)
-          .subscribe(() => {
+    this.authService.getLoggedUser()
+      .subscribe(
+        user => this.user = user
+      );
 
-            this.authService.getProfile()
-                .subscribe (
-                  user => this.user = user,
-                  err => this.user = this.guest
-                );
-          });
+    // On each change of route check user rights (getProfile)
+    //   this.router.events
+    //       .filter(event => event instanceof NavigationStart)
+    //       .subscribe(() => {
+            // this.authService.getProfile()
+            //     .subscribe (
+            //       user => this.user = user,
+            //       err => this.user = this.guest
+            //     );
+          // });
   }
 
   hide() {

@@ -99,7 +99,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"bg-light sidebar\">\r\n  <ul class=\"nav flex-md-column nav-pills\">\r\n    <li class=\"nav-item\" *ngFor=\"let item of menuList\">\r\n      <a class=\"nav-link\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n         [routerLink]=\"['/admin/ch', {outlets: {primary: item.route}}]\">\r\n        {{item.name}}\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--<p>admin  side</p>-->\r\n"
+module.exports = "<nav class=\"bg-light sidebar\">\r\n  <ul class=\"nav flex-md-column nav-pills\">\r\n    <li class=\"nav-item\" *ngFor=\"let menuItem of menuList\">\r\n      <a *ngIf=\"checkPermission(user, menuItem)\"\r\n         class=\"nav-link\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n         [routerLink]=\"['/admin/ch', {outlets: {primary: menuItem.route}}]\">\r\n        {{menuItem.name}}\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--<p>admin  side</p>-->\r\n"
 
 /***/ }),
 
@@ -109,6 +109,7 @@ module.exports = "<nav class=\"bg-light sidebar\">\r\n  <ul class=\"nav flex-md-
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdminPanelSubmenuComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -119,24 +120,48 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AdminPanelSubmenuComponent = (function () {
-    function AdminPanelSubmenuComponent() {
+    function AdminPanelSubmenuComponent(authService) {
+        this.authService = authService;
+        this.guest = {
+            name: '',
+            email: '',
+            username: '',
+            password: '',
+            role: 'Guest',
+        };
+        this.user = this.guest;
     }
     AdminPanelSubmenuComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.authService.getLoggedUser()
+            .subscribe(function (user) { return _this.user = user; });
         this.menuList = [
             {
                 name: 'Додати товар',
                 route: 'add-product',
+                permission: ['Manager', 'Admin'],
             },
             {
                 name: 'Редагувати товар',
                 route: 'edit-product',
+                permission: ['Manager', 'Admin'],
             },
             {
                 name: 'Додати користувача',
                 route: 'add-user',
+                permission: ['Admin'],
             },
         ];
+    };
+    AdminPanelSubmenuComponent.prototype.checkPermission = function (user, menuItem) {
+        for (var i = 0; i < menuItem.permission.length; i++) {
+            if (menuItem.permission[i] === user.role) {
+                return true;
+            }
+        }
+        return false;
     };
     return AdminPanelSubmenuComponent;
 }());
@@ -146,9 +171,10 @@ AdminPanelSubmenuComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.css")]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object])
 ], AdminPanelSubmenuComponent);
 
+var _a;
 //# sourceMappingURL=admin-panel-submenu.component.js.map
 
 /***/ }),

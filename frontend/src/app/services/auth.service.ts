@@ -11,16 +11,32 @@ import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
 import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
+  private _logging: ReplaySubject<IUser> = new ReplaySubject<IUser>();
 
   constructor(
     private http: Http,
     private customErrorHandler: CustomErrorHandler
   ) {}
+
+  // create Observable for user login watch
+  logUserIn(user: IUser) {
+    this._logging.next(user);
+  }
+
+  logUserOut(user: IUser) {
+    this._logging.next(user);
+  }
+
+  getLoggedUser(): Observable < IUser > {
+    return this._logging.asObservable();
+  }
+  // end of observable
 
   // register.component підписується на registerUser
   // юзер з хедером передається на сервер
@@ -62,9 +78,11 @@ export class AuthService {
     return this.http.get(
       config.serverUrl + 'api/profile',
       {headers: headers})
-      .map(res => {
+      .map(user => {
         // console.log('res', res.json());
-        return res.json();
+        // this.logUserIn(user.json());
+
+        return user.json();
       })
       .catch(this.customErrorHandler.httpErrorHandler);
     }
