@@ -22,9 +22,10 @@ export class AppComponent implements OnInit {
     password: '',
     role: 'Guest',
   };
-  // loggedUser: IUser;
+
   @Output()
     user: IUser = this.guest;
+
 
   constructor(
     private router: Router,
@@ -38,7 +39,6 @@ export class AppComponent implements OnInit {
       .subscribe(
         user => this.user = user
       );
-
 
     this.router.events
       .filter(event => event instanceof NavigationStart)

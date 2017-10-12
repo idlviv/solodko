@@ -16,6 +16,9 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   localCatalog: ICatalog[];
+  //for async pipe
+  getLoggedUser$: Observable<IUser>;
+
   guest: IUser = {
     name: '',
     email: '',
@@ -25,10 +28,6 @@ export class NavbarComponent implements OnInit {
   };
   user: IUser = this.guest;
   // user = {} as IUser;
-
-  // @Input()
-  // user: IUser;
-
   role = '';
 
   constructor(
@@ -41,6 +40,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     this.localCatalog = this.catalogService.getCatalog();
+    this.getLoggedUser$ = this.authService.getLoggedUser();
 
     this.authService.getLoggedUser()
       .subscribe(
