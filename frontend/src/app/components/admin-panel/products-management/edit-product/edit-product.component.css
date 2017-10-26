@@ -1,5 +1,5 @@
 .active {
-  background-color: rgba(18, 52, 86, 0.5);
+  background-color: rgba(159, 222, 197, 0.5);
   color: white;
 }
 
@@ -8,21 +8,30 @@
 }
 
 .edit-product-table-first-cell {
-  width: 60px;
+  width: 5rem;
   text-align: center;
 }
 
 .edit-product-table-last-cell {
-  width: 30px;
+  width: 2.5rem;
   text-align: center;
 }
 
 .edit-product-table-cells {
   /*width: 90%;*/
   /*height: 90%;*/
-  padding: 3px;
+  vertical-align: middle;
+  padding: .1rem;
+}
+
+.edit-product-table-cells-input {
+  padding: .1rem .2rem;
 }
 
 .material-icons.md-18 {
   font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
 }

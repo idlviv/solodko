@@ -5,20 +5,37 @@ button {
   text-transform: capitalize;
 }
 
-.button-light,
-.button-action {
-  padding: 0;
-  border-radius: 100%;
+.button-size-3 {
   width: 3rem;
   height: 3rem;
   box-shadow: .5rem .5rem .5rem rgba(0,0,0,.25);
 }
 
+.button-icon-size-3 {
+  line-height: 3rem;
+  font-size: 1.5rem;
+}
+
+.button-size-2 {
+  width: 2rem;
+  height: 2rem;
+  box-shadow: .4rem .4rem .4rem rgba(0,0,0,.1);
+}
+
+.button-icon-size-2 {
+  line-height: 2rem;
+  font-size: 1rem;
+}
+
+.button-light,
+.button-action {
+  padding: 0;
+  border-radius: 100%;
+}
+
 .button-light-icon,
 .button-action-icon {
-  line-height: 3rem;
   box-sizing: border-box;
-  font-size: 1.5rem;
 }
 
 .button-light {

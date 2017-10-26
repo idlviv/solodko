@@ -22,73 +22,92 @@
       <tr [class.active]="i === selectedRow" >
           <td class="edit-product-table-first-cell">
 
-            <button type="button" (click)="onClickEditBtn(i, product._id)" class="btn btn-secondary btn-sm"
-                    [class.hide]="!isEditBtnShow">
-              <i class="material-icons md-18">mode_edit</i>
-              <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
-            </button>
             <div class="btn-group" role="group" aria-label="Edit">
-              <button type="submit" class="btn btn-secondary btn-sm" [class.hide]="!(i === selectedRow)">
+              <button type="button" (click)="onClickEditBtn(i, product._id)" class="btn button-light button-size-2"
+                      [class.hide]="!isEditBtnShow">
+                <i class="material-icons button-light-icon button-icon-size-2">mode_edit</i>
+                <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+              </button>
+              <button type="button" (click)="onClickEditBtn(i, product._id)" class="btn button-light button-size-2"
+                      [class.hide]="!isEditBtnShow">
+                <i class="material-icons button-light-icon button-icon-size-2">border_color</i>
+                <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+              </button>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Edit">
+              <button type="submit" class="btn btn button-light button-size-2" [class.hide]="!(i === selectedRow)">
                 <!--<i class="fa fa-check" aria-hidden="true"></i>-->
-                <i class="material-icons md-18">done</i>
+                <i class="material-icons button-light-icon button-icon-size-2">done</i>
               </button>
 
-              <button type="button" class="btn btn-secondary btn-sm" (click)="onClickCancelEditBtn(i, product._id)"
+              <button type="button" class="btn btn button-light button-size-2" (click)="onClickCancelEditBtn(i, product._id)"
                       [class.hide]="!(i === selectedRow)">
                 <!--<i class="fa fa-ban" aria-hidden="true"></i>-->
-                <i class="material-icons md-18">highlight_off</i>
+                <i class="material-icons button-light-icon button-icon-size-2">highlight_off</i>
               </button>
             </div>
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.category0" [disabled]="!(i===selectedRow)"
-                   name="category0" #category0="ngModel" class="form-control form-control-sm">
+                   name="category0" #category0="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.category1" [disabled]="!(i===selectedRow)"
-                   name="category1" #category1="ngModel" class="form-control form-control-sm">
+                   name="category1" #category1="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.itemNumber" [disabled]="!(i===selectedRow)"
-                   name="itemNumber" #itemNumber="ngModel" class="form-control form-control-sm">
+                   name="itemNumber" #itemNumber="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.name" [disabled]="!(i===selectedRow)"
-                   name="name" #name="ngModel" class="form-control form-control-sm">
+                   name="name" #name="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.price" [disabled]="!(i===selectedRow)"
-                   name="price" #price="ngModel" class="form-control form-control-sm">
+                   name="price" #price="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.mainImgSrc" [disabled]="!(i===selectedRow)"
-                   name="mainImgSrc" #mainImgSrc="ngModel" class="form-control form-control-sm">
+                   name="mainImgSrc" #mainImgSrc="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.itemDescription" [disabled]="!(i===selectedRow)"
-                   name="itemDescription" #itemDescription="ngModel" class="form-control form-control-sm">
+                   name="itemDescription" #itemDescription="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
            <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.showOnMainPage" [disabled]="!(i===selectedRow)"
-                   name="showOnMainPage" #showOnMainPage="ngModel" class="form-control form-control-sm">
+                   name="showOnMainPage" #showOnMainPage="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
            <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.discount" [disabled]="!(i===selectedRow)"
-                   name="discount" #discount="ngModel" class="form-control form-control-sm">
+                   name="discount" #discount="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.size.width" [disabled]="!(i===selectedRow)"
-                   name="width" #width="ngModel" class="form-control form-control-sm">
+                   name="width" #width="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-cells">
             <input type="text" [(ngModel)]="product.size.height" [disabled]="!(i===selectedRow)"
-                   name="height" #height="ngModel" class="form-control form-control-sm">
+                   name="height" #height="ngModel"
+                   class="form-control form-control-sm edit-product-table-cells-input">
           </td>
           <td class="edit-product-table-last-cell">
 
-            <button type="button" class="btn btn-secondary btn-sm" (click)="onClickDelBtn(i, product._id)"
+            <button type="button" class="btn btn button-light button-size-2" (click)="onClickDelBtn(i, product._id)"
                     [class.hidden]="!(i === selectedRow)">
-              <i class="material-icons md-18">delete_sweep</i>
+              <i class="material-icons button-light-icon button-icon-size-2">delete_sweep</i>
 
               <!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
             </button>
