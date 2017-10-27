@@ -26,6 +26,10 @@ const adminRoutes: Routes = [
         component: AddProductComponent,
       },
       {
+        path: 'add-product/:id',
+        component: AddProductComponent,
+      },
+      {
         path: 'edit-product',
         component: EditProductComponent,
       },

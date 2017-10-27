@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {ValidateService} from '../../../../services/validate.service';
 import {ProductService} from '../../../../services/product.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth.service';
 import {IProduct} from '../../../../interfaces/i-product';
 import {NgForm} from '@angular/forms';
@@ -18,6 +18,7 @@ import {ICatalog} from '../../../../interfaces/i-catalog';
 
 export class AddProductComponent implements OnInit {
   product: IProduct;
+  x: any;
   category0: any;
   category1: any;
   catalog: ICatalog[];
@@ -35,10 +36,21 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService,
     private flashMessage: FlashMessagesService,
     private router: Router,
+    private route: ActivatedRoute,
     private catalogService: CatalogService,
   ) { }
 
   ngOnInit() {
+    // this.productService.getQueriedProducts({'_id': '59afe6590b142c1bb4399541'})
+    //   .subscribe(
+    //     product => console.log('product', product)
+    //   );
+
+    // this.route.params
+    //   .switchMap(params => this.productService.getQueriedProducts({'_id': params}))
+    //   .map(product => this.x = product)
+    //   .subscribe()
+
     this.catalog = this.catalogService.getCatalog();
   }
 

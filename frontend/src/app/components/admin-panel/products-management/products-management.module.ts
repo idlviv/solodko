@@ -6,13 +6,15 @@ import {FormsModule} from '@angular/forms';
 import {ProductsManagementComponent} from './products-management.component';
 import {AddProductComponent} from './add-product/add-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     // SharedModule,
     // ProductsManagementRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   exports: [
     AddProductComponent,

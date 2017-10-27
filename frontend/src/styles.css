@@ -13,7 +13,7 @@ button {
 
 .button-icon-size-3 {
   line-height: 3rem;
-  font-size: 1.5rem;
+  /*font-size: 1.5rem;*/
 }
 
 .button-size-2 {
@@ -24,7 +24,7 @@ button {
 
 .button-icon-size-2 {
   line-height: 2rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
 }
 
 .button-light,
