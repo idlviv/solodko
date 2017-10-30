@@ -1,8 +1,17 @@
 <h2 class="page-header">Додати товар</h2>
-<div *ngFor="let xOb of xObs | async">
-  {{xOb.name}}
-</div>
+<div *ngFor="let product of products$ | async">
+  {{product.name}}
+
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row form-group">
+          <label class="col-md-4" for="xx">{{product.name}}</label>
+          <input type="text" [(ngModel)]="product.name" name="xx" class="form-control form-control-sm col-md-8" id="xx" required>
+        </div>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-md-6">
@@ -119,3 +128,4 @@
     <i class="material-icons button-action-icon button-icon-size-3">done</i></button>
     <!--<input type="submit" class="btn button-primary" [disabled]="!addProductForm.form.valid" value="Add">-->
   </form>
+</div>

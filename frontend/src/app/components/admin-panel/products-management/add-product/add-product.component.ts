@@ -21,7 +21,8 @@ import 'rxjs/add/operator/switchMap';
 export class AddProductComponent implements OnInit {
   product: IProduct;
   x: any;
-  xObs: Observable<any>;
+  xx: any;
+  products$: Observable<IProduct[]>;
   category0: any;
   category1: any;
   catalog: ICatalog[];
@@ -49,14 +50,14 @@ export class AddProductComponent implements OnInit {
     //     product => console.log('product', product)
     //   );
 
-    this.xObs = this.route.params
-      .switchMap(params => {
-        // if (params._id) {
-          console.log('switchMap', params);
-          return this.productService.getQueriedProducts(params)
-        // }
-      })
-      .map(product => this.x = product);
+    this.products$ = this.route.params
+      .filter(params => params['_id'] !== undefined)
+      .switchMap(params => this.productService.getQueriedProducts(params));
+
+      // .map(product => {
+      //   this.xx = product.name;
+      //   return this.x = product
+      // });
       // .subscribe();
 
     this.catalog = this.catalogService.getCatalog();
