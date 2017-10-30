@@ -376,8 +376,10 @@ var AddProductComponent = (function () {
         var _this = this;
         this.xObs = this.route.params
             .switchMap(function (params) {
+            // if (params._id) {
             console.log('switchMap', params);
             return _this.productService.getQueriedProducts(params);
+            // }
         })
             .map(function (product) { return _this.x = product; });
         // .subscribe();

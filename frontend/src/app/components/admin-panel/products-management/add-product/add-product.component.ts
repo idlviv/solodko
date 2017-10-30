@@ -51,8 +51,10 @@ export class AddProductComponent implements OnInit {
 
     this.xObs = this.route.params
       .switchMap(params => {
-        console.log('switchMap', params);
+        // if (params._id) {
+          console.log('switchMap', params);
           return this.productService.getQueriedProducts(params)
+        // }
       })
       .map(product => this.x = product);
       // .subscribe();
