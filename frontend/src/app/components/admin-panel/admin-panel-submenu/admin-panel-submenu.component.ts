@@ -30,7 +30,7 @@ export class AdminPanelSubmenuComponent implements OnInit {
     this.menuList = [
       {
         name: 'Додати товар',
-        route: 'add-product',
+        route: 'add-product/0',
         permission: ['Manager', 'Admin'],
       },
       {

@@ -22,11 +22,11 @@ const adminRoutes: Routes = [
     component: AdminPanelComponent,
     children: [
       {
-        path: 'add-product',
+        path: 'add-product/0',
         component: AddProductComponent,
       },
       {
-        path: 'edit-product/:_id',
+        path: 'add-product/:_id',
         component: AddProductComponent,
       },
       {

@@ -2,15 +2,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {ValidateService} from '../../../../services/validate.service';
 import {ProductService} from '../../../../services/product.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth.service';
 import {IProduct} from '../../../../interfaces/i-product';
 import {NgForm} from '@angular/forms';
 import {CatalogService} from '../../../../services/catalog.service';
 import {ICatalog} from '../../../../interfaces/i-catalog';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
-import {subscribeOn} from 'rxjs/operator/subscribeOn';
 
 @Component({
   moduleId: module.id,
@@ -21,9 +18,6 @@ import {subscribeOn} from 'rxjs/operator/subscribeOn';
 
 export class AddProductComponent implements OnInit {
   product: IProduct;
-  x: any;
-  xx: any;
-  products$: Observable<IProduct[]>;
   category0: any;
   category1: any;
   catalog: ICatalog[];
@@ -41,32 +35,10 @@ export class AddProductComponent implements OnInit {
     private productService: ProductService,
     private flashMessage: FlashMessagesService,
     private router: Router,
-    private route: ActivatedRoute,
     private catalogService: CatalogService,
   ) { }
 
   ngOnInit() {
-    // this.productService.getQueriedProducts({'_id': '59afe6590b142c1bb4399541'})
-    //   .subscribe(
-    //     product => console.log('product', product)
-    //   );
-
-    this.products$ = this.route.params
-      // .map(params => {
-      //   if (params['_id'] === 0) {
-      //     this.x = 0;
-      //   }
-      //   return params;
-      // })
-      .filter(params => params['_id'] !== undefined)
-      .switchMap(params => this.productService.getQueriedProducts(params));
-
-      // .map(product => {
-      //   this.xx = product.name;
-      //   return this.x = product
-      // });
-      // .subscribe();
-
     this.catalog = this.catalogService.getCatalog();
   }
 

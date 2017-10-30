@@ -1,0 +1,28 @@
+.active {
+  background-color: rgba(18, 52, 86, 0.5);
+  color: white;
+}
+
+.hide {
+  display: none;
+}
+
+.edit-product-table-first-cell {
+  width: 60px;
+  text-align: center;
+}
+
+.edit-product-table-last-cell {
+  width: 30px;
+  text-align: center;
+}
+
+.edit-product-table-cells {
+  /*width: 90%;*/
+  /*height: 90%;*/
+  padding: 3px;
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
