@@ -59,13 +59,12 @@ export class AddProductComponent implements OnInit {
       //   return params;
       // })
       .filter(params => params['_id'] !== undefined)
-      .switchMap(params => this.productService.getQueriedProducts(params));
+      .switchMap(params => this.productService.getQueriedProducts(params))
 
       // .map(product => {
       //   this.xx = product.name;
       //   return this.x = product
       // });
-      // .subscribe();
 
     this.catalog = this.catalogService.getCatalog();
   }
