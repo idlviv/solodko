@@ -8,6 +8,8 @@ import {IProduct} from '../../../../interfaces/i-product';
 import {NgForm} from '@angular/forms';
 import {CatalogService} from '../../../../services/catalog.service';
 import {ICatalog} from '../../../../interfaces/i-catalog';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   moduleId: module.id,
@@ -19,6 +21,7 @@ import {ICatalog} from '../../../../interfaces/i-catalog';
 export class AddProductComponent implements OnInit {
   product: IProduct;
   x: any;
+  xObs: Observable<any>;
   category0: any;
   category1: any;
   catalog: ICatalog[];
@@ -46,10 +49,13 @@ export class AddProductComponent implements OnInit {
     //     product => console.log('product', product)
     //   );
 
-    // this.route.params
-    //   .switchMap(params => this.productService.getQueriedProducts({'_id': params}))
-    //   .map(product => this.x = product)
-    //   .subscribe()
+    this.xObs = this.route.params
+      .switchMap(params => {
+        console.log('switchMap', params);
+          return this.productService.getQueriedProducts(params)
+      })
+      .map(product => this.x = product);
+      // .subscribe();
 
     this.catalog = this.catalogService.getCatalog();
   }

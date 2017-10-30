@@ -26,7 +26,7 @@ const adminRoutes: Routes = [
         component: AddProductComponent,
       },
       {
-        path: 'add-product/:id',
+        path: 'add-product/:_id',
         component: AddProductComponent,
       },
       {

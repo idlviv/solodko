@@ -1,4 +1,7 @@
-<h2 class="page-header">Додати товар {{x}}</h2>
+<h2 class="page-header">Додати товар</h2>
+<div *ngFor="let xOb of xObs | async">
+  {{xOb.name}}
+</div>
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
 
     <div class="row">
