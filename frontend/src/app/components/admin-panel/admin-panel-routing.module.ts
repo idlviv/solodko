@@ -21,10 +21,10 @@ const adminRoutes: Routes = [
     canActivateChild: [AuthManagerGuard],
     component: AdminPanelComponent,
     children: [
-      {
-        path: 'add-product/0',
-        component: AddProductComponent,
-      },
+      // {
+      //   path: 'add-product/0',
+      //   component: AddProductComponent,
+      // },
       {
         path: 'add-product/:_id',
         component: AddProductComponent,

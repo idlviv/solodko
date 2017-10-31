@@ -9,8 +9,9 @@ import {NgForm} from '@angular/forms';
 import {CatalogService} from '../../../../services/catalog.service';
 import {ICatalog} from '../../../../interfaces/i-catalog';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/switchMap';
-import {subscribeOn} from 'rxjs/operator/subscribeOn';
+import 'rxjs/Rx';
+// import 'rxjs/add/operator/switchMap';
+// import 'rxjs/add/operator/take';
 
 @Component({
   moduleId: module.id,
@@ -52,14 +53,14 @@ export class AddProductComponent implements OnInit {
     //   );
 
     this.products$ = this.route.params
-      // .map(params => {
-      //   if (params['_id'] === 0) {
-      //     this.x = 0;
-      //   }
-      //   return params;
-      // })
       .filter(params => params['_id'] !== undefined)
-      .switchMap(params => this.productService.getQueriedProducts(params))
+      .switchMap(params => {
+        if (params._id === 'new') {
+            return Observable.of([{name: 'obs'}])
+        }
+        return this.productService.getQueriedProducts(params)
+      })
+      // .take(1);
 
       // .map(product => {
       //   this.xx = product.name;
