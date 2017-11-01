@@ -11,7 +11,6 @@ import {ICatalog} from '../../../../interfaces/i-catalog';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 // import 'rxjs/add/operator/switchMap';
-// import 'rxjs/add/operator/take';
 
 @Component({
   moduleId: module.id,
@@ -35,6 +34,7 @@ export class AddProductComponent implements OnInit {
   itemNumbersAll: any;
   isItemNumberInputDisabled: any = true;
   @Output() updateProducts = new EventEmitter();
+  emptyProduct = {} as IProduct;
 
   constructor(
     private authService: AuthService,
@@ -47,25 +47,16 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.productService.getQueriedProducts({'_id': '59afe6590b142c1bb4399541'})
-    //   .subscribe(
-    //     product => console.log('product', product)
-    //   );
 
     this.products$ = this.route.params
       .filter(params => params['_id'] !== undefined)
       .switchMap(params => {
         if (params._id === 'new') {
-            return Observable.of([{name: 'obs'}])
+          // return this.productService.getQueriedProducts({});
+            return Observable.of([this.emptyProduct]);
         }
-        return this.productService.getQueriedProducts(params)
-      })
-      // .take(1);
-
-      // .map(product => {
-      //   this.xx = product.name;
-      //   return this.x = product
-      // });
+        return this.productService.getQueriedProducts(params);
+      });
 
     this.catalog = this.catalogService.getCatalog();
   }

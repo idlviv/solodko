@@ -1,4 +1,6 @@
 <h2 class="page-header">Додати товар</h2>
+
+
 <div *ngFor="let product of products$ | async">
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
 
