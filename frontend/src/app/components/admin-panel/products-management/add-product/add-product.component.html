@@ -1,6 +1,4 @@
 <h2 class="page-header">Додати товар</h2>
-
-
 <div *ngFor="let product of products$ | async">
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
 
@@ -19,7 +17,7 @@
             <label class="col-md-4" for="category0">Категорія</label>
             <select class="form-control form-control-sm custom-select col-md-8"  id="category0"
                     required (change)="onSelectCategory0($event)"
-                    [(ngModel)]="category0" name="category0">
+                    [(ngModel)]="product.category0" name="category0">
               <option *ngFor="let catalogItem of catalog; let i = index" [value]="catalogItem.category0.name">
                 {{catalogItem.category0.name}}</option>
             </select>
@@ -30,7 +28,7 @@
          <label class="col-md-4" for="category1">Підкатегорія</label>
           <select class="form-control form-control-sm custom-select col-md-8"  id="category1"
                   [required]="isCategory1" [disabled]="!category0 || !isCategory1"
-                  [(ngModel)]="category1" name="category1">
+                  [(ngModel)]="product.category1" name="category1">
             <option *ngFor="let catalogItem of catalogCategory1" [value]="catalogItem.name">
               {{catalogItem.name}}</option>
           </select>
@@ -42,19 +40,19 @@
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4" for="name">Заголовок</label>
-          <input type="text" ngModel name="name" class="form-control form-control-sm col-md-8" id="name" required>
+          <input type="text" [(ngModel)]="product.name" name="name" class="form-control form-control-sm col-md-8" id="name" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4" for="mainImgSrc">Image source</label>
-          <input type="text" ngModel name="mainImgSrc" class="form-control form-control-sm col-md-8" id="mainImgSrc">
+          <input type="text" [(ngModel)]="product.mainImgSrc" name="mainImgSrc" class="form-control form-control-sm col-md-8" id="mainImgSrc">
         </div>
       </div>
     </div>
     <div class="row form-group">
       <label class="col-md-2" for="itemDescription">Опис</label>
-      <textarea type="text" ngModel name="itemDescription" class="form-control form-control-sm col-md-10"
+      <textarea type="text" [(ngModel)]="product.itemDescription" name="itemDescription" class="form-control form-control-sm col-md-10"
                 id="itemDescription" required="" rows="2"></textarea>
     </div>
 
@@ -77,7 +75,7 @@
         <div class="row form-group">
           <label class="col-md-4" for="price">Ціна</label>
           <div class="input-group input-group-sm col-md-8">
-            <input type="text" ngModel name="price" class="form-control form-control-sm" id="price">
+            <input type="text" [(ngModel)]="product.price" name="price" class="form-control form-control-sm" id="price">
             <span class="input-group-addon">0,00 грн</span>
           </div>
         </div>
@@ -86,7 +84,7 @@
         <div class="row form-group">
           <label class="col-md-4" for="discount">Знижка</label>
           <div class="input-group input-group-sm col-md-8">
-            <input type="text" ngModel name="discount" class="form-control form-control-sm" id="discount">
+            <input type="text" ngModel [(ngModel)]="product.discount" name="discount" class="form-control form-control-sm" id="discount">
             <span class="input-group-addon">%</span>
           </div>
         </div>
@@ -100,7 +98,7 @@
         <div class="form-group">
           <div class="form-check">
             <label class="form-check-label">
-              <input class="form-check-input" type="checkbox" ngModel name="showOnMainPage"
+              <input class="form-check-input" type="checkbox" [(ngModel)]="product.showOnMainPage" name="showOnMainPage"
                      id="showOnMainPage">   На головній</label>
           </div>
         </div>
@@ -109,7 +107,7 @@
         <div class="row form-group">
           <label class="col-md-4" for="width">Ширина</label>
           <div class="input-group input-group-sm col-md-8">
-            <input type="text" ngModel name="width" class="form-control form-control-sm" id="width">
+            <input type="text" [(ngModel)]="product.size.width" name="width" class="form-control form-control-sm" id="width">
             <span class="input-group-addon">см</span>
           </div>
         </div>
@@ -118,7 +116,7 @@
         <div class="row form-group">
           <label class="col-md-4" for="height">Висота</label>
           <div class="input-group input-group-sm col-md-8">
-            <input type="text" ngModel name="height" class="form-control form-control-sm" id="height">
+            <input type="text" [(ngModel)]="product.size.height" name="height" class="form-control form-control-sm" id="height">
             <span class="input-group-addon">см</span>
           </div>
         </div>

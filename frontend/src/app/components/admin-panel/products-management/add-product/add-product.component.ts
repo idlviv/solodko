@@ -24,7 +24,7 @@ export class AddProductComponent implements OnInit {
   x: any;
   xx: any;
   products$: Observable<IProduct[]>;
-  category0: any;
+  // category0: any;
   category1: any;
   catalog: ICatalog[];
   catalogCategory1: any;
@@ -53,10 +53,16 @@ export class AddProductComponent implements OnInit {
       .switchMap(params => {
         if (params._id === 'new') {
           // return this.productService.getQueriedProducts({});
-            return Observable.of([this.emptyProduct]);
+          return Observable.of([this.emptyProduct]);
         }
+
         return this.productService.getQueriedProducts(params);
-      });
+      })
+      .map(products => {
+        // this.onSelectCategory0(null, products[0].category0);
+        console.log(products);
+        return products;
+    });
 
     this.catalog = this.catalogService.getCatalog();
   }
@@ -65,10 +71,17 @@ export class AddProductComponent implements OnInit {
     this.isItemNumberInputDisabled = !this.isItemNumberInputDisabled;
   }
 
-  onSelectCategory0(event) {
+  onSelectCategory0(event, val) {
+    let value;
+    if (val) {
+      value = val;
+    } else {
+      value = event.srcElement.value;
+    }
+    console.log('value', value);
     this.itemNumbersAll = [];
     for (let i = 0; i < this.catalog.length; i++) {
-      if (this.catalog[i].category0.name === event.srcElement.value) {
+      if (this.catalog[i].category0.name === value) {
 
         this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
         let x = this.productService.getQueriedProducts(
@@ -113,7 +126,7 @@ export class AddProductComponent implements OnInit {
         this.isCategory1 = false;
         const category1Element = document.querySelector('#category1');
         category1Element.nodeValue = '';
-      }
+        }
     }
     }
 
