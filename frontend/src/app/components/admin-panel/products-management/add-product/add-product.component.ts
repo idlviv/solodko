@@ -7,9 +7,10 @@ import {AuthService} from '../../../../services/auth.service';
 import {IProduct} from '../../../../interfaces/i-product';
 import {NgForm} from '@angular/forms';
 import {CatalogService} from '../../../../services/catalog.service';
-import {ICatalog} from '../../../../interfaces/i-catalog';
+import {ICatalog, ICategory1} from '../../../../interfaces/i-catalog';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
+import {emptyProduct} from '../../../../data/product';
 // import 'rxjs/add/operator/switchMap';
 
 @Component({
@@ -24,6 +25,9 @@ export class AddProductComponent implements OnInit {
   x: any;
   xx: any;
   products$: Observable<IProduct[]>;
+  category1List$: Observable<ICategory1[]>;
+  category1List: ICategory1[];
+  // products: IProduct[];
   // category0: any;
   category1: any;
   catalog: ICatalog[];
@@ -34,10 +38,11 @@ export class AddProductComponent implements OnInit {
   itemNumbersAll: any;
   isItemNumberInputDisabled: any = true;
   @Output() updateProducts = new EventEmitter();
-  emptyProduct = {} as IProduct;
+  emptyProduct: IProduct = emptyProduct;
+  // emptyProduct = {} as IProduct;
 
   constructor(
-    private authService: AuthService,
+    // private authService: AuthService,
     private validateService: ValidateService,
     private productService: ProductService,
     private flashMessage: FlashMessagesService,
@@ -47,6 +52,7 @@ export class AddProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.catalog = this.catalogService.getCatalog();
 
     this.products$ = this.route.params
       .filter(params => params['_id'] !== undefined)
@@ -60,12 +66,25 @@ export class AddProductComponent implements OnInit {
       })
       .map(products => {
         // this.onSelectCategory0(null, products[0].category0);
-        console.log(products);
+        console.log('swithMap product', products);
+
         return products;
     });
 
-    this.catalog = this.catalogService.getCatalog();
+    this.products$.subscribe((products) => {
+      this.product = products[0];
+      this.category1List = this.catalogService.getCategory1List(products[0].category0);
+      this.category1List$ = this.catalogService.getCategory1List$(products[0].category0);
+      // this.searchForCategory0(this.product);
+    });
+
   }
+
+  // searhForCategory1(product: IProduct): string {
+  //   let category1: string;
+  //
+  //   return category1;
+  // }
 
   itemNumberInputEnable() {
     this.isItemNumberInputDisabled = !this.isItemNumberInputDisabled;
@@ -80,6 +99,7 @@ export class AddProductComponent implements OnInit {
     }
     console.log('value', value);
     this.itemNumbersAll = [];
+
     for (let i = 0; i < this.catalog.length; i++) {
       if (this.catalog[i].category0.name === value) {
 
@@ -120,10 +140,15 @@ export class AddProductComponent implements OnInit {
           );
 
         if (this.catalog[i].category0.category1) {
-          this.catalogCategory1 = this.catalog[i].category0.category1;
+          console.log('true');
+          // this.catalogCategory1 = this.catalog[i].category0.category1;
+          this.category1List$ = Observable.of(this.catalog[i].category0.category1);
           this.isCategory1 = true;
+          this.product.category1 = 'fghffhhhfhf';
         } else {
-        this.isCategory1 = false;
+          console.log('false');
+
+          this.isCategory1 = false;
         const category1Element = document.querySelector('#category1');
         category1Element.nodeValue = '';
         }

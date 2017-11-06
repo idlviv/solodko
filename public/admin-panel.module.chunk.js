@@ -319,7 +319,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Додати товар</h2>\r\n<div *ngFor=\"let product of products$ | async\">\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"xx\">{{product.name}}</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"xx\" class=\"form-control form-control-sm col-md-8\" id=\"xx\" required>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"product.category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"\r\n                  [(ngModel)]=\"product.category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" [(ngModel)]=\"product.itemDescription\" name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"freeItemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel [(ngModel)]=\"product.discount\" name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" [(ngModel)]=\"product.showOnMainPage\" name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <button class=\"btn button-action button-size-3\" [disabled]=\"!addProductForm.form.valid\">\r\n    <i class=\"material-icons button-action-icon button-icon-size-3\">done</i></button>\r\n    <!--<input type=\"submit\" class=\"btn button-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">-->\r\n  </form>\r\n</div>\r\n"
+module.exports = "<h2 class=\"page-header\">Додати товар</h2>\r\n<!--<div *ngFor=\"let product of products$ | async\">-->\r\n<div *ngIf=\"product\">\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"xx\">{{product.name}}</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"xx\" class=\"form-control form-control-sm col-md-8\" id=\"xx\" required>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"product.category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [(ngModel)]=\"product.category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of category1List$ | async\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n\r\n      <!--<div class=\"col-md-6\" *ngIf=\"category1List\">-->\r\n        <!--<div class=\"form-group row\">-->\r\n          <!--<label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>-->\r\n          <!--<select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"-->\r\n                  <!--[(ngModel)]=\"product.category1\" name=\"category1\">-->\r\n            <!--<option *ngFor=\"let catalogItem of category1List\" [value]=\"catalogItem.name\">-->\r\n              <!--{{catalogItem.name}}</option>-->\r\n          <!--</select>-->\r\n        <!--</div>-->\r\n      <!--</div>-->\r\n      <!---->\r\n\r\n      <!--<div class=\"col-md-6\">-->\r\n        <!--<div class=\"form-group row\">-->\r\n          <!--<label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>-->\r\n          <!--<select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"-->\r\n                  <!--[required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"-->\r\n                  <!--[(ngModel)]=\"category1\" name=\"category1\">-->\r\n            <!--<option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">-->\r\n              <!--{{catalogItem.name}}</option>-->\r\n          <!--</select>-->\r\n        <!--</div>-->\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" [(ngModel)]=\"product.itemDescription\" name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"freeItemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel [(ngModel)]=\"product.discount\" name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" [(ngModel)]=\"product.showOnMainPage\" name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <button class=\"btn button-action button-size-3\" [disabled]=\"!addProductForm.form.valid\">\r\n    <i class=\"material-icons button-action-icon button-icon-size-3\">done</i></button>\r\n    <!--<input type=\"submit\" class=\"btn button-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">-->\r\n  </form>\r\n\r\n</div>\r\n<!--</div>-->\r\n"
 
 /***/ }),
 
@@ -334,12 +334,12 @@ module.exports = "<h2 class=\"page-header\">Додати товар</h2>\r\n<div
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_auth_service__ = __webpack_require__("../../../../../src/app/services/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_catalog_service__ = __webpack_require__("../../../../../src/app/services/catalog.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_catalog_service__ = __webpack_require__("../../../../../src/app/services/catalog.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Rx__ = __webpack_require__("../../../../rxjs/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__data_product__ = __webpack_require__("../../../../../src/app/data/product.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -360,8 +360,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 // import 'rxjs/add/operator/switchMap';
 var AddProductComponent = (function () {
-    function AddProductComponent(authService, validateService, productService, flashMessage, router, route, catalogService) {
-        this.authService = authService;
+    // emptyProduct = {} as IProduct;
+    function AddProductComponent(
+        // private authService: AuthService,
+        validateService, productService, flashMessage, router, route, catalogService) {
         this.validateService = validateService;
         this.productService = productService;
         this.flashMessage = flashMessage;
@@ -371,26 +373,37 @@ var AddProductComponent = (function () {
         this.isCategory1 = false;
         this.isItemNumberInputDisabled = true;
         this.updateProducts = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
-        this.emptyProduct = {};
+        this.emptyProduct = __WEBPACK_IMPORTED_MODULE_8__data_product__["a" /* emptyProduct */];
     }
     AddProductComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.catalog = this.catalogService.getCatalog();
         this.products$ = this.route.params
             .filter(function (params) { return params['_id'] !== undefined; })
             .switchMap(function (params) {
             if (params._id === 'new') {
                 // return this.productService.getQueriedProducts({});
-                return __WEBPACK_IMPORTED_MODULE_7_rxjs_Observable__["Observable"].of([_this.emptyProduct]);
+                return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].of([_this.emptyProduct]);
             }
             return _this.productService.getQueriedProducts(params);
         })
             .map(function (products) {
             // this.onSelectCategory0(null, products[0].category0);
-            console.log(products);
+            console.log('swithMap product', products);
             return products;
         });
-        this.catalog = this.catalogService.getCatalog();
+        this.products$.subscribe(function (products) {
+            _this.product = products[0];
+            _this.category1List = _this.catalogService.getCategory1List(products[0].category0);
+            _this.category1List$ = _this.catalogService.getCategory1List$(products[0].category0);
+            // this.searchForCategory0(this.product);
+        });
     };
+    // searhForCategory1(product: IProduct): string {
+    //   let category1: string;
+    //
+    //   return category1;
+    // }
     AddProductComponent.prototype.itemNumberInputEnable = function () {
         this.isItemNumberInputDisabled = !this.isItemNumberInputDisabled;
     };
@@ -439,10 +452,14 @@ var AddProductComponent = (function () {
                     return _this.freeItemNumber = _this.itemNumberPrefix + output;
                 });
                 if (this.catalog[i].category0.category1) {
-                    this.catalogCategory1 = this.catalog[i].category0.category1;
+                    console.log('true');
+                    // this.catalogCategory1 = this.catalog[i].category0.category1;
+                    this.category1List$ = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].of(this.catalog[i].category0.category1);
                     this.isCategory1 = true;
+                    this.product.category1 = 'fghffhhhfhf';
                 }
                 else {
+                    console.log('false');
                     this.isCategory1 = false;
                     var category1Element = document.querySelector('#category1');
                     category1Element.nodeValue = '';
@@ -531,10 +548,10 @@ AddProductComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_5__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_catalog_service__["a" /* CatalogService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_validate_service__["a" /* ValidateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_product_service__["a" /* ProductService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__services_catalog_service__["a" /* CatalogService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_catalog_service__["a" /* CatalogService */]) === "function" && _f || Object])
 ], AddProductComponent);
 
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=add-product.component.js.map
 
 /***/ }),
@@ -1062,6 +1079,30 @@ UsersManagementModule = __decorate([
 ], UsersManagementModule);
 
 //# sourceMappingURL=users-management.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/data/product.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return emptyProduct; });
+var emptyProduct = {
+    category0: '',
+    category1: '',
+    itemNumber: '',
+    name: '',
+    price: 0,
+    mainImgSrc: [],
+    itemDescription: '',
+    showOnMainPage: true,
+    discount: 0,
+    size: {
+        width: 0,
+        height: 0,
+    }
+};
+//# sourceMappingURL=product.js.map
 
 /***/ }),
 

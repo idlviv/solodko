@@ -1,5 +1,6 @@
 <h2 class="page-header">Додати товар</h2>
-<div *ngFor="let product of products$ | async">
+<!--<div *ngFor="let product of products$ | async">-->
+<div *ngIf="product">
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
 
     <div class="row">
@@ -23,17 +24,41 @@
             </select>
         </div>
       </div>
+
       <div class="col-md-6">
         <div class="form-group row">
          <label class="col-md-4" for="category1">Підкатегорія</label>
           <select class="form-control form-control-sm custom-select col-md-8"  id="category1"
-                  [required]="isCategory1" [disabled]="!category0 || !isCategory1"
                   [(ngModel)]="product.category1" name="category1">
-            <option *ngFor="let catalogItem of catalogCategory1" [value]="catalogItem.name">
+            <option *ngFor="let catalogItem of category1List$ | async" [value]="catalogItem.name">
               {{catalogItem.name}}</option>
           </select>
         </div>
       </div>
+
+      <!--<div class="col-md-6" *ngIf="category1List">-->
+        <!--<div class="form-group row">-->
+          <!--<label class="col-md-4" for="category1">Підкатегорія</label>-->
+          <!--<select class="form-control form-control-sm custom-select col-md-8"  id="category1"-->
+                  <!--[(ngModel)]="product.category1" name="category1">-->
+            <!--<option *ngFor="let catalogItem of category1List" [value]="catalogItem.name">-->
+              <!--{{catalogItem.name}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!---->
+
+      <!--<div class="col-md-6">-->
+        <!--<div class="form-group row">-->
+          <!--<label class="col-md-4" for="category1">Підкатегорія</label>-->
+          <!--<select class="form-control form-control-sm custom-select col-md-8"  id="category1"-->
+                  <!--[required]="isCategory1" [disabled]="!category0 || !isCategory1"-->
+                  <!--[(ngModel)]="category1" name="category1">-->
+            <!--<option *ngFor="let catalogItem of catalogCategory1" [value]="catalogItem.name">-->
+              <!--{{catalogItem.name}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+
     </div>
 
     <div class="row">
@@ -126,4 +151,6 @@
     <i class="material-icons button-action-icon button-icon-size-3">done</i></button>
     <!--<input type="submit" class="btn button-primary" [disabled]="!addProductForm.form.valid" value="Add">-->
   </form>
+
 </div>
+<!--</div>-->
