@@ -792,7 +792,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card {\r\n  width: 20rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".card {\r\n  max-width: 20rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -805,7 +805,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-center\">\r\n  <div class=\"col\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        Featured\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <h4 class=\"card-title\">Special title treatment</h4>\r\n        <p class=\"card-text\">With supporting text below as a natural lead-in to additional content.</p>\r\n        <a href=\"#\" class=\"btn btn-primary\">Go somewhere</a>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        2 days ago\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n<h2 class=\"page-header\">Увійти</h2>\r\n\r\n<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input type=\"text\" ngModel required\r\n           name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input type=\"password\" ngModel required\r\n           name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\"\r\n          [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n</form>\r\n"
+module.exports = "<div class=\"row justify-content-center\">\r\n  <div class=\"\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        Творча майстерня\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <h4 class=\"card-title\">Вхід</h4>\r\n        <p class=\"card-text\"> </p>\r\n          <form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"username\">Ім'я користувача</label>\r\n              <input type=\"text\" ngModel required\r\n              name=\"username\" class=\"form-control\" id=\"username\">\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"password\">Пароль</label>\r\n              <input type=\"password\" ngModel required\r\n              name=\"password\" class=\"form-control\" id=\"password\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n          </form>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        Творча майстерня\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
