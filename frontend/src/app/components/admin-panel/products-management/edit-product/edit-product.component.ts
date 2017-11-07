@@ -51,17 +51,6 @@ export class EditProductComponent implements OnInit {
         });
   }
 
-  // addProductBtn() {
-  //   this.addProduct = true;
-  // }
-  //
-  // onClickCancelAddBtn(i, _id) {
-  //   this.addProduct = false;
-  //   // this.selectedRow = null;
-  //   // this.isEditBtnShow = true;
-  //   // this.getProducts();
-  // }
-
   onClickEditBtn(i, _id) {
     this.selectedRow = i;
     this.isEditBtnShow = false;
@@ -115,7 +104,7 @@ export class EditProductComponent implements OnInit {
     );
   }
 
-  onEditProductSubmit(product, i) {
+  onEditProductSubmit(product) {
     this.selectedRow = null;
     this.isEditBtnShow = true;
 

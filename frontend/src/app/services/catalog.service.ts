@@ -47,13 +47,13 @@ export class CatalogService {
     }
   }
 
-  getCategory1List$(category0Name): Observable<ICategory1[]> {
-    for (let i = 0; i < localCatalog.length; i++) {
-      if (category0Name === localCatalog[i].category0.name) {
-        console.log('localCatalog[i].category0.category1', localCatalog[i].category0.category1);
-        return Observable.of(localCatalog[i].category0.category1);
-        // return localCatalog[i].category0.category1;
-      }
-    }
-  }
+  // getCategory1List$(category0Name): Observable<ICategory1[]> {
+  //   for (let i = 0; i < localCatalog.length; i++) {
+  //     if (category0Name === localCatalog[i].category0.name) {
+  //       console.log('localCatalog[i].category0.category1', localCatalog[i].category0.category1);
+  //       return Observable.of(localCatalog[i].category0.category1);
+  //       // return localCatalog[i].category0.category1;
+  //     }
+  //   }
+  // }
 }

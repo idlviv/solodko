@@ -1,6 +1,6 @@
 <h2 class="page-header">Edit product</h2>
 <table *ngIf="products"  class="table table-sm">
-  <form *ngFor="let product of products; let i = index" (submit)="onEditProductSubmit(product, i)"
+  <form *ngFor="let product of products; let i = index" (submit)="onEditProductSubmit(product)"
         #editProductForm="ngForm">
     <thead *ngIf="product === products[0]">
       <tr>
@@ -24,7 +24,7 @@
 
             <div class="btn-group" role="group" aria-label="Edit">
               <button type="button" class="btn button-light button-size-2" [routerLinkActive]="['active']"
-                      [routerLinkActiveOptions]="{exact: true}"
+                      [routerLinkActiveOptions]="{exact: true}" [class.hide]="!isEditBtnShow"
                       [routerLink]="['/admin/ch', {outlets: {primary: ['add-product', product._id]}}]">
                 <i class="material-icons button-light-icon button-icon-size-2">mode_edit</i>
                 <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->

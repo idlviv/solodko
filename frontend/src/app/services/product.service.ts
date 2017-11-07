@@ -53,7 +53,7 @@ export class ProductService {
 
   editProduct(product) {
 
-    let headers = new Headers();
+    const headers = new Headers();
     this.authService.loadToken();
     headers.append('Authorization', this.authService.authToken);
 
@@ -62,7 +62,7 @@ export class ProductService {
       config.serverUrl + 'api/editProduct',
       product,
       {headers: headers})
-      .map(res => res.json())
+      .map(res => res.json());
   }
 
   deleteProduct(_id) {

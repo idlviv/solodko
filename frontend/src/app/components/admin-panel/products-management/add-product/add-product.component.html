@@ -3,14 +3,6 @@
 <div *ngIf="product">
   <form (ngSubmit)="onAddProductSubmit(addProductForm); addProductForm.reset()" #addProductForm="ngForm">
 
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row form-group">
-          <label class="col-md-4" for="xx">{{product.name}}</label>
-          <input type="text" [(ngModel)]="product.name" name="xx" class="form-control form-control-sm col-md-8" id="xx" required>
-        </div>
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-md-6">
@@ -29,55 +21,35 @@
         <div class="form-group row">
          <label class="col-md-4" for="category1">Підкатегорія</label>
           <select class="form-control form-control-sm custom-select col-md-8"  id="category1"
-                  [(ngModel)]="product.category1" name="category1">
-            <option *ngFor="let catalogItem of category1List$ | async" [value]="catalogItem.name">
+                  [(ngModel)]="product.category1" name="category1"
+                  [required]="isCategory1" [disabled]="!isCategory1">
+            <option *ngFor="let catalogItem of category1List" [value]="catalogItem.name">
               {{catalogItem.name}}</option>
           </select>
         </div>
       </div>
-
-      <!--<div class="col-md-6" *ngIf="category1List">-->
-        <!--<div class="form-group row">-->
-          <!--<label class="col-md-4" for="category1">Підкатегорія</label>-->
-          <!--<select class="form-control form-control-sm custom-select col-md-8"  id="category1"-->
-                  <!--[(ngModel)]="product.category1" name="category1">-->
-            <!--<option *ngFor="let catalogItem of category1List" [value]="catalogItem.name">-->
-              <!--{{catalogItem.name}}</option>-->
-          <!--</select>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!---->
-
-      <!--<div class="col-md-6">-->
-        <!--<div class="form-group row">-->
-          <!--<label class="col-md-4" for="category1">Підкатегорія</label>-->
-          <!--<select class="form-control form-control-sm custom-select col-md-8"  id="category1"-->
-                  <!--[required]="isCategory1" [disabled]="!category0 || !isCategory1"-->
-                  <!--[(ngModel)]="category1" name="category1">-->
-            <!--<option *ngFor="let catalogItem of catalogCategory1" [value]="catalogItem.name">-->
-              <!--{{catalogItem.name}}</option>-->
-          <!--</select>-->
-        <!--</div>-->
-
     </div>
 
     <div class="row">
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4" for="name">Заголовок</label>
-          <input type="text" [(ngModel)]="product.name" name="name" class="form-control form-control-sm col-md-8" id="name" required>
+          <input type="text" [(ngModel)]="product.name" name="name"
+                 class="form-control form-control-sm col-md-8" id="name" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="row form-group">
           <label class="col-md-4" for="mainImgSrc">Image source</label>
-          <input type="text" [(ngModel)]="product.mainImgSrc" name="mainImgSrc" class="form-control form-control-sm col-md-8" id="mainImgSrc">
+          <input type="text" [(ngModel)]="product.mainImgSrc" name="mainImgSrc"
+                 class="form-control form-control-sm col-md-8" id="mainImgSrc">
         </div>
       </div>
     </div>
     <div class="row form-group">
       <label class="col-md-2" for="itemDescription">Опис</label>
-      <textarea type="text" [(ngModel)]="product.itemDescription" name="itemDescription" class="form-control form-control-sm col-md-10"
+      <textarea type="text" [(ngModel)]="product.itemDescription" name="itemDescription"
+                class="form-control form-control-sm col-md-10"
                 id="itemDescription" required="" rows="2"></textarea>
     </div>
 
@@ -88,7 +60,7 @@
           <div class="input-group input-group-sm col-md-8">
 
             <input type="text"  name="itemNumber" class="form-control form-control-sm"
-                   id="itemNumber" required [(ngModel)]="freeItemNumber">
+                   id="itemNumber" required [(ngModel)]="product.itemNumber">
             <!--<span class="input-group-btn input-group-sm" >-->
                <!--<button class="btn btn-secondary" (click)="itemNumberInputEnable()"-->
                        <!--[disabled]="!isItemNumberInputDisabled" type="button">Змінити</button>-->

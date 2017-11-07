@@ -69,7 +69,7 @@ module.exports.addProduct = function(newProduct) {
   return new Promise(function(resolve, reject) {
       newProduct.save()
         .then(() => resolve({success: true, msg: 'Product added'}))
-        .catch(() => reject({success: false, msg: 'Failed to add product'}));
+        .catch((err) => reject({success: false, msg: 'Failed to add product', err}));
     })
     .catch((error) => {throw error;});
 };

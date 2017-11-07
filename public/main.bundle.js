@@ -1497,8 +1497,6 @@ var _a, _b;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data_catalog__ = __webpack_require__("../../../../../src/app/data/catalog.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__ = __webpack_require__("../../../../rxjs/Observable.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1511,7 +1509,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 // import { Observable } from 'rxjs';
-
 
 
 var CatalogService = (function () {
@@ -1543,15 +1540,6 @@ var CatalogService = (function () {
             if (category0Name === __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.name) {
                 console.log('localCatalog[i].category0.category1', __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.category1);
                 return __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.category1;
-            }
-        }
-    };
-    CatalogService.prototype.getCategory1List$ = function (category0Name) {
-        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */].length; i++) {
-            if (category0Name === __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.name) {
-                console.log('localCatalog[i].category0.category1', __WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.category1);
-                return __WEBPACK_IMPORTED_MODULE_4_rxjs_Observable__["Observable"].of(__WEBPACK_IMPORTED_MODULE_3__data_catalog__["a" /* localCatalog */][i].category0.category1);
-                // return localCatalog[i].category0.category1;
             }
         }
     };

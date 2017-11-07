@@ -319,7 +319,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/add-product/add-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Додати товар</h2>\r\n<!--<div *ngFor=\"let product of products$ | async\">-->\r\n<div *ngIf=\"product\">\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-12\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"xx\">{{product.name}}</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"xx\" class=\"form-control form-control-sm col-md-8\" id=\"xx\" required>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"product.category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [(ngModel)]=\"product.category1\" name=\"category1\">\r\n            <option *ngFor=\"let catalogItem of category1List$ | async\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n\r\n      <!--<div class=\"col-md-6\" *ngIf=\"category1List\">-->\r\n        <!--<div class=\"form-group row\">-->\r\n          <!--<label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>-->\r\n          <!--<select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"-->\r\n                  <!--[(ngModel)]=\"product.category1\" name=\"category1\">-->\r\n            <!--<option *ngFor=\"let catalogItem of category1List\" [value]=\"catalogItem.name\">-->\r\n              <!--{{catalogItem.name}}</option>-->\r\n          <!--</select>-->\r\n        <!--</div>-->\r\n      <!--</div>-->\r\n      <!---->\r\n\r\n      <!--<div class=\"col-md-6\">-->\r\n        <!--<div class=\"form-group row\">-->\r\n          <!--<label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>-->\r\n          <!--<select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"-->\r\n                  <!--[required]=\"isCategory1\" [disabled]=\"!category0 || !isCategory1\"-->\r\n                  <!--[(ngModel)]=\"category1\" name=\"category1\">-->\r\n            <!--<option *ngFor=\"let catalogItem of catalogCategory1\" [value]=\"catalogItem.name\">-->\r\n              <!--{{catalogItem.name}}</option>-->\r\n          <!--</select>-->\r\n        <!--</div>-->\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"name\" class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" name=\"mainImgSrc\" class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" [(ngModel)]=\"product.itemDescription\" name=\"itemDescription\" class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"freeItemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel [(ngModel)]=\"product.discount\" name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" [(ngModel)]=\"product.showOnMainPage\" name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <button class=\"btn button-action button-size-3\" [disabled]=\"!addProductForm.form.valid\">\r\n    <i class=\"material-icons button-action-icon button-icon-size-3\">done</i></button>\r\n    <!--<input type=\"submit\" class=\"btn button-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">-->\r\n  </form>\r\n\r\n</div>\r\n<!--</div>-->\r\n"
+module.exports = "<h2 class=\"page-header\">Додати товар</h2>\r\n<!--<div *ngFor=\"let product of products$ | async\">-->\r\n<div *ngIf=\"product\">\r\n  <form (ngSubmit)=\"onAddProductSubmit(addProductForm); addProductForm.reset()\" #addProductForm=\"ngForm\">\r\n\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n            <label class=\"col-md-4\" for=\"category0\">Категорія</label>\r\n            <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category0\"\r\n                    required (change)=\"onSelectCategory0($event)\"\r\n                    [(ngModel)]=\"product.category0\" name=\"category0\">\r\n              <option *ngFor=\"let catalogItem of catalog; let i = index\" [value]=\"catalogItem.category0.name\">\r\n                {{catalogItem.category0.name}}</option>\r\n            </select>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"col-md-6\">\r\n        <div class=\"form-group row\">\r\n         <label class=\"col-md-4\" for=\"category1\">Підкатегорія</label>\r\n          <select class=\"form-control form-control-sm custom-select col-md-8\"  id=\"category1\"\r\n                  [(ngModel)]=\"product.category1\" name=\"category1\"\r\n                  [required]=\"isCategory1\" [disabled]=\"!isCategory1\">\r\n            <option *ngFor=\"let catalogItem of category1List\" [value]=\"catalogItem.name\">\r\n              {{catalogItem.name}}</option>\r\n          </select>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"name\">Заголовок</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.name\" name=\"name\"\r\n                 class=\"form-control form-control-sm col-md-8\" id=\"name\" required>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"mainImgSrc\">Image source</label>\r\n          <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" name=\"mainImgSrc\"\r\n                 class=\"form-control form-control-sm col-md-8\" id=\"mainImgSrc\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <div class=\"row form-group\">\r\n      <label class=\"col-md-2\" for=\"itemDescription\">Опис</label>\r\n      <textarea type=\"text\" [(ngModel)]=\"product.itemDescription\" name=\"itemDescription\"\r\n                class=\"form-control form-control-sm col-md-10\"\r\n                id=\"itemDescription\" required=\"\" rows=\"2\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"itemNumber\">Артикул</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n\r\n            <input type=\"text\"  name=\"itemNumber\" class=\"form-control form-control-sm\"\r\n                   id=\"itemNumber\" required [(ngModel)]=\"product.itemNumber\">\r\n            <!--<span class=\"input-group-btn input-group-sm\" >-->\r\n               <!--<button class=\"btn btn-secondary\" (click)=\"itemNumberInputEnable()\"-->\r\n                       <!--[disabled]=\"!isItemNumberInputDisabled\" type=\"button\">Змінити</button>-->\r\n            <!--</span>-->\r\n            </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"price\">Ціна</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" name=\"price\" class=\"form-control form-control-sm\" id=\"price\">\r\n            <span class=\"input-group-addon\">0,00 грн</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"discount\">Знижка</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" ngModel [(ngModel)]=\"product.discount\" name=\"discount\" class=\"form-control form-control-sm\" id=\"discount\">\r\n            <span class=\"input-group-addon\">%</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n      <div class=\"col-md-4\">\r\n\r\n        <div class=\"form-group\">\r\n          <div class=\"form-check\">\r\n            <label class=\"form-check-label\">\r\n              <input class=\"form-check-input\" type=\"checkbox\" [(ngModel)]=\"product.showOnMainPage\" name=\"showOnMainPage\"\r\n                     id=\"showOnMainPage\">   На головній</label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"width\">Ширина</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" name=\"width\" class=\"form-control form-control-sm\" id=\"width\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-md-4\">\r\n        <div class=\"row form-group\">\r\n          <label class=\"col-md-4\" for=\"height\">Висота</label>\r\n          <div class=\"input-group input-group-sm col-md-8\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" name=\"height\" class=\"form-control form-control-sm\" id=\"height\">\r\n            <span class=\"input-group-addon\">см</span>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n    <button class=\"btn button-action button-size-3\" [disabled]=\"!addProductForm.form.valid\">\r\n    <i class=\"material-icons button-action-icon button-icon-size-3\">done</i></button>\r\n    <!--<input type=\"submit\" class=\"btn button-primary\" [disabled]=\"!addProductForm.form.valid\" value=\"Add\">-->\r\n  </form>\r\n\r\n</div>\r\n<!--</div>-->\r\n"
 
 /***/ }),
 
@@ -358,18 +358,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-// import 'rxjs/add/operator/switchMap';
 var AddProductComponent = (function () {
     // emptyProduct = {} as IProduct;
-    function AddProductComponent(
-        // private authService: AuthService,
-        validateService, productService, flashMessage, router, route, catalogService) {
+    function AddProductComponent(validateService, productService, flashMessage, router, route, catalogService) {
         this.validateService = validateService;
         this.productService = productService;
         this.flashMessage = flashMessage;
         this.router = router;
         this.route = route;
         this.catalogService = catalogService;
+        this.isNewProduct = false;
         this.isCategory1 = false;
         this.isItemNumberInputDisabled = true;
         this.updateProducts = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -382,33 +380,24 @@ var AddProductComponent = (function () {
             .filter(function (params) { return params['_id'] !== undefined; })
             .switchMap(function (params) {
             if (params._id === 'new') {
-                // return this.productService.getQueriedProducts({});
+                _this.isNewProduct = true;
                 return __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].of([_this.emptyProduct]);
             }
+            _this.isNewProduct = false;
             return _this.productService.getQueriedProducts(params);
-        })
-            .map(function (products) {
-            // this.onSelectCategory0(null, products[0].category0);
-            console.log('swithMap product', products);
-            return products;
         });
         this.products$.subscribe(function (products) {
             _this.product = products[0];
             _this.category1List = _this.catalogService.getCategory1List(products[0].category0);
-            _this.category1List$ = _this.catalogService.getCategory1List$(products[0].category0);
-            // this.searchForCategory0(this.product);
+            if (_this.category1List) {
+                _this.isCategory1 = true;
+            }
         });
     };
-    // searhForCategory1(product: IProduct): string {
-    //   let category1: string;
-    //
-    //   return category1;
-    // }
     AddProductComponent.prototype.itemNumberInputEnable = function () {
         this.isItemNumberInputDisabled = !this.isItemNumberInputDisabled;
     };
     AddProductComponent.prototype.onSelectCategory0 = function (event, val) {
-        var _this = this;
         var value;
         if (val) {
             value = val;
@@ -416,94 +405,100 @@ var AddProductComponent = (function () {
         else {
             value = event.srcElement.value;
         }
-        console.log('value', value);
         this.itemNumbersAll = [];
         for (var i = 0; i < this.catalog.length; i++) {
             if (this.catalog[i].category0.name === value) {
-                this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
-                var x = this.productService.getQueriedProducts({ 'category0': this.catalog[i].category0.name });
-                x
-                    .map(function (item) {
-                    for (var i_1 = 0; i_1 < item.length; i_1++) {
-                        _this.itemNumbersAll.push(+item[i_1].itemNumber.slice(1));
-                    }
-                    console.log('not sorted', _this.itemNumbersAll);
-                    function compareNumeric(a, b) {
-                        if (a > b)
-                            return 1;
-                        if (a < b)
-                            return -1;
-                    }
-                    _this.itemNumbersAll.sort(compareNumeric);
-                    console.log('sorted', _this.itemNumbersAll);
-                    for (var i_2 = 0; i_2 < _this.itemNumbersAll.length; i_2++) {
-                        if (_this.itemNumbersAll[i_2] !== i_2 + 1) {
-                            return i_2 + 1;
-                        }
-                    }
-                    return _this.itemNumbersAll.length + 1;
-                })
-                    .subscribe(function (item) {
-                    var output = item.toString();
-                    while (output.length < 3) {
-                        output = '0' + output;
-                        console.log(output);
-                    }
-                    return _this.freeItemNumber = _this.itemNumberPrefix + output;
-                });
+                if (this.isNewProduct) {
+                    this.createItemNumber(i);
+                }
                 if (this.catalog[i].category0.category1) {
-                    console.log('true');
-                    // this.catalogCategory1 = this.catalog[i].category0.category1;
-                    this.category1List$ = __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"].of(this.catalog[i].category0.category1);
+                    this.category1List = this.catalog[i].category0.category1;
                     this.isCategory1 = true;
-                    this.product.category1 = 'fghffhhhfhf';
+                    this.product.category1 = this.catalog[i].category0.category1[0].name;
                 }
                 else {
-                    console.log('false');
                     this.isCategory1 = false;
-                    var category1Element = document.querySelector('#category1');
-                    category1Element.nodeValue = '';
+                    this.product.category1 = '';
+                    // const category1Element = document.querySelector('#category1');
+                    // category1Element.nodeValue = '';
                 }
             }
         }
+        console.log('product.category1', this.product.category1);
+    };
+    AddProductComponent.prototype.createItemNumber = function (i) {
+        var _this = this;
+        this.itemNumberPrefix = this.catalog[i].category0.itemNumberPrefix;
+        this.productService.getQueriedProducts({ 'category0': this.catalog[i].category0.name })
+            .map(function (item) {
+            for (var j = 0; j < item.length; j++) {
+                _this.itemNumbersAll.push(+item[j].itemNumber.slice(1));
+            }
+            function compareNumeric(a, b) {
+                if (a > b) {
+                    return 1;
+                }
+                if (a < b) {
+                    return -1;
+                }
+            }
+            _this.itemNumbersAll.sort(compareNumeric);
+            for (var j = 0; j < _this.itemNumbersAll.length; j++) {
+                if (_this.itemNumbersAll[j] !== j + 1) {
+                    return j + 1;
+                }
+            }
+            return _this.itemNumbersAll.length + 1;
+        })
+            .subscribe(function (item) {
+            var output = item.toString();
+            while (output.length < 3) {
+                output = '0' + output;
+            }
+            return _this.product.itemNumber = _this.itemNumberPrefix + output;
+        });
     };
     AddProductComponent.prototype.onAddProductSubmit = function (form) {
         var _this = this;
-        if (this.isCategory1) {
-            this.product = {
-                category0: form.value.category0,
-                category1: form.value.category1,
-                itemNumber: form.value.itemNumber,
-                name: form.value.name,
-                price: form.value.price || false,
-                mainImgSrc: form.value.mainImgSrc || './assets/samples/240x180.png',
-                itemDescription: form.value.itemDescription,
-                showOnMainPage: form.value.showOnMainPage || false,
-                discount: form.value.discount || false,
-                size: {
-                    width: form.value.width || false,
-                    height: form.value.height || false
-                },
-            };
+        this.product.category1 = this.product.category1 || 'noSubCategories';
+        if (!this.product.mainImgSrc[0]) {
+            this.product.mainImgSrc = ['./assets/samples/240x180.png'];
         }
-        else {
-            this.product = {
-                category0: form.value.category0,
-                category1: 'noSubCategories',
-                itemNumber: form.value.itemNumber,
-                name: form.value.name,
-                price: form.value.price || false,
-                mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
-                itemDescription: form.value.itemDescription,
-                showOnMainPage: form.value.showOnMainPage || false,
-                discount: form.value.discount || false,
-                size: {
-                    width: form.value.width || false,
-                    height: form.value.height || false
-                },
-            };
-        }
-        console.log(this.product);
+        // if (this.product.category1) {
+        //   this.product = {
+        //     _id: this.product._id,
+        //     category0: form.value.category0,
+        //     category1: form.value.category1,
+        //     itemNumber: form.value.itemNumber,
+        //     name: form.value.name,
+        //     price: form.value.price || false,
+        //     mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
+        //     itemDescription: form.value.itemDescription,
+        //     showOnMainPage: form.value.showOnMainPage || false,
+        //     discount: form.value.discount || false,
+        //     size: {
+        //       width: form.value.width || false,
+        //       height: form.value.height || false
+        //     },
+        //   };
+        // } else {
+        //   this.product = {
+        //     _id: this.product._id,
+        //     category0: form.value.category0,
+        //     category1: 'noSubCategories',
+        //     itemNumber: form.value.itemNumber,
+        //     name: form.value.name,
+        //     price: form.value.price || false,
+        //     mainImgSrc: form.value.mainImgSrc || './assets/samples/200x300.png',
+        //     itemDescription: form.value.itemDescription,
+        //     showOnMainPage: form.value.showOnMainPage || false,
+        //     discount: form.value.discount || false,
+        //     size: {
+        //       width: form.value.width || false,
+        //       height: form.value.height || false
+        //     },
+        //   };
+        // }
         if (!this.validateService.validateProduct(this.product)) {
             this.flashMessage.show('fill all fields', {
                 cssClass: 'alert-danger',
@@ -511,30 +506,61 @@ var AddProductComponent = (function () {
             });
             return false;
         }
-        this.productService.addProduct(this.product)
-            .subscribe(function (data) {
-            if (data.success) {
-                _this.flashMessage.show('Added successfully', {
-                    cssClass: 'alert-success',
-                    timeout: 3000
-                });
-                _this.updateProducts.emit();
-            }
-            else {
-                _this.flashMessage.show('Adding failed', {
-                    cssClass: 'alert-danger',
-                    timeout: 3000
-                });
-            }
-        }, function (error) {
-            if (error.status === 401) {
-                _this.flashMessage.show('Please login', {
-                    cssClass: 'alert-danger',
-                    timeout: 3000
-                });
-                _this.router.navigate(['/login']);
-            }
-        });
+        if (this.isNewProduct) {
+            this.productService.addProduct(this.product)
+                .subscribe(function (data) {
+                if (data.success) {
+                    _this.flashMessage.show('Added successfully', {
+                        cssClass: 'alert-success',
+                        timeout: 3000
+                    });
+                    _this.router.navigate(['/admin/ch', { outlets: { primary: 'add-product/new' } }]);
+                    _this.updateProducts.emit();
+                }
+                else {
+                    console.log('add data', data);
+                    _this.flashMessage.show('Adding failed', {
+                        cssClass: 'alert-danger',
+                        timeout: 3000
+                    });
+                }
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.flashMessage.show('Please login', {
+                        cssClass: 'alert-danger',
+                        timeout: 3000
+                    });
+                    _this.router.navigate(['/login']);
+                }
+            });
+        }
+        else {
+            this.productService.editProduct(this.product)
+                .subscribe(function (data) {
+                if (data.success) {
+                    _this.flashMessage.show('Edited successfully', {
+                        cssClass: 'alert-success',
+                        timeout: 3000
+                    });
+                    _this.router.navigate(['/admin/ch', { outlets: { primary: 'edit-product' } }]);
+                    _this.updateProducts.emit();
+                }
+                else {
+                    _this.flashMessage.show('Editing failed', {
+                        cssClass: 'alert-danger',
+                        timeout: 3000
+                    });
+                }
+            }, function (error) {
+                if (error.status === 401) {
+                    _this.flashMessage.show('Please login', {
+                        cssClass: 'alert-danger',
+                        timeout: 3000
+                    });
+                    _this.router.navigate(['/login']);
+                }
+            });
+        }
     };
     return AddProductComponent;
 }());
@@ -577,7 +603,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/edit-product/edit-product.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Edit product</h2>\r\n<table *ngIf=\"products\"  class=\"table table-sm\">\r\n  <form *ngFor=\"let product of products; let i = index\" (submit)=\"onEditProductSubmit(product, i)\"\r\n        #editProductForm=\"ngForm\">\r\n    <thead *ngIf=\"product === products[0]\">\r\n      <tr>\r\n        <th class=\"edit-product-table-first-cell\">\r\n        </th>\r\n        <th>Category</th>\r\n        <th>Sub Category</th>\r\n        <th>Item Number</th>\r\n        <th>Name</th>\r\n        <th>Price</th>\r\n        <th>Img source</th>\r\n        <th>Description</th>\r\n        <th>On main page 0/1</th>\r\n        <th>Discount %</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr [class.active]=\"i === selectedRow\" >\r\n          <td class=\"edit-product-table-first-cell\">\r\n\r\n            <div class=\"btn-group\" role=\"group\" aria-label=\"Edit\">\r\n              <button type=\"button\" class=\"btn button-light button-size-2\" [routerLinkActive]=\"['active']\"\r\n                      [routerLinkActiveOptions]=\"{exact: true}\"\r\n                      [routerLink]=\"['/admin/ch', {outlets: {primary: ['add-product', product._id]}}]\">\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">mode_edit</i>\r\n                <!--<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>-->\r\n              </button>\r\n\r\n              <button type=\"button\" (click)=\"onClickEditBtn(i, product._id)\" class=\"btn button-light button-size-2\"\r\n                      [class.hide]=\"!isEditBtnShow\">\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">border_color</i>\r\n                <!--<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>-->\r\n              </button>\r\n            </div>\r\n\r\n            <div class=\"btn-group\" role=\"group\" aria-label=\"Edit\">\r\n              <button type=\"submit\" class=\"btn btn button-light button-size-2\" [class.hide]=\"!(i === selectedRow)\">\r\n                <!--<i class=\"fa fa-check\" aria-hidden=\"true\"></i>-->\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">done</i>\r\n              </button>\r\n\r\n              <button type=\"button\" class=\"btn btn button-light button-size-2\" (click)=\"onClickCancelEditBtn(i, product._id)\"\r\n                      [class.hide]=\"!(i === selectedRow)\">\r\n                <!--<i class=\"fa fa-ban\" aria-hidden=\"true\"></i>-->\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">highlight_off</i>\r\n              </button>\r\n            </div>\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.category0\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"category0\" #category0=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.category1\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"category1\" #category1=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.itemNumber\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"itemNumber\" #itemNumber=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.name\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"name\" #name=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"price\" #price=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"mainImgSrc\" #mainImgSrc=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.itemDescription\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"itemDescription\" #itemDescription=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n           <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.showOnMainPage\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"showOnMainPage\" #showOnMainPage=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n           <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.discount\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"discount\" #discount=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"width\" #width=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"height\" #height=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-last-cell\">\r\n\r\n            <button type=\"button\" class=\"btn btn button-light button-size-2\" (click)=\"onClickDelBtn(i, product._id)\"\r\n                    [class.hidden]=\"!(i === selectedRow)\">\r\n              <i class=\"material-icons button-light-icon button-icon-size-2\">delete_sweep</i>\r\n\r\n              <!--<i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i>-->\r\n            </button>\r\n\r\n          </td>\r\n        </tr>\r\n    </tbody>\r\n  </form>\r\n</table>\r\n"
+module.exports = "<h2 class=\"page-header\">Edit product</h2>\r\n<table *ngIf=\"products\"  class=\"table table-sm\">\r\n  <form *ngFor=\"let product of products; let i = index\" (submit)=\"onEditProductSubmit(product)\"\r\n        #editProductForm=\"ngForm\">\r\n    <thead *ngIf=\"product === products[0]\">\r\n      <tr>\r\n        <th class=\"edit-product-table-first-cell\">\r\n        </th>\r\n        <th>Category</th>\r\n        <th>Sub Category</th>\r\n        <th>Item Number</th>\r\n        <th>Name</th>\r\n        <th>Price</th>\r\n        <th>Img source</th>\r\n        <th>Description</th>\r\n        <th>On main page 0/1</th>\r\n        <th>Discount %</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr [class.active]=\"i === selectedRow\" >\r\n          <td class=\"edit-product-table-first-cell\">\r\n\r\n            <div class=\"btn-group\" role=\"group\" aria-label=\"Edit\">\r\n              <button type=\"button\" class=\"btn button-light button-size-2\" [routerLinkActive]=\"['active']\"\r\n                      [routerLinkActiveOptions]=\"{exact: true}\" [class.hide]=\"!isEditBtnShow\"\r\n                      [routerLink]=\"['/admin/ch', {outlets: {primary: ['add-product', product._id]}}]\">\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">mode_edit</i>\r\n                <!--<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>-->\r\n              </button>\r\n\r\n              <button type=\"button\" (click)=\"onClickEditBtn(i, product._id)\" class=\"btn button-light button-size-2\"\r\n                      [class.hide]=\"!isEditBtnShow\">\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">border_color</i>\r\n                <!--<i class=\"fa fa-pencil\" aria-hidden=\"true\"></i>-->\r\n              </button>\r\n            </div>\r\n\r\n            <div class=\"btn-group\" role=\"group\" aria-label=\"Edit\">\r\n              <button type=\"submit\" class=\"btn btn button-light button-size-2\" [class.hide]=\"!(i === selectedRow)\">\r\n                <!--<i class=\"fa fa-check\" aria-hidden=\"true\"></i>-->\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">done</i>\r\n              </button>\r\n\r\n              <button type=\"button\" class=\"btn btn button-light button-size-2\" (click)=\"onClickCancelEditBtn(i, product._id)\"\r\n                      [class.hide]=\"!(i === selectedRow)\">\r\n                <!--<i class=\"fa fa-ban\" aria-hidden=\"true\"></i>-->\r\n                <i class=\"material-icons button-light-icon button-icon-size-2\">highlight_off</i>\r\n              </button>\r\n            </div>\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.category0\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"category0\" #category0=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.category1\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"category1\" #category1=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.itemNumber\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"itemNumber\" #itemNumber=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.name\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"name\" #name=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.price\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"price\" #price=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.mainImgSrc\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"mainImgSrc\" #mainImgSrc=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.itemDescription\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"itemDescription\" #itemDescription=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n           <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.showOnMainPage\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"showOnMainPage\" #showOnMainPage=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n           <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.discount\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"discount\" #discount=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.width\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"width\" #width=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-cells\">\r\n            <input type=\"text\" [(ngModel)]=\"product.size.height\" [disabled]=\"!(i===selectedRow)\"\r\n                   name=\"height\" #height=\"ngModel\"\r\n                   class=\"form-control form-control-sm edit-product-table-cells-input\">\r\n          </td>\r\n          <td class=\"edit-product-table-last-cell\">\r\n\r\n            <button type=\"button\" class=\"btn btn button-light button-size-2\" (click)=\"onClickDelBtn(i, product._id)\"\r\n                    [class.hidden]=\"!(i === selectedRow)\">\r\n              <i class=\"material-icons button-light-icon button-icon-size-2\">delete_sweep</i>\r\n\r\n              <!--<i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i>-->\r\n            </button>\r\n\r\n          </td>\r\n        </tr>\r\n    </tbody>\r\n  </form>\r\n</table>\r\n"
 
 /***/ }),
 
@@ -632,16 +658,6 @@ var EditProductComponent = (function () {
             return false;
         });
     };
-    // addProductBtn() {
-    //   this.addProduct = true;
-    // }
-    //
-    // onClickCancelAddBtn(i, _id) {
-    //   this.addProduct = false;
-    //   // this.selectedRow = null;
-    //   // this.isEditBtnShow = true;
-    //   // this.getProducts();
-    // }
     EditProductComponent.prototype.onClickEditBtn = function (i, _id) {
         this.selectedRow = i;
         this.isEditBtnShow = false;
@@ -683,7 +699,7 @@ var EditProductComponent = (function () {
             }
         });
     };
-    EditProductComponent.prototype.onEditProductSubmit = function (product, i) {
+    EditProductComponent.prototype.onEditProductSubmit = function (product) {
         var _this = this;
         this.selectedRow = null;
         this.isEditBtnShow = true;
