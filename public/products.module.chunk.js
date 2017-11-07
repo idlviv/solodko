@@ -553,11 +553,6 @@ var ProductsModule = (function () {
 }());
 ProductsModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-        imports: [
-            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_8__shared_shared_module__["a" /* SharedModule */],
-            __WEBPACK_IMPORTED_MODULE_3__products_routing_module__["a" /* ProductsRoutingModule */],
-        ],
         declarations: [
             __WEBPACK_IMPORTED_MODULE_2__products_component__["a" /* ProductsComponent */],
             __WEBPACK_IMPORTED_MODULE_4__products_section_products_section_component__["a" /* ProductsSectionComponent */],
@@ -565,7 +560,11 @@ ProductsModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__products_detail_products_detail_component__["a" /* ProductsDetailComponent */],
             __WEBPACK_IMPORTED_MODULE_7__products_submenu_products_submenu_component__["a" /* ProductsSubmenuComponent */],
         ],
-        providers: []
+        imports: [
+            __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
+            __WEBPACK_IMPORTED_MODULE_8__shared_shared_module__["a" /* SharedModule */],
+            __WEBPACK_IMPORTED_MODULE_3__products_routing_module__["a" /* ProductsRoutingModule */],
+        ],
     })
 ], ProductsModule);
 

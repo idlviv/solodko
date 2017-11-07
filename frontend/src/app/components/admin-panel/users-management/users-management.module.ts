@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   exports: [
-    UsersManagementComponent,
-    AddUserComponent,
+    // UsersManagementComponent,
+    // AddUserComponent,
   ],
   declarations: [
     UsersManagementComponent,

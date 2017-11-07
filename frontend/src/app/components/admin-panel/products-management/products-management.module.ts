@@ -9,6 +9,11 @@ import {EditProductComponent} from './edit-product/edit-product.component';
 import {RouterModule} from '@angular/router';
 
 @NgModule({
+  declarations: [
+    ProductsManagementComponent,
+    AddProductComponent,
+    EditProductComponent,
+  ],
   imports: [
     CommonModule,
     // SharedModule,
@@ -17,13 +22,9 @@ import {RouterModule} from '@angular/router';
     RouterModule
   ],
   exports: [
-    AddProductComponent,
-    EditProductComponent,
+    // AddProductComponent,
+    // EditProductComponent,
   ],
-  declarations: [
-    ProductsManagementComponent,
-    AddProductComponent,
-    EditProductComponent,
-  ]
+
 })
 export class ProductsManagementModule {}

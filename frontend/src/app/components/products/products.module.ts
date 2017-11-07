@@ -12,12 +12,6 @@ import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-    SharedModule,
-    ProductsRoutingModule,
-    // MdButtonModule
-  ],
   declarations: [
     ProductsComponent,
     ProductsSectionComponent,
@@ -25,7 +19,13 @@ import {SharedModule} from '../shared/shared.module';
     ProductsDetailComponent,
     ProductsSubmenuComponent,
   ],
-  providers: [
-  ]
+  imports: [
+    CommonModule,
+    SharedModule,
+    ProductsRoutingModule,
+    // MdButtonModule
+  ],
+
+
 })
 export class ProductsModule { }

@@ -16,9 +16,8 @@ import {UsersManagementModule} from './users-management/users-management.module'
   ],
   imports: [
     CommonModule,
-    // SharedModule,
-    AdminPanelRoutingModule,
     FormsModule,
+    AdminPanelRoutingModule,
     ProductsManagementModule,
     UsersManagementModule,
   ],

@@ -24,8 +24,6 @@ import {CustomErrorHandler} from '../../services/CustomErrorHandler';
   ],
 
   providers: [
-    AuthService,
-    CustomErrorHandler,
   ]
 })
 export class UsersModule {}
