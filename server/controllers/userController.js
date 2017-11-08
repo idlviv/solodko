@@ -33,6 +33,34 @@ module.exports.userRegistration = function(req, res, next) {
 
 module.exports.sendMail = function(req, res, next) {
 
+  let transporter = nodemailer.createTransport({
+    service:  'Mailgun',
+    auth: {
+      user: config.get('MAIL_USER'),
+      pass: config.get('MAIL_PASS')
+    }
+  });
+  let mailOptions = {
+    from: 'Solodko <postmaster@sandbox2a37a392c4934639b9e08ca32ece3bcd.mailgun.org>',
+    to: '0008.ua@gmail.com',
+    subject: 'Please verify account',
+    text: 'test message form mailgun',
+    html: '<b>test message form mailgun</b>'
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    res.status(200).send(info.messageId);
+    console.log('Message sent: %s', info.messageId);
+
+  });
+
+};
+
+module.exports.sendTestMail = function(req, res, next) {
+
   nodemailer.createTestAccount((err, account) => {
 
     // create reusable transporter object using the default SMTP transport
@@ -69,6 +97,7 @@ module.exports.sendMail = function(req, res, next) {
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
   });
+
 };
 
 createToken = function(user) {

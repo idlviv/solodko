@@ -1,4 +1,4 @@
-webpackJsonp(["home.module.0"],{
+webpackJsonp(["home.module"],{
 
 /***/ "../../../../../src/app/components/home/home-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -334,4 +334,4 @@ var _a, _b;
 /***/ })
 
 });
-//# sourceMappingURL=home.module.0.chunk.js.map
+//# sourceMappingURL=home.module.chunk.js.map
