@@ -42,7 +42,7 @@ export class NavbarComponent implements OnInit {
     this.localCatalog = this.catalogService.getCatalog();
     this.getLoggedUser$ = this.authService.getLoggedUser();
 
-    this.authService.getLoggedUser()
+    this.getLoggedUser$
       .subscribe(
         user => this.user = user
       );

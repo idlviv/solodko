@@ -37,4 +37,9 @@ router.get(
 //   res.json({user: req.user});
 // });
 
+router.get(
+  '/send-mail',
+  UserController.sendMail
+);
+
 module.exports = router;

@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 
-import {Observable} from 'rxjs/Observable';
-//
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/observable/throw';
-
 import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
 import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Observable} from 'rxjs/Observable';
+
 
 @Injectable()
 export class AuthService {

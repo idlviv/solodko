@@ -1,4 +1,4 @@
-webpackJsonp(["admin-panel.module"],{
+webpackJsonp(["admin-panel.module.0"],{
 
 /***/ "../../../../../src/app/components/admin-panel/admin-panel-routing.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -766,7 +766,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/products-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  products-management works!\n</p>\n"
+module.exports = "<p>\r\n  products-management works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -881,7 +881,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">UserName</label>\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\n  </div>\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\n</form>\n"
+module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\r\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\r\n</form>\r\n"
 
 /***/ }),
 
@@ -1007,7 +1007,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/users-management/users-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  users-management works!\n</p>\n"
+module.exports = "<p>\r\n  users-management works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -15791,4 +15791,4 @@ exports.not = not;
 /***/ })
 
 });
-//# sourceMappingURL=admin-panel.module.chunk.js.map
+//# sourceMappingURL=admin-panel.module.0.chunk.js.map

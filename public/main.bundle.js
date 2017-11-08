@@ -6,16 +6,16 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module",
+		"admin-panel.module.0",
 		"common"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module"
+		"home.module.0"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module",
+		"products.module.0",
 		"common"
 	]
 };
@@ -414,7 +414,7 @@ var NavbarComponent = (function () {
         var _this = this;
         this.localCatalog = this.catalogService.getCatalog();
         this.getLoggedUser$ = this.authService.getLoggedUser();
-        this.authService.getLoggedUser()
+        this.getLoggedUser$
             .subscribe(function (user) { return _this.user = user; });
         // On each change of route check user rights (getProfile)
         //   this.router.events
@@ -792,7 +792,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card {\r\n  max-width: 20rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".card {\r\n  max-width: 20rem;\r\n  margin: auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -805,7 +805,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-center\">\r\n  <div class=\"\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        Творча майстерня\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <h4 class=\"card-title\">Вхід</h4>\r\n        <p class=\"card-text\"> </p>\r\n          <form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"username\">Ім'я користувача</label>\r\n              <input type=\"text\" ngModel required\r\n              name=\"username\" class=\"form-control\" id=\"username\">\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"password\">Пароль</label>\r\n              <input type=\"password\" ngModel required\r\n              name=\"password\" class=\"form-control\" id=\"password\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n          </form>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        Творча майстерня\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        Творча майстерня\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <h4 class=\"card-title\">Вхід</h4>\r\n        <p class=\"card-text\"> </p>\r\n          <form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"username\">Ім'я користувача</label>\r\n              <input type=\"text\" ngModel required\r\n              name=\"username\" class=\"form-control\" id=\"username\">\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n              <label for=\"password\">Пароль</label>\r\n              <input type=\"password\" ngModel required\r\n              name=\"password\" class=\"form-control\" id=\"password\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n          </form>\r\n      </div>\r\n      <!--<div class=\"card-footer text-muted\">-->\r\n        <!--Творча майстерня-->\r\n      <!--</div>-->\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1374,10 +1374,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//
-// import 'rxjs/add/operator/map';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/observable/throw';
 
 
 
