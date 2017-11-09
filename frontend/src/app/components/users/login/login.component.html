@@ -1,112 +1,94 @@
 <div class="row">
   <div class="col">
-
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-      </li>
-     </ul>
-
-    <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-        <div class="card text-center">
-          <div class="card-header">
-            Творча майстерня
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Вхід</h4>
-            <p class="card-text"> </p>
-            <form (ngSubmit)="onLoginSubmit(loginForm); loginForm.reset()" #loginForm="ngForm">
-
-              <div class="form-group">
-                <label for="username">Ім'я користувача</label>
-                <input type="text" ngModel required
-                       name="username" class="form-control" id="username">
-              </div>
-
-              <div class="form-group">
-                <label for="password">Пароль</label>
-                <input type="password" ngModel required
-                       name="password" class="form-control" id="password">
-              </div>
-              <button class="btn btn-primary" [disabled]="!loginForm.form.valid">Увійти</button>
-            </form>
-          </div>
-          <!--<div class="card-footer text-muted">-->
-          <!--Творча майстерня-->
-          <!--</div>-->
-        </div>
-
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin"
+               role="tab" aria-controls="signin" aria-selected="true">Увійти</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup"
+               role="tab" aria-controls="signup" aria-selected="false">Зареєструватись</a>
+          </li>
+        </ul>
       </div>
-      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+      <div class="card-body">
+        <div class="tab-content" id="myTabContent">
 
-        <div class="card text-center">
-          <div class="card-header">
-            Творча майстерня
-          </div>
-          <div class="card-body">
+          <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
             <h4 class="card-title">Вхід</h4>
             <p class="card-text"> </p>
-            <form (ngSubmit)="onLoginSubmit(loginForm); loginForm.reset()" #loginForm="ngForm">
-
+            <form (ngSubmit)="onSigninSubmit(signinForm); signinForm.reset()" #signinForm="ngForm">
               <div class="form-group">
-                <label for="username">Ім'я користувача</label>
+                <label for="usernameSignin">Ім'я користувача</label>
                 <input type="text" ngModel required
-                       name="username" class="form-control" id="username">
+                       name="usernameSignin" class="form-control" id="usernameSignin">
               </div>
-
               <div class="form-group">
-                <label for="password">Пароль</label>
+                <label for="passwordSignin">Пароль</label>
                 <input type="password" ngModel required
-                       name="password" class="form-control" id="password">
+                       name="passwordSignin" class="form-control" id="passwordSignin">
               </div>
-              <button class="btn btn-primary" [disabled]="!loginForm.form.valid">Увійти</button>
+              <button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>
             </form>
           </div>
-          <!--<div class="card-footer text-muted">-->
-          <!--Творча майстерня-->
-          <!--</div>-->
-        </div>
 
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="password">Пароль</label>
+              <input type="password" ngModel required formControlName="password" [formGroup]="form"
+                     name="password" class="form-control" id="password">
+            </div>
+            <div class="form-group">
+              <label for="passwordConfirm">Повторіть пароль</label>
+              <input type="password" ngModel required formControlName="passwordConfirm" [formGroup]="form"
+                     name="passwordConfirm" class="form-control" id="passwordConfirm">
+            </div>
+          </form>
+
+          <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+            <h4 class="card-title">Реєстрація</h4>
+            <p class="card-text"> </p>
+            <form (ngSubmit)="onSignupSubmit(signupForm); signupForm.reset()" #signupForm="ngForm">
+              <div class="form-group">
+                <label for="usernameSignup">Ім'я користувача</label>
+                <input type="text" ngModel required
+                       name="usernameSignup" class="form-control" id="usernameSignup">
+              </div>
+              <div class="form-group">
+                <label for="emailSignup">e-mail</label>
+                <input type="text" ngModel required
+                       name="emailSignup" class="form-control" id="emailSignup">
+              </div>
+              <div class="form-group">
+                <label for="passwordSignup">Пароль</label>
+                <input type="password" ngModel required
+                       name="passwordSignup" class="form-control" id="passwordSignup">
+              </div>
+              <div class="form-group">
+                <label for="passwordSignupConfirm">Повторіть пароль</label>
+                <input type="password" ngModel required
+                name="passwordSignupConfirm" class="form-control" id="passwordSignupConfirm">
+              </div>
+              <div class="form-group">
+                <label for="nameSignup">Ім'я</label>
+                <input type="text" ngModel required
+                       name="nameSignup" class="form-control" id="nameSignup">
+              </div>
+              <div class="form-group">
+                <label for="surnameSignup">Прізвище</label>
+                <input type="text" ngModel required
+                       name="surnameSignup" class="form-control" id="surnameSignup">
+              </div>
+              <button class="btn btn-primary" [disabled]="!signupForm.form.valid">Зареєструватись</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        Творча майстерня
       </div>
     </div>
   </div>
 </div>
-
-
-
-<!--<div class="row">-->
-  <!--<div class="col">-->
-    <!--<div class="card text-center">-->
-      <!--<div class="card-header">-->
-        <!--Творча майстерня-->
-      <!--</div>-->
-      <!--<div class="card-body">-->
-        <!--<h4 class="card-title">Вхід</h4>-->
-        <!--<p class="card-text"> </p>-->
-          <!--<form (ngSubmit)="onLoginSubmit(loginForm); loginForm.reset()" #loginForm="ngForm">-->
-
-            <!--<div class="form-group">-->
-              <!--<label for="username">Ім'я користувача</label>-->
-              <!--<input type="text" ngModel required-->
-              <!--name="username" class="form-control" id="username">-->
-            <!--</div>-->
-
-            <!--<div class="form-group">-->
-              <!--<label for="password">Пароль</label>-->
-              <!--<input type="password" ngModel required-->
-              <!--name="password" class="form-control" id="password">-->
-            <!--</div>-->
-            <!--<button class="btn btn-primary" [disabled]="!loginForm.form.valid">Увійти</button>-->
-          <!--</form>-->
-      <!--</div>-->
-      <!--&lt;!&ndash;<div class="card-footer text-muted">&ndash;&gt;-->
-        <!--&lt;!&ndash;Творча майстерня&ndash;&gt;-->
-      <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->

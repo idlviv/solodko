@@ -805,7 +805,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n\r\n    <ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link active\" id=\"home-tab\" data-toggle=\"tab\" href=\"#home\" role=\"tab\" aria-controls=\"home\" aria-selected=\"true\">Home</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\" id=\"profile-tab\" data-toggle=\"tab\" href=\"#profile\" role=\"tab\" aria-controls=\"profile\" aria-selected=\"false\">Profile</a>\r\n      </li>\r\n     </ul>\r\n\r\n    <div class=\"tab-content\" id=\"myTabContent\">\r\n      <div class=\"tab-pane fade show active\" id=\"home\" role=\"tabpanel\" aria-labelledby=\"home-tab\">\r\n\r\n        <div class=\"card text-center\">\r\n          <div class=\"card-header\">\r\n            Творча майстерня\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <h4 class=\"card-title\">Вхід</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n              <div class=\"form-group\">\r\n                <label for=\"username\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"username\" class=\"form-control\" id=\"username\">\r\n              </div>\r\n\r\n              <div class=\"form-group\">\r\n                <label for=\"password\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"password\" class=\"form-control\" id=\"password\">\r\n              </div>\r\n              <button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n            </form>\r\n          </div>\r\n          <!--<div class=\"card-footer text-muted\">-->\r\n          <!--Творча майстерня-->\r\n          <!--</div>-->\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"tab-pane fade\" id=\"profile\" role=\"tabpanel\" aria-labelledby=\"profile-tab\">\r\n\r\n        <div class=\"card text-center\">\r\n          <div class=\"card-header\">\r\n            Творча майстерня\r\n          </div>\r\n          <div class=\"card-body\">\r\n            <h4 class=\"card-title\">Вхід</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">\r\n\r\n              <div class=\"form-group\">\r\n                <label for=\"username\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"username\" class=\"form-control\" id=\"username\">\r\n              </div>\r\n\r\n              <div class=\"form-group\">\r\n                <label for=\"password\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"password\" class=\"form-control\" id=\"password\">\r\n              </div>\r\n              <button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>\r\n            </form>\r\n          </div>\r\n          <!--<div class=\"card-footer text-muted\">-->\r\n          <!--Творча майстерня-->\r\n          <!--</div>-->\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"row\">-->\r\n  <!--<div class=\"col\">-->\r\n    <!--<div class=\"card text-center\">-->\r\n      <!--<div class=\"card-header\">-->\r\n        <!--Творча майстерня-->\r\n      <!--</div>-->\r\n      <!--<div class=\"card-body\">-->\r\n        <!--<h4 class=\"card-title\">Вхід</h4>-->\r\n        <!--<p class=\"card-text\"> </p>-->\r\n          <!--<form (ngSubmit)=\"onLoginSubmit(loginForm); loginForm.reset()\" #loginForm=\"ngForm\">-->\r\n\r\n            <!--<div class=\"form-group\">-->\r\n              <!--<label for=\"username\">Ім'я користувача</label>-->\r\n              <!--<input type=\"text\" ngModel required-->\r\n              <!--name=\"username\" class=\"form-control\" id=\"username\">-->\r\n            <!--</div>-->\r\n\r\n            <!--<div class=\"form-group\">-->\r\n              <!--<label for=\"password\">Пароль</label>-->\r\n              <!--<input type=\"password\" ngModel required-->\r\n              <!--name=\"password\" class=\"form-control\" id=\"password\">-->\r\n            <!--</div>-->\r\n            <!--<button class=\"btn btn-primary\" [disabled]=\"!loginForm.form.valid\">Увійти</button>-->\r\n          <!--</form>-->\r\n      <!--</div>-->\r\n      <!--&lt;!&ndash;<div class=\"card-footer text-muted\">&ndash;&gt;-->\r\n        <!--&lt;!&ndash;Творча майстерня&ndash;&gt;-->\r\n      <!--&lt;!&ndash;</div>&ndash;&gt;-->\r\n    <!--</div>-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        <ul class=\"nav nav-tabs justify-content-center\" id=\"myTab\" role=\"tablist\">\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link active\" id=\"signin-tab\" data-toggle=\"tab\" href=\"#signin\"\r\n               role=\"tab\" aria-controls=\"signin\" aria-selected=\"true\">Увійти</a>\r\n          </li>\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link\" id=\"signup-tab\" data-toggle=\"tab\" href=\"#signup\"\r\n               role=\"tab\" aria-controls=\"signup\" aria-selected=\"false\">Зареєструватись</a>\r\n          </li>\r\n        </ul>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <div class=\"tab-content\" id=\"myTabContent\">\r\n\r\n          <div class=\"tab-pane fade show active\" id=\"signin\" role=\"tabpanel\" aria-labelledby=\"signin-tab\">\r\n            <h4 class=\"card-title\">Вхід</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onSigninSubmit(signinForm); signinForm.reset()\" #signinForm=\"ngForm\">\r\n              <div class=\"form-group\">\r\n                <label for=\"usernameSignin\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"usernameSignin\" class=\"form-control\" id=\"usernameSignin\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"passwordSignin\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"passwordSignin\" class=\"form-control\" id=\"passwordSignin\">\r\n              </div>\r\n              <button class=\"btn btn-primary\" [disabled]=\"!signinForm.form.valid\">Увійти</button>\r\n            </form>\r\n          </div>\r\n\r\n          <form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\r\n            <div class=\"form-group\">\r\n              <label for=\"password\">Пароль</label>\r\n              <input type=\"password\" ngModel required formControlName=\"password\" [formGroup]=\"form\"\r\n                     name=\"password\" class=\"form-control\" id=\"password\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n              <label for=\"passwordConfirm\">Повторіть пароль</label>\r\n              <input type=\"password\" ngModel required formControlName=\"passwordConfirm\" [formGroup]=\"form\"\r\n                     name=\"passwordConfirm\" class=\"form-control\" id=\"passwordConfirm\">\r\n            </div>\r\n          </form>\r\n\r\n          <div class=\"tab-pane fade\" id=\"signup\" role=\"tabpanel\" aria-labelledby=\"signup-tab\">\r\n            <h4 class=\"card-title\">Реєстрація</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onSignupSubmit(signupForm); signupForm.reset()\" #signupForm=\"ngForm\">\r\n              <div class=\"form-group\">\r\n                <label for=\"usernameSignup\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"usernameSignup\" class=\"form-control\" id=\"usernameSignup\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"emailSignup\">e-mail</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"emailSignup\" class=\"form-control\" id=\"emailSignup\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"passwordSignup\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"passwordSignup\" class=\"form-control\" id=\"passwordSignup\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"passwordSignupConfirm\">Повторіть пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                name=\"passwordSignupConfirm\" class=\"form-control\" id=\"passwordSignupConfirm\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"nameSignup\">Ім'я</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"nameSignup\" class=\"form-control\" id=\"nameSignup\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"surnameSignup\">Прізвище</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"surnameSignup\" class=\"form-control\" id=\"surnameSignup\">\r\n              </div>\r\n              <button class=\"btn btn-primary\" [disabled]=\"!signupForm.form.valid\">Зареєструватись</button>\r\n            </form>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        Творча майстерня\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -819,6 +819,8 @@ module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n\r\n    <ul cl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__ = __webpack_require__("../../../../angular2-flash-messages/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_validate_service__ = __webpack_require__("../../../../../src/app/services/validate.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -832,19 +834,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var LoginComponent = (function () {
-    function LoginComponent(authService, router, flashMessage) {
+    function LoginComponent(authService, router, flashMessage, formBuilder) {
         this.authService = authService;
         this.router = router;
         this.flashMessage = flashMessage;
+        this.form = formBuilder.group({
+            password: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* Validators */].required],
+            passwordConfirm: ['', __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* Validators */].required]
+        }, {
+            validator: __WEBPACK_IMPORTED_MODULE_5__services_validate_service__["a" /* ValidateService */].matchPassword // your validation method
+        });
     }
     LoginComponent.prototype.ngOnInit = function () {
     };
-    LoginComponent.prototype.onLoginSubmit = function (form) {
+    LoginComponent.prototype.onSignupSubmit = function (form) {
+        console.log('submit signup form');
+        // this.user = {
+        //   username: form.value.username,
+        //   password: form.value.password,
+        // };
+        //
+        // this.authService.authUser(this.user)
+        //   .subscribe((data) => {
+        //       if (data.success) {
+        //         this.authService.storeUserData(data.token, data.user);
+        //         this.flashMessage.show(
+        //           'Logged in',
+        //           {
+        //             cssClass: 'alert-success',
+        //             timeout: 5000
+        //           });
+        //         this.router.navigate(['/profile']);
+        //
+        //       } else {
+        //         this.flashMessage.show(
+        //           data.msg,
+        //           {
+        //             cssClass: 'alert-danger',
+        //             timeout: 5000
+        //           });
+        //         this.router.navigate(['/login']);
+        //       }
+        //
+        //     },err => {
+        //       this.flashMessage.show(
+        //         err,
+        //         // err.status + ' ' + err.statusText,
+        //         {
+        //           cssClass: 'alert-danger',
+        //           timeout: 5000
+        //         });
+        //       this.router.navigate(['/login']);
+        //     }
+        //   )
+    };
+    LoginComponent.prototype.onSigninSubmit = function (form) {
         var _this = this;
         this.user = {
-            username: form.value.username,
-            password: form.value.password,
+            username: form.value.usernameSignin,
+            password: form.value.passwordSignin,
         };
         this.authService.authUser(this.user)
             .subscribe(function (data) {
@@ -881,10 +932,10 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/users/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/users/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_auth_service__["a" /* AuthService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angular2_flash_messages__["FlashMessagesService"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object])
 ], LoginComponent);
 
-var _a, _b, _c;
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
@@ -1007,7 +1058,8 @@ UsersModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */]
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* ReactiveFormsModule */]
         ],
         exports: [],
         providers: []
@@ -1750,9 +1802,21 @@ var ValidateService = (function () {
             return true;
         }
     };
-    ValidateService.prototype.validateEmail = function (email) {
+    ValidateService.validateEmail = function (email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
+    };
+    ValidateService.matchPassword = function (AC) {
+        var password = AC.get('password').value; // to get value in input tag
+        var passwordConfirm = AC.get('passwordConfirm').value; // to get value in input tag
+        if (password != passwordConfirm) {
+            console.log('false');
+            AC.get('confirmPassword').setErrors({ MatchPassword: true });
+        }
+        else {
+            console.log('true');
+            return null;
+        }
     };
     return ValidateService;
 }());
