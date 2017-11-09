@@ -24,6 +24,7 @@
                 <label for="usernameSignin">Ім'я користувача</label>
                 <input type="text" ngModel required
                        name="usernameSignin" class="form-control" id="usernameSignin">
+
               </div>
               <div class="form-group">
                 <label for="passwordSignin">Пароль</label>
@@ -34,55 +35,76 @@
             </form>
           </div>
 
-          <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="form-group">
-              <label for="password">Пароль</label>
-              <input type="password" ngModel required formControlName="password" [formGroup]="form"
-                     name="password" class="form-control" id="password">
-            </div>
-            <div class="form-group">
-              <label for="passwordConfirm">Повторіть пароль</label>
-              <input type="password" ngModel required formControlName="passwordConfirm" [formGroup]="form"
-                     name="passwordConfirm" class="form-control" id="passwordConfirm">
-            </div>
-          </form>
+
+
+
+
+
+
 
           <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
             <h4 class="card-title">Реєстрація</h4>
-            <p class="card-text"> </p>
-            <form (ngSubmit)="onSignupSubmit(signupForm); signupForm.reset()" #signupForm="ngForm">
+            <p class="card-text"> {{form.status}}</p>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
               <div class="form-group">
-                <label for="usernameSignup">Ім'я користувача</label>
-                <input type="text" ngModel required
-                       name="usernameSignup" class="form-control" id="usernameSignup">
+                <label for="password">Пароль</label>
+                <input type="password" formControlName="password" [formGroup]="form" required
+                       class="form-control" id="password">
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
+                  Enter password
+                </div>
               </div>
               <div class="form-group">
-                <label for="emailSignup">e-mail</label>
-                <input type="text" ngModel required
-                       name="emailSignup" class="form-control" id="emailSignup">
+                <label for="passwordConfirm">Повторіть пароль</label>
+                <input type="password" formControlName="passwordConfirm" [formGroup]="form" required
+                       class="form-control" id="passwordConfirm">
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="!form.controls['passwordConfirm'].valid && form.controls['passwordConfirm'].touched">
+                  Confirm password
+                </div>
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="form.controls['passwordConfirm'].errors?.MatchPassword">
+                  Password not match</div>
               </div>
-              <div class="form-group">
-                <label for="passwordSignup">Пароль</label>
-                <input type="password" ngModel required
-                       name="passwordSignup" class="form-control" id="passwordSignup">
-              </div>
-              <div class="form-group">
-                <label for="passwordSignupConfirm">Повторіть пароль</label>
-                <input type="password" ngModel required
-                name="passwordSignupConfirm" class="form-control" id="passwordSignupConfirm">
-              </div>
-              <div class="form-group">
-                <label for="nameSignup">Ім'я</label>
-                <input type="text" ngModel required
-                       name="nameSignup" class="form-control" id="nameSignup">
-              </div>
-              <div class="form-group">
-                <label for="surnameSignup">Прізвище</label>
-                <input type="text" ngModel required
-                       name="surnameSignup" class="form-control" id="surnameSignup">
-              </div>
-              <button class="btn btn-primary" [disabled]="!signupForm.form.valid">Зареєструватись</button>
+              <button class="btn btn-primary" [disabled]="!form.valid">Увійти</button>
             </form>
+
+
+            <!--<form (ngSubmit)="onSignupSubmit(signupForm); signupForm.reset()" #signupForm="ngForm">-->
+              <!--<div class="form-group">-->
+                <!--<label for="usernameSignup">Ім'я користувача</label>-->
+                <!--<input type="text" ngModel required-->
+                       <!--name="usernameSignup" class="form-control" id="usernameSignup">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="emailSignup">e-mail</label>-->
+                <!--<input type="text" ngModel required-->
+                       <!--name="emailSignup" class="form-control" id="emailSignup">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="passwordSignup">Пароль</label>-->
+                <!--<input type="password" ngModel required-->
+                       <!--name="passwordSignup" class="form-control" id="passwordSignup">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="passwordSignupConfirm">Повторіть пароль</label>-->
+                <!--<input type="password" ngModel required-->
+                <!--name="passwordSignupConfirm" class="form-control" id="passwordSignupConfirm">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="nameSignup">Ім'я</label>-->
+                <!--<input type="text" ngModel required-->
+                       <!--name="nameSignup" class="form-control" id="nameSignup">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="surnameSignup">Прізвище</label>-->
+                <!--<input type="text" ngModel required-->
+                       <!--name="surnameSignup" class="form-control" id="surnameSignup">-->
+              <!--</div>-->
+              <!--<button class="btn btn-primary" [disabled]="!signupForm.form.valid">Зареєструватись</button>-->
+            <!--</form>-->
           </div>
         </div>
       </div>

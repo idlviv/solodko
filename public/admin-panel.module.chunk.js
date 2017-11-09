@@ -285,7 +285,7 @@ AdminPanelModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__admin_panel_routing_module__["a" /* AdminPanelRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_6__products_management_products_management_module__["a" /* ProductsManagementModule */],
             __WEBPACK_IMPORTED_MODULE_7__users_management_users_management_module__["a" /* UsersManagementModule */],
@@ -766,7 +766,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/products-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  products-management works!\r\n</p>\r\n"
+module.exports = "<p>\n  products-management works!\n</p>\n"
 
 /***/ }),
 
@@ -849,7 +849,7 @@ ProductsManagementModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             // SharedModule,
             // ProductsManagementRoutingModule,
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["b" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_router__["e" /* RouterModule */]
         ],
         exports: [],
@@ -881,7 +881,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/users-management/add-user/add-user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\r\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\r\n  <div class=\"form-group\">\r\n    <label for=\"name\">Name</label>\r\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"username\">UserName</label>\r\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"email\">Email</label>\r\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\r\n  </div>\r\n  <div class=\"form-group\">\r\n    <label for=\"password\">Password</label>\r\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\r\n  </div>\r\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\r\n</form>\r\n"
+module.exports = "<h2 class=\"page-header\">Зареєструвати нового користувача</h2>\n<form (ngSubmit)=\"onRegisterSubmit(registerForm); registerForm.reset()\" #registerForm=\"ngForm\">\n  <div class=\"form-group\">\n    <label for=\"name\">Name</label>\n    <input ngModel required name=\"name\" class=\"form-control\" id=\"name\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"username\">UserName</label>\n    <input ngModel required name=\"username\" class=\"form-control\" id=\"username\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"email\">Email</label>\n    <input ngModel required name=\"email\" class=\"form-control\" id=\"email\">\n  </div>\n  <div class=\"form-group\">\n    <label for=\"password\">Password</label>\n    <input ngModel required name=\"password\" class=\"form-control\" id=\"password\">\n  </div>\n  <button class=\"btn btn-primary\" [disabled]=\"!registerForm.form.valid\">Зареэструватись</button>\n</form>\n"
 
 /***/ }),
 
@@ -1007,7 +1007,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/users-management/users-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  users-management works!\r\n</p>\r\n"
+module.exports = "<p>\n  users-management works!\n</p>\n"
 
 /***/ }),
 
@@ -1077,7 +1077,7 @@ UsersManagementModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormsModule */]
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */]
         ],
         exports: [],
         declarations: [
