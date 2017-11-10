@@ -45,6 +45,7 @@
           <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
             <h4 class="card-title">Реєстрація</h4>
             <p class="card-text"> {{form.status}}</p>
+            <p class="card-text"> {{form.errors}}</p>
 
             <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
               <div class="form-group">

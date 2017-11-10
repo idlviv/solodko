@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import {AbstractControl} from '@angular/forms';
+import { ValidatorFn } from '@angular/forms';
 
 @Injectable()
 export class ValidateService {
-
-
-
-
 
   constructor() { }
 
@@ -33,7 +30,8 @@ export class ValidateService {
   matchPassword(abstractControl: AbstractControl) {
     const password = abstractControl.get('password').value; // to get value in input tag
     const passwordConfirm = abstractControl.get('passwordConfirm').value; // to get value in input tag
-    return abstractControl.get('password').value === abstractControl.get('passwordConfirm').value
+    return password === passwordConfirm
+      // ? null : abstractControl.get('confirmPassword').setErrors({MatchPassword: true});
       ? null : {'mismatch': true};
 
     // if (password !== passwordConfirm) {

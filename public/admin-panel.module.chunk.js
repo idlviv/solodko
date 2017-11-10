@@ -285,7 +285,7 @@ AdminPanelModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_5__admin_panel_routing_module__["a" /* AdminPanelRoutingModule */],
             __WEBPACK_IMPORTED_MODULE_6__products_management_products_management_module__["a" /* ProductsManagementModule */],
             __WEBPACK_IMPORTED_MODULE_7__users_management_users_management_module__["a" /* UsersManagementModule */],
@@ -849,7 +849,7 @@ ProductsManagementModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
             // SharedModule,
             // ProductsManagementRoutingModule,
-            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
             __WEBPACK_IMPORTED_MODULE_6__angular_router__["e" /* RouterModule */]
         ],
         exports: [],
@@ -1077,7 +1077,7 @@ UsersManagementModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
             __WEBPACK_IMPORTED_MODULE_1__angular_common__["CommonModule"],
-            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["d" /* FormsModule */]
+            __WEBPACK_IMPORTED_MODULE_4__angular_forms__["c" /* FormsModule */]
         ],
         exports: [],
         declarations: [

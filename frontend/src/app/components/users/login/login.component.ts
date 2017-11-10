@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
@@ -19,25 +19,22 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private flashMessage: FlashMessagesService,
     private validateService: ValidateService,
-    formBuilder: FormBuilder
+    // @Inject(FormBuilder) formBuilder: FormBuilder
   ) {
     this.form = new FormGroup({
       password: new FormControl('', Validators.minLength(2)),
       passwordConfirm: new FormControl('', Validators.minLength(2)),
     }, this.validateService.matchPassword);
 
-
-    //   this.form = formBuilder.group({
-    //     password: ['', Validators.required],
-    //     passwordConfirm: ['', Validators.required]
-    //   },
-    //     {
-    //     validators: this.matchPassword
-    //   }
-    //   );
+      // this.form = formBuilder.group({
+      //   password: ['', Validators.required],
+      //   passwordConfirm: ['', Validators.required]
+      // },
+      //   {
+      //   validators: this.validateService.matchPassword
+      // }
+      // );
   }
-
-
 
   ngOnInit() {
   }
