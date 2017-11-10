@@ -1,4 +1,4 @@
-webpackJsonp(["products.module"],{
+webpackJsonp(["products.module.0"],{
 
 /***/ "../../../../../src/app/components/products/products-detail/products-detail.component.css":
 /***/ (function(module, exports, __webpack_require__) {
@@ -573,4 +573,4 @@ ProductsModule = __decorate([
 /***/ })
 
 });
-//# sourceMappingURL=products.module.chunk.js.map
+//# sourceMappingURL=products.module.0.chunk.js.map

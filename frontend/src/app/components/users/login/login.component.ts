@@ -11,7 +11,7 @@ import {ValidateService} from '../../../services/validate.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  signupForm: FormGroup;
   user: Object;
 
   constructor(
@@ -21,10 +21,39 @@ export class LoginComponent implements OnInit {
     private validateService: ValidateService,
     // @Inject(FormBuilder) formBuilder: FormBuilder
   ) {
-    this.form = new FormGroup({
-      password: new FormControl('', Validators.minLength(2)),
-      passwordConfirm: new FormControl('', Validators.minLength(2)),
-    }, this.validateService.matchPassword);
+    this.signupForm = new FormGroup({
+        usernameSignup: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10)
+        ]),
+        emailSignup: new FormControl('', [
+          Validators.required,
+          Validators.email,
+        ]),
+        passwordSignup: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10)
+        ]),
+        passwordSignupConfirm: new FormControl('', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(10)
+        ]),
+        nameSignup: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20)
+        ]),
+        surnameSignup: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(20)
+        ]),
+    },
+      this.validateService.matchPassword
+    );
 
       // this.form = formBuilder.group({
       //   password: ['', Validators.required],

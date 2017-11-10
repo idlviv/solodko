@@ -27,12 +27,12 @@ export class ValidateService {
     }
   }
 
-  matchPassword(abstractControl: AbstractControl): ValidationErrors {
-    const password = abstractControl.get('password').value; // to get value in input tag
-    const passwordConfirm = abstractControl.get('passwordConfirm').value; // to get value in input tag
+  matchPassword(abstractControl: AbstractControl) {
+    const password = abstractControl.get('passwordSignup').value; // to get value in input tag
+    const passwordConfirm = abstractControl.get('passwordSignupConfirm').value; // to get value in input tag
     return password === passwordConfirm
-      ? null : abstractControl.get('passwordConfirm').setErrors({MatchPassword: true});
-      // ? null : {'mismatch': true};
+      // ? null: abstractControl.get('passwordConfirm').setErrors({MatchPassword: true});
+      ? null: {'mismatch': true};
 
     // if (password !== passwordConfirm) {
     //   console.log('false');
