@@ -6,16 +6,16 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0",
+		"admin-panel.module",
 		"common"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module.0"
+		"home.module"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0",
+		"products.module",
 		"common"
 	]
 };
@@ -842,6 +842,16 @@ var LoginComponent = (function () {
         this.router = router;
         this.flashMessage = flashMessage;
         this.validateService = validateService;
+        // this.form = formBuilder.group({
+        //   password: ['', Validators.required],
+        //   passwordConfirm: ['', Validators.required]
+        // },
+        //   {
+        //   validators: this.validateService.matchPassword
+        // }
+        // );
+    }
+    LoginComponent.prototype.ngOnInit = function () {
         this.signupForm = new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["b" /* FormGroup */]({
             usernameSignup: new __WEBPACK_IMPORTED_MODULE_4__angular_forms__["a" /* FormControl */]('', [
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* Validators */].required,
@@ -873,16 +883,6 @@ var LoginComponent = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_forms__["e" /* Validators */].maxLength(20)
             ]),
         }, this.validateService.matchPassword);
-        // this.form = formBuilder.group({
-        //   password: ['', Validators.required],
-        //   passwordConfirm: ['', Validators.required]
-        // },
-        //   {
-        //   validators: this.validateService.matchPassword
-        // }
-        // );
-    }
-    LoginComponent.prototype.ngOnInit = function () {
     };
     LoginComponent.prototype.onSubmit = function (form) {
         console.log('submit signup form', form);

@@ -21,6 +21,17 @@ export class LoginComponent implements OnInit {
     private validateService: ValidateService,
     // @Inject(FormBuilder) formBuilder: FormBuilder
   ) {
+      // this.form = formBuilder.group({
+      //   password: ['', Validators.required],
+      //   passwordConfirm: ['', Validators.required]
+      // },
+      //   {
+      //   validators: this.validateService.matchPassword
+      // }
+      // );
+  }
+
+  ngOnInit() {
     this.signupForm = new FormGroup({
         usernameSignup: new FormControl('', [
           Validators.required,
@@ -51,21 +62,9 @@ export class LoginComponent implements OnInit {
           Validators.minLength(2),
           Validators.maxLength(20)
         ]),
-    },
+      },
       this.validateService.matchPassword
     );
-
-      // this.form = formBuilder.group({
-      //   password: ['', Validators.required],
-      //   passwordConfirm: ['', Validators.required]
-      // },
-      //   {
-      //   validators: this.validateService.matchPassword
-      // }
-      // );
-  }
-
-  ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
@@ -112,7 +111,6 @@ export class LoginComponent implements OnInit {
     //       this.router.navigate(['/login']);
     //     }
     //   )
-
   }
 
   onSigninSubmit(form: NgForm) {
@@ -154,7 +152,5 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       )
-
   }
-
 }
