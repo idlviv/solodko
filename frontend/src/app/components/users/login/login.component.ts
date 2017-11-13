@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private flashMessage: FlashMessagesService,
     private validateService: ValidateService,
-    // @Inject(FormBuilder) formBuilder: FormBuilder
   ) {
       // this.form = formBuilder.group({
       //   password: ['', Validators.required],
@@ -29,6 +28,9 @@ export class LoginComponent implements OnInit {
       //   validators: this.validateService.matchPassword
       // }
       // );
+  }
+
+  ngOnInit() {
     this.signupForm = new FormGroup({
         usernameSignup: new FormControl('', [
           Validators.required,
@@ -62,15 +64,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-
-  }
-
   onSubmit(form: NgForm) {
-    console.log('submit signup form', form);
   }
 
   onSignupSubmit(form: NgForm) {
+    console.log('submit signup form', form);
+    console.log('submit signup form', this.signupForm);
+
     // console.log('submit signup form');
     // this.user = {
     //   username: form.value.username,

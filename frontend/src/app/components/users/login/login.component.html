@@ -24,31 +24,21 @@
                 <label for="usernameSignin">Ім'я користувача</label>
                 <input type="text" ngModel required
                        name="usernameSignin" class="form-control" id="usernameSignin">
-
               </div>
               <div class="form-group">
                 <label for="passwordSignin">Пароль</label>
                 <input type="password" ngModel required
                        name="passwordSignin" class="form-control" id="passwordSignin">
               </div>
-
               <button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>
             </form>
           </div>
-
-
-
-
-
-
-
 
           <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
             <h4 class="card-title">Реєстрація</h4>
             <p class="card-text"> </p>
 
-            <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
-              {{signupForm.errors | json}}
+            <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit(signupForm)">
               <div class="form-group">
                 <label for="usernameSignup">І'мя користувача</label>
                 <input formControlName="usernameSignup" [formGroup]="signupForm" required
@@ -80,7 +70,6 @@
                 <label for="passwordSignupConfirm">Повторіть пароль</label>
                 <input type="password" formControlName="passwordSignupConfirm" [formGroup]="signupForm" required
                        class="form-control" id="passwordSignupConfirm">
-                <div>{{signupForm.controls['passwordSignupConfirm'].errors | json}}</div>
                 <div class="alert alert-danger" role="alert"
                      *ngIf="signupForm.controls['passwordSignupConfirm'].touched && signupForm.controls['passwordSignupConfirm'].hasError('mismatch')">
                   Пароль не збігається
@@ -107,40 +96,6 @@
               <button class="btn btn-primary" [disabled]="!signupForm.valid">Зареэструватись</button>
             </form>
 
-
-            <!--<form (ngSubmit)="onSignupSubmit(signupForm); signupForm.reset()" #signupForm="ngForm">-->
-              <!--<div class="form-group">-->
-                <!--<label for="usernameSignup">Ім'я користувача</label>-->
-                <!--<input type="text" ngModel required-->
-                       <!--name="usernameSignup" class="form-control" id="usernameSignup">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="emailSignup">e-mail</label>-->
-                <!--<input type="text" ngModel required-->
-                       <!--name="emailSignup" class="form-control" id="emailSignup">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="passwordSignup">Пароль</label>-->
-                <!--<input type="password" ngModel required-->
-                       <!--name="passwordSignup" class="form-control" id="passwordSignup">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="passwordSignupConfirm">Повторіть пароль</label>-->
-                <!--<input type="password" ngModel required-->
-                <!--name="passwordSignupConfirm" class="form-control" id="passwordSignupConfirm">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="nameSignup">Ім'я</label>-->
-                <!--<input type="text" ngModel required-->
-                       <!--name="nameSignup" class="form-control" id="nameSignup">-->
-              <!--</div>-->
-              <!--<div class="form-group">-->
-                <!--<label for="surnameSignup">Прізвище</label>-->
-                <!--<input type="text" ngModel required-->
-                       <!--name="surnameSignup" class="form-control" id="surnameSignup">-->
-              <!--</div>-->
-              <!--<button class="btn btn-primary" [disabled]="!signupForm.form.valid">Зареєструватись</button>-->
-            <!--</form>-->
           </div>
         </div>
       </div>
