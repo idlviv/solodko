@@ -31,6 +31,7 @@
                 <input type="password" ngModel required
                        name="passwordSignin" class="form-control" id="passwordSignin">
               </div>
+
               <button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>
             </form>
           </div>
@@ -47,6 +48,7 @@
             <p class="card-text"> </p>
 
             <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
+              {{signupForm.errors | json}}
               <div class="form-group">
                 <label for="usernameSignup">І'мя користувача</label>
                 <input formControlName="usernameSignup" [formGroup]="signupForm" required
@@ -78,12 +80,9 @@
                 <label for="passwordSignupConfirm">Повторіть пароль</label>
                 <input type="password" formControlName="passwordSignupConfirm" [formGroup]="signupForm" required
                        class="form-control" id="passwordSignupConfirm">
+                <div>{{signupForm.controls['passwordSignupConfirm'].errors | json}}</div>
                 <div class="alert alert-danger" role="alert"
-                     *ngIf="!signupForm.controls['passwordSignupConfirm'].valid && signupForm.controls['passwordSignupConfirm'].touched">
-                  Повторіть пароль, довжина від 4 до 10 символів
-                </div>
-                <div class="alert alert-danger" role="alert"
-                     *ngIf="signupForm.controls['passwordSignupConfirm'].touched && signupForm.hasError('mismatch') && (signupForm.controls['passwordSignupConfirm'].valid && signupForm.controls['passwordSignupConfirm'].touched)">
+                     *ngIf="signupForm.controls['passwordSignupConfirm'].touched && signupForm.controls['passwordSignupConfirm'].hasError('mismatch')">
                   Пароль не збігається
                 </div>
               </div>

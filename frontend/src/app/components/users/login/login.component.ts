@@ -29,9 +29,6 @@ export class LoginComponent implements OnInit {
       //   validators: this.validateService.matchPassword
       // }
       // );
-  }
-
-  ngOnInit() {
     this.signupForm = new FormGroup({
         usernameSignup: new FormControl('', [
           Validators.required,
@@ -49,8 +46,6 @@ export class LoginComponent implements OnInit {
         ]),
         passwordSignupConfirm: new FormControl('', [
           Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(10)
         ]),
         nameSignup: new FormControl('', [
           Validators.required,
@@ -65,6 +60,10 @@ export class LoginComponent implements OnInit {
       },
       this.validateService.matchPassword
     );
+  }
+
+  ngOnInit() {
+
   }
 
   onSubmit(form: NgForm) {
@@ -127,7 +126,7 @@ export class LoginComponent implements OnInit {
             'Logged in',
             {
               cssClass: 'alert-success',
-              timeout: 5000
+              timeout: 2000
             });
           this.router.navigate(['/profile']);
 
@@ -136,7 +135,7 @@ export class LoginComponent implements OnInit {
              data.msg,
             {
               cssClass: 'alert-danger',
-              timeout: 5000
+              timeout: 2000
             });
           this.router.navigate(['/login']);
         }
