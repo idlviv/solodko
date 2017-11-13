@@ -6,16 +6,16 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0",
+		"admin-panel.module",
 		"common"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module.0"
+		"home.module"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0",
+		"products.module",
 		"common"
 	]
 };
@@ -996,7 +996,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}, {{user.surname}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">username: {{user.username}}</li>\r\n    <li class=\"list-group-item\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">email: {{user.email}}\r\n      <span *ngIf=\"!user.isEmailConfirmed\"> - Потрібно пітвердити</span>\r\n    </li>\r\n    <li class=\"list-group-item\">email: {{user | json}}</li>\r\n\r\n  </ul>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"user\">\r\n  <!--<h2 class=\"page-header\">Profile of {{user.name}} {{user.surname}}</h2>-->\r\n  <!--<ul class=\"list-group\">-->\r\n    <!--<li class=\"list-group-item\">username: {{user.username}}</li>-->\r\n    <!--<li class=\"list-group-item\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">email: {{user.email}}-->\r\n      <!--<span *ngIf=\"!user.isEmailConfirmed\"> - Потрібно пітвердити</span>-->\r\n    <!--</li>-->\r\n    <!--<li class=\"list-group-item\">email: {{user | json}}</li>-->\r\n\r\n  <!--</ul>-->\r\n\r\n  <!--<h2 class=\"page-header\">Профіль</h2>-->\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\"></div>\r\n\r\n  <div class=\"col-md-4\">\r\n    <ul class=\"list-group\">\r\n      <li class=\"list-group-item list-group-item-secondary text-right\"><h3>Профіль</h3></li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я</strong></span>\r\n        {{user.name}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Прізвище</strong></span>\r\n        {{user.surname}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я користувача</strong></span>\r\n        {{user.username}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>email</strong></span> {{user.email}}\r\n      </li>\r\n      <li *ngIf=\"!user.isEmailConfirmed\" class=\"list-group-item text-right\"\r\n          [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>Пошта не верифікована</strong></span>\r\n        <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"onVerificationSend()\">\r\n          Надіслати код\r\n        </button>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n  <div class=\"col-md-4\"></div>\r\n</div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1034,6 +1034,17 @@ var ProfileComponent = (function () {
         // підписується на юзера з auth.service
         this.authService.getProfile()
             .subscribe(function (profile) { return _this.user = profile; }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+            return false;
+        });
+    };
+    ProfileComponent.prototype.onVerificationSend = function () {
+        var _this = this;
+        this.authService.sendVerificationEmail()
+            .subscribe(function () { return console.log('ok'); }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
                 timeout: 3000
@@ -1489,6 +1500,15 @@ var AuthService = (function () {
         headers.append('Content-Type', 'application/json');
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
+    };
+    AuthService.prototype.sendVerificationEmail = function () {
+        console.log('verification sent');
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Authorization', this.authToken);
+        headers.append('Content-Type', 'application/json');
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/sendVerificationEmail', { headers: headers })
+            .map(function (res) { return res.json(); })
+            .catch(this.customErrorHandler.httpErrorHandler);
     };
     AuthService.prototype.authUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();

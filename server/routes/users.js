@@ -33,6 +33,11 @@ router.get(
   UserController.userProfile
 );
 
+router.get(
+  '/sendVerificationEmail', passport.authenticate('jwt', {session: false}),
+  UserController.sendVerificationEmail
+);
+
 // router.get('/validate', function(req, res, next) {
 //   res.json({user: req.user});
 // });

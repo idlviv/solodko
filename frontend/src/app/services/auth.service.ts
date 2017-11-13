@@ -48,6 +48,19 @@ export class AuthService {
       .map(res => res.json());
   }
 
+  sendVerificationEmail() {
+    console.log('verification sent');
+
+    const headers = new Headers();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.get(
+      config.serverUrl + 'api/sendVerificationEmail',
+      {headers: headers})
+      .map(res => res.json())
+      .catch(this.customErrorHandler.httpErrorHandler);
+  }
+
   authUser(user) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');

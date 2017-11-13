@@ -30,7 +30,21 @@ export class ProfileComponent implements OnInit {
               timeout: 3000
             });
           return false;
-        })
+        });
+  }
+
+  onVerificationSend() {
+    this.authService.sendVerificationEmail()
+      .subscribe(() => console.log('ok'),
+      error => {
+        this.flashMessage.show(
+          error,
+          {
+            cssClass: 'alert-danger',
+            timeout: 3000
+          });
+        return false;
+      });
   }
 
 }

@@ -33,6 +33,9 @@ module.exports.userRegistration = function(req, res, next) {
     .then((result) => res.json(result))
     .catch((error) => res.json(error));
 };
+module.exports.sendVerificationEmail = function(req, res, next) {
+  
+};
 
 module.exports.sendMail = function(req, res, next) {
 

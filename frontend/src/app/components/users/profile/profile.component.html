@@ -1,11 +1,45 @@
 <div *ngIf="user">
-  <h2 class="page-header">Profile of {{user.name}}, {{user.surname}}</h2>
-  <ul class="list-group">
-    <li class="list-group-item">username: {{user.username}}</li>
-    <li class="list-group-item" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">email: {{user.email}}
-      <span *ngIf="!user.isEmailConfirmed"> - Потрібно пітвердити</span>
-    </li>
-    <li class="list-group-item">email: {{user | json}}</li>
+  <!--<h2 class="page-header">Profile of {{user.name}} {{user.surname}}</h2>-->
+  <!--<ul class="list-group">-->
+    <!--<li class="list-group-item">username: {{user.username}}</li>-->
+    <!--<li class="list-group-item" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">email: {{user.email}}-->
+      <!--<span *ngIf="!user.isEmailConfirmed"> - Потрібно пітвердити</span>-->
+    <!--</li>-->
+    <!--<li class="list-group-item">email: {{user | json}}</li>-->
 
-  </ul>
+  <!--</ul>-->
+
+  <!--<h2 class="page-header">Профіль</h2>-->
+<div class="row">
+  <div class="col-md-4"></div>
+
+  <div class="col-md-4">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-secondary text-right"><h3>Профіль</h3></li>
+      <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я</strong></span>
+        {{user.name}}
+      </li>
+      <li class="list-group-item text-right"><span class="float-left"><strong>Прізвище</strong></span>
+        {{user.surname}}
+      </li>
+      <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я користувача</strong></span>
+        {{user.username}}
+      </li>
+      <li class="list-group-item text-right" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
+        <span class="float-left"><strong>email</strong></span> {{user.email}}
+      </li>
+      <li *ngIf="!user.isEmailConfirmed" class="list-group-item text-right"
+          [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
+        <span class="float-left"><strong>Пошта не верифікована</strong></span>
+        <button type="button" class="btn btn-primary btn-sm" (click)="onVerificationSend()">
+          Надіслати код
+        </button>
+      </li>
+
+    </ul>
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+
 </div>
