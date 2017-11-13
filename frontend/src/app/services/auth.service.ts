@@ -74,12 +74,7 @@ export class AuthService {
     return this.http.get(
       config.serverUrl + 'api/profile',
       {headers: headers})
-      .map(user => {
-        // console.log('res', res.json());
-        // this.logUserIn(user.json());
-
-        return user.json();
-      })
+      .map(user => user.json())
       .catch(this.customErrorHandler.httpErrorHandler);
     }
 

@@ -155,7 +155,9 @@ module.exports.userProfile = function(req, res, next) {
     _id: user._id,
     username: user.username,
     name: user.name,
+    surname: user.surname,
     email: user.email,
-    role: user.role
+    role: user.role,
+    isEmailConfirmed: user.isEmailConfirmed
   });
 };

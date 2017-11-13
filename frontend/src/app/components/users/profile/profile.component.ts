@@ -21,10 +21,8 @@ export class ProfileComponent implements OnInit {
 
     // підписується на юзера з auth.service
     this.authService.getProfile()
-      .subscribe(
-        (profile) => {
-          this.user = profile},
-        (error) => {
+      .subscribe(profile => this.user = profile,
+        error => {
           this.flashMessage.show(
             error,
             {

@@ -887,9 +887,6 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.onSignupSubmit = function (form) {
         var _this = this;
-        console.log('submit signup form', form);
-        console.log('submit signup form', form.controls.usernameSignup);
-        // console.log('submit signup form');
         this.userSignup = {
             username: form.controls.usernameSignup.value,
             password: form.controls.passwordSignup.value,
@@ -898,7 +895,6 @@ var LoginComponent = (function () {
             surname: form.controls.surnameSignup.value,
             role: 'User',
         };
-        console.log('submit signup this.user', this.userSignup);
         this.authService.registerUser(this.userSignup)
             .subscribe(function (data) {
             if (data.success) {
@@ -906,7 +902,7 @@ var LoginComponent = (function () {
                     cssClass: 'alert-success',
                     timeout: 3000
                 });
-                _this.onSignin(_this.userSignup.username, _this.userSignup.password);
+                _this.signin(_this.userSignup.username, _this.userSignup.password);
             }
             else {
                 _this.flashMessage.show('Registration failed', {
@@ -925,7 +921,7 @@ var LoginComponent = (function () {
             }
         });
     };
-    LoginComponent.prototype.onSignin = function (username, password) {
+    LoginComponent.prototype.signin = function (username, password) {
         var _this = this;
         this.userSignin = {
             username: username,
@@ -961,7 +957,7 @@ var LoginComponent = (function () {
     LoginComponent.prototype.onSigninSubmit = function (form) {
         var username = form.value.usernameSignin;
         var password = form.value.passwordSignin;
-        this.onSignin(username, password);
+        this.signin(username, password);
     };
     return LoginComponent;
 }());
@@ -1000,7 +996,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">username: {{user.username}}</li>\r\n    <li class=\"list-group-item\">email: {{user.email}}</li>\r\n  </ul>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"user\">\r\n  <h2 class=\"page-header\">Profile of {{user.name}}, {{user.surname}}</h2>\r\n  <ul class=\"list-group\">\r\n    <li class=\"list-group-item\">username: {{user.username}}</li>\r\n    <li class=\"list-group-item\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">email: {{user.email}}\r\n      <span *ngIf=\"!user.isEmailConfirmed\"> - Потрібно пітвердити</span>\r\n    </li>\r\n    <li class=\"list-group-item\">email: {{user | json}}</li>\r\n\r\n  </ul>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1037,9 +1033,7 @@ var ProfileComponent = (function () {
         var _this = this;
         // підписується на юзера з auth.service
         this.authService.getProfile()
-            .subscribe(function (profile) {
-            _this.user = profile;
-        }, function (error) {
+            .subscribe(function (profile) { return _this.user = profile; }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
                 timeout: 3000
@@ -1515,11 +1509,7 @@ var AuthService = (function () {
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/profile', { headers: headers })
-            .map(function (user) {
-            // console.log('res', res.json());
-            // this.logUserIn(user.json());
-            return user.json();
-        })
+            .map(function (user) { return user.json(); })
             .catch(this.customErrorHandler.httpErrorHandler);
     };
     AuthService.prototype.storeUserData = function (token, user) {

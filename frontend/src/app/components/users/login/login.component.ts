@@ -67,10 +67,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSignupSubmit(form: NgForm) {
-    console.log('submit signup form', form);
-    console.log('submit signup form', form.controls.usernameSignup);
 
-    // console.log('submit signup form');
     this.userSignup = {
       username: form.controls.usernameSignup.value,
       password: form.controls.passwordSignup.value,
@@ -79,7 +76,6 @@ export class LoginComponent implements OnInit {
       surname: form.controls.surnameSignup.value,
       role: 'User',
     };
-    console.log('submit signup this.user', this.userSignup);
 
     this.authService.registerUser(this.userSignup)
       .subscribe(data => {
@@ -90,7 +86,7 @@ export class LoginComponent implements OnInit {
                 cssClass: 'alert-success',
                 timeout: 3000
               });
-            this.onSignin(this.userSignup.username, this.userSignup.password);
+            this.signin(this.userSignup.username, this.userSignup.password);
           } else {
             this.flashMessage.show(
               'Registration failed',
@@ -112,10 +108,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/login']);
           }
         });
-
   }
 
-  onSignin(username, password) {
+  signin(username, password) {
     this.userSignin = {
       username,
       password
@@ -159,7 +154,7 @@ export class LoginComponent implements OnInit {
 
     const username = form.value.usernameSignin;
     const password = form.value.passwordSignin;
-    this.onSignin(username, password);
+    this.signin(username, password);
 
   }
 }
