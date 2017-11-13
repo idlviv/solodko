@@ -14,7 +14,7 @@ router.get('/role',
 
 // реєстрація і повернення результату в фронт
 router.post('/register',
-  passport.authenticate('jwt', {session: false}),
+  // passport.authenticate('jwt', {session: false}),
   UserController.userRegistration
   );
 

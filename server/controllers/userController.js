@@ -20,9 +20,12 @@ module.exports.userRole = function(req, res, next) {
 module.exports.userRegistration = function(req, res, next) {
   let newUser = new UserModel({
     name: req.body.name,
+    surname: req.body.name,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
+    role: req.body.role,
+    isEmailConfirmed: false
   });
   // повертає обєкт (success..)
   log.verbose('user Controller- newUser', newUser);

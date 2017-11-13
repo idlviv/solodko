@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
 
   guest: IUser = {
     name: '',
+    surname: '',
     email: '',
     username: '',
     password: '',

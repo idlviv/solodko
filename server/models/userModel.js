@@ -34,6 +34,11 @@ const UserSchema = mongoose.Schema({
     enum: ['User', 'Manager', 'Admin'],
     default: 'User',
   },
+  isEmailConfirmed: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 let UserModel = mongoose.model('user', UserSchema);

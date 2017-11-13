@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   guest: IUser = {
     name: '',
+    surname: '',
     email: '',
     username: '',
     password: '',

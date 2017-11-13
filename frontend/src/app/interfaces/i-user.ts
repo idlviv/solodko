@@ -1,7 +1,9 @@
 export interface IUser {
-  name: string;
-  email: string;
   username: string;
+  email: string;
   password: string;
-  role: string;
+  name: string;
+  surname: string;
+  role?: string;
+  isEmailConfirmed?: boolean;
 };

@@ -39,7 +39,7 @@ export class AuthService {
   registerUser(user: IUser) {
     const headers = new Headers();
     this.loadToken();
-    headers.append('Authorization', this.authToken);
+    // headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.post(
       config.serverUrl + 'api/register',

@@ -11,6 +11,7 @@ export class AdminPanelSubmenuComponent implements OnInit {
   menuList: object[];
   guest: IUser = {
     name: '',
+    surname: '',
     email: '',
     username: '',
     password: '',

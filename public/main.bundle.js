@@ -6,16 +6,16 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module",
+		"admin-panel.module.0",
 		"common"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module"
+		"home.module.0"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module",
+		"products.module.0",
 		"common"
 	]
 };
@@ -159,6 +159,7 @@ var AppComponent = (function () {
         this.flashMessage = flashMessage;
         this.guest = {
             name: '',
+            surname: '',
             email: '',
             username: '',
             password: '',
@@ -401,6 +402,7 @@ var NavbarComponent = (function () {
         this.catalogService = catalogService;
         this.guest = {
             name: '',
+            surname: '',
             email: '',
             username: '',
             password: '',
@@ -842,6 +844,7 @@ var LoginComponent = (function () {
         this.router = router;
         this.flashMessage = flashMessage;
         this.validateService = validateService;
+        this.userSignup = {};
         // this.form = formBuilder.group({
         //   password: ['', Validators.required],
         //   passwordConfirm: ['', Validators.required]
@@ -882,58 +885,53 @@ var LoginComponent = (function () {
             ]),
         }, this.validateService.matchPassword);
     };
-    LoginComponent.prototype.onSubmit = function (form) {
-    };
     LoginComponent.prototype.onSignupSubmit = function (form) {
-        console.log('submit signup form', form);
-        console.log('submit signup form', this.signupForm);
-        // console.log('submit signup form');
-        // this.user = {
-        //   username: form.value.username,
-        //   password: form.value.password,
-        // };
-        //
-        // this.authService.authUser(this.user)
-        //   .subscribe((data) => {
-        //       if (data.success) {
-        //         this.authService.storeUserData(data.token, data.user);
-        //         this.flashMessage.show(
-        //           'Logged in',
-        //           {
-        //             cssClass: 'alert-success',
-        //             timeout: 5000
-        //           });
-        //         this.router.navigate(['/profile']);
-        //
-        //       } else {
-        //         this.flashMessage.show(
-        //           data.msg,
-        //           {
-        //             cssClass: 'alert-danger',
-        //             timeout: 5000
-        //           });
-        //         this.router.navigate(['/login']);
-        //       }
-        //
-        //     },err => {
-        //       this.flashMessage.show(
-        //         err,
-        //         // err.status + ' ' + err.statusText,
-        //         {
-        //           cssClass: 'alert-danger',
-        //           timeout: 5000
-        //         });
-        //       this.router.navigate(['/login']);
-        //     }
-        //   )
-    };
-    LoginComponent.prototype.onSigninSubmit = function (form) {
         var _this = this;
-        this.user = {
-            username: form.value.usernameSignin,
-            password: form.value.passwordSignin,
+        console.log('submit signup form', form);
+        console.log('submit signup form', form.controls.usernameSignup);
+        // console.log('submit signup form');
+        this.userSignup = {
+            username: form.controls.usernameSignup.value,
+            password: form.controls.passwordSignup.value,
+            email: form.controls.emailSignup.value,
+            name: form.controls.nameSignup.value,
+            surname: form.controls.surnameSignup.value,
+            role: 'User',
         };
-        this.authService.authUser(this.user)
+        console.log('submit signup this.user', this.userSignup);
+        this.authService.registerUser(this.userSignup)
+            .subscribe(function (data) {
+            if (data.success) {
+                _this.flashMessage.show('Registration successful', {
+                    cssClass: 'alert-success',
+                    timeout: 3000
+                });
+                _this.onSignin(_this.userSignup.username, _this.userSignup.password);
+            }
+            else {
+                _this.flashMessage.show('Registration failed', {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+                _this.router.navigate(['/register']);
+            }
+        }, function (error) {
+            if (error.status === 401) {
+                _this.flashMessage.show('Please login', {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+                _this.router.navigate(['/login']);
+            }
+        });
+    };
+    LoginComponent.prototype.onSignin = function (username, password) {
+        var _this = this;
+        this.userSignin = {
+            username: username,
+            password: password
+        };
+        this.authService.authUser(this.userSignin)
             .subscribe(function (data) {
             if (data.success) {
                 _this.authService.storeUserData(data.token, data.user);
@@ -959,6 +957,11 @@ var LoginComponent = (function () {
             });
             _this.router.navigate(['/login']);
         });
+    };
+    LoginComponent.prototype.onSigninSubmit = function (form) {
+        var username = form.value.usernameSignin;
+        var password = form.value.passwordSignin;
+        this.onSignin(username, password);
     };
     return LoginComponent;
 }());
@@ -1488,7 +1491,7 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         this.loadToken();
-        headers.append('Authorization', this.authToken);
+        // headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.post(__WEBPACK_IMPORTED_MODULE_3__app_config__["a" /* config */].serverUrl + 'api/register', user, { headers: headers })
             .map(function (res) { return res.json(); });

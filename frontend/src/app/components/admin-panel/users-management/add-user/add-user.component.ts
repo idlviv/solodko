@@ -57,37 +57,37 @@ export class AddUserComponent implements OnInit {
     }
 
     // підписка на authService.registerUser для реєстрації
-    this.authService.registerUser(user)
-      .subscribe(data => {
-          if (data.success) {
-            this.flashMessage.show(
-              'Registration successful',
-              {
-                cssClass: 'alert-success',
-                timeout: 3000
-              });
-            // this.router.navigate(['/login']);
-          } else {
-            this.flashMessage.show(
-              'Registration failed',
-              {
-                cssClass: 'alert-danger',
-                timeout: 3000
-              });
-            this.router.navigate(['/register']);
-          }
-        },
-        error => {
-          if (error.status === 401) {
-            this.flashMessage.show(
-              'Please login',
-              {
-                cssClass: 'alert-danger',
-                timeout: 3000
-              });
-            this.router.navigate(['/login']);
-          }
-        });
+    // this.authService.registerUser(user)
+    //   .subscribe(data => {
+    //       if (data.success) {
+    //         this.flashMessage.show(
+    //           'Registration successful',
+    //           {
+    //             cssClass: 'alert-success',
+    //             timeout: 3000
+    //           });
+    //         // this.router.navigate(['/login']);
+    //       } else {
+    //         this.flashMessage.show(
+    //           'Registration failed',
+    //           {
+    //             cssClass: 'alert-danger',
+    //             timeout: 3000
+    //           });
+    //         this.router.navigate(['/register']);
+    //       }
+    //     },
+    //     error => {
+    //       if (error.status === 401) {
+    //         this.flashMessage.show(
+    //           'Please login',
+    //           {
+    //             cssClass: 'alert-danger',
+    //             timeout: 3000
+    //           });
+    //         this.router.navigate(['/login']);
+    //       }
+    //     });
   }
 
 }

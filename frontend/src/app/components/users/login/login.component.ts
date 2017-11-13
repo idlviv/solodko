@@ -4,6 +4,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {ValidateService} from '../../../services/validate.service';
+import {IUser} from '../../../interfaces/i-user';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,8 @@ import {ValidateService} from '../../../services/validate.service';
 })
 export class LoginComponent implements OnInit {
   signupForm: FormGroup;
-  user: Object;
+  userSignup = {} as IUser;
+  userSignin: Object;
 
   constructor(
     private authService: AuthService,
@@ -64,83 +66,83 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSubmit(form: NgForm) {
-  }
-
   onSignupSubmit(form: NgForm) {
     console.log('submit signup form', form);
-    console.log('submit signup form', this.signupForm);
+    console.log('submit signup form', form.controls.usernameSignup);
 
     // console.log('submit signup form');
-    // this.user = {
-    //   username: form.value.username,
-    //   password: form.value.password,
-    // };
-    //
-    // this.authService.authUser(this.user)
-    //   .subscribe((data) => {
-    //       if (data.success) {
-    //         this.authService.storeUserData(data.token, data.user);
-    //         this.flashMessage.show(
-    //           'Logged in',
-    //           {
-    //             cssClass: 'alert-success',
-    //             timeout: 5000
-    //           });
-    //         this.router.navigate(['/profile']);
-    //
-    //       } else {
-    //         this.flashMessage.show(
-    //           data.msg,
-    //           {
-    //             cssClass: 'alert-danger',
-    //             timeout: 5000
-    //           });
-    //         this.router.navigate(['/login']);
-    //       }
-    //
-    //     },err => {
-    //       this.flashMessage.show(
-    //         err,
-    //         // err.status + ' ' + err.statusText,
-    //         {
-    //           cssClass: 'alert-danger',
-    //           timeout: 5000
-    //         });
-    //       this.router.navigate(['/login']);
-    //     }
-    //   )
+    this.userSignup = {
+      username: form.controls.usernameSignup.value,
+      password: form.controls.passwordSignup.value,
+      email: form.controls.emailSignup.value,
+      name: form.controls.nameSignup.value,
+      surname: form.controls.surnameSignup.value,
+      role: 'User',
+    };
+    console.log('submit signup this.user', this.userSignup);
+
+    this.authService.registerUser(this.userSignup)
+      .subscribe(data => {
+          if (data.success) {
+            this.flashMessage.show(
+              'Registration successful',
+              {
+                cssClass: 'alert-success',
+                timeout: 3000
+              });
+            this.onSignin(this.userSignup.username, this.userSignup.password);
+          } else {
+            this.flashMessage.show(
+              'Registration failed',
+              {
+                cssClass: 'alert-danger',
+                timeout: 3000
+              });
+            this.router.navigate(['/register']);
+          }
+        },
+        error => {
+          if (error.status === 401) {
+            this.flashMessage.show(
+              'Please login',
+              {
+                cssClass: 'alert-danger',
+                timeout: 3000
+              });
+            this.router.navigate(['/login']);
+          }
+        });
+
   }
 
-  onSigninSubmit(form: NgForm) {
-    this.user = {
-      username: form.value.usernameSignin,
-      password: form.value.passwordSignin,
+  onSignin(username, password) {
+    this.userSignin = {
+      username,
+      password
     };
-
-    this.authService.authUser(this.user)
+    this.authService.authUser(this.userSignin)
       .subscribe((data) => {
-        if (data.success) {
-          this.authService.storeUserData(data.token, data.user);
-          this.flashMessage.show(
-            'Logged in',
-            {
-              cssClass: 'alert-success',
-              timeout: 2000
-            });
-          this.router.navigate(['/profile']);
+          if (data.success) {
+            this.authService.storeUserData(data.token, data.user);
+            this.flashMessage.show(
+              'Logged in',
+              {
+                cssClass: 'alert-success',
+                timeout: 2000
+              });
+            this.router.navigate(['/profile']);
 
-        } else {
-          this.flashMessage.show(
-             data.msg,
-            {
-              cssClass: 'alert-danger',
-              timeout: 2000
-            });
-          this.router.navigate(['/login']);
-        }
+          } else {
+            this.flashMessage.show(
+              data.msg,
+              {
+                cssClass: 'alert-danger',
+                timeout: 2000
+              });
+            this.router.navigate(['/login']);
+          }
 
-      },err => {
+        },err => {
           this.flashMessage.show(
             err,
             // err.status + ' ' + err.statusText,
@@ -151,5 +153,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/login']);
         }
       )
+  }
+
+  onSigninSubmit(form: NgForm) {
+
+    const username = form.value.usernameSignin;
+    const password = form.value.passwordSignin;
+    this.onSignin(username, password);
+
   }
 }
