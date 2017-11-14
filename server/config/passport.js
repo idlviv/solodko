@@ -11,6 +11,7 @@ const config = require('./');
 module.exports = function(passport) {
   log.verbose('config/passport - initialization');
   let opts = {};
+  let emailVerificationOptions = {};
 
   // Реквест в хедері передає JWT token,
   // ф-я ExtractJwt.fromAuthHeader() - виділяє його
@@ -25,7 +26,7 @@ module.exports = function(passport) {
   // також передається ф-я done, що обробляє кінцевий рез-т
   // (після операцій з jwtPayload) і поертає відповідь на запрос
 
-  passport.use(
+  passport.use('jwt',
     new JwtStrategy(opts, (jwtPayload, done) => {
       log.verbose('config/passport - JwtStrategy');
       // на основі _id (витягнутого з токена) робить пошук
@@ -43,6 +44,27 @@ module.exports = function(passport) {
         });
     }
   ));
+  emailVerificationOptions.jwtFromRequest = ExtractJwt.fromUrlQueryParameter('token');
+  emailVerificationOptions.secretOrKey = config.get('JWT_SECRET_EMAIL');
+
+  passport.use('jwt.email.verification',
+    new JwtStrategy(emailVerificationOptions, (jwtPayload, done) => {
+        log.verbose('config/passport - JwtStrategy email.verification');
+        // на основі _id (витягнутого з токена) робить пошук
+        // в базі, чи є такий юзер, і ф-я done повертає відповідь
+        UserModel.getUserById(jwtPayload.sub._id)
+          .then((user) => {
+            if (user) {
+              done(null, user);
+            } else {
+              done(null, false);
+            }
+          })
+          .catch((error) => {
+            done(error, false);
+          });
+      }
+    ));
 
   passport.use('local.signin',
     new LocalStrategy((username, password, done) => {

@@ -38,6 +38,12 @@ router.get(
   UserController.sendVerificationEmail
 );
 
+  // http://localhost:8081/api/receiveverificationemail?token=eyJhbGciOiJ..
+router.get(
+  '/receiveverificationemail', passport.authenticate('jwt.email.verification', {session: false}),
+  UserController.receiveVerificationEmail
+);
+
 // router.get('/validate', function(req, res, next) {
 //   res.json({user: req.user});
 // });

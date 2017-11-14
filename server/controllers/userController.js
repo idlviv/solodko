@@ -34,8 +34,69 @@ module.exports.userRegistration = function(req, res, next) {
     .catch((error) => res.json(error));
 };
 module.exports.sendVerificationEmail = function(req, res, next) {
+  const user = req.user._doc;
+  // console.log('user.email', user.email);
+  // console.log('user.isEmailConfirmed', user.isEmailConfirmed);
+
+  if (!user.isEmailConfirmed) {
+    const TOKEN = createTokenForEmailVerification(user);
+    // !!!!! full_url = req.protocol + '://' + req.get('host') + req.originalUrl;
+    const URL = req.protocol + '://' + req.get('host') + '/api/receiveverificationemail?token=' + TOKEN;
+    // console.log('sendVerificationEmail-token', TOKEN);
+    // console.log('sendVerificationEmail-URL', URL);
+    mailTransport(URL, user.email);
+    res.json('ok');
+  } else {
+    console.log('email already confirmed');
+    res.json('email already confirmed');
+  }
+};
+
+module.exports.receiveVerificationEmail = function(req, res, next) {
+  const USER = req.user._doc;
+  UserModel.getUserById(USER._id)
+    .then((user) => {
+      if (user.email === USER.email) {
+        UserModel.updateUser({'_id': user._id}, {$set: {'isEmailConfirmed': true}})
+          .then(result => {
+            console.log('перевірка користувача оновлена в бд', result.success);
+            // res.status(200).json('Пошту перевірено');
+            res.redirect(req.protocol + '://' + req.get('host') + '/profile');
+          })
+          .catch(result => console.log('коритсувач не оновлений в бд', result.success));
+      } else {
+      }
+    })
+    .catch((error) => {
+      console.log('перевірка користувача якась помилка))');
+    });
+  // res.status(200).json('Пошту не перевірено');
 
 };
+
+function mailTransport(URL, email) {
+  let transporter = nodemailer.createTransport({
+    service:  'Mailgun',
+    auth: {
+      user: config.get('MAIL_USER'),
+      pass: config.get('MAIL_PASS')
+    }
+  });
+  let mailOptions = {
+    from: 'Solodko <postmaster@sandbox2a37a392c4934639b9e08ca32ece3bcd.mailgun.org>',
+    to: email,
+    subject: 'Please verify account',
+    text: 'Будь ласка, перейдіть за посиланням ', URL,
+    html: '<b>Будь ласка, перейдіть за посиланням </b>' + URL
+  };
+  // send mail with defined transport object
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log('Message sent: %s', info.messageId);
+  });
+}
 
 module.exports.sendMail = function(req, res, next) {
 
@@ -56,13 +117,12 @@ module.exports.sendMail = function(req, res, next) {
   // send mail with defined transport object
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      return console.log(error);
+      console.log('email send error', error);
+      return res.status(error);
     }
-    res.status(200).send(info.messageId);
     console.log('Message sent: %s', info.messageId);
-
+    return res.status(200).send(info.messageId);
   });
-
 };
 
 module.exports.sendTestMail = function(req, res, next) {
@@ -98,12 +158,10 @@ module.exports.sendTestMail = function(req, res, next) {
       console.log('Message sent: %s', info.messageId);
       // Preview only available when sending through an Ethereal account
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@blurdybloop.com>
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     });
   });
-
 };
 
 createToken = function(user) {
@@ -113,10 +171,25 @@ createToken = function(user) {
         _id: user._id,
         role: user.role
       },
-      iat: new Date().getTime(),
-      exp: new Date().getTime() + 604800 // or setDate(new Date().getDate() + 7) //7 days
+      iat: Math.floor(Date.now() / 1000),
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 7), // 60 секунд * 60 хвилин = 1 година * 24 год * 7 днів
     },
     config.get('MONGOOSE_SECRET')
+    // {expiresIn: 604800} //1 week
+  );
+};
+
+createTokenForEmailVerification = function(user) {
+  return jwt.sign(
+    {
+      sub: {
+        _id: user._id,
+        email: user.email
+      },
+      iat: Math.floor(Date.now() / 1000),
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24), //1 day
+    },
+    config.get('JWT_SECRET_EMAIL')
     // {expiresIn: 604800} //1 week
   );
 };
@@ -127,7 +200,7 @@ module.exports.userAuthentication = function(req, res, next) {
 
   const user = req.user._doc;
   // в payload записую тільки id юзера, можу добавити будь-які дані
-  const TOKEN = createToken(user);
+  const TOKEN = 'JWT ' + createToken(user);
   // const cookieOptions = {
   //   httpOnly: true,
   //   secure: true,
@@ -138,7 +211,7 @@ module.exports.userAuthentication = function(req, res, next) {
 
   // в фронт при вході даю всі дані, крім пароля
   res.status(200).json({
-    success: true, token: 'JWT ' + TOKEN,
+    success: true, token: TOKEN,
     user: {
       _id: user._id,
       username: user.username,

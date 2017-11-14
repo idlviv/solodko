@@ -978,7 +978,13 @@ var ProfileComponent = (function () {
     ProfileComponent.prototype.onVerificationSend = function () {
         var _this = this;
         this.authService.sendVerificationEmail()
-            .subscribe(function () { return console.log('ok'); }, function (error) {
+            .subscribe(function () {
+            _this.flashMessage.show('Перевірте пошту, повідомлення надіслано', {
+                cssClass: 'alert-success',
+                timeout: 3000
+            });
+            return true;
+        }, function (error) {
             _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
                 timeout: 3000

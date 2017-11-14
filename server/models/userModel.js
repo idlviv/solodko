@@ -84,3 +84,14 @@ module.exports.addUser = function(newUser) {
       .catch((error) => {throw error;});
   });
 };
+
+module.exports.updateUser = function(query, update) {
+  return new Promise(function(resolve, reject) {
+
+        // якшо успішно записано в базу, то повертає в роутер відп обєкт
+        UserModel.update(query, update)
+          .then(() => resolve({success: true, msg: 'User updated'}))
+          .catch(() => reject({success: false, msg: 'Failed to update user'}));
+      })
+
+};

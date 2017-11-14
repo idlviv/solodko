@@ -35,7 +35,15 @@ export class ProfileComponent implements OnInit {
 
   onVerificationSend() {
     this.authService.sendVerificationEmail()
-      .subscribe(() => console.log('ok'),
+      .subscribe(() => {
+      this.flashMessage.show(
+        'Перевірте пошту, повідомлення надіслано',
+        {
+          cssClass: 'alert-success',
+          timeout: 3000
+        });
+      return true;
+        },
       error => {
         this.flashMessage.show(
           error,
