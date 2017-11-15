@@ -6,11 +6,11 @@ let UserController = require('../controllers/userController');
 const log = require('../config/winston')(module);
 
 const config = require('../config');
-
-router.get('/role',
-  passport.authenticate('jwt', {session: false}),
-  UserController.userRole
-  );
+//
+// router.get('/role',
+//   passport.authenticate('jwt', {session: false}),
+//   UserController.userRole
+//   );
 
 // реєстрація і повернення результату в фронт
 router.post('/register',
@@ -34,23 +34,21 @@ router.get(
 );
 
 router.get(
-  '/sendVerificationEmail', passport.authenticate('jwt', {session: false}),
+  '/sendverificationemail',
+  passport.authenticate('jwt', {session: false}),
   UserController.sendVerificationEmail
 );
 
   // http://localhost:8081/api/receiveverificationemail?token=eyJhbGciOiJ..
 router.get(
-  '/receiveverificationemail', passport.authenticate('jwt.email.verification', {session: false}),
+  '/receiveverificationemail',
+  passport.authenticate('jwt.email.verification', {session: false}),
   UserController.receiveVerificationEmail
 );
 
-// router.get('/validate', function(req, res, next) {
-//   res.json({user: req.user});
-// });
-
-router.get(
-  '/send-mail',
-  UserController.sendMail
-);
+// router.get(
+//   '/send-mail',
+//   UserController.sendMail
+// );
 
 module.exports = router;

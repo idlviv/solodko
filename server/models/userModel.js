@@ -45,7 +45,7 @@ let UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;
 
 module.exports.getUserById = function(_id) {
-  log.info ('getUserById');
+  log.info('getUserById');
   return new Promise((resolve, reject) => {
     UserModel.findById(_id)
       .then((user) => resolve(user))

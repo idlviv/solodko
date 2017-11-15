@@ -1434,7 +1434,7 @@ var AuthService = (function () {
         var headers = new http_1.Headers();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get(app_config_1.config.serverUrl + 'api/sendVerificationEmail', { headers: headers })
+        return this.http.get(app_config_1.config.serverUrl + 'api/sendverificationemail', { headers: headers })
             .map(function (res) { return res.json(); })
             .catch(this.customErrorHandler.httpErrorHandler);
     };

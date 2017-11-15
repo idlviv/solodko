@@ -10,15 +10,16 @@ const config = require('./');
 //Виконується при ініціалізації паспорта
 module.exports = function(passport) {
   log.verbose('config/passport - initialization');
-  let opts = {};
+
+  let jwtOptions = {};
   let emailVerificationOptions = {};
 
   // Реквест в хедері передає JWT token,
   // ф-я ExtractJwt.fromAuthHeader() - виділяє його
   // Перша опція JWT token
-  opts.jwtFromRequest = ExtractJwt.fromAuthHeader();
+  jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeader();
   // Друга опція secret береться з конфіга
-  opts.secretOrKey = config.get('MONGOOSE_SECRET');
+  jwtOptions.secretOrKey = config.get('MONGOOSE_SECRET');
   // При кожному passport.authenticate створюється новий екземпляр стратегії
   // туда передається JWT token і secret
   // з токена на основі секрета виділяється юзер
@@ -27,7 +28,7 @@ module.exports = function(passport) {
   // (після операцій з jwtPayload) і поертає відповідь на запрос
 
   passport.use('jwt',
-    new JwtStrategy(opts, (jwtPayload, done) => {
+    new JwtStrategy(jwtOptions, (jwtPayload, done) => {
       log.verbose('config/passport - JwtStrategy');
       // на основі _id (витягнутого з токена) робить пошук
       // в базі, чи є такий юзер, і ф-я done повертає відповідь
@@ -44,6 +45,7 @@ module.exports = function(passport) {
         });
     }
   ));
+
   emailVerificationOptions.jwtFromRequest = ExtractJwt.fromUrlQueryParameter('token');
   emailVerificationOptions.secretOrKey = config.get('JWT_SECRET_EMAIL');
 
