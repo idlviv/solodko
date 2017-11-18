@@ -15,17 +15,28 @@
       <h4 class="card-title">{{product.name}}</h4>
       <p *ngIf="product.itemDescription" class="card-text item-text text-muted">{{product.itemDescription}}</p>
 
+      <div class="row">
+        <div class="col-4">
+          <button class="btn btn-primary btn-sm">
+            <i class="material-icons">add</i>
+            <i class="material-icons">shopping_cart</i>
+          </button>
+        </div>
+        <div class="col-8">
+          <p *ngIf="product.itemNumber" class="card-text item-info-title text-muted">Артикул
+            <span class="item-info-value">{{product.itemNumber}}</span>
+          </p>
+          <p *ngIf="product.size" class="card-text item-info-title text-muted">
+            Висота x Ширина
+            <span class="item-info-value">{{product.size.height}}</span>
+            х
+            <span class="item-info-value">{{product.size.width}}</span>
+            см
+          </p>
+        </div>
+      </div>
 
-      <p *ngIf="product.itemNumber" class="card-text item-info-title text-muted">Артикул
-        <span class="item-info-value">{{product.itemNumber}}</span>
-      </p>
-      <p *ngIf="product.size" class="card-text item-info-title text-muted">
-        Висота x Ширина
-        <span class="item-info-value">{{product.size.height}}</span>
-        х
-        <span class="item-info-value">{{product.size.width}}</span>
-        см
-      </p>
+
     </div>
   </div>
 </div>

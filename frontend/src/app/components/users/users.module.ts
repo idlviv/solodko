@@ -10,11 +10,13 @@ import {ProfileComponent} from './profile/profile.component';
 // import {Observable} from 'rxjs/Observable';
 
 import {CustomErrorHandler} from '../../services/CustomErrorHandler';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     ProfileComponent,
+    CartComponent,
   ],
   imports: [
     CommonModule,

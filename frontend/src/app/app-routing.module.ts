@@ -9,6 +9,7 @@ import { Page404Component } from './components/shared/page404/page404.component'
 import {AuthAdminGuard} from './guards/auth-admin.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
 import {AuthManagerGuard} from './guards/auth-manager.guard';
+import {CartComponent} from './components/users/cart/cart.component';
 
 const appRoutes: Routes = [
   { path: 'home',
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
   //   loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
   //   },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthUserGuard]},
+  {path: 'cart', component: CartComponent, canActivate: [AuthUserGuard]},
   {path: 'admin',
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },

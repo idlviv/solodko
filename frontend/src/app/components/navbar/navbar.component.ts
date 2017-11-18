@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
   localCatalog: ICatalog[];
-  //for async pipe
+  // for async pipe
   getLoggedUser$: Observable<IUser>;
 
   guest: IUser = {
