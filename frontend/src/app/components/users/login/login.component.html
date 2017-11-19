@@ -37,8 +37,8 @@
           <div class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
             <h4 class="card-title">Реєстрація</h4>
             <p class="card-text"> </p>
-
-            <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit(signupForm)">
+            <!--<p *ngIf="signupForm"> {{signupForm.value | json}}</p>-->
+            <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit()">
               <div class="form-group">
                 <label for="usernameSignup">І'мя користувача</label>
                 <input formControlName="usernameSignup" [formGroup]="signupForm" required
@@ -93,7 +93,7 @@
                   Довжина від 2 до 20 символів
                 </div>
               </div>
-              <button class="btn btn-primary" [disabled]="!signupForm.valid">Зареєструватись</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Зареєструватись</button>
             </form>
 
           </div>

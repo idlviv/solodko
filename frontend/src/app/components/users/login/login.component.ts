@@ -66,16 +66,23 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSignupSubmit(form: NgForm) {
-
+  onSignupSubmit() {
     this.userSignup = {
-      username: form.controls.usernameSignup.value,
-      password: form.controls.passwordSignup.value,
-      email: form.controls.emailSignup.value,
-      name: form.controls.nameSignup.value,
-      surname: form.controls.surnameSignup.value,
+      username: this.signupForm.value.usernameSignup,
+      password: this.signupForm.value.passwordSignup,
+      email: this.signupForm.value.emailSignup,
+      name: this.signupForm.value.nameSignup,
+      surname: this.signupForm.value.surnameSignup,
       role: 'User',
     };
+    // this.userSignup = {
+    //   username: form.controls.usernameSignup.value,
+    //   password: form.controls.passwordSignup.value,
+    //   email: form.controls.emailSignup.value,
+    //   name: form.controls.nameSignup.value,
+    //   surname: form.controls.surnameSignup.value,
+    //   role: 'User',
+    // };
 
     this.authService.registerUser(this.userSignup)
       .subscribe(data => {
