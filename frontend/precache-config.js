@@ -12,7 +12,6 @@ module.exports = {
         'public/index.html',
         'public/**.js',
         'public/**.css',
-        'public/assets/images/**.jpg'
       ],
       stripPrefix: 'public/assets/',
       mergeStaticsConfig: true // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
