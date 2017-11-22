@@ -9,8 +9,9 @@
 .card {
   margin-bottom: 2rem;
   border: 0;
-  padding-left: .7rem;
-  padding-right: .7rem;
+  /*padding-left: .7rem;*/
+  /*padding-right: .7rem;*/
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .card-title {
@@ -69,7 +70,7 @@
   position: relative;
 }
 
-.button-light {
+.button-light-category {
   position: absolute;
   top: calc(50% - 1.5rem);
   top: -webkit-calc(50% - 1.5rem);

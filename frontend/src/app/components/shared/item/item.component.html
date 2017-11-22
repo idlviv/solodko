@@ -1,10 +1,9 @@
 <div class="card">
   <div class="album">
 
-
     <div class="img-container clear-fix">
 
-      <a *ngIf="parentComponentLink" class="btn button-light button-size-3" [routerLink]="parentComponentLink">
+      <a *ngIf="parentComponentLink" class="btn button-light button-light-category button-size-3" [routerLink]="parentComponentLink">
         <i class="material-icons button-light-icon button-icon-size-3">arrow_forward</i></a>
 
       <img class="card-img-top" src="{{product.mainImgSrc[0]}}" alt="Зображення"
@@ -17,19 +16,22 @@
 
       <div class="row">
         <div class="col-4">
-          <button class="btn btn-primary btn-sm">
-            <i class="material-icons">add</i>
-            <i class="material-icons">shopping_cart</i>
-          </button>
+          <a *ngIf="!parentComponentLink" class="btn button-light button-size-3">
+            <!--<i class="material-icons">add</i>-->
+            <i class="material-icons button-light-icon button-icon-size-3">shopping_cart</i>
+          </a>
         </div>
         <div class="col-8">
           <p *ngIf="product.itemNumber" class="card-text item-info-title text-muted">Артикул
             <span class="item-info-value">{{product.itemNumber}}</span>
           </p>
           <p *ngIf="product.size" class="card-text item-info-title text-muted">
-            Висота x Ширина
+            Висота
             <span class="item-info-value">{{product.size.height}}</span>
-            х
+            см
+          </p>
+          <p *ngIf="product.size" class="card-text item-info-title text-muted">
+            Ширина
             <span class="item-info-value">{{product.size.width}}</span>
             см
           </p>
