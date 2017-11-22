@@ -95,7 +95,14 @@ exports.AppRoutingModule = AppRoutingModule;
 
 /***/ }),
 
-/***/ "../../../../../src/app/app.component.css":
+/***/ "../../../../../src/app/app.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container-fluid px-4 py-4\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/app.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -103,20 +110,13 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".container-mod {\r\n  /*padding: 3rem 3rem 2rem 3rem;*/\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/app.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"container-fluid px-4 py-4\">\r\n  <flash-messages></flash-messages>\r\n  <router-outlet></router-outlet>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -199,7 +199,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app-root',
         template: __webpack_require__("../../../../../src/app/app.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/app.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/app.component.scss")]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof catalog_service_1.CatalogService !== "undefined" && catalog_service_1.CatalogService) === "function" && _d || Object, typeof (_e = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _e || Object])
 ], AppComponent);
@@ -732,7 +732,14 @@ exports.SharedModule = SharedModule;
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/users/cart/cart.component.css":
+/***/ "../../../../../src/app/components/users/cart/cart.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  cart works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/users/cart/cart.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -747,13 +754,6 @@ exports.push([module.i, "", ""]);
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/users/cart/cart.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  cart works!\n</p>\n"
 
 /***/ }),
 
@@ -784,8 +784,7 @@ CartComponent = __decorate([
     core_1.Component({
         selector: 'app-cart',
         template: __webpack_require__("../../../../../src/app/components/users/cart/cart.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/users/cart/cart.component.css")],
-        encapsulation: core_1.ViewEncapsulation.None
+        styles: [__webpack_require__("../../../../../src/app/components/users/cart/cart.component.scss")]
     }),
     __metadata("design:paramtypes", [])
 ], CartComponent);

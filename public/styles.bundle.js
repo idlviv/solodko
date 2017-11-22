@@ -1,12 +1,12 @@
 webpackJsonp(["styles"],{
 
-/***/ "../../../../../src/styles.css":
+/***/ "../../../../../src/styles/styles.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../../src/styles.css");
+var content = __webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__("../../../../style-loader/addStyles.js")(content, {});
@@ -15,8 +15,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js??ref--7-1!../node_modules/postcss-loader/index.js??postcss!./styles.css", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js??ref--7-1!../node_modules/postcss-loader/index.js??postcss!./styles.css");
+		module.hot.accept("!!../../node_modules/css-loader/index.js??ref--8-1!../../node_modules/postcss-loader/index.js??postcss!../../node_modules/sass-loader/lib/loader.js??ref--8-3!./styles.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js??ref--8-1!../../node_modules/postcss-loader/index.js??postcss!../../node_modules/sass-loader/lib/loader.js??ref--8-3!./styles.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -27,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../../src/styles.css":
+/***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 exports.i(__webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/index.js?{\"ident\":\"postcss\"}!../../../material/prebuilt-themes/deeppurple-amber.css"), "");
 
 // module
-exports.push([module.i, ".ng-valid[required], .ng-valid.required  {\r\n  border-left: 5px solid #42A948;\r\n}\r\n\r\n.ng-invalid:not(form)  {\r\n  border-left: 5px solid #dc3545;\r\n}\r\n\r\na,\r\nbutton {\r\n  text-transform: capitalize;\r\n}\r\n\r\n.dropdown-item.active,\r\n.dropdown-item:active,\r\n.nav-pills .nav-link.active,\r\n.show>.nav-pills .nav-link\r\n{\r\n  background-color: #15889d;\r\n}\r\n\r\n.button-size-3 {\r\n  width: 3rem;\r\n  height: 3rem;\r\n  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);\r\n}\r\n\r\n.button-icon-size-3 {\r\n  line-height: 3rem;\r\n  /*font-size: 1.5rem;*/\r\n}\r\n\r\n.button-size-2 {\r\n  width: 2rem;\r\n  height: 2rem;\r\n  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);\r\n}\r\n\r\n.button-icon-size-2 {\r\n  line-height: 2rem;\r\n  font-size: 1.2rem;\r\n}\r\n\r\n.button-light,\r\n.button-action {\r\n  padding: 0;\r\n  border-radius: 100%;\r\n}\r\n\r\n.button-light-icon,\r\n.button-action-icon {\r\n  box-sizing: border-box;\r\n}\r\n\r\n.button-light {\r\n  color: #000;\r\n  background-color: #fff;\r\n  border-color:  #fff;\r\n}\r\n\r\n.button-light:hover {\r\n  color: #fff;\r\n  background-color: #15889d;\r\n  border-color: #17a2b8;\r\n}\r\n\r\n.button-action {\r\n  color: #fff;\r\n  background-color: #dc3545;\r\n  border-color: #dc3545;\r\n}\r\n\r\n.button-action:hover {\r\n  color: #000;\r\n  background-color: #dc3545;\r\n  border-color: #dc3545;\r\n}\r\n\r\n.page-header {\r\n  padding-bottom: 1rem;\r\n}\r\n\r\n.progress {\r\n  /*display: block;*/\r\n  height: .2rem;\r\n  margin: auto;\r\n  /*width: 50%;*/\r\n}\r\n\r\n\r\n", ""]);
+exports.push([module.i, ".ng-valid[required], .ng-valid.required {\n  border-left: 5px solid #42A948; }\n\n.ng-invalid:not(form) {\n  border-left: 5px solid #dc3545; }\n\na, button {\n  text-transform: capitalize; }\n\n.dropdown-item.active, .dropdown-item:active {\n  background-color: #15889d; }\n\n.nav-pills .nav-link.active, .show > .nav-pills .nav-link {\n  background-color: #15889d; }\n\n.button-size-3 {\n  width: 3rem;\n  height: 3rem;\n  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }\n\n.button-icon-size-3 {\n  line-height: 3rem;\n  /*font-size: 1.5rem;*/ }\n\n.button-size-2 {\n  width: 2rem;\n  height: 2rem;\n  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }\n\n.button-icon-size-2 {\n  line-height: 2rem;\n  font-size: 1.2rem; }\n\n.button-light, .button-action {\n  padding: 0;\n  border-radius: 100%; }\n\n.button-light-icon, .button-action-icon {\n  box-sizing: border-box; }\n\n.button-light {\n  color: #000;\n  background-color: #fff;\n  border-color: #fff; }\n  .button-light:hover {\n    color: #fff;\n    background-color: #15889d;\n    border-color: #17a2b8; }\n\n.button-action {\n  color: #fff;\n  background-color: #dc3545;\n  border-color: #dc3545; }\n  .button-action:hover {\n    color: #000;\n    background-color: #dc3545;\n    border-color: #dc3545; }\n\n.page-header {\n  padding-bottom: 1rem; }\n\n.progress {\n  /*display: block;*/\n  height: .2rem;\n  margin: auto;\n  /*width: 50%;*/ }\n", ""]);
 
 // exports
 
@@ -396,7 +396,7 @@ function updateLink(linkElement, obj) {
 /***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("../../../../../src/styles.css");
+module.exports = __webpack_require__("../../../../../src/styles/styles.scss");
 
 
 /***/ })

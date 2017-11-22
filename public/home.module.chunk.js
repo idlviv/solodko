@@ -142,7 +142,14 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/components/home/home.component.css":
+/***/ "../../../../../src/app/components/home/home.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-9\">\r\n    <h1>Майстерня</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-3\">\r\n    <h2>Опис</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/home/home.component.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -150,20 +157,13 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "/*.red {*/\r\n    /*background-color: red;*/\r\n    /*height: 100px;*/\r\n/*}*/\r\n\r\n/*.blue {*/\r\n    /*background-color: blue;*/\r\n    /*height: 100px;*/\r\n/*}*/", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
 
 /*** EXPORTS FROM exports-loader ***/
 module.exports = module.exports.toString();
-
-/***/ }),
-
-/***/ "../../../../../src/app/components/home/home.component.html":
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-9\">\r\n    <h1>Майстерня</h1>\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-3\">\r\n    <h2>Опис</h2>\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -191,7 +191,7 @@ HomeComponent = __decorate([
     core_1.Component({
         selector: 'app-home',
         template: __webpack_require__("../../../../../src/app/components/home/home.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/components/home/home.component.css")]
+        styles: [__webpack_require__("../../../../../src/app/components/home/home.component.scss")]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
