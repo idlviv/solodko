@@ -1,15 +1,8 @@
 @import './variables';
 @import './mixins';
+@import './custom-bootstrap';
 
-//@import
-//'~bootstrap/scss/functions',
-//'~bootstrap/scss/variables',
-//'~bootstrap/scss/mixins',
-//'~bootstrap/scss/print',
-//'~bootstrap/scss/reboot',
-//'~bootstrap/scss/type';
-
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+//@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .ng-valid {
   &[required], &.required {
@@ -21,76 +14,63 @@
   border-left: 5px solid #dc3545;
 }
 
-a, button {
+a,
+button {
   text-transform: capitalize;
 }
 
-.dropdown-item {
-  &.active, &:active {
-    background-color: #15889d;
-  }
+.button-round {
+  padding: 0;
+  border-radius: 100%;
 }
 
-.nav-pills .nav-link.active, .show > .nav-pills .nav-link {
-  background-color: #15889d;
+.button-round-icon {
+  box-sizing: border-box;
 }
 
-.button-size-3 {
+.button-round-3 {
+  @extend .button-round;
   width: 3rem;
   height: 3rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.button-icon-size-3 {
+.button-round-icon-3 {
+  @extend .button-round-icon;
   line-height: 3rem;
   /*font-size: 1.5rem;*/
 }
 
-.button-size-2 {
+.button-round-2 {
+  @extend .button-round;
   width: 2rem;
   height: 2rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
-.button-icon-size-2 {
+.button-round-icon-2 {
+  @extend .button-round-icon;
   line-height: 2rem;
   font-size: 1.2rem;
 }
 
-.button-light, .button-action {
-  padding: 0;
-  border-radius: 100%;
+.button-category {
+  position: absolute;
+  @include calc(top, "50% - 1.5rem");
+  @include calc(left, "100% - 1.5rem");
 }
 
-.button-light-icon, .button-action-icon {
-  box-sizing: border-box;
-}
 
-.button-light {
-  color: #000;
-  background-color: #fff;
-  border-color: #fff;
-  &:hover {
-    color: #fff;
-    background-color: #15889d;
-    border-color: #17a2b8;
-  }
-}
 
-.button-action {
-  color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
-  &:hover {
-    color: #000;
-    background-color: #dc3545;
-    border-color: #dc3545;
-  }
-}
+
 
 .page-header {
-  padding-bottom: 1rem;
-}
+   padding-bottom: 1rem;
+ }
+
+
+
+
 
 .progress {
   /*display: block;*/

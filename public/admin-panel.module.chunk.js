@@ -95,7 +95,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/admin-panel-submenu/admin-panel-submenu.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"bg-light sidebar\">\r\n  <ul class=\"nav flex-md-column nav-pills\">\r\n    <li class=\"nav-item\" *ngFor=\"let menuItem of menuList\">\r\n      <a *ngIf=\"checkPermission(user, menuItem)\"\r\n         class=\"nav-link\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n         [routerLink]=\"['/admin/ch', {outlets: {primary: menuItem.route}}]\">\r\n        {{menuItem.name}}\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n<!--<p>admin  side</p>-->\r\n"
+module.exports = "<!--<nav class=\"bg-light sidebar\">-->\r\n  <ul class=\"nav flex-md-column nav-pills\">\r\n    <li class=\"nav-item\" *ngFor=\"let menuItem of menuList\">\r\n      <a *ngIf=\"checkPermission(user, menuItem)\"\r\n         class=\"nav-link\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n         [routerLink]=\"['/admin/ch', {outlets: {primary: menuItem.route}}]\">\r\n        {{menuItem.name}}\r\n      </a>\r\n    </li>\r\n  </ul>\r\n<!--</nav>-->\r\n<!--<p>admin  side</p>-->\r\n"
 
 /***/ }),
 
