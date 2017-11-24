@@ -2,8 +2,6 @@
 @import './mixins';
 @import './custom-bootstrap';
 
-//@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
 .ng-valid {
   &[required], &.required {
     border-left: 5px solid #42A948;
@@ -19,8 +17,24 @@ button {
   text-transform: capitalize;
 }
 
+// vertical aligment - mateial icon and text
+a.nav-link > i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// vertical aligment - mateial icon and text
+button > i {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+// apply box shadow for all buttons
+.btn {
+ @include boxShadow(3)
+}
+
 .button-round {
-  @include boxShadow(3);
   padding: 0;
   border-radius: 100%;
 }
