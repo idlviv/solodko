@@ -1,0 +1,5 @@
+@import '~styles/styles';
+
+.navbar {
+  @include boxShadow(3);
+}
