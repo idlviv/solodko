@@ -1,0 +1,70 @@
+@import '~styles/styles';
+
+.card-text {
+  font-size: .85rem;
+}
+
+.card-title {
+  text-transform: capitalize;
+  min-height: 4rem;
+  text-align: center;
+}
+
+
+.card {
+  margin-bottom: 2rem;
+  border: 0;
+  /*padding-left: .7rem;*/
+  /*padding-right: .7rem;*/
+  @include boxShadow(2);
+}
+
+.item-text {
+  text-align: justify;
+}
+
+@media (max-width: 576px) {
+  .card-title {
+    margin-bottom: 0;
+  }
+  .item-text {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .card-title {
+    padding-bottom: 0.5rem;
+  }
+  .item-text {
+    min-height: 6rem;
+    padding-bottom: 0.5rem;
+  }
+  .album {
+    min-height: 28rem;
+  }
+}
+
+.album {
+  /*min-height: 28rem;*/
+  padding-bottom: 0.5rem;
+  background-color: $card_background;
+}
+
+.item-info-title {
+  font-size: .65rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  text-align: right;
+}
+
+.item-info-value {
+  font-size: .85rem;
+  font-weight: 500;
+}
+
+.img-container {
+  position: relative;
+}
+
+

@@ -3,3 +3,12 @@
 .navbar {
   @include boxShadow(3);
 }
+
+.dropdown {
+  cursor: pointer;
+}
+
+a.nav-link, a.nav-link > i {
+  display: inline-block;
+  vertical-align: middle;
+}
