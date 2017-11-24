@@ -2,8 +2,8 @@
   "short_name": "Solodko",
   "name": "Творча майстерня",
   "start_url": "/",
-  "theme_color": "#15889d",
-  "background_color": "#ffffff",
+  "theme_color": "#EEEFEA",
+  "background_color": "#EEEFEA",
   "display": "standalone",
   "orientation": "portrait",
  "icons": [
