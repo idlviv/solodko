@@ -11,7 +11,7 @@ import {ProfileComponent} from './profile/profile.component';
 
 import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 import { CartComponent } from './cart/cart.component';
-import { SignupComponent } from './login/signup/signup.component';
+import {SignupComponent} from './login/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +26,7 @@ import { SignupComponent } from './login/signup/signup.component';
     ReactiveFormsModule
   ],
   exports: [
+    SignupComponent,
   ],
 
   providers: [

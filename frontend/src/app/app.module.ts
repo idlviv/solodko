@@ -30,6 +30,7 @@ import {AuthUserGuard} from './guards/auth-user.guard';
 import {AuthService} from './services/auth.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 // import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
+import { SignupComponent } from './components/users/login/signup/signup.component';
 
 @NgModule({
   declarations: [

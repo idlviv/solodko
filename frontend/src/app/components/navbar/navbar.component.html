@@ -16,30 +16,14 @@
            productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]">
           <!--<i [ngClass]="catalogItem.category0.icon"></i>-->
           {{catalogItem.category0.name}}</a></li>
-
-
     </ul>
-    <!--<span  *ngIf="user && user.role !== 'Guest'" class="navbar-text">-->
-      <!--<i class="material-icons">person</i> {{user.role}}, {{user.name}}-->
-    <!--</span>-->
-
 
     <ul class="nav navbar-nav navbar-right" (click)="hide()">
 
-      <!--<li class="nav-item" *ngIf="user && user.role === 'Manager' ||user.role === 'Admin'"-->
+      <!--<li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"-->
           <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
-        <!--<a class="nav-link" [routerLink]="['/products-management',-->
-        <!--{outlets: {primary: 'add-product', productsManagementSubmenu: 'start'}}]">-->
-          <!--Products</a></li>-->
-
-      <!--<li class="nav-item" *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
-          <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
-        <!--<a class="nav-link" [routerLink]="['/admin', 'ch', 'edit-product']">Admin</a></li>-->
-      <!--, {outlets: {primary: 'z', adminPanelSubmenu: 'z'}}-->
-      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
-          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/cart']">
-          <i class="material-icons">shopping_cart</i> Корзина <span class="badge badge-success">5</span></a></li>
+        <!--<a class="nav-link" [routerLink]="['/cart']">-->
+          <!--<i class="material-icons">shopping_cart</i> Корзина <span class="badge badge-success">5</span></a></li>-->
 
       <li class="nav-item dropdown" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'">
         <a class="nav-link dropdown-toggle"
@@ -70,10 +54,10 @@
             <!--<i class="material-icons">person</i> {{user.role}}, {{user.name}}-->
         <!--</a></li>-->
 
-      <!--*ngIf="user && user.role === 'Guest'"-->
-      <li class="nav-item"
+
+      <li class="nav-item" *ngIf="user && user.role === 'Guest'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/login']">Вхід / Реєстрація</a></li>
+        <a class="nav-link" [routerLink]="['/login']">Вхід</a></li>
       <!--<li class="nav-item" *ngIf="user && user.role === 'Admin'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
         <!--<a class="nav-link" [routerLink]="['/register']">Register</a></li>-->
       <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'">

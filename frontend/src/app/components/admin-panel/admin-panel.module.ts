@@ -8,6 +8,7 @@ import {AdminPanelRoutingModule} from './admin-panel-routing.module';
 import { ProductsManagementComponent } from './products-management/products-management.component';
 import {ProductsManagementModule} from './products-management/products-management.module';
 import {UsersManagementModule} from './users-management/users-management.module';
+import {UsersModule} from '../users/users.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {UsersManagementModule} from './users-management/users-management.module'
     AdminPanelRoutingModule,
     ProductsManagementModule,
     UsersManagementModule,
+    UsersModule,
   ],
 
 })

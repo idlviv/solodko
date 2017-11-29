@@ -14,6 +14,7 @@ import {ProductsManagementComponent} from './products-management/products-manage
 import {AddProductComponent} from './products-management/add-product/add-product.component';
 import {EditProductComponent} from './products-management/edit-product/edit-product.component';
 import {AddUserComponent} from './users-management/add-user/add-user.component';
+import {SignupComponent} from '../users/login/signup/signup.component';
 
 const adminRoutes: Routes = [
   {
@@ -36,7 +37,7 @@ const adminRoutes: Routes = [
       {
         path: 'add-user',
         canActivate: [AuthAdminGuard],
-        component: AddUserComponent,
+        component: SignupComponent,
       },
       {
         path: '',
