@@ -11,12 +11,14 @@ import {ProfileComponent} from './profile/profile.component';
 
 import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 import { CartComponent } from './cart/cart.component';
+import { SignupComponent } from './login/signup/signup.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     ProfileComponent,
     CartComponent,
+    SignupComponent,
   ],
   imports: [
     CommonModule,

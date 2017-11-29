@@ -13,7 +13,6 @@ const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());

@@ -1,0 +1,61 @@
+  <h4 class="card-title">Реєстрація</h4>
+  <p class="card-text"> </p>
+  <!--<p *ngIf="signupForm"> {{signupForm.value | json}}</p>-->
+  <form [formGroup]="signupForm" (ngSubmit)="onSignupSubmit(); signupForm.reset()">
+    <div class="form-group">
+      <label for="usernameSignup">І'мя користувача</label>
+      <input formControlName="usernameSignup" [formGroup]="signupForm" required
+             class="form-control" id="usernameSignup">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!signupForm.controls['usernameSignup'].valid && signupForm.controls['usernameSignup'].touched">
+        Довжина від 4 до 10 символів
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="emailSignup">Email</label>
+      <input formControlName="emailSignup" [formGroup]="signupForm" required
+             class="form-control" id="emailSignup">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!signupForm.controls['emailSignup'].valid && signupForm.controls['emailSignup'].touched">
+        Введіть правільний email
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passwordSignup">Пароль</label>
+      <input type="password" formControlName="passwordSignup" [formGroup]="signupForm" required
+             class="form-control" id="passwordSignup">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!signupForm.controls['passwordSignup'].valid && signupForm.controls['passwordSignup'].touched">
+        Довжина від 4 до 10 символів
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passwordSignupConfirm">Повторіть пароль</label>
+      <input type="password" formControlName="passwordSignupConfirm" [formGroup]="signupForm" required
+             class="form-control" id="passwordSignupConfirm">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="signupForm.controls['passwordSignupConfirm'].touched && signupForm.controls['passwordSignupConfirm'].hasError('mismatch')">
+        Пароль не збігається
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="nameSignup">І'мя</label>
+      <input formControlName="nameSignup" [formGroup]="signupForm" required
+             class="form-control" id="nameSignup">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!signupForm.controls['nameSignup'].valid && signupForm.controls['nameSignup'].touched">
+        Довжина від 2 до 20 символів
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="surnameSignup">Прізвище</label>
+      <input formControlName="surnameSignup" [formGroup]="signupForm" required
+             class="form-control" id="surnameSignup">
+      <div class="alert alert-danger" role="alert"
+           *ngIf="!signupForm.controls['surnameSignup'].valid && signupForm.controls['surnameSignup'].touched">
+        Довжина від 2 до 20 символів
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid">Зареєструватись</button>
+  </form>
+

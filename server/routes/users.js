@@ -14,7 +14,7 @@ const config = require('../config');
 
 // реєстрація і повернення результату в фронт
 router.post('/register',
-  // passport.authenticate('jwt', {session: false}),
+  passport.authenticate('jwt.manager.admin', {session: false}),
   UserController.userRegistration
   );
 
@@ -39,7 +39,7 @@ router.get(
   UserController.sendVerificationEmail
 );
 
-  // http://localhost:8081/api/receiveverificationemail?token=eyJhbGciOiJ..
+// http://localhost:8081/api/receiveverificationemail?token=eyJhbGciOiJ..
 router.get(
   '/receiveverificationemail',
   passport.authenticate('jwt.email.verification', {session: false}),

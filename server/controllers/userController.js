@@ -29,7 +29,6 @@ module.exports.userRegistration = function(req, res, next) {
     isEmailConfirmed: false
   });
   // повертає обєкт (success..)
-  log.verbose('user Controller- newUser', newUser);
   UserModel.addUser(newUser)
     .then((result) => res.json(result))
     .catch((error) => res.json(error));

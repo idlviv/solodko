@@ -54,7 +54,7 @@ module.exports.getUserById = function(_id) {
 };
 
 module.exports.getUserByUsername = function(username) {
-  query = {username: username};
+  let query = {username: username};
   return new Promise((resolve, reject) => {
     UserModel.findOne(query)
       .then((user) => resolve(user))
@@ -78,8 +78,8 @@ module.exports.addUser = function(newUser) {
           newUser.password = hash;
           // якшо успішно записано в базу, то повертає в роутер відп обєкт
           newUser.save()
-            .then(() => resolve({success: true, msg: 'User registered'}))
-            .catch(() => reject({success: false, msg: 'Failed to register user'}));
+            .then(() => resolve({success: true, msg: 'Користувача зареєстровано'}))
+            .catch(() => reject({success: false, msg: 'Не вдалося зареєструвати користувача'}))
         })
       .catch((error) => {throw error;});
   });
@@ -91,7 +91,7 @@ module.exports.updateUser = function(query, update) {
         // якшо успішно записано в базу, то повертає в роутер відп обєкт
         UserModel.update(query, update)
           .then(() => resolve({success: true, msg: 'User updated'}))
-          .catch(() => reject({success: false, msg: 'Failed to update user'}));
+          .catch(() => reject({success: false, msg: 'Failed to update user'}))
       })
 
 };
