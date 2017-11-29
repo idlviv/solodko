@@ -1,0 +1,7 @@
+@import '~styles/styles';
+
+.c_footer {
+  @include boxShadowInverse(2);
+  height: 5rem;
+  background-color: $main_color;
+}

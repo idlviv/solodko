@@ -64,7 +64,7 @@ button > i {
 .button-round-icon-2 {
   @extend .button-round-icon;
   line-height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 .button-category {
@@ -72,6 +72,12 @@ button > i {
   @include calc(top, "50% - 1.5rem");
   @include calc(left, "100% - 1.5rem");
 }
+
+.c_jumbotron-heading {
+  color: $primary;
+}
+
+
 
 //.progress {
 //  margin: auto;

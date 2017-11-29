@@ -22,31 +22,31 @@
       <tr [class.active]="i === selectedRow" >
           <td class="edit-product-table-first-cell">
 
-            <div class="btn-group" role="group" aria-label="Edit">
-              <button type="button" class="btn button-light button-size-2" [routerLinkActive]="['active']"
+            <!--<div class="btn-group" role="group" aria-label="Edit">-->
+              <button type="button" class="btn btn-primary button-round-2" [routerLinkActive]="['active']"
                       [routerLinkActiveOptions]="{exact: true}" [class.hide]="!isEditBtnShow"
                       [routerLink]="['/admin/ch', {outlets: {primary: ['add-product', product._id]}}]">
-                <i class="material-icons button-light-icon button-icon-size-2">mode_edit</i>
+                <i class="material-icons button-round-icon-2">mode_edit</i>
                 <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
               </button>
 
-              <button type="button" (click)="onClickEditBtn(i, product._id)" class="btn button-light button-size-2"
+              <button type="button" (click)="onClickEditBtn(i, product._id)" class="btn btn-primary button-round-2"
                       [class.hide]="!isEditBtnShow">
-                <i class="material-icons button-light-icon button-icon-size-2">border_color</i>
+                <i class="material-icons button-round-icon-2">border_color</i>
                 <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
               </button>
-            </div>
+            <!--</div>-->
 
             <div class="btn-group" role="group" aria-label="Edit">
-              <button type="submit" class="btn btn button-light button-size-2" [class.hide]="!(i === selectedRow)">
+              <button type="submit" class="btn btn-primary button-round-2" [class.hide]="!(i === selectedRow)">
                 <!--<i class="fa fa-check" aria-hidden="true"></i>-->
-                <i class="material-icons button-light-icon button-icon-size-2">done</i>
+                <i class="material-icons button-round-icon-2">done</i>
               </button>
 
-              <button type="button" class="btn btn button-light button-size-2" (click)="onClickCancelEditBtn(i, product._id)"
+              <button type="button" class="btn btn-primary button-round-2" (click)="onClickCancelEditBtn(i, product._id)"
                       [class.hide]="!(i === selectedRow)">
                 <!--<i class="fa fa-ban" aria-hidden="true"></i>-->
-                <i class="material-icons button-light-icon button-icon-size-2">highlight_off</i>
+                <i class="material-icons button-round-icon-2">highlight_off</i>
               </button>
             </div>
           </td>
@@ -107,9 +107,9 @@
           </td>
           <td class="edit-product-table-last-cell">
 
-            <button type="button" class="btn btn button-light button-size-2" (click)="onClickDelBtn(i, product._id)"
+            <button type="button" class="btn btn-primary button-round-2" (click)="onClickDelBtn(i, product._id)"
                     [class.hidden]="!(i === selectedRow)">
-              <i class="material-icons button-light-icon button-icon-size-2">delete_sweep</i>
+              <i class="material-icons button-round-icon-2">delete_sweep</i>
 
               <!--<i class="fa fa-trash-o" aria-hidden="true"></i>-->
             </button>

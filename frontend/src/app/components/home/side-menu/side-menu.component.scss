@@ -1,0 +1,10 @@
+@import '~styles/styles';
+
+.c_my-photo-block {
+  max-width: 180px;
+  margin: 0 auto 1rem;
+}
+
+.c_my-photo {
+  @include radius(90px);
+}

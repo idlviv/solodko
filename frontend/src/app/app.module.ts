@@ -31,11 +31,13 @@ import {AuthService} from './services/auth.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 // import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
 import { SignupComponent } from './components/users/login/signup/signup.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    FooterComponent,
   ],
   imports: [
     // CommonModule,
