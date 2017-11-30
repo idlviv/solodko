@@ -101,7 +101,8 @@ $theme-colors: (
 );
 //variables
 $jumbotron-padding: 1rem;
-
+$jumbotron-bg: $card_background;
+$grid-gutter-width: 16px;
 
 //elements
 .card-title {
@@ -111,7 +112,5 @@ $jumbotron-padding: 1rem;
   color: $main_color;
 }
 
-
-
-
 @import "~bootstrap/scss/bootstrap";
+

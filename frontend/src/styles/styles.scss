@@ -36,7 +36,7 @@ button > i {
 
 .button-round {
   padding: 0;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 .button-round-icon {
@@ -67,17 +67,11 @@ button > i {
   font-size: 1rem;
 }
 
-.button-category {
-  position: absolute;
-  @include calc(top, "50% - 1.5rem");
-  @include calc(left, "100% - 1.5rem");
-}
+
 
 .c_jumbotron-heading {
-  color: $primary;
+  color: $main_color;
 }
-
-
 
 //.progress {
 //  margin: auto;

@@ -39,7 +39,7 @@ export class ProductService {
 
   addProduct(product) {
 
-    let headers = new Headers();
+    const headers = new Headers();
     this.authService.loadToken();
     headers.append('Authorization', this.authService.authToken);
 
@@ -48,7 +48,7 @@ export class ProductService {
       config.serverUrl + 'api/addProduct',
       product,
       {headers: headers})
-      .map(res => res.json())
+      .map(res => res.json());
   }
 
   editProduct(product) {
@@ -67,15 +67,15 @@ export class ProductService {
 
   deleteProduct(_id) {
 
-    let headers = new Headers();
+    const headers = new Headers();
     this.authService.loadToken();
     headers.append('Authorization', this.authService.authToken);
     headers.append('Content-Type', 'application/json');
-    console.log('api/deleteProduct/'+ _id);
+    console.log('api/deleteProduct/' + _id);
     return this.http.delete(
-      config.serverUrl + 'api/deleteProduct/'+ _id,
+      config.serverUrl + 'api/deleteProduct/' + _id,
       {headers: headers})
-      .map(res => res.json())
+      .map(res => res.json());
   }
 
 }

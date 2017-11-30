@@ -16,10 +16,19 @@ constructor(private productService: ProductService) {}
     const category0 = route.params.category0;
     const category1 = route.params.category1;
 
-    this.searchQuery = {
-      'category0': category0,
-      'category1': category1 === 'main' ? {$exists: true} : category1,
-    };
+    if (!category0 && !category1) {
+      // main page
+      this.searchQuery = {
+        'showOnMainPage': true,
+      };
+    } else {
+      // other pages
+      this.searchQuery = {
+        'category0': category0,
+        'category1': category1 === 'main' ? {$exists: true} : category1,
+      };
+    }
+
     return this.productService.getQueriedProducts(this.searchQuery);
       // .subscribe(
       //   (products) => {
