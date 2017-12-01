@@ -32,12 +32,14 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
 // import {AdminPanelModule} from './components/admin-panel/admin-panel.module';
 import { SignupComponent } from './components/users/login/signup/signup.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    BlogComponent,
   ],
   imports: [
     // CommonModule,
