@@ -79,7 +79,7 @@ module.exports.addUser = function(newUser) {
           // якшо успішно записано в базу, то повертає в роутер відп обєкт
           newUser.save()
             .then(() => resolve({success: true, msg: 'Користувача зареєстровано'}))
-            .catch(() => reject({success: false, msg: 'Не вдалося зареєструвати користувача'}))
+            .catch((error) => reject({success: false, msg: 'Не вдалося зареєструвати користувача'}))
         })
       .catch((error) => {throw error;});
   });

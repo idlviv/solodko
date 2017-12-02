@@ -1154,7 +1154,7 @@ var SignupComponent = (function () {
                     cssClass: 'alert-success',
                     timeout: 3000
                 });
-                _this.signin(_this.userSignup.username, _this.userSignup.password);
+                // this.signin(this.userSignup.username, this.userSignup.password);
             }
             else {
                 _this.flashMessage.show(data.msg, {
@@ -1174,35 +1174,6 @@ var SignupComponent = (function () {
             _this.flashMessage.show(errorMessage, {
                 cssClass: 'alert-danger',
                 timeout: 3000
-            });
-            _this.router.navigate(['/login']);
-        });
-    };
-    SignupComponent.prototype.signin = function (username, password) {
-        var _this = this;
-        this.authService.authUser({ username: username, password: password })
-            .subscribe(function (data) {
-            if (data.success) {
-                _this.authService.storeUserData(data.token, data.user);
-                _this.flashMessage.show('Logged in', {
-                    cssClass: 'alert-success',
-                    timeout: 2000
-                });
-                _this.router.navigate(['/profile']);
-            }
-            else {
-                _this.flashMessage.show(data.msg, {
-                    cssClass: 'alert-danger',
-                    timeout: 2000
-                });
-                _this.router.navigate(['/login']);
-            }
-        }, function (err) {
-            _this.flashMessage.show(err, 
-            // err.status + ' ' + err.statusText,
-            {
-                cssClass: 'alert-danger',
-                timeout: 5000
             });
             _this.router.navigate(['/login']);
         });

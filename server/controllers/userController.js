@@ -22,8 +22,8 @@ module.exports.userRegistration = function(req, res, next) {
   let newUser = new UserModel({
     name: req.body.name,
     surname: req.body.surname,
-    email: req.body.email,
-    username: req.body.username,
+    email: req.body.email.toLocaleLowerCase(),
+    username: req.body.username.toLocaleLowerCase(),
     password: req.body.password,
     role: req.body.role,
     isEmailConfirmed: false
@@ -31,7 +31,7 @@ module.exports.userRegistration = function(req, res, next) {
   // повертає обєкт (success..)
   UserModel.addUser(newUser)
     .then((result) => res.json(result))
-    .catch((error) => res.json(error));
+    .catch((error) => res.json({error}));
 };
 
 module.exports.receiveVerificationEmail = function(req, res, next) {

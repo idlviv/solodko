@@ -84,7 +84,7 @@ export class SignupComponent implements OnInit {
                 cssClass: 'alert-success',
                 timeout: 3000
               });
-            this.signin(this.userSignup.username, this.userSignup.password);
+            // this.signin(this.userSignup.username, this.userSignup.password);
           } else {
             this.flashMessage.show(
               data.msg,
@@ -112,39 +112,39 @@ export class SignupComponent implements OnInit {
         });
   }
 
-  signin(username, password) {
-    this.authService.authUser({username, password})
-      .subscribe((data) => {
-          if (data.success) {
-            this.authService.storeUserData(data.token, data.user);
-            this.flashMessage.show(
-              'Logged in',
-              {
-                cssClass: 'alert-success',
-                timeout: 2000
-              });
-            this.router.navigate(['/profile']);
-
-          } else {
-            this.flashMessage.show(
-              data.msg,
-              {
-                cssClass: 'alert-danger',
-                timeout: 2000
-              });
-            this.router.navigate(['/login']);
-          }
-
-        },err => {
-          this.flashMessage.show(
-            err,
-            // err.status + ' ' + err.statusText,
-            {
-              cssClass: 'alert-danger',
-              timeout: 5000
-            });
-          this.router.navigate(['/login']);
-        }
-      )
-  }
+  // signin(username, password) {
+  //   this.authService.authUser({username, password})
+  //     .subscribe((data) => {
+  //         if (data.success) {
+  //           this.authService.storeUserData(data.token, data.user);
+  //           this.flashMessage.show(
+  //             'Logged in',
+  //             {
+  //               cssClass: 'alert-success',
+  //               timeout: 2000
+  //             });
+  //           this.router.navigate(['/profile']);
+  //
+  //         } else {
+  //           this.flashMessage.show(
+  //             data.msg,
+  //             {
+  //               cssClass: 'alert-danger',
+  //               timeout: 2000
+  //             });
+  //           this.router.navigate(['/login']);
+  //         }
+  //
+  //       }, err => {
+  //         this.flashMessage.show(
+  //           err,
+  //           // err.status + ' ' + err.statusText,
+  //           {
+  //             cssClass: 'alert-danger',
+  //             timeout: 5000
+  //           });
+  //         this.router.navigate(['/login']);
+  //       }
+  //     );
+  // }
 }
