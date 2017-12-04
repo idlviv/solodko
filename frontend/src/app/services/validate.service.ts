@@ -27,6 +27,7 @@ export class ValidateService {
     }
   }
 
+
   usernameValidChecker(control) {
     const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
     if (regExp.test(control.value)) {
@@ -36,6 +37,7 @@ export class ValidateService {
     }
   }
 
+  // validator for formGroup
   matchPassword(abstractControl: AbstractControl) {
     const password = abstractControl.get('passwordSignup').value; // to get value in input tag
     const passwordConfirm = abstractControl.get('passwordSignupConfirm').value; // to get value in input tag
@@ -43,6 +45,8 @@ export class ValidateService {
       abstractControl.get('passwordSignupConfirm').setErrors(null);
       return null;
     } else {
+      // set error to 'passwordSignupConfirm' element
+      // and dont set error (null) to formGroup
       abstractControl.get('passwordSignupConfirm').setErrors({mismatch: true});
       return null;
     }

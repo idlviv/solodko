@@ -38,7 +38,8 @@ export class SignupComponent implements OnInit {
         passwordSignup: new FormControl('', [
           Validators.required,
           Validators.minLength(4),
-          Validators.maxLength(10)
+          Validators.maxLength(10),
+          this.validateService.usernameValidChecker
         ]),
         passwordSignupConfirm: new FormControl('', [
           Validators.required,

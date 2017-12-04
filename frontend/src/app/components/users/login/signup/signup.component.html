@@ -11,7 +11,8 @@
       <!--Довжина від 4 до 10 символів-->
     <!--</div>   -->
     <div class="alert alert-danger" role="alert"
-         *ngIf="signupForm.controls['usernameSignup'].errors?.minlength && signupForm.controls['usernameSignup'].touched">
+         *ngIf="(signupForm.controls['usernameSignup'].errors?.minlength ||
+          signupForm.controls['usernameSignup'].errors?.maxlength) && signupForm.controls['usernameSignup'].touched">
       Довжина від 4 до 10 символів
     </div>
     <div class="alert alert-danger" role="alert"
@@ -34,8 +35,13 @@
     <input type="password" formControlName="passwordSignup" [formGroup]="signupForm" required
            class="form-control" id="passwordSignup" placeholder="пароль">
     <div class="alert alert-danger" role="alert"
-         *ngIf="!signupForm.controls['passwordSignup'].valid && signupForm.controls['passwordSignup'].touched">
+         *ngIf="(signupForm.controls['passwordSignup'].errors?.minlength ||
+          signupForm.controls['passwordSignup'].errors?.maxlength) && signupForm.controls['passwordSignup'].touched">
       Довжина від 4 до 10 символів
+    </div>
+    <div class="alert alert-danger" role="alert"
+         *ngIf="signupForm.controls['passwordSignup'].errors?.usernameValidChecker && signupForm.controls['passwordSignup'].touched">
+      Використовуйте тільки цифри і латинські букви
     </div>
 
   </div>
