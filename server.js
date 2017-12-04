@@ -85,4 +85,4 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(process.env.PORT || config.get('port'),
-  () => console.log('Server on port ' + config.get('port') || process.env.PORT));
+  () => log.verbose('Server on port ' + config.get('port') || process.env.PORT));

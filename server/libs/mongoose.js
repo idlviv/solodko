@@ -1,5 +1,7 @@
 const config = require('../config');
 const mongoose = require('mongoose');
+const log = require('../config/winston')(module);
+
 mongoose.Promise = global.Promise;
 
 const db = config.get('MONGOOSE_URI');
@@ -10,33 +12,18 @@ const db = config.get('MONGOOSE_URI');
 
 mongoose.connect(db, {useMongoClient: true})
   .then(
-    () => console.log('Connected to db '),
+    () => log.verbose('Connected to db '),
     (err) => {
       console.log('Який з обробчиків помилок ловить? (err)');
       console.error('Failed to connect to db ');
-      console.error('Error ' + err);
+      log.verbose('Error ' + err);
       // process.exit(1);
     })
   .catch(err => {
       console.log('Який з обробчиків помилок ловить? (catch)');
       console.error('Failed to connect to db ');
-      console.error('Error ' + err);
+      log.verbose('Error ' + err);
       // process.exit(1);
     });
-
-// mongoose.connect(db, options)
-//   .then(() => console.log('Connected to db ' + db),
-//     (err) => {
-//       console.log('Який з обробчиків помилок ловить? (err)');
-//       console.error('Failed to connect to db ' + db);
-//       console.error('Error ' + err);
-//       // process.exit(1);
-//     })
-//   .catch(err => {
-//     console.log('Який з обробчиків помилок ловить? (catch)');
-//     console.error('Failed to connect to db ' + db);
-//     console.error('Error ' + err);
-//     // process.exit(1);
-//   });
 
 module.exports = mongoose;

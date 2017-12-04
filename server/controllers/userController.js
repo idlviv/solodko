@@ -31,7 +31,7 @@ module.exports.userRegistration = function(req, res, next) {
   // повертає обєкт (success..)
   UserModel.addUser(newUser)
     .then((result) => res.json(result))
-    .catch((error) => res.json({error}));
+    .catch((error) => res.json(error));
 };
 
 module.exports.receiveVerificationEmail = function(req, res, next) {

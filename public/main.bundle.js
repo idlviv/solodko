@@ -313,7 +313,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  blog works!\r\n</p>\r\n"
+module.exports = "<p>\n  blog works!\n</p>\n"
 
 /***/ }),
 
@@ -374,7 +374,7 @@ exports.BlogComponent = BlogComponent;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -862,7 +862,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1047,7 +1047,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/users/login/signup/signup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "  <h4 class=\"card-title\">Реєстрація</h4>\r\n  <p class=\"card-text\"> </p>\r\n  <!--<p *ngIf=\"signupForm\"> {{signupForm.value | json}}</p>-->\r\n  <form [formGroup]=\"signupForm\" (ngSubmit)=\"onSignupSubmit(); signupForm.reset()\">\r\n    <div class=\"form-group\">\r\n      <label for=\"usernameSignup\">І'мя користувача</label>\r\n      <input formControlName=\"usernameSignup\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"usernameSignup\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"!signupForm.controls['usernameSignup'].valid && signupForm.controls['usernameSignup'].touched\">\r\n        Довжина від 4 до 10 символів\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"emailSignup\">Email</label>\r\n      <input formControlName=\"emailSignup\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"emailSignup\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"!signupForm.controls['emailSignup'].valid && signupForm.controls['emailSignup'].touched\">\r\n        Введіть правільний email\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"passwordSignup\">Пароль</label>\r\n      <input type=\"password\" formControlName=\"passwordSignup\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"passwordSignup\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"!signupForm.controls['passwordSignup'].valid && signupForm.controls['passwordSignup'].touched\">\r\n        Довжина від 4 до 10 символів\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"passwordSignupConfirm\">Повторіть пароль</label>\r\n      <input type=\"password\" formControlName=\"passwordSignupConfirm\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"passwordSignupConfirm\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"signupForm.controls['passwordSignupConfirm'].touched && signupForm.controls['passwordSignupConfirm'].hasError('mismatch')\">\r\n        Пароль не збігається\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"nameSignup\">І'мя</label>\r\n      <input formControlName=\"nameSignup\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"nameSignup\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"!signupForm.controls['nameSignup'].valid && signupForm.controls['nameSignup'].touched\">\r\n        Довжина від 2 до 20 символів\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <label for=\"surnameSignup\">Прізвище</label>\r\n      <input formControlName=\"surnameSignup\" [formGroup]=\"signupForm\" required\r\n             class=\"form-control\" id=\"surnameSignup\">\r\n      <div class=\"alert alert-danger\" role=\"alert\"\r\n           *ngIf=\"!signupForm.controls['surnameSignup'].valid && signupForm.controls['surnameSignup'].touched\">\r\n        Довжина від 2 до 20 символів\r\n      </div>\r\n    </div>\r\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!signupForm.valid\">Зареєструватись</button>\r\n  </form>\r\n\r\n"
+module.exports = "  <h4 class=\"card-title\">Реєстрація</h4>\n  <p class=\"card-text\"> </p>\n  <!--<p *ngIf=\"signupForm\"> {{signupForm.value | json}}</p>-->\n  <form [formGroup]=\"signupForm\" (ngSubmit)=\"onSignupSubmit(); signupForm.reset()\">\n    <div class=\"form-group\">\n      <label for=\"usernameSignup\">І'мя користувача</label>\n      <input formControlName=\"usernameSignup\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"usernameSignup\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"!signupForm.controls['usernameSignup'].valid && signupForm.controls['usernameSignup'].touched\">\n        Довжина від 4 до 10 символів\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"emailSignup\">Email</label>\n      <input formControlName=\"emailSignup\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"emailSignup\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"!signupForm.controls['emailSignup'].valid && signupForm.controls['emailSignup'].touched\">\n        Введіть правільний email\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"passwordSignup\">Пароль</label>\n      <input type=\"password\" formControlName=\"passwordSignup\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"passwordSignup\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"!signupForm.controls['passwordSignup'].valid && signupForm.controls['passwordSignup'].touched\">\n        Довжина від 4 до 10 символів\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"passwordSignupConfirm\">Повторіть пароль</label>\n      <input type=\"password\" formControlName=\"passwordSignupConfirm\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"passwordSignupConfirm\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"signupForm.controls['passwordSignupConfirm'].touched && signupForm.controls['passwordSignupConfirm'].hasError('mismatch')\">\n        Пароль не збігається\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"nameSignup\">І'мя</label>\n      <input formControlName=\"nameSignup\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"nameSignup\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"!signupForm.controls['nameSignup'].valid && signupForm.controls['nameSignup'].touched\">\n        Довжина від 2 до 20 символів\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"surnameSignup\">Прізвище</label>\n      <input formControlName=\"surnameSignup\" [formGroup]=\"signupForm\" required\n             class=\"form-control\" id=\"surnameSignup\">\n      <div class=\"alert alert-danger\" role=\"alert\"\n           *ngIf=\"!signupForm.controls['surnameSignup'].valid && signupForm.controls['surnameSignup'].touched\">\n        Довжина від 2 до 20 символів\n      </div>\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!signupForm.valid\">Зареєструватись</button>\n  </form>\n\n"
 
 /***/ }),
 
@@ -1157,11 +1157,12 @@ var SignupComponent = (function () {
                 // this.signin(this.userSignup.username, this.userSignup.password);
             }
             else {
+                console.log('data', data);
                 _this.flashMessage.show(data.msg, {
                     cssClass: 'alert-danger',
                     timeout: 3000
                 });
-                _this.router.navigate(['/login']);
+                // this.router.navigate(['/login']);
             }
         }, function (error) {
             var errorMessage;

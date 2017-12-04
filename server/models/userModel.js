@@ -2,6 +2,7 @@ const mongoose = require('../libs/mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config');
 const log = require('../config/winston')(module);
+const userValidators = require('../validators/userValidators');
 
 const UserSchema = mongoose.Schema({
   name: {
@@ -17,16 +18,19 @@ const UserSchema = mongoose.Schema({
     unique: true,
     required: true,
     lowercase: true,
+    validate: userValidators.usernameValidators
   },
   email: {
     type: String,
     unique: true,
     required: true,
     lowercase: true,
+    validate: userValidators.emailValidators
   },
   password: {
     type: String,
-    required: true
+    required: true,
+    // validate: userValidators.passwordValidators
   },
   role: {
     type: String,
@@ -45,7 +49,6 @@ let UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;
 
 module.exports.getUserById = function(_id) {
-  log.info('getUserById');
   return new Promise((resolve, reject) => {
     UserModel.findById(_id)
       .then((user) => resolve(user))
@@ -80,10 +83,16 @@ module.exports.addUser = function(newUser) {
           newUser.save()
             .then(() => resolve({success: true, msg: 'Користувача зареєстровано'}))
             .catch((error) => {
+              log.verbose('registration error - ', error);
               if (error.code === 11000) {
-                reject({success: false, msg: 'Ім\'я користувача або enail вже існує'})
+                reject({success: false, msg: 'Ім\'я користувача або email вже існує', error})
               } else {
-                reject({success: false, msg: 'Не вдалося зареєструвати користувача'})
+                if (error.name === 'ValidationError') {
+                  reject({success: false, msg: 'Помилка валідації даних, ' +
+                    error.message, error});
+                } else {
+                  reject({success: false, msg: 'Не вдалося зареєструвати користувача', error});
+                }
               }
             });
         })
@@ -98,6 +107,5 @@ module.exports.updateUser = function(query, update) {
         UserModel.update(query, update)
           .then(() => resolve({success: true, msg: 'User updated'}))
           .catch(() => reject({success: false, msg: 'Failed to update user'}))
-      })
-
+      });
 };

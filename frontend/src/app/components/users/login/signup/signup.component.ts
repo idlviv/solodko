@@ -86,13 +86,14 @@ export class SignupComponent implements OnInit {
               });
             // this.signin(this.userSignup.username, this.userSignup.password);
           } else {
+            console.log('data', data);
             this.flashMessage.show(
               data.msg,
               {
                 cssClass: 'alert-danger',
                 timeout: 3000
               });
-            this.router.navigate(['/login']);
+            // this.router.navigate(['/login']);
           }
         },
         error => {
