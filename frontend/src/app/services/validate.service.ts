@@ -8,8 +8,8 @@ export class ValidateService {
   constructor() { }
 
   validateEmail(email) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    const regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regExp.test(email);
   }
 
   validateProduct(product) {
@@ -27,14 +27,22 @@ export class ValidateService {
     }
   }
 
+  usernameValidChecker(control) {
+    const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
+    if (regExp.test(control.value)) {
+      return null;
+    } else {
+      return {'usernameValidChecker': true};
+    }
+  }
+
   matchPassword(abstractControl: AbstractControl) {
     const password = abstractControl.get('passwordSignup').value; // to get value in input tag
     const passwordConfirm = abstractControl.get('passwordSignupConfirm').value; // to get value in input tag
     if (password === passwordConfirm) {
       abstractControl.get('passwordSignupConfirm').setErrors(null);
       return null;
-    }
-    else {
+    } else {
       abstractControl.get('passwordSignupConfirm').setErrors({mismatch: true});
       return null;
     }

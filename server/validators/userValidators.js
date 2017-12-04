@@ -36,7 +36,7 @@ module.exports.usernameValidators = [
   },
   {
     validator: usernameValidChecker,
-    message: 'Використовуйте цифри і латинські букви'
+    message: 'Використовуйте тільки цифри і латинські букви'
   },
 ];
 

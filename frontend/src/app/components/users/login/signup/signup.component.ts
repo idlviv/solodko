@@ -28,7 +28,8 @@ export class SignupComponent implements OnInit {
         usernameSignup: new FormControl('', [
           Validators.required,
           Validators.minLength(4),
-          Validators.maxLength(10)
+          Validators.maxLength(10),
+          this.validateService.usernameValidChecker
         ]),
         emailSignup: new FormControl('', [
           Validators.required,
