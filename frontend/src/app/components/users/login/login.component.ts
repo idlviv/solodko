@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/
 import {ValidateService} from '../../../services/validate.service';
 import {IUser} from '../../../interfaces/i-user';
 import {Observable} from 'rxjs/Observable';
+import {AuthAdminGuard} from '../../../guards/auth-admin.guard';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private validateService: ValidateService,
+    private authAdminGuard: AuthAdminGuard
   ) {
       // this.form = formBuilder.group({
       //   password: ['', Validators.required],
@@ -79,7 +80,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/login']);
             }
 
-          },err => {
+          }, err => {
             this.flashMessage.show(
               err,
               // err.status + ' ' + err.statusText,
@@ -89,6 +90,6 @@ export class LoginComponent implements OnInit {
               });
             this.router.navigate(['/login']);
           }
-        )
+        );
   }
 }

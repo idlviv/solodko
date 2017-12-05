@@ -6,8 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0",
-		"common"
+		"admin-panel.module.0"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
@@ -15,15 +14,14 @@ var map = {
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0",
-		"common"
+		"products.module.0"
 	]
 };
 function webpackAsyncContext(req) {
 	var ids = map[req];
 	if(!ids)
 		return Promise.reject(new Error("Cannot find module '" + req + "'."));
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(function() {
+	return __webpack_require__.e(ids[1]).then(function() {
 		return __webpack_require__(ids[0]);
 	});
 };
@@ -49,13 +47,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-// import { RegisterComponent } from './components/users/register/register.component';
 var login_component_1 = __webpack_require__("../../../../../src/app/components/users/login/login.component.ts");
 var profile_component_1 = __webpack_require__("../../../../../src/app/components/users/profile/profile.component.ts");
 var page404_component_1 = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
 var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var cart_component_1 = __webpack_require__("../../../../../src/app/components/users/cart/cart.component.ts");
 var blog_component_1 = __webpack_require__("../../../../../src/app/components/blog/blog.component.ts");
+var noAuth_guard_1 = __webpack_require__("../../../../../src/app/guards/noAuth.guard.ts");
 var appRoutes = [
     // { path: 'home',
     //   loadChildren: './components/home/home.module#HomeModule'
@@ -64,7 +62,7 @@ var appRoutes = [
         loadChildren: './components/products/products.module#ProductsModule'
     },
     // {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
-    { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'login', component: login_component_1.LoginComponent, canActivate: [noAuth_guard_1.NoAuthGuard] },
     // {path: 'products-management',
     //   loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
     //   },
@@ -172,6 +170,7 @@ var AppComponent = (function () {
                 // this.user = user;
                 _this.authService.logUserIn(user);
             }, function (err) {
+                console.log('app.component - getProfile - error handling');
                 // this.user = this.guest;
                 _this.authService.logUserOut(_this.guest);
             });
@@ -257,6 +256,7 @@ var animations_1 = __webpack_require__("../../../platform-browser/@angular/platf
 var auth_admin_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
 var auth_manager_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
 var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
+var noAuth_guard_1 = __webpack_require__("../../../../../src/app/guards/noAuth.guard.ts");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
@@ -298,6 +298,7 @@ AppModule = __decorate([
             auth_admin_guard_1.AuthAdminGuard,
             auth_manager_guard_1.AuthManagerGuard,
             auth_user_guard_1.AuthUserGuard,
+            noAuth_guard_1.NoAuthGuard,
             auth_service_1.AuthService,
             CustomErrorHandler_1.CustomErrorHandler,
         ],
@@ -312,7 +313,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  blog works!\n</p>\n"
+module.exports = "<p>\r\n  blog works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -373,7 +374,7 @@ exports.BlogComponent = BlogComponent;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
 
 /***/ }),
 
@@ -861,7 +862,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
+module.exports = "<p>\n  cart works!\n</p>\n"
 
 /***/ }),
 
@@ -963,13 +964,13 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var validate_service_1 = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+var auth_admin_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
 var LoginComponent = (function () {
-    function LoginComponent(authService, router, flashMessage, validateService) {
+    function LoginComponent(authService, router, flashMessage, authAdminGuard) {
         this.authService = authService;
         this.router = router;
         this.flashMessage = flashMessage;
-        this.validateService = validateService;
+        this.authAdminGuard = authAdminGuard;
         this.guest = {
             name: '',
             surname: '',
@@ -1035,7 +1036,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/users/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/users/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof validate_service_1.ValidateService !== "undefined" && validate_service_1.ValidateService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof auth_admin_guard_1.AuthAdminGuard !== "undefined" && auth_admin_guard_1.AuthAdminGuard) === "function" && _d || Object])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 var _a, _b, _c, _d;
@@ -1414,6 +1415,25 @@ exports.localCatalog = [
 
 /***/ }),
 
+/***/ "../../../../../src/app/data/user.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.emptyUser = {
+    username: '',
+    email: '',
+    password: '',
+    name: '',
+    surname: '',
+    role: 'Guest',
+    isEmailConfirmed: false,
+};
+//# sourceMappingURL=user.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/guards/auth-admin.guard.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1569,25 +1589,36 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var Observable_1 = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var AuthUserGuard = (function () {
-    function AuthUserGuard(authService, router) {
+    function AuthUserGuard(authService, router, customErrorHandler) {
         this.authService = authService;
         this.router = router;
+        this.customErrorHandler = customErrorHandler;
     }
     AuthUserGuard.prototype.canActivate = function (route, state) {
         var _this = this;
         return this.authService.getProfile()
             .map(function (result) {
+            console.log('result', result);
             if (result.role === 'Admin' || result.role === 'Manager' || result.role === 'User') {
                 console.log('authManagerGuard - canActivate', result.role);
                 return true;
             }
             else {
                 console.log('authManagerGuard - canActivate', result.role);
-                _this.router.navigate(['/login']);
+                _this.router.navigate(['/']);
                 return false;
             }
+        })
+            .catch(function (err) {
+            console.log('auth.user-guard - getProfile - error handling', err);
+            _this.router.navigate(['/']);
+            return Observable_1.Observable.of(false);
+            // return Observable.throw(err);
         });
+        // .catch(this.customErrorHandler.httpErrorHandler);
     };
     AuthUserGuard.prototype.canActivateChild = function (route, state) {
         var _this = this;
@@ -1602,17 +1633,68 @@ var AuthUserGuard = (function () {
                 _this.router.navigate(['/login']);
                 return false;
             }
-        });
+        })
+            .catch(this.customErrorHandler.httpErrorHandler);
     };
     return AuthUserGuard;
 }());
 AuthUserGuard = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof CustomErrorHandler_1.CustomErrorHandler !== "undefined" && CustomErrorHandler_1.CustomErrorHandler) === "function" && _c || Object])
 ], AuthUserGuard);
 exports.AuthUserGuard = AuthUserGuard;
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=auth-user.guard.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/guards/noAuth.guard.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
+var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var NoAuthGuard = (function () {
+    function NoAuthGuard(authService, router) {
+        this.authService = authService;
+        this.router = router;
+    }
+    NoAuthGuard.prototype.canActivate = function (route, state) {
+        var _this = this;
+        return this.authService.getProfile()
+            .map(function (result) {
+            if (result.role === 'Admin' || result.role === 'Manager' || result.role === 'User') {
+                _this.router.navigate(['/']);
+                console.log('noAuthGuard - canActivate', result.role);
+                return false;
+            }
+            else {
+                console.log('noAuthGuard - canActivate', result.role);
+                return true;
+            }
+        });
+    };
+    return NoAuthGuard;
+}());
+NoAuthGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
+], NoAuthGuard);
+exports.NoAuthGuard = NoAuthGuard;
+var _a, _b;
+//# sourceMappingURL=noAuth.guard.js.map
 
 /***/ }),
 
@@ -1655,6 +1737,7 @@ var CustomErrorHandler = (function () {
     function CustomErrorHandler() {
     }
     CustomErrorHandler.prototype.httpErrorHandler = function (err) {
+        console.log('customErrorHandler works, error - ', err);
         if (err.status === 401) {
             this.statusText = 'Не авторизовано';
             return Observable_1.Observable.throw(this.statusText);
@@ -1692,10 +1775,14 @@ var angular2_jwt_1 = __webpack_require__("../../../../angular2-jwt/angular2-jwt.
 var app_config_1 = __webpack_require__("../../../../../src/app/app.config.ts");
 var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var ReplaySubject_1 = __webpack_require__("../../../../rxjs/_esm5/ReplaySubject.js");
+var Observable_1 = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+__webpack_require__("../../../../rxjs/_esm5/Rx.js");
+var user_1 = __webpack_require__("../../../../../src/app/data/user.ts");
 var AuthService = (function () {
     function AuthService(http, customErrorHandler) {
         this.http = http;
         this.customErrorHandler = customErrorHandler;
+        this.emptyUser = user_1.emptyUser;
         this._logging = new ReplaySubject_1.ReplaySubject();
     }
     // create Observable for user login watch
@@ -1744,11 +1831,20 @@ var AuthService = (function () {
         // і цей юзер передається в profile.component
         var headers = new http_1.Headers();
         this.loadToken();
+        // if there is no token, dont need to check it on server
+        if (!this.authToken) {
+            console.log('token wasnt load from localstorage');
+            return Observable_1.Observable.throw(new URIError('401'));
+        }
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
         return this.http.get(app_config_1.config.serverUrl + 'api/profile', { headers: headers })
             .map(function (user) { return user.json(); })
-            .catch(this.customErrorHandler.httpErrorHandler);
+            .catch(function (err) {
+            console.log('auth.service - getProfile - error handling');
+            // send error forward to component or another service, otherwise exception will raise here
+            return Observable_1.Observable.throw(err);
+        });
     };
     AuthService.prototype.storeUserData = function (token, user) {
         localStorage.setItem('token', token);

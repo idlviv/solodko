@@ -7,12 +7,16 @@ import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
+
+import {emptyUser} from '../data/user';
 
 
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
+  emptyUser: IUser = emptyUser;
   private _logging: ReplaySubject<IUser> = new ReplaySubject<IUser>();
 
   constructor(
@@ -80,7 +84,13 @@ export class AuthService {
     // відповідаю даними юзера (розшифровує токен)
     // і цей юзер передається в profile.component
     const headers = new Headers();
+
     this.loadToken();
+    // if there is no token, dont need to check it on server
+    if (!this.authToken) {
+      console.log('token wasnt load from localstorage');
+      return Observable.throw(new URIError('401'));
+    }
 
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
@@ -88,7 +98,11 @@ export class AuthService {
       config.serverUrl + 'api/profile',
       {headers: headers})
       .map(user => user.json())
-      .catch(this.customErrorHandler.httpErrorHandler);
+      .catch(err =>  {
+        console.log('auth.service - getProfile - error handling');
+        // send error forward to component or another service, otherwise exception will raise here
+        return Observable.throw(err);
+      });
     }
 
   storeUserData(token, user) {

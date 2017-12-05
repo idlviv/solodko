@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
               this.authService.logUserIn(user);
             },
             err => {
+              console.log('app.component - getProfile - error handling');
               // this.user = this.guest;
               this.authService.logUserOut(this.guest);
             }

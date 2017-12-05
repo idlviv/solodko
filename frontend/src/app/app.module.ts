@@ -20,9 +20,11 @@ import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {AuthAdminGuard} from './guards/auth-admin.guard';
 import {AuthManagerGuard} from './guards/auth-manager.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
+import {NoAuthGuard} from './guards/noAuth.guard';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -32,7 +34,6 @@ import 'rxjs/add/operator/take';
 
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
-
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
     AuthAdminGuard,
     AuthManagerGuard,
     AuthUserGuard,
+    NoAuthGuard,
     AuthService,
     CustomErrorHandler,
   ],
