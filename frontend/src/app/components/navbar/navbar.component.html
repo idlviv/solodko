@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto"  (click)="hide()">
       <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/home']">Головна</a></li>
+        <a class="nav-link" [routerLink]="['']">Головна</a></li>
       <li *ngFor="let catalogItem of localCatalog" class="nav-item" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link"
@@ -19,7 +19,6 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right" (click)="hide()">
-
       <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/blog']">

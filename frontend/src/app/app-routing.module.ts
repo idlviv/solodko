@@ -13,9 +13,9 @@ import {CartComponent} from './components/users/cart/cart.component';
 import {BlogComponent} from './components/blog/blog.component';
 
 const appRoutes: Routes = [
-  { path: 'home',
-    loadChildren: './components/home/home.module#HomeModule'
-  },
+  // { path: 'home',
+  //   loadChildren: './components/home/home.module#HomeModule'
+  // },
   { path: 'products',
     loadChildren: './components/products/products.module#ProductsModule'
   },
@@ -30,7 +30,8 @@ const appRoutes: Routes = [
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },
   {path: 'blog', component: BlogComponent, canActivate: [AuthUserGuard]},
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];
 

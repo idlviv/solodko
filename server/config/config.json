@@ -1,9 +1,9 @@
 {
   "port": 8082,
   "corsOptions": {
-    "origin": "http://localhost:8080",
-    "optionsSuccessStatus": 200
+    "origin": "http://localhost:8080"
   },
+
   "cookieCsrfOptions": {
     "secure": false,
     "httpOnly": false,

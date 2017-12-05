@@ -6,16 +6,16 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module",
+		"admin-panel.module.0",
 		"common"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module"
+		"home.module.0"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module",
+		"products.module.0",
 		"common"
 	]
 };
@@ -57,9 +57,9 @@ var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-
 var cart_component_1 = __webpack_require__("../../../../../src/app/components/users/cart/cart.component.ts");
 var blog_component_1 = __webpack_require__("../../../../../src/app/components/blog/blog.component.ts");
 var appRoutes = [
-    { path: 'home',
-        loadChildren: './components/home/home.module#HomeModule'
-    },
+    // { path: 'home',
+    //   loadChildren: './components/home/home.module#HomeModule'
+    // },
     { path: 'products',
         loadChildren: './components/products/products.module#ProductsModule'
     },
@@ -74,7 +74,8 @@ var appRoutes = [
         loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
     },
     { path: 'blog', component: blog_component_1.BlogComponent, canActivate: [auth_user_guard_1.AuthUserGuard] },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    // { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
     { path: '**', component: page404_component_1.Page404Component },
 ];
 var AppRoutingModule = (function () {
@@ -239,31 +240,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
-// import { CommonModule } from '@angular/common';
 var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var app_component_1 = __webpack_require__("../../../../../src/app/app.component.ts");
 var navbar_component_1 = __webpack_require__("../../../../../src/app/components/navbar/navbar.component.ts");
+var footer_component_1 = __webpack_require__("../../../../../src/app/components/footer/footer.component.ts");
+var blog_component_1 = __webpack_require__("../../../../../src/app/components/blog/blog.component.ts");
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var shared_module_1 = __webpack_require__("../../../../../src/app/components/shared/shared.module.ts");
 var users_module_1 = __webpack_require__("../../../../../src/app/components/users/users.module.ts");
-var url_serializer_service_1 = __webpack_require__("../../../../../src/app/services/url-serializer.service.ts");
 var product_resolver_service_1 = __webpack_require__("../../../../../src/app/services/product-resolver.service.ts");
 var product_service_1 = __webpack_require__("../../../../../src/app/services/product.service.ts");
 var catalog_service_1 = __webpack_require__("../../../../../src/app/services/catalog.service.ts");
 var validate_service_1 = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var animations_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 var auth_admin_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
+var auth_manager_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
+var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
 __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/take.js");
-var auth_manager_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
-var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
-var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var url_serializer_service_1 = __webpack_require__("../../../../../src/app/services/url-serializer.service.ts");
 var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
-var footer_component_1 = __webpack_require__("../../../../../src/app/components/footer/footer.component.ts");
-var blog_component_1 = __webpack_require__("../../../../../src/app/components/blog/blog.component.ts");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -278,7 +278,6 @@ AppModule = __decorate([
             blog_component_1.BlogComponent,
         ],
         imports: [
-            // CommonModule,
             platform_browser_1.BrowserModule,
             http_1.HttpModule,
             shared_module_1.SharedModule,
@@ -313,7 +312,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  blog works!\r\n</p>\r\n"
+module.exports = "<p>\n  blog works!\n</p>\n"
 
 /***/ }),
 
@@ -374,7 +373,7 @@ exports.BlogComponent = BlogComponent;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark sticky-bottom bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -435,7 +434,7 @@ exports.FooterComponent = FooterComponent;
 /***/ "../../../../../src/app/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark sticky-top bg-main_color\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products/ch', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/blog']\">\r\n          <i class=\"material-icons\">chat_bubble_outline</i> Блог <span class=\"badge badge-success\">0</span></a></li>\r\n\r\n      <li class=\"nav-item dropdown\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\">\r\n        <a class=\"nav-link dropdown-toggle\"\r\n           id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n          <i class=\"material-icons\">person</i> {{user.name}}\r\n        </a>\r\n        <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n          <h6 class=\"dropdown-header\">\r\n            <span *ngIf=\"getLoggedUser$ | async; let _data\">\r\n              {{_data.role}}\r\n            </span>\r\n            {{user.role === 'Admin' ? 'Адміністратор' : (user.role === 'Manager' ? 'Менеджер' : 'Користувач')}}\r\n          </h6>\r\n          <div class=\"dropdown-divider\"></div>\r\n          <a class=\"dropdown-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n             [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n             [routerLink]=\"['/profile']\">Переглянути профіль</a>\r\n\r\n          <a class=\"dropdown-item\" *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n             [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n             [routerLink]=\"['/admin', 'ch', 'edit-product']\">Панель адміністратора</a>\r\n        </div>\r\n      </li>\r\n\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"-->\r\n          <!--[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile-->\r\n            <!--<i class=\"material-icons\">person</i> {{user.role}}, {{user.name}}-->\r\n        <!--</a></li>-->\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Guest'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Вхід</a></li>\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'Admin'\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>-->\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">\r\n          <i class=\"material-icons\">exit_to_app</i> Вийти</a></li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n</nav>\r\n"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark sticky-top bg-main_color\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\r\n          aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\r\n    <ul class=\"navbar-nav mr-auto\"  (click)=\"hide()\">\r\n      <li class=\"nav-item\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['']\">Головна</a></li>\r\n      <li *ngFor=\"let catalogItem of localCatalog\" class=\"nav-item\" [routerLinkActive]=\"['active']\"\r\n          [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\"\r\n           [routerLink]=\"['/products/ch', {outlets: {primary: catalogItem.category0.category1?\r\n            'start/'+ catalogItem.category0.name +'/main' : 'category/'+ catalogItem.category0.name +'/noSubCategories',\r\n           productsSubmenu: 'category/'+ catalogItem.category0.name +'/main'}}]\">\r\n          <!--<i [ngClass]=\"catalogItem.category0.icon\"></i>-->\r\n          {{catalogItem.category0.name}}</a></li>\r\n    </ul>\r\n\r\n    <ul class=\"nav navbar-nav navbar-right\" (click)=\"hide()\">\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/blog']\">\r\n          <i class=\"material-icons\">chat_bubble_outline</i> Блог <span class=\"badge badge-success\">0</span></a></li>\r\n\r\n      <li class=\"nav-item dropdown\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\">\r\n        <a class=\"nav-link dropdown-toggle\"\r\n           id=\"navbarDropdownMenuLink\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n          <i class=\"material-icons\">person</i> {{user.name}}\r\n        </a>\r\n        <div class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"navbarDropdownMenuLink\">\r\n          <h6 class=\"dropdown-header\">\r\n            <span *ngIf=\"getLoggedUser$ | async; let _data\">\r\n              {{_data.role}}\r\n            </span>\r\n            {{user.role === 'Admin' ? 'Адміністратор' : (user.role === 'Manager' ? 'Менеджер' : 'Користувач')}}\r\n          </h6>\r\n          <div class=\"dropdown-divider\"></div>\r\n          <a class=\"dropdown-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"\r\n             [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n             [routerLink]=\"['/profile']\">Переглянути профіль</a>\r\n\r\n          <a class=\"dropdown-item\" *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n             [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\"\r\n             [routerLink]=\"['/admin', 'ch', 'edit-product']\">Панель адміністратора</a>\r\n        </div>\r\n      </li>\r\n\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'\"-->\r\n          <!--[routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/profile']\">Profile-->\r\n            <!--<i class=\"material-icons\">person</i> {{user.role}}, {{user.name}}-->\r\n        <!--</a></li>-->\r\n\r\n\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'Guest'\"\r\n          [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Вхід</a></li>\r\n      <!--<li class=\"nav-item\" *ngIf=\"user && user.role === 'Admin'\" [routerLinkActive]=\"['active']\" [routerLinkActiveOptions]=\"{exact: true}\">-->\r\n        <!--<a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a></li>-->\r\n      <li class=\"nav-item\" *ngIf=\"user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'\">\r\n        <a class=\"nav-link\" (click)=\"onLogoutClick()\" href=\"#\">\r\n          <i class=\"material-icons\">exit_to_app</i> Вийти</a></li>\r\n\r\n    </ul>\r\n\r\n  </div>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -862,7 +861,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1133,6 +1132,7 @@ var SignupComponent = (function () {
     };
     SignupComponent.prototype.onSignupSubmit = function () {
         var _this = this;
+        // console.log(this.signupForm.get('usernameSignup').value);
         this.userSignup = {
             username: this.signupForm.value.usernameSignup,
             password: this.signupForm.value.passwordSignup,

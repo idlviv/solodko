@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
+// app.use(cors());
 app.use(cors(config.get('corsOptions')));
 
 //в csrf передається або { cookie: true } або замість true опції
