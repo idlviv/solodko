@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         'Потрібно увійти, щоб відкрити цю сторінку',
         {
           cssClass: 'alert-danger',
-          timeout: 2000
+          timeout: 5000
         });
       this.previousURL = this.authUserGuard.redirectURL;
       this.authUserGuard.redirectURL = undefined;

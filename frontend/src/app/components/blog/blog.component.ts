@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
+  messageClass;
+  message;
+  newPost = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  newBlogForm() {
+
   }
 
 }

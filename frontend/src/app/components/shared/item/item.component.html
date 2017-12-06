@@ -3,8 +3,8 @@
 
     <div class="img-container clear-fix">
 
-      <a *ngIf="parentComponentLink" class="btn btn-primary button-category button-round-3" [routerLink]="parentComponentLink">
-        <i class="material-icons button-round-icon-3">keyboard_arrow_right</i></a>
+      <button *ngIf="parentComponentLink" class="btn btn-primary button-category button-round-3" [routerLink]="parentComponentLink">
+        <i class="material-icons button-round-icon-3">keyboard_arrow_right</i></button>
 
       <img class="card-img-top" src="{{product.mainImgSrc[0]}}" alt="Зображення"
            (click)="onImageClick(product)">

@@ -1,3 +1,10 @@
-<p>
-  blog works!
-</p>
+<h2 class="page-header">Блог</h2>
+
+<!--<div class="row show-hide-message">-->
+  <!--<div [ngClass]="messageClass">-->
+    <!--{{message}}-->
+  <!--</div>-->
+<!--</div>-->
+
+<button class="btn btn-primary" *ngIf="!newPost" (click)="newBlogForm()">Новий пост</button>
+<button class="btn btn-primary">Перезавантажити</button>

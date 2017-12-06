@@ -9,7 +9,7 @@ import {IProduct} from '../../../../interfaces/i-product';
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
   // providers: [ProductService],
-  styleUrls: ['./edit-product.component.css']
+  styleUrls: ['./edit-product.component.scss']
 })
 
 export class EditProductComponent implements OnInit {
