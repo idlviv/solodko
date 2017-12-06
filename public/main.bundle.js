@@ -966,13 +966,13 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
-var auth_admin_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-admin.guard.ts");
+var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var LoginComponent = (function () {
-    function LoginComponent(authService, router, flashMessage, authAdminGuard) {
+    function LoginComponent(authService, router, flashMessage, authUserGuard) {
         this.authService = authService;
         this.router = router;
         this.flashMessage = flashMessage;
-        this.authAdminGuard = authAdminGuard;
+        this.authUserGuard = authUserGuard;
         this.guest = {
             name: '',
             surname: '',
@@ -993,6 +993,17 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // if try to get url without permission
+        // authUserGuard redirects to login page
+        // after login automatically redirects to this url
+        if (this.authUserGuard.redirectURL) {
+            this.flashMessage.show('Потрібно увійти, щоб відкрити цю сторінку', {
+                cssClass: 'alert-danger',
+                timeout: 2000
+            });
+            this.previousURL = this.authUserGuard.redirectURL;
+            this.authUserGuard.redirectURL = undefined;
+        }
         // gets user role
         this.getLoggedUser$ = this.authService.getLoggedUser();
         this.getLoggedUser$
@@ -1011,7 +1022,12 @@ var LoginComponent = (function () {
                     cssClass: 'alert-success',
                     timeout: 2000
                 });
-                _this.router.navigate(['/profile']);
+                if (_this.previousURL) {
+                    _this.router.navigate([_this.previousURL]);
+                }
+                else {
+                    _this.router.navigate(['/profile']);
+                }
             }
             else {
                 _this.flashMessage.show(data.msg, {
@@ -1038,7 +1054,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/users/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/users/login/login.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof auth_admin_guard_1.AuthAdminGuard !== "undefined" && auth_admin_guard_1.AuthAdminGuard) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof auth_user_guard_1.AuthUserGuard !== "undefined" && auth_user_guard_1.AuthUserGuard) === "function" && _d || Object])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 var _a, _b, _c, _d;
@@ -1625,12 +1641,16 @@ var AuthUserGuard = (function () {
             }
             else {
                 console.log('authManagerGuard - canActivate', result.role);
+                // if try to get url without permission
+                _this.redirectURL = state.url;
                 _this.router.navigate(['/login']);
                 return false;
             }
         })
             .catch(function (err) {
             console.log('auth.user-guard - getProfile - error handling', err);
+            // if try to get url without permission
+            _this.redirectURL = state.url;
             _this.router.navigate(['/login']);
             return Observable_1.Observable.of(false);
         });

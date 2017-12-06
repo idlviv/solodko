@@ -6,7 +6,7 @@ import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/
 import {ValidateService} from '../../../services/validate.service';
 import {IUser} from '../../../interfaces/i-user';
 import {Observable} from 'rxjs/Observable';
-import {AuthAdminGuard} from '../../../guards/auth-admin.guard';
+import {AuthUserGuard} from '../../../guards/auth-user.guard';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   // userSignup = {} as IUser;
   userSignin: Object;
   getLoggedUser$: Observable<IUser>;
+
+  previousURL;
 
   guest: IUser = {
     name: '',
@@ -33,7 +35,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private authAdminGuard: AuthAdminGuard
+    private authUserGuard: AuthUserGuard
   ) {
       // this.form = formBuilder.group({
       //   password: ['', Validators.required],
@@ -46,6 +48,20 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // if try to get url without permission
+    // authUserGuard redirects to login page
+    // after login automatically redirects to this url
+    if (this.authUserGuard.redirectURL) {
+      this.flashMessage.show(
+        'Потрібно увійти, щоб відкрити цю сторінку',
+        {
+          cssClass: 'alert-danger',
+          timeout: 2000
+        });
+      this.previousURL = this.authUserGuard.redirectURL;
+      this.authUserGuard.redirectURL = undefined;
+    }
 
     // gets user role
     this.getLoggedUser$ = this.authService.getLoggedUser();
@@ -68,7 +84,12 @@ export class LoginComponent implements OnInit {
                   cssClass: 'alert-success',
                   timeout: 2000
                 });
-              this.router.navigate(['/profile']);
+
+              if (this.previousURL) {
+                this.router.navigate([this.previousURL]);
+              } else {
+                this.router.navigate(['/profile']);
+              }
 
             } else {
               this.flashMessage.show(

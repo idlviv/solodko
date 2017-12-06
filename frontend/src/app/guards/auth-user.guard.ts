@@ -7,6 +7,8 @@ import {CustomErrorHandler} from '../services/CustomErrorHandler';
 @Injectable()
 export class AuthUserGuard implements CanActivate, CanActivateChild {
 
+  redirectURL;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,12 +25,20 @@ export class AuthUserGuard implements CanActivate, CanActivateChild {
           return true;
         } else {
           console.log('authManagerGuard - canActivate', result.role);
+
+          // if try to get url without permission
+          this.redirectURL = state.url;
+
           this.router.navigate(['/login']);
           return false;
         }
       })
       .catch(err => {
         console.log('auth.user-guard - getProfile - error handling', err);
+
+        // if try to get url without permission
+        this.redirectURL = state.url;
+
         this.router.navigate(['/login']);
         return Observable.of(false);
       });
