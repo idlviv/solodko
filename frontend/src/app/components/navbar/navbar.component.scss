@@ -4,7 +4,9 @@
   @include boxShadow(3);
 }
 
-.dropdown {
+.dropdown,
+a.nav-link
+{
   cursor: pointer;
 }
 
@@ -12,4 +14,8 @@
   font-size: $font-size-sm;
 }
 
+//.tmp {
+//  font-size: .4rem;
+//  color: white;
+//}
 

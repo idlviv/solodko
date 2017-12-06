@@ -1,13 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {Router, NavigationStart} from '@angular/router';
+import {Router} from '@angular/router';
 import {CatalogService} from '../../services/catalog.service';
 import {ICatalog} from '../../interfaces/i-catalog';
-import {Observable} from 'rxjs/Observable';
-import {Observer} from 'rxjs/Observer';
 import {IUser} from '../../interfaces/i-user';
-declare var $: any;
+import {emptyUser} from '../../data/user';
+import {Observable} from 'rxjs/Observable';
+
+declare let $: any;
 
 @Component({
   selector: 'app-navbar',
@@ -19,17 +20,17 @@ export class NavbarComponent implements OnInit {
   // for async pipe
   getLoggedUser$: Observable<IUser>;
 
-  guest: IUser = {
-    name: '',
-    surname: '',
-    email: '',
-    username: '',
-    password: '',
-    role: 'Guest',
-  };
-  user: IUser = this.guest;
-  // user = {} as IUser;
-  role = '';
+  // guest: IUser = {
+  //     name: '',
+  //     surname: '',
+  //     email: '',
+  //     username: '',
+  //     password: '',
+  //     role: 'Guest',
+  // };
+  user: IUser = emptyUser; // = this.guest;
+  // // user = {} as IUser;
+  // role = '';
 
   constructor(
     public authService: AuthService,
@@ -41,6 +42,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     this.localCatalog = this.catalogService.getCatalog();
+
     this.getLoggedUser$ = this.authService.getLoggedUser();
 
     this.getLoggedUser$

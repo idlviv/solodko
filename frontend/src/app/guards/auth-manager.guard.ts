@@ -13,7 +13,7 @@ export class AuthManagerGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.getProfile()
+    return this.authService.getLoggedUser()
       .map((result) => {
         if (result.role === 'Admin' || result.role ===  'Manager') {
           console.log('authManagerGuard - canActivate', result.role);
@@ -23,13 +23,18 @@ export class AuthManagerGuard implements CanActivate, CanActivateChild {
           this.router.navigate(['/login']);
           return false;
         }
+      })
+      .catch(err => {
+        console.log('auth.user-guard - getProfile - error handling', err);
+        this.router.navigate(['/login']);
+        return Observable.of(false);
       });
   }
 
   canActivateChild(route: ActivatedRouteSnapshot,
                    state: RouterStateSnapshot): Observable<boolean> {
 
-    return this.authService.getProfile()
+    return this.authService.getLoggedUser()
       .map((result) => {
         if (result.role === 'Admin' || result.role ===  'Manager') {
           console.log('authManagerGuard - canActivateChild', result.role);
@@ -39,6 +44,11 @@ export class AuthManagerGuard implements CanActivate, CanActivateChild {
           this.router.navigate(['/login']);
           return false;
         }
+      })
+      .catch(err => {
+        console.log('auth.user-guard - getProfile - error handling', err);
+        this.router.navigate(['/login']);
+        return Observable.of(false);
       });
   }
 }

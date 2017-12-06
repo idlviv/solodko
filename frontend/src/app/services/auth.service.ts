@@ -11,13 +11,12 @@ import 'rxjs/Rx';
 
 import {emptyUser} from '../data/user';
 
-
 @Injectable()
 export class AuthService {
   authToken: any;
   user: any;
   emptyUser: IUser = emptyUser;
-  private _logging: ReplaySubject<IUser> = new ReplaySubject<IUser>();
+  private _logging: ReplaySubject<IUser> = new ReplaySubject(1);
 
   constructor(
     private http: Http,
@@ -86,10 +85,9 @@ export class AuthService {
     const headers = new Headers();
 
     this.loadToken();
-    // if there is no token, dont need to check it on server
+    // if there is no token, dont need to check it on server, sets emptyUser (Guest) as user
     if (!this.authToken) {
-      console.log('token wasnt load from localstorage');
-      return Observable.throw(new URIError('401'));
+      return Observable.of(emptyUser);
     }
 
     headers.append('Authorization', this.authToken);
@@ -98,14 +96,19 @@ export class AuthService {
       config.serverUrl + 'api/profile',
       {headers: headers})
       .map(user => user.json())
-      .catch(err =>  {
-        console.log('auth.service - getProfile - error handling');
+      .catch(() =>  {
+
+        // if token not valid sets emptyUser (Guest) as user
+        return Observable.of(emptyUser);
+
         // send error forward to component or another service, otherwise exception will raise here
-        return Observable.throw(err);
+        // return Observable.throw(err);
+
       });
     }
 
   storeUserData(token, user) {
+    this.logUserIn(user);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
@@ -116,25 +119,26 @@ export class AuthService {
     this.authToken = localStorage.getItem('token');
   }
 
-  loggedInRole(): Observable<string> {
-    const headers = new Headers();
-    this.loadToken();
-    headers.append('Authorization', this.authToken);
-    headers.append('Content-Type', 'application/json');
-    return this.http.get(
-      config.serverUrl + 'api/role',
-  {headers: headers})
-      .map(res => {
-        return res.json();
-      })
-      .catch(this.customErrorHandler.httpErrorHandler);
-  }
+  // loggedInRole(): Observable<string> {
+  //   const headers = new Headers();
+  //   this.loadToken();
+  //   headers.append('Authorization', this.authToken);
+  //   headers.append('Content-Type', 'application/json');
+  //   return this.http.get(
+  //     config.serverUrl + 'api/role',
+  // {headers: headers})
+  //     .map(res => {
+  //       return res.json();
+  //     })
+  //     .catch(this.customErrorHandler.httpErrorHandler);
+  // }
 
   loggedIn() {
     return tokenNotExpired();
   }
 
   logout() {
+    this.logUserOut(this.emptyUser);
     this.authToken = null;
     this.user = null;
     localStorage.clear();

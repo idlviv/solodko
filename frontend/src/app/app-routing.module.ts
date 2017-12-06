@@ -5,9 +5,7 @@ import { LoginComponent } from './components/users/login/login.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { Page404Component } from './components/shared/page404/page404.component';
 
-import {AuthAdminGuard} from './guards/auth-admin.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
-import {AuthManagerGuard} from './guards/auth-manager.guard';
 import {CartComponent} from './components/users/cart/cart.component';
 import {BlogComponent} from './components/blog/blog.component';
 import {NoAuthGuard} from './guards/noAuth.guard';
@@ -30,7 +28,7 @@ const appRoutes: Routes = [
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },
   {path: 'blog', component: BlogComponent, canActivate: [AuthUserGuard]},
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];

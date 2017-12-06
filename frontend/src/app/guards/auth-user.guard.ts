@@ -15,7 +15,7 @@ export class AuthUserGuard implements CanActivate, CanActivateChild {
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.getProfile()
+    return this.authService.getLoggedUser()
       .map((result) => {
         console.log('result', result);
         if (result.role === 'Admin' || result.role ===  'Manager' || result.role ===  'User') {
@@ -23,23 +23,21 @@ export class AuthUserGuard implements CanActivate, CanActivateChild {
           return true;
         } else {
           console.log('authManagerGuard - canActivate', result.role);
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
           return false;
         }
       })
       .catch(err => {
         console.log('auth.user-guard - getProfile - error handling', err);
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
         return Observable.of(false);
-        // return Observable.throw(err);
       });
-      // .catch(this.customErrorHandler.httpErrorHandler);
   }
 
   canActivateChild(route: ActivatedRouteSnapshot,
                    state: RouterStateSnapshot): Observable<boolean> {
 
-    return this.authService.getProfile()
+    return this.authService.getLoggedUser()
       .map((result) => {
         if (result.role === 'Admin' || result.role ===  'Manager' || result.role ===  'User') {
           console.log('authManagerGuard - canActivateChild', result.role);
@@ -50,7 +48,11 @@ export class AuthUserGuard implements CanActivate, CanActivateChild {
           return false;
         }
       })
-    .catch(this.customErrorHandler.httpErrorHandler);
+      .catch(err => {
+        console.log('auth.user-guard - getProfile - error handling', err);
+        this.router.navigate(['/login']);
+        return Observable.of(false);
+      });
 
 
   }
