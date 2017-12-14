@@ -67,8 +67,6 @@ button > i {
   font-size: 1.2rem;
 }
 
-
-
 .c_jumbotron-heading {
   color: $main_color;
 }
@@ -82,7 +80,16 @@ button > i {
 // }
 
 
+.container-fluid,
+.row,
+.container,
+.jumbotron{
+  background-color: $background-color-back;
+}
 
+.background-color-front{
+  background-color: $background-color-front;
+}
 
 
 

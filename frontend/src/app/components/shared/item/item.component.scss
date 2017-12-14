@@ -4,9 +4,7 @@
   //margin-left: -1rem;
   margin-bottom: $grid-gutter-width;
   border: 0;
-  /*padding-left: .7rem;*/
-  /*padding-right: .7rem;*/
-  @include boxShadow(1);
+  //@include boxShadow(1);
 }
 
 .card-text {
