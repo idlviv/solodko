@@ -6,7 +6,8 @@ $background-color-front: #fff;
 $jumbotron-padding: 1rem;
 $jumbotron-bg: $background-color-front;
 $grid-gutter-width: 16px;
-$border-radius: 0;
+$custom-border-radius: 0;
+$card-border-radius: $custom-border-radius;
 
 // --
 $c_light_beige: #EEEFEA;
@@ -35,7 +36,7 @@ $colors: (
 
 $primary:       $c_coffee;
 $secondary:     $c_nut;
-$main_color: $c_jeans;
+$main_color:    $c_jeans;
 $card_background: #ffffff;
 
 $theme-colors: (
@@ -52,6 +53,26 @@ $theme-colors: (
   text-align: center;
   color: $main_color;
 }
+
+//.card {
+//  @include border-radius($card-border-radius);
+//
+//  > .list-group:first-child {
+//    .list-group-item:first-child {
+//      @include border-top-radius($card-border-radius);
+//    }
+//  }
+//
+//  > .list-group:last-child {
+//    .list-group-item:last-child {
+//      @include border-bottom-radius($card-border-radius);
+//    }
+//  }
+//}
+
+//.jumbotron {
+//  @include border-radius($custom-border-radius);
+//}
 
 @import "~bootstrap/scss/bootstrap";
 

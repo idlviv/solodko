@@ -17,7 +17,7 @@ export class BlogComponent implements OnInit {
   }
 
   newBlogForm() {
-
+    this.newPost = true;
   }
 
 }
