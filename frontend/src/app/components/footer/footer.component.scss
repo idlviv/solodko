@@ -2,8 +2,11 @@
 
 .c_footer {
   @include boxShadowInverse(2);
-  height: 5rem;
+  height: 4rem;
   background-color: $main_color;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .navbar-brand-small {

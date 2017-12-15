@@ -2,6 +2,15 @@
 @import './mixins';
 @import './custom-bootstrap';
 
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 4rem;
+}
+
 .ng-valid {
   &[required], &.required {
     border-left: 5px solid #42A948;
@@ -79,7 +88,7 @@ button > i {
 //   padding-bottom: 1rem;
 // }
 
-
+body,
 .container-fluid,
 .row,
 .container,
