@@ -5,6 +5,83 @@
     <!--{{message}}-->
   <!--</div>-->
 <!--</div>-->
+<!--<div class="row">-->
+  <!--<div class="col">-->
+    <!--<button class="btn btn-primary" *ngIf="!newPost" (click)="newBlogForm()">Новий пост</button>-->
+    <!--<button [disabled]="loadingBlogs" class="btn btn-primary" *ngIf="!newPost" (click)="reloadBlogs()">Перезавантажити</button>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
 
-<button class="btn btn-primary" *ngIf="!newPost" (click)="newBlogForm()">Новий пост</button>
-<button class="btn btn-primary">Перезавантажити</button>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-primary" *ngIf="!newPost"
+                  (click)="newBlogForm()">Новий пост</button>
+          <button [disabled]="loadingBlogs" class="btn btn-primary" *ngIf="!newPost"
+                  (click)="reloadBlogs()">Перезавантажити</button>
+        </div>
+      </div>
+      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+      <div class="card-body" *ngIf="!newPost">
+        <h4 class="card-title">Blog title</h4>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col-md-3 col-sm-12">
+            <button class="btn btn-primary">Редагувати</button>
+            <button [disabled]="loadingBlogs" class="btn btn-danger">Видалити</button>
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Автор:</strong> Poster
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Дата:</strong> 31.12.2017 23:58
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Лайків</strong> 125488
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Нелайків</strong> 5
+          </div>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-2">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Лайки
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Нелайки
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+

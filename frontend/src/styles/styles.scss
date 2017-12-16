@@ -7,7 +7,6 @@ html {
   min-height: 100%;
 }
 body {
-  /* Margin bottom by footer height */
   margin-bottom: 4rem;
 }
 
@@ -79,14 +78,6 @@ button > i {
 .c_jumbotron-heading {
   color: $main_color;
 }
-
-//.progress {
-//  margin: auto;
-//}
-
-//.page-header {
-//   padding-bottom: 1rem;
-// }
 
 body,
 .container-fluid,

@@ -10,6 +10,7 @@ export class BlogComponent implements OnInit {
   messageClass;
   message;
   newPost = false;
+  loadingBlogs = false;
 
   constructor() { }
 
@@ -18,6 +19,11 @@ export class BlogComponent implements OnInit {
 
   newBlogForm() {
     this.newPost = true;
+  }
+
+  reloadBlogs() {
+    this.loadingBlogs = true;
+
   }
 
 }
