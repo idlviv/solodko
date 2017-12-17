@@ -22,6 +22,7 @@
                   (click)="newBlogForm()">Новий пост</button>
           <button [disabled]="loadingBlogs" class="btn btn-primary" *ngIf="!newPost"
                   (click)="reloadBlogs()">Перезавантажити</button>
+
         </div>
       </div>
       <!--<img class="card-img-top" src="..." alt="Card image cap">-->
@@ -32,14 +33,33 @@
 
       <div class="card-footer text-muted">
         <div class="row">
-          <div class="col-md-3 col-sm-12">
-            <button class="btn btn-primary">Редагувати</button>
-            <button [disabled]="loadingBlogs" class="btn btn-danger">Видалити</button>
+          <div class="col-md-4 col-sm-12">
+            <button class="btn btn-primary btn-sm">Редагувати</button>
+            <button [disabled]="loadingBlogs" class="btn btn-danger btn-sm">Видалити</button>
+
+            <div class="c_dropdown">
+              <button class="btn btn-success btn-sm">Лайки</button>
+              <div class="c_dropdown-content">
+                <p><a href="#">user1</a></p>
+                <p><a href="#">user2</a></p>
+                <p><a href="#">user3</a></p>
+              </div>
+            </div>
+
+            <div class="c_dropdown">
+              <button class="btn btn-success btn-sm">Нелайки</button>
+              <div class="c_dropdown-content">
+                <p><a href="#">user1</a></p>
+                <p><a href="#">user2</a></p>
+                <p><a href="#">user3</a></p>
+              </div>
+            </div>
+
           </div>
           <div class="col-md-2 col-sm-6">
             <strong>Автор:</strong> Poster
           </div>
-          <div class="col-md-3 col-sm-6">
+          <div class="col-md-2 col-sm-6">
             <strong>Дата:</strong> 31.12.2017 23:58
           </div>
           <div class="col-md-2 col-sm-6">
@@ -50,36 +70,26 @@
           </div>
         </div>
         <br/>
-        <div class="row">
-          <div class="col-2">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Лайки
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-2">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2"
-                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Нелайки
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-          </div>
-        </div>
+
+
+
       </div>
 
+      <ul class="list-group">
+        <li class="list-group-item">
+          <button class="btn btn-sm btn-danger" (click)="draftComment()">
+            Запістити
+          </button>
+          <br/>
+          <!--<form>-->
+          <!--<textarea name="comment" id="" cols="30" rows="10" class="form-control">-->
+          <!--<button class="btn btn-sm btn-info">Submit</button>-->
+          <!--<button class="btn btn-sm btn-info">Cancel</button>-->
+          <!--</textarea>-->
+          <!--</form>-->
+        </li>
+
+      </ul>
     </div>
   </div>
 

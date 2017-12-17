@@ -23,6 +23,9 @@ export class BlogComponent implements OnInit {
 
   reloadBlogs() {
     this.loadingBlogs = true;
+  }
+
+  draftComment() {
 
   }
 
