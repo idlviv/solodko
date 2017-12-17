@@ -43,10 +43,12 @@ require('./server/config/passport')(passport);
 
 const users = require('./server/routes/users');
 const products = require('./server/routes/products');
+// const blog = require('./server/routes/blog');
 const index = require('./server/routes');
 
 app.use('/api', users);
 app.use('/api', products);
+// app.use('/api', blog);
 
 app.use('/', index);
 
