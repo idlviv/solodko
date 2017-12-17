@@ -1,5 +1,6 @@
 {
   "port": 8082,
+  "ssl_port": 443,
   "corsOptions": {
     "origin": "http://localhost:8080"
   },

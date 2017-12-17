@@ -12,6 +12,8 @@ const log = require('./server/config/winston')(module);
 const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
+const https = require('https');
+const http = require('http');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -86,6 +88,18 @@ app.use(function(err, req, res, next) {
     }
   }
 });
+
+// https.createServer(
+//   {
+//     key: config.get('API_KEY'),
+//     ca: config.get('CA_KEY')
+//   },
+//   app
+// ).listen(process.env.PORT || config.get('ssl_port'));
+//
+// http.createServer(
+//   app
+// ).listen(process.env.PORT || config.get('port'));
 
 app.listen(process.env.PORT || config.get('port'),
   () => log.verbose('Server on port ' + config.get('port') || process.env.PORT));
