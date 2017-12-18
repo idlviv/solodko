@@ -18,3 +18,7 @@ const log = require('../config/winston')(module);
 //   //   .then((result) => res.json(result))
 //   //   .catch((error) => res.json(error));
 // };
+
+module.exports.newBlog = function(req, res, next) {
+  res.json('new blog');
+};

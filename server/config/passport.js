@@ -9,7 +9,7 @@ const config = require('./');
 
 //Виконується при ініціалізації паспорта
 module.exports = function(passport) {
-  log.verbose('config/passport - initialization');
+  // log.verbose('config/passport - initialization');
 
   let jwtOptions = {};
   let emailVerificationOptions = {};

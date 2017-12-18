@@ -12,8 +12,6 @@ const log = require('./server/config/winston')(module);
 const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
-const https = require('https');
-const http = require('http');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -45,12 +43,12 @@ require('./server/config/passport')(passport);
 
 const users = require('./server/routes/users');
 const products = require('./server/routes/products');
-// const blog = require('./server/routes/blog');
+const blog = require('./server/routes/blog');
 const index = require('./server/routes');
 
 app.use('/api', users);
 app.use('/api', products);
-// app.use('/api', blog);
+app.use('/api', blog);
 
 app.use('/', index);
 
@@ -88,18 +86,6 @@ app.use(function(err, req, res, next) {
     }
   }
 });
-
-// https.createServer(
-//   {
-//     key: config.get('API_KEY'),
-//     ca: config.get('CA_KEY')
-//   },
-//   app
-// ).listen(process.env.PORT || config.get('ssl_port'));
-//
-// http.createServer(
-//   app
-// ).listen(process.env.PORT || config.get('port'));
 
 app.listen(process.env.PORT || config.get('port'),
   () => log.verbose('Server on port ' + config.get('port') || process.env.PORT));

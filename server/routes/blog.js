@@ -7,7 +7,9 @@ const log = require('../config/winston')(module);
 
 const config = require('../config');
 
-// router.post('/postblog',
-//   passport.authenticate('jwt.manager.admin', {session: false}),
-//   BlogController.postBlog
-// );
+router.post('/newBlog',
+  // passport.authenticate('jwt.manager.admin', {session: false}),
+  BlogController.newBlog
+);
+
+module.exports = router;
