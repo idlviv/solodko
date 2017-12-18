@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {SharedModule} from './components/shared/shared.module';
 import {UsersModule} from './components/users/users.module';
-import {BlogsModule} from './components/blogs/blogs.module';
+// import {BlogsModule} from './components/blogs/blogs.module';
 
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
@@ -47,7 +47,7 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
     HttpModule,
     SharedModule,
     UsersModule,
-    BlogsModule,
+    // BlogsModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,

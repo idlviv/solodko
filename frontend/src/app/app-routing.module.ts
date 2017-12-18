@@ -14,7 +14,8 @@ const appRoutes: Routes = [
   // { path: 'home',
   //   loadChildren: './components/home/home.module#HomeModule'
   // },
-  { path: 'products',
+  {
+    path: 'products',
     loadChildren: './components/products/products.module#ProductsModule'
   },
   // {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
@@ -27,8 +28,9 @@ const appRoutes: Routes = [
   {path: 'admin',
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },
-  {path: 'blogs', component: BlogsComponent, canActivate: [AuthUserGuard]},
-  // { path: 'home', redirectTo: '', pathMatch: 'full' },
+  {
+    path: 'blogs',
+    loadChildren: './components/blogs/blogs.module#BlogsModule'},
   { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];

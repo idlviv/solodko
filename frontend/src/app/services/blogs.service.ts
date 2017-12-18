@@ -5,8 +5,8 @@ import {AuthService} from './auth.service';
 
 @Injectable()
 export class BlogsService {
-  //? or use this.authService.authToken
-  authToken: any;
+  // ? or use this.authService.authToken
+  // authToken: any;
 
   constructor(private http: Http,
               private authService: AuthService) {
@@ -14,14 +14,13 @@ export class BlogsService {
 
   check() {
     const headers = new Headers();
-    this.authToken = this.authService.loadToken();
-    console.log('this.authToken', this.authToken);
+    this.authService.loadToken();
 
-    headers.append('Authorization', this.authToken);
+    headers.append('Authorization', this.authService.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      config.serverUrl + 'blogs/newBlog',
-      {sd: 'yo'},
+      config.serverUrl + 'blogs/newblog',
+      {},
       {headers: headers})
       .map(res => res.json());
 
