@@ -117,6 +117,7 @@ export class AuthService {
 
   loadToken() {
     this.authToken = localStorage.getItem('token');
+    return this.authToken;
   }
 
   // loggedInRole(): Observable<string> {

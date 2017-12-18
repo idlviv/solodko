@@ -7,7 +7,7 @@ import { Page404Component } from './components/shared/page404/page404.component'
 
 import {AuthUserGuard} from './guards/auth-user.guard';
 import {CartComponent} from './components/users/cart/cart.component';
-import {BlogComponent} from './components/blog/blog.component';
+import {BlogsComponent} from './components/blogs/blogs.component';
 import {NoAuthGuard} from './guards/noAuth.guard';
 
 const appRoutes: Routes = [
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
   {path: 'admin',
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },
-  {path: 'blog', component: BlogComponent, canActivate: [AuthUserGuard]},
+  {path: 'blogs', component: BlogsComponent, canActivate: [AuthUserGuard]},
   // { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
   { path: '**', component: Page404Component },

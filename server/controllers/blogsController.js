@@ -1,6 +1,6 @@
 const config = require('../config');
 let jwt = require('jsonwebtoken');
-let BlogModel = require('../models/blogModel');
+let BlogModel = require('../models/blogsModel');
 const log = require('../config/winston')(module);
 
 // module.exports.postBlog = function(req, res, next) {

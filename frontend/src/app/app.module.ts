@@ -6,18 +6,19 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BlogComponent } from './components/blog/blog.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
 import {SharedModule} from './components/shared/shared.module';
 import {UsersModule} from './components/users/users.module';
+import {BlogsModule} from './components/blogs/blogs.module';
 
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
 import {CatalogService} from './services/catalog.service';
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
+import {BlogsService} from './services/blogs.service';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -40,13 +41,13 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    BlogComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     SharedModule,
     UsersModule,
+    BlogsModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
@@ -66,6 +67,7 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
     NoAuthGuard,
     AuthService,
     CustomErrorHandler,
+    BlogsService
   ],
   bootstrap: [AppComponent]
 })
