@@ -1,6 +1,5 @@
 const config = require('../config');
-let jwt = require('jsonwebtoken');
-let BlogModel = require('../models/blogsModel');
+let BlogsModel = require('../models/blogsModel');
 const log = require('../config/winston')(module);
 
 // module.exports.postBlog = function(req, res, next) {
@@ -19,6 +18,23 @@ const log = require('../config/winston')(module);
 //   //   .catch((error) => res.json(error));
 // };
 
-module.exports.newBlog = function(req, res, next) {
-  res.json('new blog');
+module.exports.addBlog = function(req, res, next) {
+  if (!req.body.title) {
+    res.json({success: false, message: 'Немає заголовка'});
+  } else if (!req.body.body) {
+    res.json({success: false, message: 'Немає тексту повідомлення'});
+  } else if (!req.body.createdBy) {
+    res.json({success: false, message: 'Немає автора'});
+  } else {
+    const newBlog = new BlogsModel({
+      title: req.body.title,
+      body: req.body.body,
+      createdBy: req.body.createdBy,
+    });
+
+    BlogsModel.addBlog(newBlog)
+      .then(result => res.json(result))
+      .catch(result => res.json(result));
+  }
+
 };

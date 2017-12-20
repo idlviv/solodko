@@ -30,11 +30,15 @@ export class BlogsComponent implements OnInit {
 
   }
 
-  check() {
-    this.blogsService.check()
+  addBlog() {
+    this.blogsService.addBlog({
+      title: 'Заголовок',
+      body: 'Тіло',
+      createdBy: 'Автор',
+    })
       .subscribe(
         res => console.log(res)
-      )
+      );
   }
 
 }

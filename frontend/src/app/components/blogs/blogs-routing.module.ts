@@ -6,7 +6,7 @@ import {AuthUserGuard} from '../../guards/auth-user.guard';
 
 const blogsRoutes: Routes = [
   {
-    path: 'newblog',
+    path: 'addblog',
     component: BlogsComponent,
     canActivateChild: [AuthUserGuard],
     children: [

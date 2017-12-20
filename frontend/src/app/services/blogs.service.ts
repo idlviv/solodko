@@ -12,18 +12,16 @@ export class BlogsService {
               private authService: AuthService) {
   }
 
-  check() {
+  addBlog(newBlog) {
     const headers = new Headers();
     this.authService.loadToken();
 
     headers.append('Authorization', this.authService.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.post(
-      config.serverUrl + 'blogs/newblog',
-      {},
+      config.serverUrl + 'blogs/addblog',
+      newBlog,
       {headers: headers})
       .map(res => res.json());
-
   }
-
 }

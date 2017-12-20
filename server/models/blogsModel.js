@@ -21,3 +21,12 @@ const BlogsSchema = new Schema({
 
 let BlogsModel = mongoose.model('blogs', BlogsSchema);
 module.exports = BlogsModel;
+
+module.exports.addBlog = function(newBlog) {
+  return new Promise(function(resolve, reject) {
+    newBlog.save(newBlog)
+      .then(() => resolve({success: true, message: 'Новий блог зареєстровано'}))
+      .catch((error) => reject({success: false, message: 'Новий блог не зареєстровано', error}));
+  });
+};
+
