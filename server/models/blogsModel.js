@@ -26,7 +26,12 @@ module.exports.addBlog = function(newBlog) {
   return new Promise(function(resolve, reject) {
     newBlog.save(newBlog)
       .then(() => resolve({success: true, message: 'Новий блог зареєстровано'}))
-      .catch((error) => reject({success: false, message: 'Новий блог не зареєстровано', error}));
+      .catch((error) => {
+        if (error.name === 'ValidationError') {
+          reject({success: false, message: 'Помилка валідації даних, ' + error.message, error});
+        } else {
+          reject({success: false, message: 'Новий блог не зареєстровано', error});
+        }
+      });
   });
 };
-

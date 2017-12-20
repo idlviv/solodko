@@ -8,7 +8,7 @@ const log = require('../config/winston')(module);
 const config = require('../config');
 
 router.post('/addblog',
-  // passport.authenticate('jwt', {session: false}),
+  passport.authenticate('jwt.manager.admin', {session: false}),
 
   BlogsController.addBlog
 );
