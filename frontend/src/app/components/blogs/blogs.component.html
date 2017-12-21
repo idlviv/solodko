@@ -3,6 +3,9 @@
   Check
 </button>
 
+
+
+
 <!--<div class="row show-hide-message">-->
   <!--<div [ngClass]="messageClass">-->
     <!--{{message}}-->
@@ -28,13 +31,45 @@
 
         </div>
       </div>
+
+      <!--new blog form-->
+      <form *ngIf="newPost" [formGroup]="blogForm" (ngSubmit)="onBlogSubmit(); blogForm.reset()">
+        <div class="form-group">
+          <label for="title">Заголовок</label>
+          <input formControlName="title" [formGroup]="blogForm" required
+                 class="form-control" id="title" placeholder="Заголовок">
+          <div class="alert alert-danger" role="alert"
+               *ngIf="(blogForm.controls['title'].errors?.minlength ||
+          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched">
+            Довжина від 4 до 50 символів
+          </div>
+          <div class="alert alert-danger" role="alert"
+               *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
+            Використовуйте тільки цифри і букви
+          </div>
+          {{blogForm.controls['title'].errors | json}}
+        </div>
+        <div class="form-group">
+          <label for="body">Текст</label>
+          <input formControlName="body" [formGroup]="blogForm" required autocomplete="false"
+                 class="form-control" id="body" placeholder="">
+          <div class="alert alert-danger" role="alert"
+               *ngIf="(blogForm.controls['body'].errors?.minlength ||
+          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched">
+            Довжина від 4 до 1000 символів
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Запостити</button>
+      </form>
+      <!--new blog form-->
+
       <!--<img class="card-img-top" src="..." alt="Card image cap">-->
       <div class="card-body" *ngIf="!newPost">
         <h4 class="card-title">Blog title</h4>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
 
-      <div class="card-footer text-muted">
+      <div class="card-footer text-muted" *ngIf="!newPost">
         <div class="row">
           <div class="col-md-4 col-sm-12">
             <button class="btn btn-primary btn-sm">Редагувати</button>
@@ -78,7 +113,7 @@
 
       </div>
 
-      <ul class="list-group">
+      <ul class="list-group" *ngIf="!newPost">
         <li class="list-group-item">
           <button class="btn btn-sm btn-danger" (click)="draftComment()">
             Запістити

@@ -4,7 +4,7 @@ let titleLengthChecker = function(title) {
 };
 
 let titleValidChecker = function(title) {
-  const regExp = new RegExp(/^[a-zA-Zа-яА-Я0-9 ]+$/);
+  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ' ]+$/);
   return title && regExp.test(title);
 };
 
@@ -45,7 +45,7 @@ let commentLengthChecker = function(comments) {
 
 module.exports.commentsValidators = [
   {
-    validator: bodyLengthChecker,
+    validator: commentLengthChecker,
     message: 'Довжина повинна бути від 1 до 200 символів'
   },
 ];

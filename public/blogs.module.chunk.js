@@ -56,7 +56,7 @@ exports.BlogsRoutingModule = BlogsRoutingModule;
 /***/ "../../../../../src/app/components/blogs/blogs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Блог</h2>\r\n<button class=\"btn btn-sm btn-danger\" (click)=\"addBlog()\">\r\n  Check\r\n</button>\r\n\r\n<!--<div class=\"row show-hide-message\">-->\r\n  <!--<div [ngClass]=\"messageClass\">-->\r\n    <!--{{message}}-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n<!--<div class=\"row\">-->\r\n  <!--<div class=\"col\">-->\r\n    <!--<button class=\"btn btn-primary\" *ngIf=\"!newPost\" (click)=\"newBlogForm()\">Новий пост</button>-->\r\n    <!--<button [disabled]=\"loadingBlogs\" class=\"btn btn-primary\" *ngIf=\"!newPost\" (click)=\"reloadBlogs()\">Перезавантажити</button>-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card\">\r\n      <div class=\"card-header\">\r\n\r\n\r\n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\r\n          <button class=\"btn btn-primary\" *ngIf=\"!newPost\"\r\n                  (click)=\"newBlogForm()\">Новий пост</button>\r\n          <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary\" *ngIf=\"!newPost\"\r\n                  (click)=\"reloadBlogs()\">Перезавантажити</button>\r\n\r\n        </div>\r\n      </div>\r\n      <!--<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">-->\r\n      <div class=\"card-body\" *ngIf=\"!newPost\">\r\n        <h4 class=\"card-title\">Blog title</h4>\r\n        <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\r\n      </div>\r\n\r\n      <div class=\"card-footer text-muted\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-4 col-sm-12\">\r\n            <button class=\"btn btn-primary btn-sm\">Редагувати</button>\r\n            <button [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\r\n\r\n            <div class=\"c_dropdown\">\r\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"c_dropdown\">\r\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Автор:</strong> Poster\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Дата:</strong> 31.12.2017 23:58\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Лайків</strong> 125488\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Нелайків</strong> 5\r\n          </div>\r\n        </div>\r\n        <br/>\r\n\r\n\r\n\r\n      </div>\r\n\r\n      <ul class=\"list-group\">\r\n        <li class=\"list-group-item\">\r\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\r\n            Запістити\r\n          </button>\r\n          <br/>\r\n          <!--<form>-->\r\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\r\n          <!--</textarea>-->\r\n          <!--</form>-->\r\n        </li>\r\n\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<h2 class=\"page-header\">Блог</h2>\r\n<button class=\"btn btn-sm btn-danger\" (click)=\"addBlog()\">\r\n  Check\r\n</button>\r\n\r\n\r\n\r\n\r\n<!--<div class=\"row show-hide-message\">-->\r\n  <!--<div [ngClass]=\"messageClass\">-->\r\n    <!--{{message}}-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n<!--<div class=\"row\">-->\r\n  <!--<div class=\"col\">-->\r\n    <!--<button class=\"btn btn-primary\" *ngIf=\"!newPost\" (click)=\"newBlogForm()\">Новий пост</button>-->\r\n    <!--<button [disabled]=\"loadingBlogs\" class=\"btn btn-primary\" *ngIf=\"!newPost\" (click)=\"reloadBlogs()\">Перезавантажити</button>-->\r\n  <!--</div>-->\r\n<!--</div>-->\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card\">\r\n      <div class=\"card-header\">\r\n\r\n\r\n        <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\r\n          <button class=\"btn btn-primary\" *ngIf=\"!newPost\"\r\n                  (click)=\"newBlogForm()\">Новий пост</button>\r\n          <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary\" *ngIf=\"!newPost\"\r\n                  (click)=\"reloadBlogs()\">Перезавантажити</button>\r\n\r\n        </div>\r\n      </div>\r\n\r\n      <!--new blog form-->\r\n      <form *ngIf=\"newPost\" [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit(); blogForm.reset()\">\r\n        <div class=\"form-group\">\r\n          <label for=\"title\">Заголовок</label>\r\n          <input formControlName=\"title\" [formGroup]=\"blogForm\" required\r\n                 class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\r\n          <div class=\"alert alert-danger\" role=\"alert\"\r\n               *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\r\n          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched\">\r\n            Довжина від 4 до 50 символів\r\n          </div>\r\n          <div class=\"alert alert-danger\" role=\"alert\"\r\n               *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\r\n            Використовуйте тільки цифри і букви\r\n          </div>\r\n          {{blogForm.controls['title'].errors | json}}\r\n        </div>\r\n        <div class=\"form-group\">\r\n          <label for=\"body\">Текст</label>\r\n          <input formControlName=\"body\" [formGroup]=\"blogForm\" required autocomplete=\"false\"\r\n                 class=\"form-control\" id=\"body\" placeholder=\"\">\r\n          <div class=\"alert alert-danger\" role=\"alert\"\r\n               *ngIf=\"(blogForm.controls['body'].errors?.minlength ||\r\n          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched\">\r\n            Довжина від 4 до 1000 символів\r\n          </div>\r\n        </div>\r\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!blogForm.valid\">Запостити</button>\r\n      </form>\r\n      <!--new blog form-->\r\n\r\n      <!--<img class=\"card-img-top\" src=\"...\" alt=\"Card image cap\">-->\r\n      <div class=\"card-body\" *ngIf=\"!newPost\">\r\n        <h4 class=\"card-title\">Blog title</h4>\r\n        <p class=\"card-text\">Some quick example text to build on the card title and make up the bulk of the card's content.</p>\r\n      </div>\r\n\r\n      <div class=\"card-footer text-muted\" *ngIf=\"!newPost\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-4 col-sm-12\">\r\n            <button class=\"btn btn-primary btn-sm\">Редагувати</button>\r\n            <button [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\r\n\r\n            <div class=\"c_dropdown\">\r\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"c_dropdown\">\r\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Автор:</strong> Poster\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Дата:</strong> 31.12.2017 23:58\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Лайків</strong> 125488\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Нелайків</strong> 5\r\n          </div>\r\n        </div>\r\n        <br/>\r\n\r\n\r\n\r\n      </div>\r\n\r\n      <ul class=\"list-group\" *ngIf=\"!newPost\">\r\n        <li class=\"list-group-item\">\r\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\r\n            Запістити\r\n          </button>\r\n          <br/>\r\n          <!--<form>-->\r\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\r\n          <!--</textarea>-->\r\n          <!--</form>-->\r\n        </li>\r\n\r\n      </ul>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -95,13 +95,45 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
+var validate_service_1 = __webpack_require__("../../../../../src/app/services/validate.service.ts");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var BlogsComponent = (function () {
-    function BlogsComponent(blogsService) {
+    function BlogsComponent(blogsService, authService, flashMessage, validateService) {
         this.blogsService = blogsService;
+        this.authService = authService;
+        this.flashMessage = flashMessage;
+        this.validateService = validateService;
         this.newPost = false;
         this.loadingBlogs = false;
     }
     BlogsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.blogForm = new forms_1.FormGroup({
+            title: new forms_1.FormControl('', [
+                forms_1.Validators.required,
+                forms_1.Validators.minLength(4),
+                forms_1.Validators.maxLength(50),
+                forms_1.Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+            ]),
+            body: new forms_1.FormControl('', [
+                forms_1.Validators.required,
+                forms_1.Validators.minLength(4),
+                forms_1.Validators.maxLength(1000),
+            ]),
+        });
+        this.authService.getLoggedUser()
+            .subscribe(function (user) { return _this.loggedUser = user; });
+    };
+    BlogsComponent.prototype.onBlogSubmit = function () {
+        console.log(this.loggedUser);
+        this.blogsService.addBlog({
+            title: this.blogForm.value.title,
+            body: this.blogForm.value.body,
+            createdBy: this.loggedUser.name + ' ' + this.loggedUser.surname,
+        })
+            .subscribe(function (res) { return console.log(res); });
     };
     BlogsComponent.prototype.newBlogForm = function () {
         this.newPost = true;
@@ -127,10 +159,10 @@ BlogsComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/blogs/blogs.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/blogs.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _a || Object, typeof (_b = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof validate_service_1.ValidateService !== "undefined" && validate_service_1.ValidateService) === "function" && _d || Object])
 ], BlogsComponent);
 exports.BlogsComponent = BlogsComponent;
-var _a;
+var _a, _b, _c, _d;
 //# sourceMappingURL=blogs.component.js.map
 
 /***/ }),
@@ -152,6 +184,7 @@ var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
 var blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs.component.ts");
 var blogs_routing_module_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs-routing.module.ts");
 var shared_module_1 = __webpack_require__("../../../../../src/app/components/shared/shared.module.ts");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var BlogsModule = (function () {
     function BlogsModule() {
     }
@@ -163,6 +196,7 @@ BlogsModule = __decorate([
             common_1.CommonModule,
             blogs_routing_module_1.BlogsRoutingModule,
             shared_module_1.SharedModule,
+            forms_1.ReactiveFormsModule
         ],
         declarations: [
             blogs_component_1.BlogsComponent,
