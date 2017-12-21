@@ -61,8 +61,8 @@
             Довжина від 4 до 1000 символів
           </div>
         </div>
-        <button [disabled]="processing" class="btn btn-info" (click)="goBack()">Повернутись</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Запостити</button>
+        <button [disabled]="processing" type="button" class="btn btn-info" (click)="goBack()">Повернутись</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid || processing">Запостити</button>
       </form>
       <!--new blog form-->
 
