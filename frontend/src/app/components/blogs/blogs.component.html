@@ -49,16 +49,19 @@
           </div>
           {{blogForm.controls['title'].errors | json}}
         </div>
+
         <div class="form-group">
           <label for="body">Текст</label>
-          <input formControlName="body" [formGroup]="blogForm" required autocomplete="false"
-                 class="form-control" id="body" placeholder="">
+          <textarea formControlName="body" cols="30" rows="10"
+                    [formGroup]="blogForm" required autocomplete="false"
+                    class="form-control" id="body" placeholder=""></textarea>
           <div class="alert alert-danger" role="alert"
                *ngIf="(blogForm.controls['body'].errors?.minlength ||
           blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched">
             Довжина від 4 до 1000 символів
           </div>
         </div>
+        <button [disabled]="processing" class="btn btn-info" (click)="goBack()">Повернутись</button>
         <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid">Запостити</button>
       </form>
       <!--new blog form-->

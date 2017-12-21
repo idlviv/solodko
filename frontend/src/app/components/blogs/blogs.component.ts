@@ -18,6 +18,7 @@ export class BlogsComponent implements OnInit {
   loadingBlogs = false;
   blogForm: FormGroup;
   loggedUser: any;
+  processing: false;
 
   constructor(
     private blogsService: BlogsService,
@@ -58,6 +59,10 @@ export class BlogsComponent implements OnInit {
       .subscribe(
         res => console.log(res)
       );
+  }
+
+  goBack() {
+    window.location.reload();
   }
 
   newBlogForm() {
