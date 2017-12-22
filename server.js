@@ -61,7 +61,7 @@ app.use('*', function(req, res) {
 });
 
 app.use(function(err, req, res, next) {
-  console.log('id express catch error ' + err);
+  log.verbose('id express catch error ' + err);
   // if (err.code !== 'EBADCSRFTOKEN') {
   //   res.status(403);
   //   res.send('form tampered with');

@@ -48,7 +48,7 @@ module.exports = function(passport) {
 
   passport.use('jwt.manager.admin',
     new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-        log.verbose('config/passport - JwtStrategy');
+        log.verbose('config/passport - Jwt.manager.admin.Strategy');
         // на основі _id (витягнутого з токена) робить пошук
         // в базі, чи є такий юзер, і ф-я done повертає відповідь
         UserModel.getUserById(jwtPayload.sub._id)

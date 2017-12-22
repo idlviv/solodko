@@ -47,12 +47,14 @@ export class SignupComponent implements OnInit {
         nameSignup: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(20)
+          Validators.maxLength(20),
+          this.validateService.nameValidChecker
         ]),
         surnameSignup: new FormControl('', [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(20)
+          Validators.maxLength(20),
+          this.validateService.nameValidChecker
         ]),
       },
       this.validateService.matchPassword

@@ -48,13 +48,10 @@ export class BlogsComponent implements OnInit {
   }
 
   onBlogSubmit() {
-
-
-    console.log(this.loggedUser);
     this.blogsService.addBlog({
       title: this.blogForm.value.title,
       body: this.blogForm.value.body,
-      createdBy: this.loggedUser.name + ' ' + this.loggedUser.surname,
+      // createdBy: this.loggedUser.name + ' ' + this.loggedUser.surname,
     })
       .subscribe(
         res => console.log(res)

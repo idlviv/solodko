@@ -1,6 +1,6 @@
 // email validators
 let emailLengthChecker = function(email) {
-  return email && email.length > 4 && email.length < 41;
+  return email && email.length >= 5 && email.length <= 40;
 };
 
 let emailValidChecker = function(email) {
@@ -21,7 +21,7 @@ module.exports.emailValidators = [
 
 // username validators
 let usernameLengthChecker = function(username) {
-  return username && username.length > 3 && username.length < 11;
+  return username && username.length >= 4 && username.length <= 10;
 };
 
 let usernameValidChecker = function(username) {
@@ -39,6 +39,28 @@ module.exports.usernameValidators = [
     message: 'Використовуйте тільки цифри і латинські букви'
   },
 ];
+
+// name and surname validators
+let nameLengthChecker = function(name) {
+  return name && name.length >= 2 && name.length <= 20;
+};
+
+let nameValidChecker = function(name) {
+  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ' ]+$/);
+  return name && regExp.test(name);
+};
+
+module.exports.nameValidators = [
+  {
+    validator: nameLengthChecker,
+    message: 'Довжина повинна бути від 2 до 20 символів'
+  },
+  {
+    validator: nameValidChecker,
+    message: 'Використовуйте тільки цифри і букви'
+  },
+];
+
 
 // // password validators
 // let passwordLengthChecker = function(password) {

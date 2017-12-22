@@ -5,8 +5,6 @@ import {AuthService} from './auth.service';
 
 @Injectable()
 export class BlogsService {
-  // ? or use this.authService.authToken
-  // authToken: any;
 
   constructor(private http: Http,
               private authService: AuthService) {

@@ -27,6 +27,7 @@ export class ValidateService {
     }
   }
 
+  // username and password checker
 
   usernameValidChecker(control) {
     const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
@@ -34,6 +35,17 @@ export class ValidateService {
       return null;
     } else {
       return {'usernameValidChecker': true};
+    }
+  }
+
+  // name and surname checker
+
+  nameValidChecker(control) {
+    const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ' ]+$/);
+    if (regExp.test(control.value)) {
+      return null;
+    } else {
+      return {'nameValidChecker': true};
     }
   }
 

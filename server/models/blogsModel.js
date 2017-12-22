@@ -8,6 +8,7 @@ const BlogsSchema = new Schema({
   title: {type: String, required: true, validate: blogsValidators.titleValidators},
   body: {type: String, required: true, validate: blogsValidators.bodyValidators},
   createdBy: {type: String},
+  createdBy_id: {type: String},
   createdAt: {type: Date, default: Date.now()},
   likes: {type: Number, default: 0},
   likedBy: {type: Array},

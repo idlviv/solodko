@@ -7,11 +7,13 @@ const userValidators = require('../validators/userValidators');
 const UserSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    validate: userValidators.nameValidators
   },
   surname: {
     type: String,
-    required: true
+    required: true,
+    validate: userValidators.nameValidators
   },
   username: {
     type: String,

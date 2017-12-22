@@ -6,7 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module"
+		"admin-panel.module.0"
 	],
 	"./components/blogs/blogs.module": [
 		"../../../../../src/app/components/blogs/blogs.module.ts",
@@ -14,11 +14,11 @@ var map = {
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module"
+		"home.module.0"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module"
+		"products.module.0"
 	]
 };
 function webpackAsyncContext(req) {
@@ -322,7 +322,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -811,7 +811,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1087,12 +1087,14 @@ var SignupComponent = (function () {
             nameSignup: new forms_1.FormControl('', [
                 forms_1.Validators.required,
                 forms_1.Validators.minLength(2),
-                forms_1.Validators.maxLength(20)
+                forms_1.Validators.maxLength(20),
+                this.validateService.nameValidChecker
             ]),
             surnameSignup: new forms_1.FormControl('', [
                 forms_1.Validators.required,
                 forms_1.Validators.minLength(2),
-                forms_1.Validators.maxLength(20)
+                forms_1.Validators.maxLength(20),
+                this.validateService.nameValidChecker
             ]),
         }, this.validateService.matchPassword);
     };
@@ -1892,8 +1894,6 @@ var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
 var app_config_1 = __webpack_require__("../../../../../src/app/app.config.ts");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var BlogsService = (function () {
-    // ? or use this.authService.authToken
-    // authToken: any;
     function BlogsService(http, authService) {
         this.http = http;
         this.authService = authService;
@@ -2200,6 +2200,7 @@ var ValidateService = (function () {
             return true;
         }
     };
+    // username and password checker
     ValidateService.prototype.usernameValidChecker = function (control) {
         var regExp = new RegExp(/^[a-zA-Z0-9]+$/);
         if (regExp.test(control.value)) {
@@ -2207,6 +2208,16 @@ var ValidateService = (function () {
         }
         else {
             return { 'usernameValidChecker': true };
+        }
+    };
+    // name and surname checker
+    ValidateService.prototype.nameValidChecker = function (control) {
+        var regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ' ]+$/);
+        if (regExp.test(control.value)) {
+            return null;
+        }
+        else {
+            return { 'nameValidChecker': true };
         }
     };
     // validator for formGroup
