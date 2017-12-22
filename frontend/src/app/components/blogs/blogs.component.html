@@ -56,9 +56,9 @@
     <!--new blog form-->
 
 
-    <div class="card">
+    <div class="card" *ngIf="!newPost">
       <div class="card-header">
-          <button class="btn btn-success btn-sm" *ngIf="!newPost"
+          <button class="btn btn-success btn-sm"
                   (click)="newBlogForm()">Новий пост</button>
           <button [disabled]="loadingBlogs" class="btn btn-primary btn-info btn-sm" *ngIf="!newPost"
                   (click)="reloadBlogs()">Перезавантажити</button>

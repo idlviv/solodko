@@ -81,7 +81,9 @@ export class BlogsComponent implements OnInit {
   }
 
   goBack() {
-    window.location.reload();
+    this.newPost = false;
+    this.blogForm.reset();
+    // window.location.reload();
   }
 
   // Enable new blog form
