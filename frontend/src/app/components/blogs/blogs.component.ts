@@ -18,7 +18,7 @@ export class BlogsComponent implements OnInit {
   loadingBlogs = false;
   blogForm: FormGroup;
   loggedUser: any;
-  processing: false;
+  processing: boolean = false;
 
   constructor(
     private blogsService: BlogsService,
@@ -48,18 +48,52 @@ export class BlogsComponent implements OnInit {
   }
 
   onBlogSubmit() {
+    this.processing = true;
+    this.disableBlogForm();
     this.blogsService.addBlog({
       title: this.blogForm.value.title,
       body: this.blogForm.value.body,
-      // createdBy: this.loggedUser.name + ' ' + this.loggedUser.surname,
     })
-      .subscribe(
-        res => console.log(res)
-      );
+      .subscribe(result => {
+        this.processing = false;
+        this.enableBlogForm();
+
+        if (result.success) {
+          this.newPost = false;
+          this.blogForm.reset();
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-success',
+              timeout: 2000
+            });
+        } else {
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-danger',
+              timeout: 2000
+            });
+        }
+
+
+      });
   }
 
   goBack() {
     window.location.reload();
+  }
+
+  // Enable new blog form
+  enableBlogForm() {
+    this.blogForm.get('title').enable(); // Enable title field
+    this.blogForm.get('body').enable(); // Enable body field
+  }
+
+  // Disable new blog form
+  disableBlogForm() {
+    this.blogForm.get('title').disable(); // Disable title field
+    this.blogForm.get('body').disable(); // Disable body field
   }
 
   newBlogForm() {
@@ -74,15 +108,15 @@ export class BlogsComponent implements OnInit {
 
   }
 
-  addBlog() {
-    this.blogsService.addBlog({
-      title: 'Заголовок',
-      body: 'Тіло',
-      createdBy: 'Автор',
-    })
-      .subscribe(
-        res => console.log(res)
-      );
-  }
+  // addBlog() {
+  //   this.blogsService.addBlog({
+  //     title: 'Заголовок',
+  //     body: 'Тіло',
+  //     createdBy: 'Автор',
+  //   })
+  //     .subscribe(
+  //       res => console.log(res)
+  //     );
+  // }
 
 }

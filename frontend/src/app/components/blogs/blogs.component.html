@@ -1,7 +1,7 @@
 <h2 class="page-header">Блог</h2>
-<button class="btn btn-sm btn-danger" (click)="addBlog()">
-  Check
-</button>
+<!--<button class="btn btn-sm btn-danger" (click)="addBlog()">-->
+  <!--Check-->
+<!--</button>-->
 
 
 
@@ -19,54 +19,51 @@
 <!--</div>-->
 <div class="row">
   <div class="col">
-    <div class="card">
-      <div class="card-header">
 
-
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-primary" *ngIf="!newPost"
-                  (click)="newBlogForm()">Новий пост</button>
-          <button [disabled]="loadingBlogs" class="btn btn-primary" *ngIf="!newPost"
-                  (click)="reloadBlogs()">Перезавантажити</button>
-
+    <!--new blog form-->
+    <form *ngIf="newPost" [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
+      <div class="form-group">
+        <label for="title">Заголовок</label>
+        <input formControlName="title" [formGroup]="blogForm" required
+               class="form-control" id="title" placeholder="Заголовок">
+        <div class="alert alert-danger" role="alert"
+             *ngIf="(blogForm.controls['title'].errors?.minlength ||
+          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched">
+          Довжина від 4 до 50 символів
         </div>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
+          Використовуйте тільки цифри і букви
+        </div>
+        <!--{{blogForm.controls['title'].errors | json}}-->
       </div>
 
-      <!--new blog form-->
-      <form *ngIf="newPost" [formGroup]="blogForm" (ngSubmit)="onBlogSubmit(); blogForm.reset()">
-        <div class="form-group">
-          <label for="title">Заголовок</label>
-          <input formControlName="title" [formGroup]="blogForm" required
-                 class="form-control" id="title" placeholder="Заголовок">
-          <div class="alert alert-danger" role="alert"
-               *ngIf="(blogForm.controls['title'].errors?.minlength ||
-          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched">
-            Довжина від 4 до 50 символів
-          </div>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
-            Використовуйте тільки цифри і букви
-          </div>
-          {{blogForm.controls['title'].errors | json}}
-        </div>
-
-        <div class="form-group">
-          <label for="body">Текст</label>
-          <textarea formControlName="body" cols="30" rows="5"
-                    [formGroup]="blogForm" required autocomplete="false"
-                    class="form-control" id="body" placeholder=""></textarea>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="(blogForm.controls['body'].errors?.minlength ||
+      <div class="form-group">
+        <label for="body">Текст</label>
+        <textarea formControlName="body" cols="30" rows="5"
+                  [formGroup]="blogForm" required autocomplete="false"
+                  class="form-control" id="body" placeholder=""></textarea>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="(blogForm.controls['body'].errors?.minlength ||
           blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched">
-            Довжина від 4 до 1000 символів
-          </div>
+          Довжина від 4 до 1000 символів
         </div>
-        <button [disabled]="processing" type="button" class="btn btn-info" (click)="goBack()">Повернутись</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!blogForm.valid || processing">Запостити</button>
-      </form>
-      <!--new blog form-->
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid || processing">Запостити</button>
+      <button [disabled]="processing" type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
 
-      <!--<img class="card-img-top" src="..." alt="Card image cap">-->
+    </form>
+    <!--new blog form-->
+
+
+    <div class="card">
+      <div class="card-header">
+          <button class="btn btn-success btn-sm" *ngIf="!newPost"
+                  (click)="newBlogForm()">Новий пост</button>
+          <button [disabled]="loadingBlogs" class="btn btn-primary btn-info btn-sm" *ngIf="!newPost"
+                  (click)="reloadBlogs()">Перезавантажити</button>
+      </div>
+
       <div class="card-body" *ngIf="!newPost">
         <h4 class="card-title">Blog title</h4>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -75,7 +72,7 @@
       <div class="card-footer text-muted" *ngIf="!newPost">
         <div class="row">
           <div class="col-md-4 col-sm-12">
-            <button class="btn btn-primary btn-sm">Редагувати</button>
+            <button class="btn btn-primary btn-sm btn-info">Редагувати</button>
             <button [disabled]="loadingBlogs" class="btn btn-danger btn-sm">Видалити</button>
 
             <div class="c_dropdown">
@@ -116,21 +113,21 @@
 
       </div>
 
-      <ul class="list-group" *ngIf="!newPost">
-        <li class="list-group-item">
-          <button class="btn btn-sm btn-danger" (click)="draftComment()">
-            Запістити
-          </button>
-          <br/>
-          <!--<form>-->
-          <!--<textarea name="comment" id="" cols="30" rows="10" class="form-control">-->
-          <!--<button class="btn btn-sm btn-info">Submit</button>-->
-          <!--<button class="btn btn-sm btn-info">Cancel</button>-->
-          <!--</textarea>-->
-          <!--</form>-->
-        </li>
+      <!--<ul class="list-group" *ngIf="!newPost">-->
+        <!--<li class="list-group-item">-->
+          <!--<button class="btn btn-sm btn-danger" (click)="draftComment()">-->
+            <!--Запостити-->
+          <!--</button>-->
+          <!--<br/>-->
+          <!--&lt;!&ndash;<form>&ndash;&gt;-->
+          <!--&lt;!&ndash;<textarea name="comment" id="" cols="30" rows="10" class="form-control">&ndash;&gt;-->
+          <!--&lt;!&ndash;<button class="btn btn-sm btn-info">Submit</button>&ndash;&gt;-->
+          <!--&lt;!&ndash;<button class="btn btn-sm btn-info">Cancel</button>&ndash;&gt;-->
+          <!--&lt;!&ndash;</textarea>&ndash;&gt;-->
+          <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--</li>-->
 
-      </ul>
+      <!--</ul>-->
     </div>
   </div>
 
