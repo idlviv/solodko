@@ -21,6 +21,8 @@ export class EditBlogComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
     this.editBlogForm = new FormGroup({
         title: new FormControl('', [
           Validators.required,
@@ -40,13 +42,15 @@ export class EditBlogComponent implements OnInit {
       .subscribe(user => this.loggedUser = user);
 
     this.blogsService.getQueriedBlogs({'_id': '5a3e6ae5f578dd22a4eedf59'})
-      .subscribe(blog => {
-        this.blog = blog;
-        console.log(blog);
+      .subscribe(result => {
+        this.blog = result.blogs[0];
+        console.log(this.blog);
       }
         );
 
   }
-
+  onEditBlogSubmit() {
+    console.log('submit');
+  }
 
 }

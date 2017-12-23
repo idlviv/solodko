@@ -28,7 +28,6 @@ export class ProductService {
     const params = new URLSearchParams();
     // params.set('category', 'Toys');
     params.set('obj', JSON.stringify(searchQuery));
-
     const options = new RequestOptions({ headers: headers, params: params });
     console.log('options', options);
 

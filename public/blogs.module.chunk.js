@@ -167,7 +167,7 @@ exports.BlogsModule = BlogsModule;
 /***/ "../../../../../src/app/components/blogs/edit-blog/edit-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<h2 class=\"page-header\">Блог</h2>-->\n\n<!--<div class=\"row\">-->\n  <!--<div class=\"col\">-->\n\n    <!--<form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\">-->\n      <!--<div class=\"form-group\">-->\n        <!--<label for=\"title\">Заголовок</label>-->\n        <!--<input formControlName=\"title\" [formGroup]=\"editBlogForm\" required-->\n               <!--class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">-->\n        <!--<div class=\"alert alert-danger\" role=\"alert\"-->\n             <!--*ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||-->\n              <!--editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">-->\n          <!--Довжина від 4 до 50 символів-->\n        <!--</div>-->\n        <!--<div class=\"alert alert-danger\" role=\"alert\"-->\n             <!--*ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">-->\n          <!--Використовуйте тільки цифри і букви-->\n        <!--</div>-->\n        <!--&lt;!&ndash;{{editBlogForm.controls['title'].errors | json}}&ndash;&gt;-->\n      <!--</div>-->\n\n      <!--<div class=\"form-group\">-->\n        <!--<label for=\"body\">Текст</label>-->\n        <!--<textarea formControlName=\"body\" cols=\"30\" rows=\"5\"-->\n                  <!--[formGroup]=\"editBlogForm\" required autocomplete=\"false\"-->\n                  <!--class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>-->\n        <!--<div class=\"alert alert-danger\" role=\"alert\"-->\n             <!--*ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||-->\n              <!--editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">-->\n          <!--Довжина від 4 до 1000 символів-->\n        <!--</div>-->\n      <!--</div>-->\n      <!--<button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Запостити</button>-->\n      <!--<button [disabled]=\"processing\" type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>-->\n\n    <!--</form>-->\n\n  <!--</div>-->\n<!--</div>-->\n"
+module.exports = "<h2 class=\"page-header\">Блог</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\" *ngIf=\"blog\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"editBlogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||\n              editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{editBlogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"editBlogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||\n              editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Зберегти</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n\n    </form>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -231,10 +231,13 @@ var EditBlogComponent = (function () {
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.loggedUser = user; });
         this.blogsService.getQueriedBlogs({ '_id': '5a3e6ae5f578dd22a4eedf59' })
-            .subscribe(function (blog) {
-            _this.blog = blog;
-            console.log(blog);
+            .subscribe(function (result) {
+            _this.blog = result.blogs[0];
+            console.log(_this.blog);
         });
+    };
+    EditBlogComponent.prototype.onEditBlogSubmit = function () {
+        console.log('submit');
     };
     return EditBlogComponent;
 }());

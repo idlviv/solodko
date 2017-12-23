@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, RequestOptions} from '@angular/http';
+import {Http, Headers, RequestOptions, URLSearchParams} from '@angular/http';
 import {config} from '../app.config';
 import {AuthService} from './auth.service';
 
@@ -41,11 +41,8 @@ export class BlogsService {
     headers.append('Authorization', this.authService.authToken);
 
     const params = new URLSearchParams();
-console.log('searchQuery', JSON.stringify(searchQuery));
     params.set('obj', JSON.stringify(searchQuery));
-console.log(params);
     const options = new RequestOptions({ headers: headers, params: params });
-console.log('options', options);
     return this.http.get(
       config.serverUrl + 'blogs/get-queried-blogs',
        options)

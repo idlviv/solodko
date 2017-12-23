@@ -1918,12 +1918,9 @@ var BlogsService = (function () {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', this.authService.authToken);
-        var params = new URLSearchParams();
-        console.log('searchQuery', JSON.stringify(searchQuery));
+        var params = new http_1.URLSearchParams();
         params.set('obj', JSON.stringify(searchQuery));
-        console.log(params);
         var options = new http_1.RequestOptions({ headers: headers, params: params });
-        console.log('options', options);
         return this.http.get(app_config_1.config.serverUrl + 'blogs/get-queried-blogs', options)
             .map(function (res) { return res.json(); });
     };
