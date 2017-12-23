@@ -4,6 +4,8 @@ import {BlogsComponent} from './blogs.component';
 import {BlogsRoutingModule} from './blogs-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
+import { EditBlogComponent } from './edit-blog/edit-blog.component';
+import { ListBlogsComponent } from './list-blogs/list-blogs.component';
 
 @NgModule({
   imports: [
@@ -14,6 +16,8 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   declarations: [
     BlogsComponent,
+    EditBlogComponent,
+    ListBlogsComponent,
   ],
   exports: [
   ]

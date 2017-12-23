@@ -3,18 +3,25 @@ import { NgModule } from '@angular/core';
 import {BlogsComponent} from './blogs.component';
 import {Page404Component} from '../shared/page404/page404.component';
 import {AuthUserGuard} from '../../guards/auth-user.guard';
+import {ListBlogsComponent} from './list-blogs/list-blogs.component';
+import {EditBlogComponent} from './edit-blog/edit-blog.component';
 
 const blogsRoutes: Routes = [
   {
-    path: 'addblog',
+    path: 'ch',
     component: BlogsComponent,
     canActivateChild: [AuthUserGuard],
     children: [
-      // {
-      //   path: 'start/:category0/:category1',
-      //   component: ProductsListComponent,
-      //   // resolve: {products: ProductResolverService}
-      // },
+      {
+        path: 'add-blog',
+        component: ListBlogsComponent,
+        // resolve: {products: ProductResolverService}
+      },
+      {
+        path: 'edit-blog/:id',
+        component: EditBlogComponent,
+        // resolve: {products: ProductResolverService}
+      },
       {
         path: '**',
         component: Page404Component

@@ -30,7 +30,9 @@ export class ProductService {
     params.set('obj', JSON.stringify(searchQuery));
 
     const options = new RequestOptions({ headers: headers, params: params });
-      return this.http.get(
+    console.log('options', options);
+
+    return this.http.get(
         config.serverUrl + 'api/getQueriedProducts',
         // data,
         options)

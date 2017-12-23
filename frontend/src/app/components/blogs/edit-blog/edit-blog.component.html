@@ -1,0 +1,40 @@
+<!--<h2 class="page-header">Блог</h2>-->
+
+<!--<div class="row">-->
+  <!--<div class="col">-->
+
+    <!--<form [formGroup]="editBlogForm" (ngSubmit)="onEditBlogSubmit()">-->
+      <!--<div class="form-group">-->
+        <!--<label for="title">Заголовок</label>-->
+        <!--<input formControlName="title" [formGroup]="editBlogForm" required-->
+               <!--class="form-control" id="title" placeholder="Заголовок" [(ngModel)]="blog.title">-->
+        <!--<div class="alert alert-danger" role="alert"-->
+             <!--*ngIf="(editBlogForm.controls['title'].errors?.minlength ||-->
+              <!--editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched">-->
+          <!--Довжина від 4 до 50 символів-->
+        <!--</div>-->
+        <!--<div class="alert alert-danger" role="alert"-->
+             <!--*ngIf="editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched">-->
+          <!--Використовуйте тільки цифри і букви-->
+        <!--</div>-->
+        <!--&lt;!&ndash;{{editBlogForm.controls['title'].errors | json}}&ndash;&gt;-->
+      <!--</div>-->
+
+      <!--<div class="form-group">-->
+        <!--<label for="body">Текст</label>-->
+        <!--<textarea formControlName="body" cols="30" rows="5"-->
+                  <!--[formGroup]="editBlogForm" required autocomplete="false"-->
+                  <!--class="form-control" id="body" placeholder="" [(ngModel)]="blog.body"></textarea>-->
+        <!--<div class="alert alert-danger" role="alert"-->
+             <!--*ngIf="(editBlogForm.controls['body'].errors?.minlength ||-->
+              <!--editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched">-->
+          <!--Довжина від 4 до 1000 символів-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<button type="submit" class="btn btn-primary btn-sm" [disabled]="!editBlogForm.valid || processing">Запостити</button>-->
+      <!--<button [disabled]="processing" type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>-->
+
+    <!--</form>-->
+
+  <!--</div>-->
+<!--</div>-->

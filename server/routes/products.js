@@ -32,7 +32,7 @@ router.get(
 
 router.get(
   '/getQueriedProducts/', (req, res, next) => {
-    console.log('searchQuery router', req.query);
+    console.log('searchQuery router-----------', req.query.obj);
     let searchQuery = JSON.parse(req.query.obj);
     ProductModel.getQueriedProducts(searchQuery)
       .then((products) => {

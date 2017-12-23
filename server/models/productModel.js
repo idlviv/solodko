@@ -57,7 +57,7 @@ module.exports.getProducts = function() {
     };
 
 module.exports.getQueriedProducts = function(searchQuery) {
-      console.log('searchQuery - model', JSON.stringify(searchQuery));
+      // console.log('searchQuery - model', JSON.stringify(searchQuery));
       return new Promise((resolve, reject) => {
             ProductModel.find(searchQuery)
               .then((products) => resolve(products))

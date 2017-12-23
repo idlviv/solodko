@@ -36,3 +36,21 @@ module.exports.addBlog = function(newBlog) {
       });
   });
 };
+
+module.exports.getBlogs = function() {
+  return new Promise(function(resolve, reject) {
+      BlogsModel.find().sort({'_id': -1})
+        .then((blogs) => resolve({success: true, blogs}))
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', error}));
+    }
+  );
+};
+
+module.exports.getQueriedBlogs = function(searchQuery) {
+  return new Promise(function(resolve, reject) {
+      BlogsModel.find(searchQuery)
+        .then((blogs) => resolve({success: true, blogs}))
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', error}));
+    }
+  );
+};

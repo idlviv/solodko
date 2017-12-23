@@ -26,6 +26,22 @@ module.exports.addBlog = function(req, res, next) {
 
     BlogsModel.addBlog(newBlog)
       .then(result => res.json(result))
-      .catch(result => res.json(result));
+      .catch(error => res.json(error));
   }
+};
+
+module.exports.getBlogs = function(req, res, next) {
+  BlogsModel.getBlogs()
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
+};
+
+module.exports.getQueriedBlogs = function(req, res, next) {
+  console.log('req.query.obj---', req.query.obj);
+
+  let searchQuery = JSON.parse(req.query.obj);
+
+  BlogsModel.getQueriedBlogs(searchQuery)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
 };
