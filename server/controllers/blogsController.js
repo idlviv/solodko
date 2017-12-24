@@ -37,11 +37,18 @@ module.exports.getBlogs = function(req, res, next) {
 };
 
 module.exports.getQueriedBlogs = function(req, res, next) {
-  console.log('req.query.obj---', req.query.obj);
-
-  let searchQuery = JSON.parse(req.query.obj);
+  let searchQuery = JSON.parse(req.query.searchQuery);
 
   BlogsModel.getQueriedBlogs(searchQuery)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
+};
+
+module.exports.saveBlog = function(req, res, next) {
+  console.log('searchQuery', req.body);
+  let searchQuery = JSON.parse(req.body.searchQuery);
+
+  BlogsModel.saveBlog(searchQuery)
     .then(result => res.json(result))
     .catch(error => res.json(error));
 };

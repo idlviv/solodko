@@ -23,4 +23,9 @@ router.get(
   BlogsController.getQueriedBlogs
 );
 
+router.put(
+  '/save-blog',
+  BlogsController.saveBlog
+)
+
 module.exports = router;

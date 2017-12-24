@@ -1919,9 +1919,19 @@ var BlogsService = (function () {
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', this.authService.authToken);
         var params = new http_1.URLSearchParams();
-        params.set('obj', JSON.stringify(searchQuery));
+        params.set('searchQuery', JSON.stringify(searchQuery));
         var options = new http_1.RequestOptions({ headers: headers, params: params });
         return this.http.get(app_config_1.config.serverUrl + 'blogs/get-queried-blogs', options)
+            .map(function (res) { return res.json(); });
+    };
+    BlogsService.prototype.saveBlog = function (searchQuery) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', this.authService.authToken);
+        // const params = new URLSearchParams();
+        // params.set('searchQuery', JSON.stringify(searchQuery));
+        // const options = new RequestOptions({ headers: headers, params: params });
+        return this.http.put(app_config_1.config.serverUrl + 'blogs/save-blog', { searchQuery: JSON.stringify(searchQuery) }, headers)
             .map(function (res) { return res.json(); });
     };
     return BlogsService;

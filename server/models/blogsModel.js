@@ -48,9 +48,33 @@ module.exports.getBlogs = function() {
 
 module.exports.getQueriedBlogs = function(searchQuery) {
   return new Promise(function(resolve, reject) {
-      BlogsModel.find(searchQuery)
-        .then((blogs) => resolve({success: true, blogs}))
+      let query = {};
+      if (searchQuery.type = 'object') {
+        query[searchQuery.query.key] = searchQuery.query.value;
+      }
+      BlogsModel.find(query)
+        .then((blogs) => {
+          return resolve({success: true, blogs});
+        })
         .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', error}));
     }
   );
+};
+
+module.exports.saveBlog = function(searchQuery) {
+  return new Promise(function(resolve, reject) {
+      let query = {};
+      if (searchQuery.type = 'object') {
+        query[searchQuery.query.key] = searchQuery.query.value;
+      }
+      console.log('query', query);
+      console.log('searchQuery.data', searchQuery.data);
+      BlogsModel.update(query, searchQuery.data)
+        .then(() => {
+          return resolve({success: true,  message: 'Зміни збережені'});
+        })
+        .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', error}));
+    }
+  );
+
 };

@@ -117,12 +117,6 @@ var HomeSectionComponent = (function () {
         var _this = this;
         this.route.data
             .subscribe(function (data) {
-            // this.products = data.products.filter(
-            //   (product) => {
-            //     if (product.showOnMainPage) {
-            //       return product;
-            //     }
-            //   });
             _this.products = data.products;
         }, function (error) {
             _this.flashMessage.show(error, {

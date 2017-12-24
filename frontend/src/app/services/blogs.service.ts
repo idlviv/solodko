@@ -39,13 +39,27 @@ export class BlogsService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this.authService.authToken);
-
     const params = new URLSearchParams();
-    params.set('obj', JSON.stringify(searchQuery));
+    params.set('searchQuery', JSON.stringify(searchQuery));
     const options = new RequestOptions({ headers: headers, params: params });
     return this.http.get(
       config.serverUrl + 'blogs/get-queried-blogs',
        options)
+      .map(res => res.json());
+  }
+
+  saveBlog(searchQuery) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', this.authService.authToken);
+    // const params = new URLSearchParams();
+    // params.set('searchQuery', JSON.stringify(searchQuery));
+    // const options = new RequestOptions({ headers: headers, params: params });
+    return this.http.put(
+      config.serverUrl + 'blogs/save-blog',
+      {searchQuery: JSON.stringify(searchQuery)},
+      headers)
+      // options)
       .map(res => res.json());
   }
 }

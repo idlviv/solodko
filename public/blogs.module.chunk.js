@@ -30,7 +30,7 @@ var blogsRoutes = [
                 component: list_blogs_component_1.ListBlogsComponent,
             },
             {
-                path: 'edit-blog/:id',
+                path: 'edit-blog/:_id',
                 component: edit_blog_component_1.EditBlogComponent,
             },
             {
@@ -208,13 +208,18 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var EditBlogComponent = (function () {
-    function EditBlogComponent(authService, blogsService) {
+    function EditBlogComponent(authService, blogsService, flashMessage, route) {
         this.authService = authService;
         this.blogsService = blogsService;
+        this.flashMessage = flashMessage;
+        this.route = route;
     }
     EditBlogComponent.prototype.ngOnInit = function () {
         var _this = this;
+        // creates form
         this.editBlogForm = new forms_1.FormGroup({
             title: new forms_1.FormControl('', [
                 forms_1.Validators.required,
@@ -228,16 +233,56 @@ var EditBlogComponent = (function () {
                 forms_1.Validators.maxLength(1000),
             ]),
         });
+        // gets logged user
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.loggedUser = user; });
-        this.blogsService.getQueriedBlogs({ '_id': '5a3e6ae5f578dd22a4eedf59' })
-            .subscribe(function (result) {
-            _this.blog = result.blogs[0];
-            console.log(_this.blog);
+        // gets id of edited blog
+        this.route.params
+            .subscribe(function (params) {
+            _this._id = params._id;
+            _this.searchQuery = {
+                type: 'object',
+                query: {
+                    key: '_id',
+                    value: _this._id
+                }
+            };
+            // gets blog by _id
+            _this.blogsService.getQueriedBlogs(_this.searchQuery)
+                .subscribe(function (result) {
+                _this.blog = result.blogs[0];
+            });
+        }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+            return false;
         });
     };
     EditBlogComponent.prototype.onEditBlogSubmit = function () {
-        console.log('submit');
+        var _this = this;
+        this.searchQuery = {
+            type: 'object',
+            query: {
+                key: '_id',
+                value: this._id
+            },
+            data: this.blog,
+        };
+        console.log(this.searchQuery);
+        this.blogsService.saveBlog(this.searchQuery)
+            .subscribe(function (result) {
+            _this.flashMessage.show(result.message, {
+                cssClass: 'alert-success',
+                timeout: 3000
+            });
+        }, function (error) {
+            _this.flashMessage.show(error.message, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+        });
     };
     return EditBlogComponent;
 }());
@@ -247,10 +292,10 @@ EditBlogComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/blogs/edit-blog/edit-blog.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/edit-blog/edit-blog.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _d || Object])
 ], EditBlogComponent);
 exports.EditBlogComponent = EditBlogComponent;
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=edit-blog.component.js.map
 
 /***/ }),

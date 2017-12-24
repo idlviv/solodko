@@ -18,7 +18,7 @@ const blogsRoutes: Routes = [
         // resolve: {products: ProductResolverService}
       },
       {
-        path: 'edit-blog/:id',
+        path: 'edit-blog/:_id',
         component: EditBlogComponent,
         // resolve: {products: ProductResolverService}
       },

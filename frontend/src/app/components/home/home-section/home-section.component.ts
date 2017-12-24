@@ -24,13 +24,6 @@ export class HomeSectionComponent implements OnInit {
     this.route.data
       .subscribe(
         (data) => {
-
-          // this.products = data.products.filter(
-          //   (product) => {
-          //     if (product.showOnMainPage) {
-          //       return product;
-          //     }
-          //   });
           this.products = data.products;
         },
         (error) => {
