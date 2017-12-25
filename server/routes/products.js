@@ -85,13 +85,9 @@ router.put(
   });
 
 router.delete(
-  // '/editProduct', passport.authenticate('jwt', {session: false}),
   '/deleteProduct/:_id',
   (req, res, next) => {
-    console.log('Server - ProductModel - authenticated');
-    console.log(req.params._id);
     let deleteProduct_id = req.params._id;
-    console.log('edited product' + JSON.stringify(deleteProduct_id, null, 4));
     ProductModel.deleteProduct(deleteProduct_id)
       .then((result) => res.json(result))
       .catch((error) => res.json(error));

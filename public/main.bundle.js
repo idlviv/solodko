@@ -1902,23 +1902,23 @@ var BlogsService = (function () {
     BlogsService.prototype.addBlog = function (newBlog) {
         var headers = new http_1.Headers();
         this.authService.loadToken();
-        headers.append('Authorization', this.authService.authToken);
-        headers.append('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.authToken);
+        headers.set('Content-Type', 'application/json');
         return this.http.post(app_config_1.config.serverUrl + 'blogs/add-blog', newBlog, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BlogsService.prototype.getBlogs = function () {
         var headers = new http_1.Headers();
         this.authService.loadToken();
-        headers.append('Authorization', this.authService.authToken);
-        headers.append('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.authToken);
+        headers.set('Content-Type', 'application/json');
         return this.http.get(app_config_1.config.serverUrl + 'blogs/get-blogs', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BlogsService.prototype.getQueriedBlogs = function (searchQuery) {
         var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', this.authService.authToken);
+        headers.set('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.authToken);
         var params = new http_1.URLSearchParams();
         params.set('searchQuery', JSON.stringify(searchQuery));
         var options = new http_1.RequestOptions({ headers: headers, params: params });
@@ -1927,12 +1927,19 @@ var BlogsService = (function () {
     };
     BlogsService.prototype.editBlog = function (searchQuery) {
         var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', this.authService.authToken);
+        headers.set('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.authToken);
         // const params = new URLSearchParams();
         // params.set('searchQuery', JSON.stringify(searchQuery));
         // const options = new RequestOptions({ headers: headers, params: params });
         return this.http.put(app_config_1.config.serverUrl + 'blogs/edit-blog', { searchQuery: JSON.stringify(searchQuery) }, headers)
+            .map(function (res) { return res.json(); });
+    };
+    BlogsService.prototype.deleteBlog = function (_id) {
+        var headers = new http_1.Headers();
+        headers.set('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.authToken);
+        return this.http.delete(app_config_1.config.serverUrl + 'blogs/delete-blog/' + _id, headers)
             .map(function (res) { return res.json(); });
     };
     return BlogsService;

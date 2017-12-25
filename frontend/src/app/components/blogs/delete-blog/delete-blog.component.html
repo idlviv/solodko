@@ -1,0 +1,36 @@
+<h2 class="page-header">Дфйсно видалити пост?</h2>
+<button class="btn btn-danger btn-sm" (click)="onConfirmDelete()">Видалити</button>
+<button class="btn btn-info btn-sm" (click)="onCancelDelete()">Відмінити</button>
+<br/>
+<div class="row" *ngIf="blog">
+  <div class="col">
+
+    <div class="card">
+      <div class="card-header">
+        <h4>{{blog.title}}</h4>
+      </div>
+
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Автор: </strong>{{blog.createdBy}}
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}
+          </div>
+
+          <div class="col-md-2 col-sm-6">
+            <strong>Лайків </strong>{{blog.likes}}
+          </div>
+          <div class="col-md-2 col-sm-6">
+            <strong>Нелайків </strong>{{blog.dislikes}}
+          </div>
+        </div>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>

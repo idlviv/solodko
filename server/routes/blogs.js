@@ -28,4 +28,9 @@ router.put(
   BlogsController.editBlog
 );
 
+router.delete(
+  '/delete-blog/:_id',
+  BlogsController.deleteBlog
+);
+
 module.exports = router;

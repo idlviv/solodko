@@ -6,6 +6,7 @@ import {SharedModule} from '../shared/shared.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { ListBlogsComponent } from './list-blogs/list-blogs.component';
+import { DeleteBlogComponent } from './delete-blog/delete-blog.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ListBlogsComponent } from './list-blogs/list-blogs.component';
     BlogsComponent,
     EditBlogComponent,
     ListBlogsComponent,
+    DeleteBlogComponent,
   ],
   exports: [
   ]

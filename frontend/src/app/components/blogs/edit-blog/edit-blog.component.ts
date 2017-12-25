@@ -91,7 +91,7 @@ export class EditBlogComponent implements OnInit {
           },
         (error) => {
           this.flashMessage.show(
-            error.message,
+            error,
             {
               cssClass: 'alert-danger',
               timeout: 3000

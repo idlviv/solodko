@@ -50,7 +50,7 @@
             (click)="reloadBlogs()">Перезавантажити</button>
   </div>
 </div>
-
+<br/>
 <div class="row" *ngIf="!newPost">
   <div class="col">
     <div class="card" *ngFor="let blog of blogs">
@@ -68,7 +68,7 @@
             <button [routerLink]="['/blogs/ch/edit-blog', blog._id]"
                     *ngIf="blog.createdBy_id === loggedUser._id ||
                     loggedUser.role === 'Admin' || loggedUser.role === 'Manager'"
-                    class="btn btn-primary btn-sm btn-info">Редагувати</button>
+                    class="btn btn-sm btn-info">Редагувати</button>
             <button [routerLink]="['/blogs/ch/delete-blog', blog._id]"
                     *ngIf="blog.createdBy_id === loggedUser._id ||
                     loggedUser.role === 'Admin' || loggedUser.role === 'Manager'"

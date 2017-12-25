@@ -14,8 +14,8 @@ export class BlogsService {
     const headers = new Headers();
     this.authService.loadToken();
 
-    headers.append('Authorization', this.authService.authToken);
-    headers.append('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
+    headers.set('Content-Type', 'application/json');
     return this.http.post(
       config.serverUrl + 'blogs/add-blog',
       newBlog,
@@ -27,8 +27,8 @@ export class BlogsService {
     const headers = new Headers();
     this.authService.loadToken();
 
-    headers.append('Authorization', this.authService.authToken);
-    headers.append('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
+    headers.set('Content-Type', 'application/json');
     return this.http.get(
       config.serverUrl + 'blogs/get-blogs',
       {headers: headers})
@@ -37,8 +37,8 @@ export class BlogsService {
 
   getQueriedBlogs(searchQuery) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.authService.authToken);
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
     const params = new URLSearchParams();
     params.set('searchQuery', JSON.stringify(searchQuery));
     const options = new RequestOptions({ headers: headers, params: params });
@@ -50,8 +50,8 @@ export class BlogsService {
 
   editBlog(searchQuery) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', this.authService.authToken);
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
     // const params = new URLSearchParams();
     // params.set('searchQuery', JSON.stringify(searchQuery));
     // const options = new RequestOptions({ headers: headers, params: params });
@@ -59,7 +59,16 @@ export class BlogsService {
       config.serverUrl + 'blogs/edit-blog',
       {searchQuery: JSON.stringify(searchQuery)},
       headers)
-      // options)
+      .map(res => res.json());
+  }
+
+  deleteBlog(_id) {
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
+    return this.http.delete(
+      config.serverUrl + 'blogs/delete-blog/' + _id,
+      headers)
       .map(res => res.json());
   }
 }

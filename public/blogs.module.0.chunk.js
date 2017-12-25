@@ -19,6 +19,7 @@ var page404_component_1 = __webpack_require__("../../../../../src/app/components
 var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var list_blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/list-blogs/list-blogs.component.ts");
 var edit_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/edit-blog/edit-blog.component.ts");
+var delete_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/delete-blog/delete-blog.component.ts");
 var blogsRoutes = [
     {
         path: 'ch',
@@ -32,6 +33,10 @@ var blogsRoutes = [
             {
                 path: 'edit-blog/:_id',
                 component: edit_blog_component_1.EditBlogComponent,
+            },
+            {
+                path: 'delete-blog/:_id',
+                component: delete_blog_component_1.DeleteBlogComponent,
             },
             {
                 path: '**',
@@ -138,6 +143,7 @@ var shared_module_1 = __webpack_require__("../../../../../src/app/components/sha
 var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var edit_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/edit-blog/edit-blog.component.ts");
 var list_blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/list-blogs/list-blogs.component.ts");
+var delete_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/delete-blog/delete-blog.component.ts");
 var BlogsModule = (function () {
     function BlogsModule() {
     }
@@ -155,6 +161,7 @@ BlogsModule = __decorate([
             blogs_component_1.BlogsComponent,
             edit_blog_component_1.EditBlogComponent,
             list_blogs_component_1.ListBlogsComponent,
+            delete_blog_component_1.DeleteBlogComponent,
         ],
         exports: []
     })
@@ -164,10 +171,142 @@ exports.BlogsModule = BlogsModule;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/blogs/delete-blog/delete-blog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2 class=\"page-header\">Дфйсно видалити пост?</h2>\n<button class=\"btn btn-danger btn-sm\" (click)=\"onConfirmDelete()\">Видалити</button>\n<button class=\"btn btn-info btn-sm\" (click)=\"onCancelDelete()\">Відмінити</button>\n<br/>\n<div class=\"row\" *ngIf=\"blog\">\n  <div class=\"col\">\n\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h4>{{blog.title}}</h4>\n      </div>\n\n      <div class=\"card-footer text-muted\">\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-12\">\n\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Автор: </strong>{{blog.createdBy}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\n          </div>\n\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Лайків </strong>{{blog.likes}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Нелайків </strong>{{blog.dislikes}}\n          </div>\n        </div>\n        <br/>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/blogs/delete-blog/delete-blog.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/blogs/delete-blog/delete-blog.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
+var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var DeleteBlogComponent = (function () {
+    function DeleteBlogComponent(route, router, flashMessage, blogsService) {
+        this.route = route;
+        this.router = router;
+        this.flashMessage = flashMessage;
+        this.blogsService = blogsService;
+    }
+    DeleteBlogComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .subscribe(function (params) {
+            _this._id = params._id;
+            _this.searchQuery = {
+                type: 'object',
+                query: {
+                    key: '_id',
+                    value: _this._id
+                }
+            };
+        }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+        });
+        this.blogsService.getQueriedBlogs(this.searchQuery)
+            .subscribe(function (result) {
+            if (!result.success) {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+                _this.router.navigate(['/not-found']);
+            }
+            else {
+                _this.blog = result.data[0];
+            }
+        }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+        });
+    };
+    DeleteBlogComponent.prototype.onCancelDelete = function () {
+        this.router.navigate(['/blogs/ch/list-blogs']);
+    };
+    DeleteBlogComponent.prototype.onConfirmDelete = function () {
+        var _this = this;
+        this.blogsService.deleteBlog(this._id)
+            .subscribe(function (result) {
+            console.log(result);
+            if (!result.success) {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                });
+            }
+            else {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-success',
+                    timeout: 2000
+                });
+            }
+        }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+        });
+        this.router.navigate(['/blogs/ch/list-blogs']);
+    };
+    return DeleteBlogComponent;
+}());
+DeleteBlogComponent = __decorate([
+    core_1.Component({
+        selector: 'app-delete-blog',
+        template: __webpack_require__("../../../../../src/app/components/blogs/delete-blog/delete-blog.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/blogs/delete-blog/delete-blog.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _d || Object])
+], DeleteBlogComponent);
+exports.DeleteBlogComponent = DeleteBlogComponent;
+var _a, _b, _c, _d;
+//# sourceMappingURL=delete-blog.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/blogs/edit-blog/edit-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Блог</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\" *ngIf=\"blog\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"editBlogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||\n              editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{editBlogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"editBlogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||\n              editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Зберегти</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"goBack()\">Повернутись</button>\n      <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\" type=\"button\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n    </form>\n\n  </div>\n</div>\n"
+module.exports = "<h2 class=\"page-header\">Редагувати пост</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\" *ngIf=\"blog\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"editBlogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||\n              editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{editBlogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"editBlogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||\n              editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Зберегти</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"goBack()\">Повернутись</button>\n      <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\" type=\"button\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n    </form>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -270,7 +409,7 @@ var EditBlogComponent = (function () {
                 });
             });
         }, function (error) {
-            _this.flashMessage.show(error.message, {
+            _this.flashMessage.show(error, {
                 cssClass: 'alert-danger',
                 timeout: 3000
             });
@@ -323,7 +462,7 @@ var _a, _b, _c, _d, _e, _f;
 /***/ "../../../../../src/app/components/blogs/list-blogs/list-blogs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Блог</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <!--new blog form-->\n    <form *ngIf=\"newPost\" [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"blogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\n          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{blogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"blogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['body'].errors?.minlength ||\n          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid || processing\">Запостити</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n\n    </form>\n    <!--end of new blog form-->\n  </div>\n</div>\n\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col\">\n\n    <button *ngIf=\"loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n            class=\"btn btn-success btn-sm\"\n            (click)=\"newBlogForm()\">Новий пост</button>\n    <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary btn-info btn-sm\"\n            (click)=\"reloadBlogs()\">Перезавантажити</button>\n  </div>\n</div>\n\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col\">\n    <div class=\"card\" *ngFor=\"let blog of blogs\">\n      <div class=\"card-header\">\n        <h4>{{blog.title}}</h4>\n      </div>\n\n      <div class=\"card-body\">\n        <p class=\"card-text\">{{blog.body}}</p>\n      </div>\n\n      <div class=\"card-footer text-muted\">\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-12\">\n            <button [routerLink]=\"['/blogs/ch/edit-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    class=\"btn btn-primary btn-sm btn-info\">Редагувати</button>\n            <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Автор: </strong>{{blog.createdBy}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\n          </div>\n\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Лайків </strong>{{blog.likes}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Нелайків </strong>{{blog.dislikes}}\n          </div>\n        </div>\n        <br/>\n\n\n\n      </div>\n\n      <ul class=\"list-group\" *ngIf=\"!newPost\">\n        <li class=\"list-group-item\">\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\n            Коментувати\n          </button>\n          <br/>\n          <!--<form>-->\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\n          <!--</textarea>-->\n          <!--</form>-->\n        </li>\n\n\n      </ul>\n    </div>\n  </div>\n\n</div>\n\n"
+module.exports = "<h2 class=\"page-header\">Блог</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <!--new blog form-->\n    <form *ngIf=\"newPost\" [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"blogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\n          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{blogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"blogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['body'].errors?.minlength ||\n          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid || processing\">Запостити</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n\n    </form>\n    <!--end of new blog form-->\n  </div>\n</div>\n\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col\">\n\n    <button *ngIf=\"loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n            class=\"btn btn-success btn-sm\"\n            (click)=\"newBlogForm()\">Новий пост</button>\n    <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary btn-info btn-sm\"\n            (click)=\"reloadBlogs()\">Перезавантажити</button>\n  </div>\n</div>\n<br/>\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col\">\n    <div class=\"card\" *ngFor=\"let blog of blogs\">\n      <div class=\"card-header\">\n        <h4>{{blog.title}}</h4>\n      </div>\n\n      <div class=\"card-body\">\n        <p class=\"card-text\">{{blog.body}}</p>\n      </div>\n\n      <div class=\"card-footer text-muted\">\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-12\">\n            <button [routerLink]=\"['/blogs/ch/edit-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    class=\"btn btn-sm btn-info\">Редагувати</button>\n            <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Автор: </strong>{{blog.createdBy}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\n          </div>\n\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Лайків </strong>{{blog.likes}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Нелайків </strong>{{blog.dislikes}}\n          </div>\n        </div>\n        <br/>\n\n\n\n      </div>\n\n      <ul class=\"list-group\" *ngIf=\"!newPost\">\n        <li class=\"list-group-item\">\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\n            Коментувати\n          </button>\n          <br/>\n          <!--<form>-->\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\n          <!--</textarea>-->\n          <!--</form>-->\n        </li>\n\n\n      </ul>\n    </div>\n  </div>\n\n</div>\n\n"
 
 /***/ }),
 

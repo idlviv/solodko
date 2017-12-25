@@ -52,3 +52,9 @@ module.exports.editBlog = function(req, res, next) {
     .then(result => res.json(result))
     .catch(error => res.json(error));
 };
+
+module.exports.deleteBlog = function(req, res, next) {
+  BlogsModel.deleteBlog(req.params._id)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
+};

@@ -5,6 +5,7 @@ import {Page404Component} from '../shared/page404/page404.component';
 import {AuthUserGuard} from '../../guards/auth-user.guard';
 import {ListBlogsComponent} from './list-blogs/list-blogs.component';
 import {EditBlogComponent} from './edit-blog/edit-blog.component';
+import {DeleteBlogComponent} from './delete-blog/delete-blog.component';
 
 const blogsRoutes: Routes = [
   {
@@ -20,7 +21,10 @@ const blogsRoutes: Routes = [
       {
         path: 'edit-blog/:_id',
         component: EditBlogComponent,
-        // resolve: {products: ProductResolverService}
+      },
+      {
+        path: 'delete-blog/:_id',
+        component: DeleteBlogComponent,
       },
       {
         path: '**',

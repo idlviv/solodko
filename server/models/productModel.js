@@ -83,9 +83,9 @@ module.exports.editProduct = function(editedProduct) {
       .catch((error) => {throw error;});
 };
 
-module.exports.deleteProduct = function(deleteProduct_id) {
+module.exports.deleteProduct = function(_id) {
   return new Promise(function(resolve, reject) {
-        ProductModel.remove({_id: deleteProduct_id})
+        ProductModel.remove({_id: _id})
           .then((writeResult) => resolve({success: true, msg: 'Product deleted',
             numberOfDeletedElements: writeResult}))
           .catch(() => reject({success: false, msg: 'Failed to delete product'}));

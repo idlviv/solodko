@@ -74,5 +74,12 @@ module.exports.editBlog = function(searchQuery) {
         .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', data: error}));
     }
   );
+};
 
+module.exports.deleteBlog = function(_id) {
+  return new Promise(function(resolve, reject) {
+    BlogsModel.remove({_id: _id})
+      .then(() => resolve({success: true, message: 'Пост видалений'}))
+      .catch(error => reject({success: false, message: 'Не вдалося видалити пост', data: error}))
+  });
 };
