@@ -1,10 +1,10 @@
 <h2 class="page-header">Блог</h2>
 
-<div class="row">
+<!--new blog form-->
+<div *ngIf="newPost" class="row">
   <div class="col">
 
-    <!--new blog form-->
-    <form *ngIf="newPost" [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
+    <form [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
       <div class="form-group">
         <label for="title">Заголовок</label>
         <input formControlName="title" [formGroup]="blogForm" required
@@ -34,11 +34,10 @@
       </div>
       <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid || processing">Запостити</button>
       <button [disabled]="processing" type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
-
     </form>
-    <!--end of new blog form-->
   </div>
 </div>
+<!--end of new blog form-->
 
 <div class="row" *ngIf="!newPost">
   <div class="col">
@@ -51,9 +50,11 @@
   </div>
 </div>
 <br/>
+
 <div class="row" *ngIf="!newPost">
-  <div class="col">
-    <div class="card" *ngFor="let blog of blogs">
+  <div class="col" *ngFor="let blog of blogs">
+
+    <div class="card">
       <div class="card-header">
         <h4>{{blog.title}}</h4>
       </div>
@@ -118,7 +119,6 @@
           <button class="btn btn-sm btn-danger" (click)="draftComment()">
             Коментувати
           </button>
-          <br/>
           <!--<form>-->
           <!--<textarea name="comment" id="" cols="30" rows="10" class="form-control">-->
           <!--<button class="btn btn-sm btn-info">Submit</button>-->
@@ -131,6 +131,7 @@
       </ul>
     </div>
   </div>
+  <br/>
 
 </div>
 
