@@ -32,7 +32,8 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary btn-sm" [disabled]="!editBlogForm.valid || processing">Зберегти</button>
-      <button [disabled]="processing" type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
+      <button [disabled]="processing" type="button" class="btn btn-secondary btn-sm" (click)="goBack()">Повернутись</button>
+      <button [routerLink]="['/blogs/ch/delete-blog', blog._id]" type="button" class="btn btn-danger btn-sm">Видалити</button>
 
     </form>
 

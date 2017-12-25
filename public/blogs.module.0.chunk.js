@@ -1,4 +1,4 @@
-webpackJsonp(["blogs.module"],{
+webpackJsonp(["blogs.module.0"],{
 
 /***/ "../../../../../src/app/components/blogs/blogs-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
@@ -258,6 +258,7 @@ var EditBlogComponent = (function () {
                         cssClass: 'alert-danger',
                         timeout: 3000
                     });
+                    _this.router.navigate(['/not-found']);
                 }
                 else {
                     _this.blog = result.data[0];
@@ -397,7 +398,7 @@ var ListBlogsComponent = (function () {
     ListBlogsComponent.prototype.getBlogs = function () {
         var _this = this;
         this.blogsService.getBlogs()
-            .subscribe(function (result) { return _this.blogs = result.blogs; }, function (error) {
+            .subscribe(function (result) { return _this.blogs = result.data; }, function (error) {
             _this.flashMessage.show(error.message, {
                 cssClass: 'alert-danger',
                 timeout: 2000
@@ -473,4 +474,4 @@ var _a, _b, _c, _d;
 /***/ })
 
 });
-//# sourceMappingURL=blogs.module.chunk.js.map
+//# sourceMappingURL=blogs.module.0.chunk.js.map

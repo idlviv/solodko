@@ -31,6 +31,7 @@ const appRoutes: Routes = [
   {
     path: 'blogs',
     loadChildren: './components/blogs/blogs.module#BlogsModule'},
+  { path: 'not-found', component: Page404Component },
   { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
   { path: '**', component: Page404Component },
 ];

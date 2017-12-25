@@ -44,11 +44,11 @@ module.exports.getQueriedBlogs = function(req, res, next) {
     .catch(error => res.json(error));
 };
 
-module.exports.saveBlog = function(req, res, next) {
+module.exports.editBlog = function(req, res, next) {
   console.log('searchQuery', req.body);
   let searchQuery = JSON.parse(req.body.searchQuery);
 
-  BlogsModel.saveBlog(searchQuery)
+  BlogsModel.editBlog(searchQuery)
     .then(result => res.json(result))
     .catch(error => res.json(error));
 };

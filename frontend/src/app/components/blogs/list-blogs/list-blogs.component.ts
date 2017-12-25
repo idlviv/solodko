@@ -53,7 +53,7 @@ export class ListBlogsComponent implements OnInit {
   getBlogs() {
     this.blogsService.getBlogs()
       .subscribe(
-        (result) => this.blogs = result.blogs,
+        (result) => this.blogs = result.data,
         (error) => {
           this.flashMessage.show(
             error.message,

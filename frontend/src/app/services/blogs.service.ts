@@ -48,7 +48,7 @@ export class BlogsService {
       .map(res => res.json());
   }
 
-  saveBlog(searchQuery) {
+  editBlog(searchQuery) {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', this.authService.authToken);
@@ -56,7 +56,7 @@ export class BlogsService {
     // params.set('searchQuery', JSON.stringify(searchQuery));
     // const options = new RequestOptions({ headers: headers, params: params });
     return this.http.put(
-      config.serverUrl + 'blogs/save-blog',
+      config.serverUrl + 'blogs/edit-blog',
       {searchQuery: JSON.stringify(searchQuery)},
       headers)
       // options)

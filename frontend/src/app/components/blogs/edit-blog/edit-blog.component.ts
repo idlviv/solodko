@@ -5,8 +5,9 @@ import {IUser} from '../../../interfaces/i-user';
 import {IBlog} from '../../../interfaces/i-blog';
 import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ISearchQuery} from '../../../interfaces/i-searchQuery';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-blog',
@@ -25,6 +26,8 @@ export class EditBlogComponent implements OnInit {
     private blogsService: BlogsService,
     private flashMessage: FlashMessagesService,
     private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -64,23 +67,38 @@ export class EditBlogComponent implements OnInit {
           // gets blog by _id
           this.blogsService.getQueriedBlogs(this.searchQuery)
             .subscribe(result => {
-                this.blog = result.blogs[0];
+                if (!result.success) {
+                  this.flashMessage.show(
+                    result.message,
+                    {
+                      cssClass: 'alert-danger',
+                      timeout: 3000
+                    });
+                  this.router.navigate(['/not-found']);
+                } else {
+                  this.blog = result.data[0];
+                }
+              },
+              (error) => {
+                this.flashMessage.show(
+                  error,
+                  {
+                    cssClass: 'alert-danger',
+                    timeout: 3000
+                  });
               }
             );
-        },
+          },
         (error) => {
           this.flashMessage.show(
-            error,
+            error.message,
             {
               cssClass: 'alert-danger',
               timeout: 3000
             });
-          return false;
         });
-
-
-
   }
+
   onEditBlogSubmit() {
     this.searchQuery = {
       type: 'object',
@@ -90,8 +108,7 @@ export class EditBlogComponent implements OnInit {
       },
       data: this.blog,
     };
-    console.log(this.searchQuery);
-    this.blogsService.saveBlog(this.searchQuery)
+    this.blogsService.editBlog(this.searchQuery)
       .subscribe(
         (result) => {
           this.flashMessage.show(
@@ -100,6 +117,7 @@ export class EditBlogComponent implements OnInit {
               cssClass: 'alert-success',
               timeout: 3000
             });
+          this.router.navigate(['/blogs/ch/list-blogs']);
         },
         (error) => {
           this.flashMessage.show(
@@ -110,6 +128,11 @@ export class EditBlogComponent implements OnInit {
             });
         }
       );
+  }
+
+  goBack() {
+    // this.router.navigate(['/blogs/ch/list-blogs']);
+    this.location.back();
   }
 
 }

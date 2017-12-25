@@ -24,8 +24,8 @@ router.get(
 );
 
 router.put(
-  '/save-blog',
-  BlogsController.saveBlog
-)
+  '/edit-blog',
+  BlogsController.editBlog
+);
 
 module.exports = router;

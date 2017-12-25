@@ -13,7 +13,7 @@ const blogsRoutes: Routes = [
     canActivateChild: [AuthUserGuard],
     children: [
       {
-        path: 'add-blog',
+        path: 'list-blogs',
         component: ListBlogsComponent,
         // resolve: {products: ProductResolverService}
       },

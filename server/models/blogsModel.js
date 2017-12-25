@@ -40,8 +40,8 @@ module.exports.addBlog = function(newBlog) {
 module.exports.getBlogs = function() {
   return new Promise(function(resolve, reject) {
       BlogsModel.find().sort({'_id': -1})
-        .then((blogs) => resolve({success: true, blogs}))
-        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', error}));
+        .then((blogs) => resolve({success: true, data: blogs}))
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
     }
   );
 };
@@ -54,26 +54,24 @@ module.exports.getQueriedBlogs = function(searchQuery) {
       }
       BlogsModel.find(query)
         .then((blogs) => {
-          return resolve({success: true, blogs});
+          return resolve({success: true, data: blogs});
         })
-        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', error}));
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
     }
   );
 };
 
-module.exports.saveBlog = function(searchQuery) {
+module.exports.editBlog = function(searchQuery) {
   return new Promise(function(resolve, reject) {
       let query = {};
       if (searchQuery.type = 'object') {
         query[searchQuery.query.key] = searchQuery.query.value;
       }
-      console.log('query', query);
-      console.log('searchQuery.data', searchQuery.data);
       BlogsModel.update(query, searchQuery.data)
         .then(() => {
           return resolve({success: true,  message: 'Зміни збережені'});
         })
-        .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', error}));
+        .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', data: error}));
     }
   );
 
