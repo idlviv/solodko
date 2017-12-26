@@ -13,7 +13,7 @@ export class BlogsService {
   addBlog(newBlog) {
     const headers = new Headers();
     this.authService.loadToken();
-
+console.log('newBlog', newBlog);
     headers.set('Authorization', this.authService.authToken);
     headers.set('Content-Type', 'application/json');
     return this.http.post(

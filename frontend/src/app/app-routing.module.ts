@@ -28,8 +28,7 @@ const appRoutes: Routes = [
   {path: 'admin',
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },
-  {
-    path: 'blogs',
+  { path: 'blogs',
     loadChildren: './components/blogs/blogs.module#BlogsModule'},
   { path: 'not-found', component: Page404Component },
   { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },

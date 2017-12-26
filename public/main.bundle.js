@@ -6,19 +6,19 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0"
+		"admin-panel.module"
 	],
 	"./components/blogs/blogs.module": [
 		"../../../../../src/app/components/blogs/blogs.module.ts",
-		"blogs.module.0"
+		"blogs.module"
 	],
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
-		"home.module.0"
+		"home.module"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0"
+		"products.module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -75,10 +75,8 @@ var appRoutes = [
     { path: 'admin',
         loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
     },
-    {
-        path: 'blogs',
-        loadChildren: './components/blogs/blogs.module#BlogsModule'
-    },
+    { path: 'blogs',
+        loadChildren: './components/blogs/blogs.module#BlogsModule' },
     { path: 'not-found', component: page404_component_1.Page404Component },
     { path: '', loadChildren: './components/home/home.module#HomeModule', pathMatch: 'full' },
     { path: '**', component: page404_component_1.Page404Component },
@@ -492,6 +490,73 @@ var _a, _b, _c, _d;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/shared/blog/blog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n\n  <h2 class=\"text-muted text-center\">{{blog.title}}</h2>\n  <p class=\"text-right\">{{blog.createdAt | date: 'dd.MM.yyyy'}}</p>\n\n\n<div class=\"row\">\n  <div class=\"col-md-5\">\n    <img src=\"https://placehold.it/320x180\" class=\"img-fluid\" alt=\"main image\">\n  </div>\n  <div class=\"col-md-7\">\n    <p>zx/cbml/cbm,s.f/v.l\\gh fghklsmfgh s fgh s fgh sfg h df gh df gh  f ghfdghd fh dsgh</p>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/blog/blog.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/blog/blog.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var i_blog_1 = __webpack_require__("../../../../../src/app/interfaces/i-blog.ts");
+var BlogComponent = (function () {
+    function BlogComponent() {
+    }
+    BlogComponent.prototype.ngOnInit = function () {
+    };
+    return BlogComponent;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", typeof (_a = typeof i_blog_1.IBlog !== "undefined" && i_blog_1.IBlog) === "function" && _a || Object)
+], BlogComponent.prototype, "blog", void 0);
+BlogComponent = __decorate([
+    core_1.Component({
+        selector: 'app-blog',
+        template: __webpack_require__("../../../../../src/app/components/shared/blog/blog.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/blog/blog.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], BlogComponent);
+exports.BlogComponent = BlogComponent;
+var _a;
+//# sourceMappingURL=blog.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/shared/item/item.component.html":
 /***/ (function(module, exports) {
 
@@ -779,6 +844,7 @@ var page404_component_1 = __webpack_require__("../../../../../src/app/components
 var menu_h_component_1 = __webpack_require__("../../../../../src/app/components/shared/menu-h/menu-h.component.ts");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var modal_img_component_1 = __webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.ts");
+var blog_component_1 = __webpack_require__("../../../../../src/app/components/shared/blog/blog.component.ts");
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -790,7 +856,8 @@ SharedModule = __decorate([
             item_component_1.ItemComponent,
             page404_component_1.Page404Component,
             menu_h_component_1.MenuHComponent,
-            modal_img_component_1.ModalImgComponent
+            modal_img_component_1.ModalImgComponent,
+            blog_component_1.BlogComponent
         ],
         imports: [
             common_1.CommonModule,
@@ -798,6 +865,7 @@ SharedModule = __decorate([
         ],
         exports: [
             item_component_1.ItemComponent,
+            blog_component_1.BlogComponent,
             modal_img_component_1.ModalImgComponent,
             page404_component_1.Page404Component,
             menu_h_component_1.MenuHComponent
@@ -1693,6 +1761,16 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/interfaces/i-blog.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=i-blog.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/interfaces/i-product.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1902,6 +1980,7 @@ var BlogsService = (function () {
     BlogsService.prototype.addBlog = function (newBlog) {
         var headers = new http_1.Headers();
         this.authService.loadToken();
+        console.log('newBlog', newBlog);
         headers.set('Authorization', this.authService.authToken);
         headers.set('Content-Type', 'application/json');
         return this.http.post(app_config_1.config.serverUrl + 'blogs/add-blog', newBlog, { headers: headers })
@@ -2120,7 +2199,6 @@ var ProductService = (function () {
         // params.set('category', 'Toys');
         params.set('obj', JSON.stringify(searchQuery));
         var options = new http_2.RequestOptions({ headers: headers, params: params });
-        console.log('options', options);
         return this.http.get(app_config_1.config.serverUrl + 'api/getQueriedProducts', 
         // data,
         options)

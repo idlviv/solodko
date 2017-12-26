@@ -4,8 +4,7 @@ const log = require('../config/winston')(module);
 
 module.exports.addBlog = function(req, res, next) {
   let createdBy;
-  log.verbose('req.body._doc', req.user._doc);
-  console.log(req.user._doc);
+  console.log('req.body.title', req.body);
   if (!req.body.title) {
     res.json({success: false, message: 'Немає заголовка'});
   } else if (!req.body.body) {
@@ -21,6 +20,7 @@ module.exports.addBlog = function(req, res, next) {
       title: req.body.title,
       body: req.body.body,
       createdBy: createdBy,
+      showOnMainPage: req.body.showOnMainPage,
       createdBy_id: req.user._doc._id
     });
 

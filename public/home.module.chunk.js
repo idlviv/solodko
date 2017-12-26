@@ -1,5 +1,83 @@
 webpackJsonp(["home.module"],{
 
+/***/ "../../../../../src/app/components/home/home-blog/home-blog.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n<div class=\"row\" *ngIf=\"blogs\">\n\n  <div *ngFor=\"let blog of blogs\" class=\"col-12\">\n    <app-blog [blog]=\"blog\"></app-blog>\n  </div>\n</div>\n\n<div class=\"row\" *ngIf=\"!blogs\">\n  Блог\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/home/home-blog/home-blog.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/home/home-blog/home-blog.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var HomeBlogComponent = (function () {
+    function HomeBlogComponent(blogsService) {
+        this.blogsService = blogsService;
+    }
+    HomeBlogComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.searchQuery = {
+            type: 'object',
+            query: {
+                key: 'showOnMainPage',
+                value: 'true'
+            }
+        };
+        this.blogsService.getQueriedBlogs(this.searchQuery)
+            .subscribe(function (blogs) {
+            if (blogs.success) {
+                _this.blogs = blogs.data;
+            }
+        });
+    };
+    return HomeBlogComponent;
+}());
+HomeBlogComponent = __decorate([
+    core_1.Component({
+        selector: 'app-home-blog',
+        template: __webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _a || Object])
+], HomeBlogComponent);
+exports.HomeBlogComponent = HomeBlogComponent;
+var _a;
+//# sourceMappingURL=home-blog.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/home/home-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -18,6 +96,7 @@ var home_section_component_1 = __webpack_require__("../../../../../src/app/compo
 var side_menu_component_1 = __webpack_require__("../../../../../src/app/components/home/side-menu/side-menu.component.ts");
 var home_component_1 = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 var product_resolver_service_1 = __webpack_require__("../../../../../src/app/services/product-resolver.service.ts");
+var home_blog_component_1 = __webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.ts");
 var homeRoutes = [
     {
         path: '',
@@ -32,6 +111,11 @@ var homeRoutes = [
                 path: '',
                 outlet: 'sidemenu',
                 component: side_menu_component_1.SideMenuComponent
+            },
+            {
+                path: '',
+                outlet: 'blog',
+                component: home_blog_component_1.HomeBlogComponent
             },
             {
                 path: '**',
@@ -66,7 +150,7 @@ exports.HomeRoutingModule = HomeRoutingModule;
 /***/ "../../../../../src/app/components/home/home-section/home-section.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<section class=\"jumbotron text-center\">\r\n  <div class=\"container\">\r\n    <h1 class=\"c_jumbotron-heading\">Майстерня творчості</h1>\r\n    <p class=\"text-justify lead text-muted\">Улюблені заняття, що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n    <p class=\"text-justify lead text-muted\">А коли таких занять назбирується ціла корзинка (букети з цукерок,\r\n      букети з фруктів та овочів, вишивка, пошиття іграшок, віночки, декор і т.д.),\r\n      то це для мене справжня творча майстерня..</p>\r\n  </div>\r\n</section>\r\n<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-4 col-md-6 col-sm-6 col-12\">\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<section class=\"jumbotron text-center\">\r\n  <div class=\"container\">\r\n    <h1 class=\"c_jumbotron-heading\">Майстерня творчості</h1>\r\n    <p class=\"text-justify lead text-muted\">Улюблені заняття, що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n    <p class=\"text-justify lead text-muted\">А коли таких занять назбирується ціла корзинка (букети з цукерок,\r\n      букети з фруктів та овочів, вишивка, пошиття іграшок, віночки, декор і т.д.),\r\n      то це для мене справжня творча майстерня..</p>\r\n  </div>\r\n</section>\r\n\r\n<div class=\"row\">\r\n  <div *ngFor=\"let product of products\" class=\"col-lg-4 col-md-6 col-sm-6 col-12\">\r\n  <!--<div *ngFor=\"let product of products\" class=\"col-12\">-->\r\n    <app-item [product]=\"product\"></app-item>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -145,7 +229,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-lg-9\">\r\n    <!--<h1>Майстерня</h1>-->\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-3\">\r\n    <!--<h2>Опис</h2>-->\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"row\">\r\n  <div class=\"col-lg-2\">\r\n    <!--<h2>Опис</h2>-->\r\n    <router-outlet name=\"blog\"></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-8\">\r\n    <!--<h1>Майстерня</h1>-->\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n  <div class=\"col-lg-2\">\r\n    <!--<h2>Опис</h2>-->\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -218,6 +302,7 @@ var shared_module_1 = __webpack_require__("../../../../../src/app/components/sha
 var home_component_1 = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 var side_menu_component_1 = __webpack_require__("../../../../../src/app/components/home/side-menu/side-menu.component.ts");
 var home_routing_module_1 = __webpack_require__("../../../../../src/app/components/home/home-routing.module.ts");
+var home_blog_component_1 = __webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.ts");
 var HomeModule = (function () {
     function HomeModule() {
     }
@@ -228,7 +313,8 @@ HomeModule = __decorate([
         declarations: [
             home_section_component_1.HomeSectionComponent,
             home_component_1.HomeComponent,
-            side_menu_component_1.SideMenuComponent
+            side_menu_component_1.SideMenuComponent,
+            home_blog_component_1.HomeBlogComponent
         ],
         imports: [
             common_1.CommonModule,

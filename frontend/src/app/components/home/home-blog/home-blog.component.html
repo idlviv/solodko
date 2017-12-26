@@ -1,0 +1,12 @@
+
+
+<div class="row" *ngIf="blogs">
+
+  <div *ngFor="let blog of blogs" class="col-12">
+    <app-blog [blog]="blog"></app-blog>
+  </div>
+</div>
+
+<div class="row" *ngIf="!blogs">
+  Блог
+</div>

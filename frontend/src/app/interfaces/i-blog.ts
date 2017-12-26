@@ -3,6 +3,7 @@ export interface IBlog {
   body: string;
   createdBy: string;
   createdBy_id: string;
+  showOnMainPage: boolean;
   createdAt: string;
   likes: number;
   likedBy: string[];

@@ -9,6 +9,7 @@ const BlogsSchema = new Schema({
   body: {type: String, required: true, validate: blogsValidators.bodyValidators},
   createdBy: {type: String},
   createdBy_id: {type: String},
+  showOnMainPage: {type: Boolean, default: false},
   createdAt: {type: Date, default: Date.now()},
   likes: {type: Number, default: 0},
   likedBy: {type: Array},
@@ -24,6 +25,7 @@ let BlogsModel = mongoose.model('blogs', BlogsSchema);
 module.exports = BlogsModel;
 
 module.exports.addBlog = function(newBlog) {
+  console.log('newBlog', newBlog);
   return new Promise(function(resolve, reject) {
     newBlog.save(newBlog)
       .then(() => resolve({success: true, message: 'Новий пост зареєстровано'}))

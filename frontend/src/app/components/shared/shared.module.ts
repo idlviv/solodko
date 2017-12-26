@@ -6,13 +6,15 @@ import {Page404Component} from './page404/page404.component';
 import { MenuHComponent } from './menu-h/menu-h.component';
 import {RouterModule} from '@angular/router';
 import { ModalImgComponent } from './modal-img/modal-img.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
     ItemComponent,
     Page404Component,
     MenuHComponent,
-    ModalImgComponent
+    ModalImgComponent,
+    BlogComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { ModalImgComponent } from './modal-img/modal-img.component';
   ],
   exports: [
     ItemComponent,
+    BlogComponent,
     ModalImgComponent,
     Page404Component,
     MenuHComponent

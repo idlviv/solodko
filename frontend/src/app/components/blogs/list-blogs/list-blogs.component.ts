@@ -41,6 +41,8 @@ export class ListBlogsComponent implements OnInit {
           Validators.minLength(4),
           Validators.maxLength(1000),
         ]),
+        showOnMainPage: new FormControl('', [
+        ]),
       },
     );
 
@@ -66,12 +68,17 @@ export class ListBlogsComponent implements OnInit {
   }
 
   onBlogSubmit() {
-    this.processing = true;
-    this.disableBlogForm();
-    this.blogsService.addBlog({
+    if (!this.blogForm.value.showOnMainPage) {
+      this.blogForm.value.showOnMainPage = false;
+    }
+
+    const newBlog = {
       title: this.blogForm.value.title,
       body: this.blogForm.value.body,
-    })
+      showOnMainPage: this.blogForm.value.showOnMainPage
+    };
+    this.disableBlogForm();
+    this.blogsService.addBlog(newBlog)
       .subscribe(result => {
         this.processing = false;
         this.enableBlogForm();

@@ -6,12 +6,15 @@ import {SharedModule} from '../shared/shared.module';
 import {HomeComponent} from './home.component';
 import {SideMenuComponent} from './side-menu/side-menu.component';
 import {HomeRoutingModule} from './home-routing.module';
+import {BlogsModule} from '../blogs/blogs.module';
+import { HomeBlogComponent } from './home-blog/home-blog.component';
 
 @NgModule({
   declarations: [
     HomeSectionComponent,
     HomeComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    HomeBlogComponent
   ],
   imports: [
     CommonModule,

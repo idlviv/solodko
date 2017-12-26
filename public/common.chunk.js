@@ -1,4 +1,4 @@
-webpackJsonp(["blogs.module.0"],{
+webpackJsonp(["common"],{
 
 /***/ "../../../../../src/app/components/blogs/blogs-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
@@ -613,4 +613,4 @@ var _a, _b, _c, _d;
 /***/ })
 
 });
-//# sourceMappingURL=blogs.module.0.chunk.js.map
+//# sourceMappingURL=common.chunk.js.map
