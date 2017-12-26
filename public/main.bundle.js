@@ -493,7 +493,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/shared/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n  <h2 class=\"text-muted text-center\">{{blog.title}}</h2>\n  <p class=\"text-right\">{{blog.createdAt | date: 'dd.MM.yyyy'}}</p>\n\n\n<div class=\"row\">\n  <div class=\"col-md-5\">\n    <img src=\"https://placehold.it/320x180\" class=\"img-fluid\" alt=\"main image\">\n  </div>\n  <div class=\"col-md-7\">\n    <p>zx/cbml/cbm,s.f/v.l\\gh fghklsmfgh s fgh s fgh sfg h df gh df gh  f ghfdghd fh dsgh</p>\n  </div>\n</div>\n"
+module.exports = "<h2 class=\"text-muted text-center\">{{blog.title}}</h2>\n<p class=\"text-right\">{{blog.createdAt | date: 'dd.MM.yyyy'}}</p>\n\n<div class=\"row\">\n  <div class=\"col\">\n    <img src=\"https://placehold.it/320x180\" class=\"img-fluid\" alt=\"main image\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col\">\n    <p>zx/cbml/cbm,s.f/v.l\\gh fghklsmfgh s fgh s fgh sfg h df gh df gh  f ghfdghd fh dsgh</p>\n    \n  </div>\n</div>\n"
 
 /***/ }),
 

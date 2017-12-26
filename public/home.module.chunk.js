@@ -229,7 +229,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"row\">\r\n  <div class=\"col-lg-2\">\r\n    <!--<h2>Опис</h2>-->\r\n    <router-outlet name=\"blog\"></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-8\">\r\n    <!--<h1>Майстерня</h1>-->\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n  <div class=\"col-lg-2\">\r\n    <!--<h2>Опис</h2>-->\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"row\">\r\n  <div class=\"col-lg-2\">\r\n    <router-outlet name=\"blog\"></router-outlet>\r\n  </div>\r\n  <div class=\"col-lg-8\">\r\n    <router-outlet></router-outlet>\r\n  </div>\r\n\r\n  <div class=\"col-lg-2\">\r\n    <router-outlet name=\"sidemenu\"></router-outlet>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
