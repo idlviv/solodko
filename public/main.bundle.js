@@ -493,7 +493,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/shared/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"text-muted text-center\">{{blog.title}}</h2>\n<p class=\"text-right\">{{blog.createdAt | date: 'dd.MM.yyyy'}}</p>\n\n<div class=\"row\">\n  <div class=\"col\">\n    <img src=\"https://placehold.it/320x180\" class=\"img-fluid\" alt=\"main image\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col\">\n    <p>zx/cbml/cbm,s.f/v.l\\gh fghklsmfgh s fgh s fgh sfg h df gh df gh  f ghfdghd fh dsgh</p>\n    \n  </div>\n</div>\n"
+module.exports = "<!--<div class=\"c_blog-header\">-->\n  <!--<h2 class=\"text-muted text-center\">{{blog.title}}</h2>-->\n  <!--<p class=\"text-right\">{{blog.createdAt | date: 'dd.MM.yyyy'}}</p>-->\n<!--</div>-->\n\n\n<!--<div class=\"row\">-->\n  <!--<div class=\"col\">-->\n    <!--<img src=\"https://placehold.it/320x180\" class=\"img-fluid\" alt=\"main image\">-->\n  <!--</div>-->\n<!--</div>-->\n<!--<div class=\"row\">-->\n  <!--<div class=\"col\">-->\n    <!--<p>zx/cbml/cbm,s.f/v.l\\gh fghklsmfgh s fgh s fgh sfg h df gh df gh  f ghfdghd fh dsgh</p>-->\n\n  <!--</div>-->\n<!--</div>-->\n\n<div class=\"test-block\">Block</div>\n<div class=\"test-block\">Block</div>\n<div class=\"test-block\">Block</div>\n\n<p class=\"test-p\">sdnfklands adgadfgsdf</p>\n<p class=\"test-p\">sdnfklands adgadfgsdf</p>\n<p class=\"test-p\">sdnfklands adgadfgsdf</p>\n"
 
 /***/ }),
 
@@ -505,7 +505,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".c_blog-header {\n  background-color: #b6c6d6;\n  box-sizing: border-box; }\n\n.test-block {\n  display: inline-block;\n  width: 10rem;\n  background-color: #a0afbe; }\n\n.test-p {\n  display: inline-block;\n  width: 15rem;\n  background-color: #be94a8; }\n", ""]);
 
 // exports
 
