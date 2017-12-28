@@ -1,16 +1,21 @@
-.c_blog-header {
-  background-color: #b6c6d6;
-  box-sizing: border-box;
+@import '~styles/styles';
+
+.blog-post {
+  margin-bottom: 4rem;
+}
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
 }
 
-.test-block {
-  display: inline-block;
-width: 10rem;
-  background-color: #a0afbe;
+.blog-post-main-img {
+
 }
 
-.test-p {
-  display: inline-block;
-  width: 15rem;
-  background-color: #be94a8;
-}
+
+
+

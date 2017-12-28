@@ -1,8 +1,16 @@
+<header>
+  <div class="blog-header">
+    <h1 class="blog-title">Майстеркласи</h1>
+    <p class="lead blog-description">Улюблені заняття,
+      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>
+  </div>
+</header>
 
 
-<div class="row" *ngIf="blogs">
 
-  <div *ngFor="let blog of blogs" class="col-12">
+
+<div *ngIf="blogs">
+  <div class="odd-even" *ngFor="let blog of blogs">
     <app-blog [blog]="blog"></app-blog>
   </div>
 </div>

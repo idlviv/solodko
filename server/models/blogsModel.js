@@ -54,7 +54,7 @@ module.exports.getQueriedBlogs = function(searchQuery) {
       if (searchQuery.type = 'object') {
         query[searchQuery.query.key] = searchQuery.query.value;
       }
-      BlogsModel.find(query)
+      BlogsModel.find(query).sort({'_id': -1})
         .then((blogs) => {
           return resolve({success: true, data: blogs});
         })
