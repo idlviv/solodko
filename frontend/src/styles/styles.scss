@@ -99,6 +99,22 @@ body,
   display: inline-block;
 }
 
+.blog-post {
+  margin-bottom: 4rem;
+}
+.blog-post-title {
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
+.blog-post-main-img {
+
+}
+
 .c_dropdown-content {
   display: none;
   position: absolute;
@@ -115,3 +131,4 @@ body,
   display: block;
 }
 //end custom dropdown
+

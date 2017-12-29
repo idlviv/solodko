@@ -23,9 +23,10 @@
   }
 }
 
-.odd-even:nth-child(odd) {
+app-blog .row:nth-child(odd) {
   background-color: red;
 }
-.odd-even:nth-child(even) {
+
+app-blog .row:nth-child(even) {
   background-color: blue;
 }
