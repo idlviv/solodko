@@ -28,13 +28,15 @@
 
 .blog-post_main-side {
   max-width: 48rem;
-  height: 14rem;
+  height: 16rem;
   margin: 1rem auto;
   //padding-right: 1rem;
   overflow: hidden;
-  padding: 2rem 0;
-
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
 }
+
 .blog-post_text {
   //margin: 1rem auto;
   text-align: justify;
@@ -46,18 +48,37 @@
     @extend .blog-post_text;
     height: 100%;
     margin: 1rem auto;
-    display: block;
+    //display: block;
     overflow: hidden;
+    font-size: 1.4rem;
+    font-weight: 300;
   }
 }
 
 .blog-post_main-side-info {
-  max-height: 30%;
+  max-height: 40%;
   margin: 1rem auto;
   overflow: hidden;
+}
+
+.blog-post_avatar {
+  @extend .blog-post_main-side-info;
+  @include radius(2rem);
+  display: inline-block;
+  max-width: 3rem;
+  max-height: 3rem;
+  margin: 0 .5rem
 
 }
 
+.blog-post_createdBy,
+.blog-post_createdAt,
+.blog-post_comments {
+  @extend .blog-post_main-side-info;
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 1rem;
+}
 .blog-post_sub-text {
   @extend .blog-post_text;
   padding-right: 2rem;

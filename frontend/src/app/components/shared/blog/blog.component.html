@@ -15,10 +15,13 @@
             </div>
 
 
-            <div class="blog-post_main-side-info">
-               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrude consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+            <div class="blog-post_main-side-info d-flex justify-content-around">
+              <div class="blog-post_avatar">
+                <img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">
+              </div>
+              <div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>
+              <div class="blog-post_createdAt">Дата: <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
+              <div class="blog-post_comments">Коментарі: <strong>25</strong></div>
             </div>
 
           </div>
