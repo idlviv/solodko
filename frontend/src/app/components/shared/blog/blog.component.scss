@@ -22,41 +22,40 @@
 }
 
 .blog-post_main-img {
-
   max-width: 48rem;
-  //margin: 1rem auto;
-  margin: auto;
+  margin: 1rem auto;
 }
 
+.blog-post_main-side {
+  max-width: 48rem;
+  height: 14rem;
+  margin: 1rem auto;
+  //padding-right: 1rem;
+  overflow: hidden;
+  padding: 2rem 0;
+
+}
 .blog-post_text {
-  margin: auto;
   //margin: 1rem auto;
   text-align: justify;
 }
 
-.blog-post_main-side {
-  margin: auto;
-
-  max-width: 48rem;
-  max-height: 24rem;
-  //padding-right: 1rem;
-  background-color: #EFD3AB;
-  overflow: hidden;
-
-}
-
 .blog-post_main-side-text {
-  @extend .blog-post_text;
-  display: block;
-  max-height: 60%;
-  overflow: hidden;
-  background-color: #25365c;
+  height: 60%;
+  h3 {
+    @extend .blog-post_text;
+    height: 100%;
+    margin: 1rem auto;
+    display: block;
+    overflow: hidden;
+  }
 }
 
 .blog-post_main-side-info {
-  display: block;
-  max-height: 40%;
-  background-color: #42A948;
+  max-height: 30%;
+  margin: 1rem auto;
+  overflow: hidden;
+
 }
 
 .blog-post_sub-text {
