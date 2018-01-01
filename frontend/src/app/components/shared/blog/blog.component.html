@@ -3,7 +3,7 @@
     <div class="col">
       <div class="blog-post">
         <h2 class="blog-post_title">{{blog.title}}</h2>
-        <p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>
+        <!--<p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>-->
         <div class="row blog-post_main">
           <div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderImg">
             <img src="https://placehold.it/768x384" class="img-fluid" alt="main image">
@@ -19,8 +19,8 @@
               <div class="blog-post_avatar">
                 <img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">
               </div>
-              <div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>
-              <div class="blog-post_createdAt">Дата: <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
+              <!--<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>-->
+              <div class="blog-post_createdAt"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
               <div class="blog-post_comments">Коментарі: <strong>25</strong></div>
             </div>
 
