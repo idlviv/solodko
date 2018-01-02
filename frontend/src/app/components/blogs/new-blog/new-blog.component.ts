@@ -42,13 +42,9 @@ export class NewBlogComponent implements OnInit {
           components: new FormArray([
             this.initComponents()
           ]),
-          blocks: new FormGroup({
-            image: new FormControl('', []),
-            text: new FormControl('', [
-              Validators.minLength(4),
-              Validators.maxLength(500),
-            ]),
-          }),
+          blocks: new FormArray([
+            this.initBlocks()
+          ]),
         }),
         showOnMainPage: new FormControl('', []),
       },
@@ -66,6 +62,16 @@ export class NewBlogComponent implements OnInit {
     });
   }
 
+  initBlocks() {
+    return new FormGroup({
+      image: new FormControl('', []),
+      text: new FormControl('', [
+        Validators.minLength(4),
+        Validators.maxLength(500),
+      ])
+    });
+  }
+
   addComponent() {
     const control = <FormArray>this.blogForm.get('body').get('components');
     console.log('control', control);
@@ -78,45 +84,49 @@ export class NewBlogComponent implements OnInit {
   }
 
   onBlogSubmit() {
-    this.addComponent();
+    // this.addComponent();
     if (!this.blogForm.value.showOnMainPage) {
       this.blogForm.value.showOnMainPage = false;
     }
-    const newBlog: IBlog = {
-      title: this.blogForm.value.title,
-      body: {
-        mainImage: this.blogForm.get('body').get('mainImage').value,
-        mainText: this.blogForm.get('body').get('mainText').value,
-        components: {
-          material: this.blogForm.get('body').get('components').get('material').value,
-          // quantity: this.blogForm.get('body').get('components').get('quantity').value,
-          // unit: this.blogForm.get('body').get('components').get('unit').value,
-        }
-      },
-      showOnMainPage: this.blogForm.value.showOnMainPage,
-      createdBy_id: this.loggedUser._id
-    };
-    console.log('newBlog', newBlog);
-    // this.blogsService.addBlog(newBlog)
-    //   .subscribe(result => {
-    //
-    //     if (result.success) {
-    //       this.blogForm.reset();
-    //       this.flashMessage.show(
-    //         result.message,
-    //         {
-    //           cssClass: 'alert-success',
-    //           timeout: 2000
-    //         });
-    //     } else {
-    //       this.flashMessage.show(
-    //         result.message,
-    //         {
-    //           cssClass: 'alert-danger',
-    //           timeout: 2000
-    //         });
+    // const newBlog = {
+    //   title: this.blogForm.value.title,
+    //   body: {
+    //     mainImage: this.blogForm.get('body').get('mainImage').value,
+    //     mainText: this.blogForm.get('body').get('mainText').value,
+    //     components: {
+    //       material: this.blogForm.get('body').get('components').get('material').value,
+    //       // quantity: this.blogForm.get('body').get('components').get('quantity').value,
+    //       // unit: this.blogForm.get('body').get('components').get('unit').value,
     //     }
-    //   });
+    //   },
+    //   showOnMainPage: this.blogForm.value.showOnMainPage,
+    //   createdBy_id: this.loggedUser._id
+    // };
+    // console.log('newBlog', newBlog);
+
+    console.log('this.blogForm.value', this.blogForm.value);
+    console.log('this.blogForm', this.blogForm);
+
+    this.blogsService.addBlog(this.blogForm.value)
+      .subscribe(result => {
+console.log('result', result);
+        if (result.success) {
+          this.blogForm.reset();
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-success',
+              timeout: 2000
+            });
+        } else {
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-danger',
+              timeout: 2000
+            });
+        }
+      });
   }
 
 }

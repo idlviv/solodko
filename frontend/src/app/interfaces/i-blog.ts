@@ -4,15 +4,15 @@ export interface IBlog {
   body: {
     mainImage: string,
     mainText: string,
-    components?: {
+    components?: [{
       material: string,
       quantity: number,
       unit: string,
-    },
-    blocks?: {
+    }],
+    blocks?: [{
       image: string,
       text: string,
-    },
+    }],
   };
 
   createdBy?: string;

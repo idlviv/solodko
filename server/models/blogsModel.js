@@ -9,15 +9,15 @@ const BlogsSchema = new Schema({
   body: {
     mainImage: {type: String, required: true},
     mainText: {type: String, required: true, validate: blogsValidators.mainTextValidators},
-    components: {
+    components: [{
       material: {type: String},
       quantity: {type: Number},
       unit: {type: String},
-    },
-    blocks: {
+    }],
+    blocks: [{
       image: {type: String},
       text: {type: String, validate: blogsValidators.blocksTextValidators},
-    },
+    }],
   },
   createdBy: {type: String},
   createdBy_id: {type: String, required: true},

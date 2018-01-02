@@ -11,7 +11,7 @@
           <div class="col-lg-6 blog-post_main-side lead text-muted"
                [ngClass]="orderText">
             <div class="blog-post_main-side-text">
-              <h3>{{blog.body}}</h3>
+              <h3>{{blog.body.mainText}}</h3>
             </div>
 
 
@@ -31,7 +31,7 @@
             <img src="https://placehold.it/576x288" class="img-fluid" alt="image">
            </div>
           <div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center">
-            <p>{{blog.body}}</p>
+            <p>{{blog.body.blocks[0].text}}</p>
           </div>
 
         </div>

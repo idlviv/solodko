@@ -627,7 +627,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/blogs/new-blog/new-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <!--<div *ngIf=\"blogForm\">-->\n      <!--{{blogForm.get('body') | json}}-->\n\n\n    <!--</div>-->\n    <form [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\n\n      <!--title-->\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <!--[formGroup]=\"blogForm\"-->\n        <input formControlName=\"title\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\n             blogForm.controls['title'].errors?.maxlength ||\n             blogForm.controls['title'].errors?.required) &&\n             blogForm.controls['title'].touched\">\n             Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\n             Використовуйте тільки цифри і букви\n        </div>\n      </div>\n\n      <!--body-->\n\n      <div class=\"form-group\" [formGroup]=\"blogForm.get('body')\">\n\n        <!--body mainImage-->\n        <div class=\"form-group\">\n          <label for=\"body.mainImage\">Головне зображення</label>\n          <input formControlName=\"mainImage\" required autocomplete=\"false\"\n                 class=\"form-control\" id=\"body.mainImage\" placeholder=\"Головне зображення\">\n          <div class=\"alert alert-danger\" role=\"alert\"\n               *ngIf=\"blogForm.get('body').get('mainImage').errors?.required &&\n               blogForm.get('body').get('mainImage').touched\">\n            Введіть шлях до зображення\n          </div>\n        </div>\n\n        <!--body mainText-->\n        <div class=\"form-group\">\n          <label for=\"body.mainText\">Вступ</label>\n          <textarea formControlName=\"mainText\" cols=\"30\" rows=\"3\"\n                    required autocomplete=\"false\"\n                    class=\"form-control\" id=\"body.mainText\" placeholder=\"Вступ\"></textarea>\n          <div class=\"alert alert-danger\" role=\"alert\"\n               *ngIf=\"(blogForm.get('body').get('mainText').errors?.minlength ||\n               blogForm.get('body').get('mainText').errors?.maxlength) ||\n               blogForm.get('body').get('mainText').errors?.required &&\n               blogForm.get('body').get('mainText').touched\">\n               Довжина від 4 до 1000 символів\n          </div>\n        </div>\n\n        <!--body components-->\n        <div class=\"form-group\" formArrayName=\"components\">\n\n          <div *ngFor=\"let component of blogForm.get('body').get('components').controls; let i=index\">\n<!--{{blogForm.get('body').get('components').controls | json}}-->\n            <!--body components material-->\n            <div class=\"form-group\" [formGroupName]=\"i\">\n\n              <div class=\"form-group\">\n              <label for=\"body.components.material\">Матеріал</label>\n              <input formControlName=\"material\" required autocomplete=\"false\"\n                     class=\"form-control\" id=\"body.components.material\" placeholder=\"Матеріал\">\n              </div>\n            </div>\n          </div>\n\n          <!--&lt;!&ndash;body components quantity&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n            <!--<label for=\"body.components.quantity\">Кількість</label>-->\n            <!--<input formControlName=\"quantity\" required autocomplete=\"false\"-->\n                   <!--class=\"form-control\" id=\"body.components.quantity\" placeholder=\"Кількість\">-->\n          <!--</div>-->\n\n          <!--&lt;!&ndash;body components unit&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n            <!--<label for=\"body.components.unit\">Одиниця</label>-->\n            <!--<input formControlName=\"unit\" required autocomplete=\"false\"-->\n                   <!--class=\"form-control\" id=\"body.components.unit\" placeholder=\"Одиниця\">-->\n          <!--</div>-->\n\n        </div>\n      </div>\n\n      <!--on main page-->\n      <div class=\"form-group\">\n        <div class=\"form-check\">\n          <label class=\"form-check-label\">\n            <input  class=\"form-check-input\" type=\"checkbox\" formControlName=\"showOnMainPage\"\n                    [formGroup]=\"blogForm\" id=\"showOnMainPage\">   На головній</label>\n        </div>\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid\">Запостити</button>\n      <button type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n    </form>\n  </div>\n</div>\n<!--end of new blog form-->\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <!--<div *ngIf=\"blogForm\">-->\n      <!--{{blogForm.get('body') | json}}-->\n\n\n    <!--</div>-->\n    <form [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\n\n      <!--title-->\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <!--[formGroup]=\"blogForm\"-->\n        <input formControlName=\"title\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\n             blogForm.controls['title'].errors?.maxlength ||\n             blogForm.controls['title'].errors?.required) &&\n             blogForm.controls['title'].touched\">\n             Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\n             Використовуйте тільки цифри і букви\n        </div>\n      </div>\n\n      <!--body-->\n\n      <div class=\"form-group\" [formGroup]=\"blogForm.get('body')\">\n\n        <!--body mainImage-->\n        <div class=\"form-group\">\n          <label for=\"body.mainImage\">Головне зображення</label>\n          <input formControlName=\"mainImage\" required autocomplete=\"false\"\n                 class=\"form-control\" id=\"body.mainImage\" placeholder=\"Головне зображення\">\n          <div class=\"alert alert-danger\" role=\"alert\"\n               *ngIf=\"blogForm.get('body').get('mainImage').errors?.required &&\n               blogForm.get('body').get('mainImage').touched\">\n            Введіть шлях до зображення\n          </div>\n        </div>\n\n        <!--body mainText-->\n        <div class=\"form-group\">\n          <label for=\"body.mainText\">Вступ</label>\n          <textarea formControlName=\"mainText\" cols=\"30\" rows=\"3\"\n                    required autocomplete=\"false\"\n                    class=\"form-control\" id=\"body.mainText\" placeholder=\"Вступ\"></textarea>\n          <div class=\"alert alert-danger\" role=\"alert\"\n               *ngIf=\"(blogForm.get('body').get('mainText').errors?.minlength ||\n               blogForm.get('body').get('mainText').errors?.maxlength) ||\n               blogForm.get('body').get('mainText').errors?.required &&\n               blogForm.get('body').get('mainText').touched\">\n               Довжина від 4 до 1000 символів\n          </div>\n        </div>\n\n        <!--body components-->\n        <div class=\"form-group\" formArrayName=\"components\">\n\n          <div *ngFor=\"let component of blogForm.get('body').get('components').controls; let i=index\">\n\n            {{blogForm.get('body').get('components').controls[i].get('material').value | json}}\n            <p>----</p>\n            {{blogForm.controls['body'].controls['components'].controls[i].controls['material'].value | json}}\n            <!--body components material-->\n            <div class=\"form-group\" [formGroupName]=\"i\">\n\n              <div class=\"form-group\">\n              <label for=\"body.components.material\">Матеріал</label>\n              <input formControlName=\"material\" required autocomplete=\"false\"\n                     class=\"form-control\" id=\"body.components.material\" placeholder=\"Матеріал\">\n              </div>\n\n            </div>\n\n\n          </div>\n\n\n          <!--&lt;!&ndash;body components quantity&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n            <!--<label for=\"body.components.quantity\">Кількість</label>-->\n            <!--<input formControlName=\"quantity\" required autocomplete=\"false\"-->\n                   <!--class=\"form-control\" id=\"body.components.quantity\" placeholder=\"Кількість\">-->\n          <!--</div>-->\n\n          <!--&lt;!&ndash;body components unit&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n            <!--<label for=\"body.components.unit\">Одиниця</label>-->\n            <!--<input formControlName=\"unit\" required autocomplete=\"false\"-->\n                   <!--class=\"form-control\" id=\"body.components.unit\" placeholder=\"Одиниця\">-->\n          <!--</div>-->\n\n        </div>\n        <button type=\"button\" (click)=\"addComponent()\">Додати</button>\n\n        <!--body blocks-->\n        <div class=\"form-group\" formArrayName=\"blocks\">\n\n          <div *ngFor=\"let block of blogForm.get('body').get('blocks').controls; let i=index\">\n\n            <!--body blocks text-->\n            <div class=\"form-group\" [formGroupName]=\"i\">\n\n              <div class=\"form-group\">\n                <label for=\"body.components.text\">Текст</label>\n                <input formControlName=\"text\" required autocomplete=\"false\"\n                       class=\"form-control\" id=\"body.components.text\" placeholder=\"Текст\">\n              </div>\n\n            </div>\n\n\n          </div>\n\n\n          <!--&lt;!&ndash;body components quantity&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n          <!--<label for=\"body.components.quantity\">Кількість</label>-->\n          <!--<input formControlName=\"quantity\" required autocomplete=\"false\"-->\n          <!--class=\"form-control\" id=\"body.components.quantity\" placeholder=\"Кількість\">-->\n          <!--</div>-->\n\n          <!--&lt;!&ndash;body components unit&ndash;&gt;-->\n          <!--<div class=\"form-group\">-->\n          <!--<label for=\"body.components.unit\">Одиниця</label>-->\n          <!--<input formControlName=\"unit\" required autocomplete=\"false\"-->\n          <!--class=\"form-control\" id=\"body.components.unit\" placeholder=\"Одиниця\">-->\n          <!--</div>-->\n\n        </div>\n        <!--<button type=\"button\" (click)=\"addComponent()\">Додати</button>-->\n\n\n      </div>\n\n      <!--on main page-->\n      <div class=\"form-group\">\n        <div class=\"form-check\">\n          <label class=\"form-check-label\">\n            <input  class=\"form-check-input\" type=\"checkbox\" formControlName=\"showOnMainPage\"\n                    [formGroup]=\"blogForm\" id=\"showOnMainPage\">   На головній</label>\n        </div>\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid\">Запостити</button>\n      <button type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n    </form>\n  </div>\n</div>\n<!--end of new blog form-->\n"
 
 /***/ }),
 
@@ -696,13 +696,9 @@ var NewBlogComponent = (function () {
                 components: new forms_1.FormArray([
                     this.initComponents()
                 ]),
-                blocks: new forms_1.FormGroup({
-                    image: new forms_1.FormControl('', []),
-                    text: new forms_1.FormControl('', [
-                        forms_1.Validators.minLength(4),
-                        forms_1.Validators.maxLength(500),
-                    ]),
-                }),
+                blocks: new forms_1.FormArray([
+                    this.initBlocks()
+                ]),
             }),
             showOnMainPage: new forms_1.FormControl('', []),
         });
@@ -716,6 +712,15 @@ var NewBlogComponent = (function () {
             unit: new forms_1.FormControl('', []),
         });
     };
+    NewBlogComponent.prototype.initBlocks = function () {
+        return new forms_1.FormGroup({
+            image: new forms_1.FormControl('', []),
+            text: new forms_1.FormControl('', [
+                forms_1.Validators.minLength(4),
+                forms_1.Validators.maxLength(500),
+            ])
+        });
+    };
     NewBlogComponent.prototype.addComponent = function () {
         var control = this.blogForm.get('body').get('components');
         console.log('control', control);
@@ -726,43 +731,45 @@ var NewBlogComponent = (function () {
         control.removeAt(i);
     };
     NewBlogComponent.prototype.onBlogSubmit = function () {
-        this.addComponent();
+        var _this = this;
+        // this.addComponent();
         if (!this.blogForm.value.showOnMainPage) {
             this.blogForm.value.showOnMainPage = false;
         }
-        var newBlog = {
-            title: this.blogForm.value.title,
-            body: {
-                mainImage: this.blogForm.get('body').get('mainImage').value,
-                mainText: this.blogForm.get('body').get('mainText').value,
-                components: {
-                    material: this.blogForm.get('body').get('components').get('material').value,
-                }
-            },
-            showOnMainPage: this.blogForm.value.showOnMainPage,
-            createdBy_id: this.loggedUser._id
-        };
-        console.log('newBlog', newBlog);
-        // this.blogsService.addBlog(newBlog)
-        //   .subscribe(result => {
-        //
-        //     if (result.success) {
-        //       this.blogForm.reset();
-        //       this.flashMessage.show(
-        //         result.message,
-        //         {
-        //           cssClass: 'alert-success',
-        //           timeout: 2000
-        //         });
-        //     } else {
-        //       this.flashMessage.show(
-        //         result.message,
-        //         {
-        //           cssClass: 'alert-danger',
-        //           timeout: 2000
-        //         });
+        // const newBlog = {
+        //   title: this.blogForm.value.title,
+        //   body: {
+        //     mainImage: this.blogForm.get('body').get('mainImage').value,
+        //     mainText: this.blogForm.get('body').get('mainText').value,
+        //     components: {
+        //       material: this.blogForm.get('body').get('components').get('material').value,
+        //       // quantity: this.blogForm.get('body').get('components').get('quantity').value,
+        //       // unit: this.blogForm.get('body').get('components').get('unit').value,
         //     }
-        //   });
+        //   },
+        //   showOnMainPage: this.blogForm.value.showOnMainPage,
+        //   createdBy_id: this.loggedUser._id
+        // };
+        // console.log('newBlog', newBlog);
+        console.log('this.blogForm.value', this.blogForm.value);
+        console.log('this.blogForm', this.blogForm);
+        this.blogsService.addBlog(this.blogForm.value)
+            .subscribe(function (result) {
+            console.log('result', result);
+            if (result.success) {
+                _this.blogForm.reset();
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-success',
+                    timeout: 2000
+                });
+            }
+            else {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 2000
+                });
+            }
+        });
     };
     return NewBlogComponent;
 }());
