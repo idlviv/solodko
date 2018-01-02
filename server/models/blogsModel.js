@@ -6,9 +6,21 @@ const blogsValidators = require('../validators/blogsValidators');
 
 const BlogsSchema = new Schema({
   title: {type: String, required: true, validate: blogsValidators.titleValidators},
-  body: {type: String, required: true, validate: blogsValidators.bodyValidators},
+  body: {
+    mainImage: {type: String, required: true},
+    mainText: {type: String, required: true, validate: blogsValidators.mainTextValidators},
+    components: {
+      material: {type: String},
+      quantity: {type: Number},
+      unit: {type: String},
+    },
+    blocks: {
+      image: {type: String},
+      text: {type: String, validate: blogsValidators.blocksTextValidators},
+    },
+  },
   createdBy: {type: String},
-  createdBy_id: {type: String},
+  createdBy_id: {type: String, required: true},
   showOnMainPage: {type: Boolean, default: false},
   createdAt: {type: Date, default: Date.now()},
   likes: {type: Number, default: 0},

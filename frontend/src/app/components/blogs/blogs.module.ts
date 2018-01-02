@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { EditBlogComponent } from './edit-blog/edit-blog.component';
 import { ListBlogsComponent } from './list-blogs/list-blogs.component';
 import { DeleteBlogComponent } from './delete-blog/delete-blog.component';
+import { NewBlogComponent } from './new-blog/new-blog.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { DeleteBlogComponent } from './delete-blog/delete-blog.component';
     EditBlogComponent,
     ListBlogsComponent,
     DeleteBlogComponent,
+    NewBlogComponent,
   ],
   exports: [
   ]

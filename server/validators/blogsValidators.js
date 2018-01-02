@@ -1,10 +1,9 @@
-// blog validators
 let titleLengthChecker = function(title) {
-  return title && title.length > 3 && title.length < 51;
+  return title && title.length >= 4 && title.length <= 50;
 };
 
 let titleValidChecker = function(title) {
-  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ' ]+$/);
+  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ()' ]+$/);
   return title && regExp.test(title);
 };
 
@@ -19,33 +18,54 @@ module.exports.titleValidators = [
   },
 ];
 
-let bodyLengthChecker = function(body) {
-  return body && body.length > 3 && body.length < 1001;
-};
+//-----
 
-// let bodyValidChecker = function(body) {
-//   const regExp = new RegExp(/^[a-zA-Zа-яА-Я0-9 ]+$/);
-//   return body && regExp.test(body);
-// };
+let bodyLengthChecker = function(body) {
+  return body && body.length >= 4 && body.length <= 1000;
+};
 
 module.exports.bodyValidators = [
   {
     validator: bodyLengthChecker,
     message: 'Довжина повинна бути від 4 до 1000 символів'
   },
-  // {
-  //   validator: bodyValidChecker,
-  //   message: 'Використовуйте тільки цифри і букви'
-  // },
 ];
 
+//-----
+
 let commentLengthChecker = function(comments) {
-  return comments[0] && comments[0].length > 0 && comments[0].length < 201;
+  return comments[0] && comments[0].length > 0 && comments[0].length <= 200;
 };
 
 module.exports.commentsValidators = [
   {
     validator: commentLengthChecker,
     message: 'Довжина повинна бути від 1 до 200 символів'
+  },
+];
+
+//-----
+
+let mainTextLengthChecker = function(title) {
+  return title && title.length >= 4 && title.length <= 90;
+};
+
+module.exports.mainTextValidators = [
+  {
+    validator: mainTextLengthChecker,
+    message: 'Довжина повинна бути від 4 до 90 символів'
+  },
+];
+
+//-----
+
+let blocksTextLengthChecker = function(title) {
+  return title && title.length >= 4 && title.length <= 500;
+};
+
+module.exports.blocksTextValidators = [
+  {
+    validator: blocksTextLengthChecker,
+    message: 'Довжина повинна бути від 4 до 500 символів'
   },
 ];

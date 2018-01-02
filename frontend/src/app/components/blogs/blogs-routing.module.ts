@@ -6,6 +6,7 @@ import {AuthUserGuard} from '../../guards/auth-user.guard';
 import {ListBlogsComponent} from './list-blogs/list-blogs.component';
 import {EditBlogComponent} from './edit-blog/edit-blog.component';
 import {DeleteBlogComponent} from './delete-blog/delete-blog.component';
+import {NewBlogComponent} from './new-blog/new-blog.component';
 
 const blogsRoutes: Routes = [
   {
@@ -17,6 +18,10 @@ const blogsRoutes: Routes = [
         path: 'list-blogs',
         component: ListBlogsComponent,
         // resolve: {products: ProductResolverService}
+      },
+      {
+        path: 'new-blog',
+        component: NewBlogComponent,
       },
       {
         path: 'edit-blog/:_id',
