@@ -1,31 +1,39 @@
-<div class="row">
-  <div class="col">
-    <!--<div *ngIf="blogForm">-->
-      <!--{{blogForm.get('body') | json}}-->
+<h2 class="page-header">Додати блог</h2>
 
+<form [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row form-group">
 
-    <!--</div>-->
-    <form [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
-
-      <!--title-->
-      <div class="form-group">
-        <label for="title">Заголовок</label>
-        <!--[formGroup]="blogForm"-->
-        <input formControlName="title" required
-               class="form-control" id="title" placeholder="Заголовок">
-        <div class="alert alert-danger" role="alert"
-             *ngIf="(blogForm.controls['title'].errors?.minlength ||
+        <!--title-->
+          <div class="col-md-4">
+            <label for="title">Заголовок</label>
+          </div>
+          <div class="col-md-8">
+            <input formControlName="title" required
+                   class="form-control" id="title" placeholder="Заголовок">
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="(blogForm.controls['title'].errors?.minlength ||
              blogForm.controls['title'].errors?.maxlength ||
              blogForm.controls['title'].errors?.required) &&
              blogForm.controls['title'].touched">
-             Довжина від 4 до 50 символів
-        </div>
-        <div class="alert alert-danger" role="alert"
-             *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
-             Використовуйте тільки цифри і букви
-        </div>
-      </div>
+              Довжина від 4 до 50 символів
+            </div>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
+              Використовуйте тільки цифри і букви
+            </div>
+          </div>
 
+      </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+
+<div class="row">
+  <div class="col-md-6">
       <!--body-->
       <div class="form-group" [formGroup]="blogForm.get('body')">
 
@@ -132,7 +140,7 @@
 
       <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Запостити</button>
       <button type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
-    </form>
+
+    </div>
   </div>
-</div>
-<!--end of new blog form-->
+</form>
