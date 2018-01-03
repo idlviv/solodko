@@ -71,10 +71,18 @@ export class NewBlogComponent implements OnInit {
       ])
     });
   }
+  addBlock() {
+    const control = <FormArray>this.blogForm.get('body').get('blocks');
+    control.push(this.initComponents());
+  }
+
+  removeBlock(i: number) {
+    const control = <FormArray>this.blogForm.get('body').get('blocks');
+    control.removeAt(i);
+  }
 
   addComponent() {
     const control = <FormArray>this.blogForm.get('body').get('components');
-    console.log('control', control);
     control.push(this.initComponents());
   }
 

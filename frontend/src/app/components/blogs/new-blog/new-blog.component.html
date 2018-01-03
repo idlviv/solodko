@@ -27,7 +27,6 @@
       </div>
 
       <!--body-->
-
       <div class="form-group" [formGroup]="blogForm.get('body')">
 
         <!--body mainImage-->
@@ -58,84 +57,69 @@
         </div>
 
         <!--body components-->
+
+        <!--{{blogForm.get('body').get('components').controls[i].get('material').value | json}}-->
+        <!--<p>&#45;&#45;&#45;&#45;</p>-->
+        <!--{{blogForm.controls['body'].controls['components'].controls[i].controls['material'].value | json}}-->
+
         <div class="form-group" formArrayName="components">
-
           <div *ngFor="let component of blogForm.get('body').get('components').controls; let i=index">
-
-            {{blogForm.get('body').get('components').controls[i].get('material').value | json}}
-            <p>----</p>
-            {{blogForm.controls['body'].controls['components'].controls[i].controls['material'].value | json}}
-            <!--body components material-->
             <div class="form-group" [formGroupName]="i">
 
+              <!--body components material-->
               <div class="form-group">
               <label for="body.components.material">Матеріал</label>
               <input formControlName="material" required autocomplete="false"
                      class="form-control" id="body.components.material" placeholder="Матеріал">
               </div>
-
+              <!--body components quantity-->
+              <div class="form-group">
+                <label for="body.components.quantity">Кількість</label>
+                <input formControlName="quantity" required autocomplete="false"
+                       class="form-control" id="body.components.quantity" placeholder="Кількість">
+              </div>
+              <!--body components quantity-->
+              <div class="form-group">
+                <label for="body.components.unit">Одиниця</label>
+                <input formControlName="unit" required autocomplete="false"
+                       class="form-control" id="body.components.unit" placeholder="Одиниця">
+              </div>
             </div>
-
+            <button type="button" class="btn btn-info btn-sm" (click)="removeComponent(i)">Видалити</button>
 
           </div>
 
-
-          <!--&lt;!&ndash;body components quantity&ndash;&gt;-->
-          <!--<div class="form-group">-->
-            <!--<label for="body.components.quantity">Кількість</label>-->
-            <!--<input formControlName="quantity" required autocomplete="false"-->
-                   <!--class="form-control" id="body.components.quantity" placeholder="Кількість">-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash;body components unit&ndash;&gt;-->
-          <!--<div class="form-group">-->
-            <!--<label for="body.components.unit">Одиниця</label>-->
-            <!--<input formControlName="unit" required autocomplete="false"-->
-                   <!--class="form-control" id="body.components.unit" placeholder="Одиниця">-->
-          <!--</div>-->
-
         </div>
-        <button type="button" (click)="addComponent()">Додати</button>
+        <!--body components end-->
+        <button type="button" class="btn btn-info btn-sm" (click)="addComponent()">Додати матеріал</button>
 
         <!--body blocks-->
         <div class="form-group" formArrayName="blocks">
-
           <div *ngFor="let block of blogForm.get('body').get('blocks').controls; let i=index">
-
-            <!--body blocks text-->
             <div class="form-group" [formGroupName]="i">
 
+              <!--body blocks image-->
               <div class="form-group">
-                <label for="body.components.text">Текст</label>
-                <input formControlName="text" required autocomplete="false"
-                       class="form-control" id="body.components.text" placeholder="Текст">
+                <label for="body.blocks.image">Зображення</label>
+                <input formControlName="image" required autocomplete="false"
+                       class="form-control" id="body.blocks.image" placeholder="Зображення">
               </div>
-
+              <!--body blocks text-->
+              <div class="form-group">
+                <label for="body.blocks.text">Текст</label>
+                <input formControlName="text" required autocomplete="false"
+                       class="form-control" id="body.blocks.text" placeholder="Текст">
+              </div>
             </div>
-
+            <button type="button" class="btn btn-info btn-sm" (click)="removeBlock(i)">Видалити</button>
 
           </div>
-
-
-          <!--&lt;!&ndash;body components quantity&ndash;&gt;-->
-          <!--<div class="form-group">-->
-          <!--<label for="body.components.quantity">Кількість</label>-->
-          <!--<input formControlName="quantity" required autocomplete="false"-->
-          <!--class="form-control" id="body.components.quantity" placeholder="Кількість">-->
-          <!--</div>-->
-
-          <!--&lt;!&ndash;body components unit&ndash;&gt;-->
-          <!--<div class="form-group">-->
-          <!--<label for="body.components.unit">Одиниця</label>-->
-          <!--<input formControlName="unit" required autocomplete="false"-->
-          <!--class="form-control" id="body.components.unit" placeholder="Одиниця">-->
-          <!--</div>-->
-
         </div>
-        <!--<button type="button" (click)="addComponent()">Додати</button>-->
-
+        <!--body blocks end-->
+        <button type="button" class="btn btn-info btn-sm" (click)="addBlock()">Додати текстовий блок</button>
 
       </div>
+      <!--body end-->
 
       <!--on main page-->
       <div class="form-group">
