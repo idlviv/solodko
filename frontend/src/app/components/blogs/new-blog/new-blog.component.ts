@@ -14,6 +14,7 @@ import {IBlog} from '../../../interfaces/i-blog';
 export class NewBlogComponent implements OnInit {
   blogs: IBlog[];
   blogForm: FormGroup;
+  tmpForm: FormGroup;
   loggedUser: any;
 
   constructor(
@@ -23,6 +24,15 @@ export class NewBlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.tmpForm = new FormGroup({
+      tmptitle: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+      ])
+    });
+
     this.blogForm = new FormGroup({
         title: new FormControl('', [
           Validators.required,

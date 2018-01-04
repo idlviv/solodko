@@ -13,7 +13,6 @@ export class BlogsService {
   addBlog(newBlog) {
     const headers = new Headers();
     this.authService.loadToken();
-console.log('newBlog', newBlog);
     headers.set('Authorization', this.authService.authToken);
     headers.set('Content-Type', 'application/json');
     return this.http.post(
@@ -44,7 +43,7 @@ console.log('newBlog', newBlog);
     const options = new RequestOptions({ headers: headers, params: params });
     return this.http.get(
       config.serverUrl + 'blogs/get-queried-blogs',
-       options)
+      options)
       .map(res => res.json());
   }
 

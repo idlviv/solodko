@@ -1,146 +1,118 @@
 <h2 class="page-header">Додати блог</h2>
+<!--<form [formGroup]="tmpForm">-->
+  <!--<div class="form-row">-->
+    <!--<div class="form-group col-md-6 row">-->
+      <!--<label for="inputEmail4" class="col-sm-2 col-form-label">Email</label>-->
+      <!--<div class="col-sm-10">-->
+        <!--<input type="email" class="form-control" ngClass="{'is-invalid:'}" id="inputEmail4" placeholder="Email">-->
+      <!--</div>-->
+    <!--</div>-->
+
+  <!--</div>-->
+<!--</form>-->
+
 
 <form [formGroup]="blogForm" (ngSubmit)="onBlogSubmit()">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row form-group">
 
-        <!--title-->
-          <div class="col-md-4">
-            <label for="title">Заголовок</label>
-          </div>
-          <div class="col-md-8">
-            <input formControlName="title" required
-                   class="form-control" id="title" placeholder="Заголовок">
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="(blogForm.controls['title'].errors?.minlength ||
+  <div class="form-row align-items-center">
+    <!--title-->
+    <div class="form-group col-md-8 row">
+      <label for="title" class="col-sm-2 col-form-label">Заголовок</label>
+      <div class="col-sm-10">
+        <input formControlName="title" required
+               class="form-control" id="title" placeholder="Заголовок">
+        <div class="invalid-alert"
+             *ngIf="(blogForm.controls['title'].errors?.minlength ||
              blogForm.controls['title'].errors?.maxlength ||
              blogForm.controls['title'].errors?.required) &&
-             blogForm.controls['title'].touched">
-              Довжина від 4 до 50 символів
-            </div>
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched">
-              Використовуйте тільки цифри і букви
-            </div>
-          </div>
-
+             blogForm.controls['title'].touched">Довжина від 4 до 50 символів
+        </div>
+        <div class="invalid-alert"
+             *ngIf="blogForm.controls['title'].errors?.pattern &&
+             blogForm.controls['title'].touched">Використовуйте тільки цифри і букви
+        </div>
       </div>
     </div>
-    <div class="col-md-6">
 
+    <!--on main page-->
+    <div class="form-group col-md-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" formControlName="showOnMainPage"
+                   [formGroup]="blogForm" id="showOnMainPage">
+            <label class="form-check-label">Показати пост на головній </label>
+
+        </div>
     </div>
   </div>
+  <!--title end-->
 
-<div class="row">
-  <div class="col-md-6">
-      <!--body-->
-      <div class="form-group" [formGroup]="blogForm.get('body')">
-
-        <!--body mainImage-->
-        <div class="form-group">
-          <label for="body.mainImage">Головне зображення</label>
-          <input formControlName="mainImage" required autocomplete="false"
-                 class="form-control" id="body.mainImage" placeholder="Головне зображення">
-          <div class="alert alert-danger" role="alert"
-               *ngIf="blogForm.get('body').get('mainImage').errors?.required &&
-               blogForm.get('body').get('mainImage').touched">
-            Введіть шлях до зображення
-          </div>
+  <!--body-->
+  <div class="form-group" [formGroup]="blogForm.get('body')">
+    <div class="form-row">
+      <!--body mainImage-->
+      <div class="form-group col-md-4">
+        <label for="body.mainImage">Головне зображення</label>
+        <input formControlName="mainImage" required autocomplete="false"
+               class="form-control" id="body.mainImage" placeholder="Головне зображення">
+        <div class="alert alert-danger" role="alert"
+             *ngIf="blogForm.get('body').get('mainImage').errors?.required &&
+             blogForm.get('body').get('mainImage').touched">Введіть шлях до зображення
         </div>
+      </div>
 
-        <!--body mainText-->
-        <div class="form-group">
-          <label for="body.mainText">Вступ</label>
-          <textarea formControlName="mainText" cols="30" rows="3"
-                    required autocomplete="false"
-                    class="form-control" id="body.mainText" placeholder="Вступ"></textarea>
-          <div class="alert alert-danger" role="alert"
-               *ngIf="(blogForm.get('body').get('mainText').errors?.minlength ||
-               blogForm.get('body').get('mainText').errors?.maxlength) ||
-               blogForm.get('body').get('mainText').errors?.required &&
-               blogForm.get('body').get('mainText').touched">
-               Довжина від 4 до 1000 символів
-          </div>
+      <!--body mainText-->
+      <div class="form-group col-md-8">
+        <label for="body.mainText">Вступ</label>
+        <textarea formControlName="mainText" rows="2"
+                  required autocomplete="false"
+                  class="form-control" id="body.mainText" placeholder="Вступ"></textarea>
+        <div class="alert alert-danger" role="alert"
+             *ngIf="(blogForm.get('body').get('mainText').errors?.minlength ||
+             blogForm.get('body').get('mainText').errors?.maxlength) ||
+             blogForm.get('body').get('mainText').errors?.required &&
+             blogForm.get('body').get('mainText').touched">Довжина від 4 до 1000 символів
         </div>
-
-        <!--body components-->
-
-        <!--{{blogForm.get('body').get('components').controls[i].get('material').value | json}}-->
-        <!--<p>&#45;&#45;&#45;&#45;</p>-->
-        <!--{{blogForm.controls['body'].controls['components'].controls[i].controls['material'].value | json}}-->
-
-        <div class="form-group" formArrayName="components">
-          <div *ngFor="let component of blogForm.get('body').get('components').controls; let i=index">
-            <div class="form-group" [formGroupName]="i">
-
-              <!--body components material-->
-              <div class="form-group">
+      </div>
+    </div>
+    <!--body components-->
+    <div class="form-group" formArrayName="components">
+      <div *ngFor="let component of blogForm.get('body').get('components').controls; let i=index">
+        <div class="form-group" [formGroupName]="i">
+          <div class="form-row">
+            <!--body components material-->
+            <div class="form-group col-md-4">
               <label for="body.components.material">Матеріал</label>
               <input formControlName="material" required autocomplete="false"
                      class="form-control" id="body.components.material" placeholder="Матеріал">
-              </div>
-              <!--body components quantity-->
-              <div class="form-group">
-                <label for="body.components.quantity">Кількість</label>
-                <input formControlName="quantity" required autocomplete="false"
-                       class="form-control" id="body.components.quantity" placeholder="Кількість">
-              </div>
-              <!--body components quantity-->
-              <div class="form-group">
-                <label for="body.components.unit">Одиниця</label>
-                <input formControlName="unit" required autocomplete="false"
-                       class="form-control" id="body.components.unit" placeholder="Одиниця">
-              </div>
             </div>
-            <button type="button" class="btn btn-info btn-sm" (click)="removeComponent(i)">Видалити</button>
-
-          </div>
-
-        </div>
-        <!--body components end-->
-        <button type="button" class="btn btn-info btn-sm" (click)="addComponent()">Додати матеріал</button>
-
-        <!--body blocks-->
-        <div class="form-group" formArrayName="blocks">
-          <div *ngFor="let block of blogForm.get('body').get('blocks').controls; let i=index">
-            <div class="form-group" [formGroupName]="i">
-
-              <!--body blocks image-->
-              <div class="form-group">
-                <label for="body.blocks.image">Зображення</label>
-                <input formControlName="image" required autocomplete="false"
-                       class="form-control" id="body.blocks.image" placeholder="Зображення">
-              </div>
-              <!--body blocks text-->
-              <div class="form-group">
-                <label for="body.blocks.text">Текст</label>
-                <input formControlName="text" required autocomplete="false"
-                       class="form-control" id="body.blocks.text" placeholder="Текст">
-              </div>
+            <!--body components quantity-->
+            <div class="form-group col-md-4">
+              <label for="body.components.quantity">Кількість</label>
+              <input formControlName="quantity" required autocomplete="false"
+                     class="form-control" id="body.components.quantity" placeholder="Кількість">
             </div>
-            <button type="button" class="btn btn-info btn-sm" (click)="removeBlock(i)">Видалити</button>
-
+            <!--body components quantity-->
+            <div class="form-group col-md-4">
+              <label for="body.components.unit">Одиниця</label>
+              <input formControlName="unit" required autocomplete="false"
+                     class="form-control" id="body.components.unit" placeholder="Одиниця">
+            </div>
           </div>
         </div>
-        <!--body blocks end-->
-        <button type="button" class="btn btn-info btn-sm" (click)="addBlock()">Додати текстовий блок</button>
+
 
       </div>
-      <!--body end-->
-
-      <!--on main page-->
-      <div class="form-group">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input  class="form-check-input" type="checkbox" formControlName="showOnMainPage"
-                    [formGroup]="blogForm" id="showOnMainPage">   На головній</label>
-        </div>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Запостити</button>
-      <button type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
-
     </div>
+
+
+
+
   </div>
+  <!--body end-->
+
+
+
+  <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Запостити</button>
+  <button type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
+
 </form>
