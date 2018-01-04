@@ -32,7 +32,7 @@ button {
 }
 
 // vertical aligment - mateial icon and text
-a.nav-link > i {
+a.nav-link > i , p > i {
   display: inline-block;
   vertical-align: middle;
 }

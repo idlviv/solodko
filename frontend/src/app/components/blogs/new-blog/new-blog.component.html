@@ -74,40 +74,50 @@
         </div>
       </div>
     </div>
+
     <!--body components-->
-    <div class="form-group" formArrayName="components">
-      <div *ngFor="let component of blogForm.get('body').get('components').controls; let i=index">
-        <div class="form-group" [formGroupName]="i">
-          <div class="form-row">
-            <!--body components material-->
-            <div class="form-group col-md-4">
-              <label for="body.components.material">Матеріал</label>
-              <input formControlName="material" required autocomplete="false"
-                     class="form-control" id="body.components.material" placeholder="Матеріал">
-            </div>
-            <!--body components quantity-->
-            <div class="form-group col-md-4">
-              <label for="body.components.quantity">Кількість</label>
-              <input formControlName="quantity" required autocomplete="false"
-                     class="form-control" id="body.components.quantity" placeholder="Кількість">
-            </div>
-            <!--body components quantity-->
-            <div class="form-group col-md-4">
-              <label for="body.components.unit">Одиниця</label>
-              <input formControlName="unit" required autocomplete="false"
-                     class="form-control" id="body.components.unit" placeholder="Одиниця">
+      <div class="form-group form-row" formArrayName="components">
+        <div class="col-md-6" *ngFor="let component of blogForm.get('body').get('components').controls; let i=index">
+          <div class="form-group" [formGroupName]="i">
+            <div class="form-row">
+              <!--body components material-->
+              <div class="form-group col-md-4">
+                <label for="body.components.material">Матеріал</label>
+                <input formControlName="material" required autocomplete="false"
+                       class="form-control" id="body.components.material" placeholder="Матеріал">
+              </div>
+              <!--body components quantity-->
+              <div class="form-group col-md-4">
+                <label for="body.components.quantity">Кількість</label>
+                <input formControlName="quantity" required autocomplete="false"
+                       class="form-control" id="body.components.quantity" placeholder="Кількість">
+              </div>
+              <!--body components quantity-->
+              <div class="form-group col-md-3">
+                <label for="body.components.unit">Одиниця</label>
+                <input formControlName="unit" required autocomplete="false"
+                       class="form-control" id="body.components.unit" placeholder="Одиниця">
+              </div>
+              <!--body components close btn-->
+              <div class="form-group col-md-1 btn-remove">
+                <i class="material-icons" (click)="removeComponent(i)">clear</i>
+              </div>
             </div>
           </div>
         </div>
 
-
+      </div>
+      <div class="form-group btn-add">
+        <p (click)="addComponent(i)"><i class="material-icons">add</i> додати матеріал</p>
       </div>
     </div>
 
+    <!--body components end-->
 
 
 
-  </div>
+
+  <!--</div>-->
   <!--body end-->
 
 

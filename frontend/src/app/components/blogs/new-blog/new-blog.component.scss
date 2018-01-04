@@ -1,0 +1,23 @@
+@import '~styles/styles';
+
+.btn-remove {
+  cursor: pointer;
+  i {
+    font-size: 1rem;
+  }
+}
+
+.btn-add {
+  position: relative;
+  top: -2rem;
+  cursor: pointer;
+  i {
+    font-size: 1rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .btn-remove {
+    order: -1;
+  }
+}
