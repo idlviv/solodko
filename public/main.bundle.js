@@ -493,7 +493,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/shared/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"blog-post\">\r\n        <h2 class=\"blog-post_title\">{{blog.title}}</h2>\r\n        <!--<p class=\"lead blog-post_meta\"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>-->\r\n        <div class=\"row blog-post_main\">\r\n          <div class=\"col-lg-6 blog-post_main-img align-self-center\" [ngClass]=\"orderImg\">\r\n            <img src=\"https://placehold.it/768x384\" class=\"img-fluid\" alt=\"main image\">\r\n          </div>\r\n          <div class=\"col-lg-6 blog-post_main-side lead text-muted\"\r\n               [ngClass]=\"orderText\">\r\n            <div class=\"blog-post_main-side-text\">\r\n              <h3>{{blog.body.mainText}}</h3>\r\n            </div>\r\n\r\n\r\n            <div class=\"blog-post_main-side-info d-flex justify-content-around\">\r\n              <div class=\"blog-post_avatar\">\r\n                <img class=\"img-fluid\" src=\"../../../../assets/samples/my-photo180x180.png\" alt=\"main image\">\r\n              </div>\r\n              <!--<div class=\"blog-post_createdBy\">Автор: <strong>{{blog.createdBy}}</strong></div>-->\r\n              <div class=\"blog-post_createdAt\"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>\r\n              <div class=\"blog-post_comments\">Коментарі: <strong>25</strong></div>\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n        <div class=\"row\">\r\n          <div class=\"col-lg-5 blog-post_sub-img align-self-center\">\r\n            <img src=\"https://placehold.it/576x288\" class=\"img-fluid\" alt=\"image\">\r\n           </div>\r\n          <div class=\"col-lg-7 blog-post_sub-text lead text-muted align-self-center\">\r\n            <p>{{blog.body.blocks[0].text}}</p>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n\r\n\r\n"
+module.exports = "\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"blog-post\">\r\n        <h2 class=\"blog-post_title\">{{blog.title}}</h2>\r\n        <!--<p class=\"lead blog-post_meta\"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>-->\r\n        <div class=\"row blog-post_main\">\r\n          <div class=\"col-lg-6 blog-post_main-img align-self-center\" [ngClass]=\"orderMainImage\">\r\n            <!--https://placehold.it/768x384-->\r\n            <img src=\"{{blog.body.mainImage}}\" class=\"img-fluid\" alt=\"main image\">\r\n          </div>\r\n          <div class=\"col-lg-6 blog-post_main-side lead text-muted\"\r\n               [ngClass]=\"orderMainText\">\r\n            <div class=\"blog-post_main-side-text\">\r\n              <h3>{{blog.body.mainText}}</h3>\r\n            </div>\r\n\r\n\r\n            <div class=\"blog-post_main-side-info d-flex justify-content-around\">\r\n              <div class=\"blog-post_avatar\">\r\n                <img class=\"img-fluid\" src=\"../../../../assets/samples/my-photo180x180.png\" alt=\"main image\">\r\n              </div>\r\n              <!--<div class=\"blog-post_createdBy\">Автор: <strong>{{blog.createdBy}}</strong></div>-->\r\n              <div class=\"blog-post_createdAt\"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>\r\n              <div class=\"blog-post_comments\">Коментарі: <strong>25</strong></div>\r\n            </div>\r\n\r\n          </div>\r\n        </div>\r\n        <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n          <div class=\"col-lg-5 blog-post_sub-img align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n            <img src=\"{{block.image}}\" class=\"img-fluid\" alt=\"image\">\r\n           </div>\r\n          <div class=\"col-lg-7 blog-post_sub-text lead text-muted align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n            <p>{{block.text}}</p>\r\n          </div>\r\n\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -537,12 +537,42 @@ var BlogComponent = (function () {
     }
     BlogComponent.prototype.ngOnInit = function () {
         if (this.index % 2 === 0) {
-            this.orderImg = 'order-lg-1 order-1';
-            this.orderText = 'order-lg-2 order-2';
+            this.orderMainImage = 'order-lg-1 order-1';
+            this.orderMainText = 'order-lg-2 order-2';
         }
         else {
-            this.orderImg = 'order-lg-2 order-1';
-            this.orderText = 'order-lg-1 order-2';
+            this.orderMainImage = 'order-lg-2 order-1';
+            this.orderMainText = 'order-lg-1 order-2';
+        }
+    };
+    BlogComponent.prototype.getOrderStyle = function (i, startPosition) {
+        var order;
+        var subOrder;
+        if (this.index % 2 === 0) {
+            if (i % 2 === 0) {
+                order = 2;
+                subOrder = 1;
+            }
+            else {
+                order = 1;
+                subOrder = 2;
+            }
+        }
+        else {
+            if (i % 2 === 0) {
+                order = 1;
+                subOrder = 2;
+            }
+            else {
+                subOrder = 1;
+                order = 2;
+            }
+        }
+        if (!startPosition) {
+            return 'order-lg-' + order + ' order-1';
+        }
+        else {
+            return 'order-lg-' + subOrder + ' order-2';
         }
     };
     return BlogComponent;

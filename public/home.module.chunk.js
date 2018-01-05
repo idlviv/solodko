@@ -3,7 +3,7 @@ webpackJsonp(["home.module"],{
 /***/ "../../../../../src/app/components/home/home-blog/home-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n\r\n\r\n<!--<div *ngIf=\"blogs\">-->\r\n  <div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\"></app-blog>\r\n  </div>\r\n<!--</div>-->\r\n\r\n<!--<div *ngFor=\"let item of items; let first = first; let last = last\"-->\r\n     <!--[class.first-item]=\"first\"-->\r\n     <!--[class.last-item]=\"last\">-->\r\n  <!--{{ item }}-->\r\n<!--</div>-->\r\n\r\n<div class=\"row\" *ngIf=\"!blogs\">\r\n  Блог\r\n</div>\r\n"
+module.exports = "<header>\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n\r\n\r\n\r\n  <div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\"></app-blog>\r\n  </div>\r\n\r\n<div class=\"row\" *ngIf=\"!blogs\">\r\n  Блог\r\n</div>\r\n"
 
 /***/ }),
 

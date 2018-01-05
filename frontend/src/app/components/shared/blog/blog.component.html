@@ -5,11 +5,12 @@
         <h2 class="blog-post_title">{{blog.title}}</h2>
         <!--<p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>-->
         <div class="row blog-post_main">
-          <div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderImg">
-            <img src="https://placehold.it/768x384" class="img-fluid" alt="main image">
+          <div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderMainImage">
+            <!--https://placehold.it/768x384-->
+            <img src="{{blog.body.mainImage}}" class="img-fluid" alt="main image">
           </div>
           <div class="col-lg-6 blog-post_main-side lead text-muted"
-               [ngClass]="orderText">
+               [ngClass]="orderMainText">
             <div class="blog-post_main-side-text">
               <h3>{{blog.body.mainText}}</h3>
             </div>
@@ -26,12 +27,12 @@
 
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-5 blog-post_sub-img align-self-center">
-            <img src="https://placehold.it/576x288" class="img-fluid" alt="image">
+        <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
+          <div class="col-lg-5 blog-post_sub-img align-self-center" [ngClass]="getOrderStyle(i, 0)">
+            <img src="{{block.image}}" class="img-fluid" alt="image">
            </div>
-          <div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center">
-            <p>{{blog.body.blocks[0].text}}</p>
+          <div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center" [ngClass]="getOrderStyle(i, 1)">
+            <p>{{block.text}}</p>
           </div>
 
         </div>

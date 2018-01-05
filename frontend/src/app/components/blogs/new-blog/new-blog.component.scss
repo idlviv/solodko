@@ -10,14 +10,55 @@
 .btn-add {
   position: relative;
   top: -2rem;
-  cursor: pointer;
   i {
     font-size: 1rem;
   }
+  p {
+    cursor: pointer;
+    display: inline;
+  }
 }
 
+.btn-remove {
+  p {
+    display: none;
+  }
+  > i {
+    display: block;
+    position: absolute;
+    right: 1rem;
+  }
+}
+
+//@include media-breakpoint-up(md) {
+//  .btn-remove {
+//    max-width: 3rem;
+//  }
+//}
+
+
 @include media-breakpoint-down(sm) {
+  .form-jumbotron {
+    background-color: $background-color-front;
+    border-bottom: 2px solid $background-color-back;
+  }
+
+  .btn-add {
+    top: -1rem;
+  }
+
   .btn-remove {
-    order: -1;
+    p {
+      display: block;
+      margin-bottom: 0;
+      position: absolute;
+      right: 1rem;
+      top: .5rem;
+      cursor: pointer;
+      z-index: 99;
+    }
+    > i {
+      display: none;
+    }
   }
 }

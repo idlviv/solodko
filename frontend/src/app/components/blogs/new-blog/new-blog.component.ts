@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {BlogsService} from '../../../services/blogs.service';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {ValidateService} from '../../../services/validate.service';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {IBlog} from '../../../interfaces/i-blog';
 
@@ -11,10 +10,10 @@ import {IBlog} from '../../../interfaces/i-blog';
   templateUrl: './new-blog.component.html',
   styleUrls: ['./new-blog.component.scss']
 })
+
 export class NewBlogComponent implements OnInit {
   blogs: IBlog[];
   blogForm: FormGroup;
-  tmpForm: FormGroup;
   loggedUser: any;
 
   constructor(
@@ -24,15 +23,6 @@ export class NewBlogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.tmpForm = new FormGroup({
-      tmptitle: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(50),
-        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
-      ])
-    });
-
     this.blogForm = new FormGroup({
         title: new FormControl('', [
           Validators.required,
@@ -50,7 +40,7 @@ export class NewBlogComponent implements OnInit {
             Validators.maxLength(90),
           ]),
           components: new FormArray([
-            this.initComponents()
+            // this.initComponents()
           ]),
           blocks: new FormArray([
             this.initBlocks()
@@ -76,6 +66,7 @@ export class NewBlogComponent implements OnInit {
     return new FormGroup({
       image: new FormControl('', []),
       text: new FormControl('', [
+        Validators.required,
         Validators.minLength(4),
         Validators.maxLength(500),
       ])
@@ -83,7 +74,7 @@ export class NewBlogComponent implements OnInit {
   }
   addBlock() {
     const control = <FormArray>this.blogForm.get('body').get('blocks');
-    control.push(this.initComponents());
+    control.push(this.initBlocks());
   }
 
   removeBlock(i: number) {
@@ -106,6 +97,7 @@ export class NewBlogComponent implements OnInit {
     if (!this.blogForm.value.showOnMainPage) {
       this.blogForm.value.showOnMainPage = false;
     }
+    this.blogForm.value['createdBy_id'] = this.loggedUser._id;
     // const newBlog = {
     //   title: this.blogForm.value.title,
     //   body: {
@@ -127,7 +119,7 @@ export class NewBlogComponent implements OnInit {
 
     this.blogsService.addBlog(this.blogForm.value)
       .subscribe(result => {
-console.log('result', result);
+        console.log('result', result);
         if (result.success) {
           this.blogForm.reset();
           this.flashMessage.show(
