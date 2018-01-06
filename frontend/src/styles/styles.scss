@@ -33,7 +33,10 @@ body {
   border-left: 3px solid #dc3545;
 }
 
-
+.home-side {
+  position: fixed;
+  right: 0;
+}
 
 // vertical aligment - mateial icon and text
 a.nav-link > i,

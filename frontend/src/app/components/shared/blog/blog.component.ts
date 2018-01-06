@@ -11,6 +11,7 @@ export class BlogComponent implements OnInit {
   @Input() blog: IBlog;
   @Input() index: number;
 
+  onMain: boolean;
   orderMainImage: any;
   orderMainText: any;
 
@@ -18,6 +19,8 @@ export class BlogComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.onMain = true;
+
     if (this.index % 2 === 0) {
       this.orderMainImage = 'order-md-1 order-1';
       this.orderMainText = 'order-md-2 order-2';

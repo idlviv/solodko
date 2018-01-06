@@ -26,22 +26,25 @@
     </div>
   </div>
 
-  <div class="row blog-post-body" *ngFor="let block of blog.body.blocks; let i = index">
-    <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
-      <div class="blog-post-body-text">
-        <p class="lead blog-description">{{block.text}}</p>
+  <div class="blog-post-body" *ngIf="!onMain">
+    <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
+      <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
+        <div class="blog-post-body-text">
+          <p class="lead blog-description">{{block.text}}</p>
+        </div>
+
       </div>
+      <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
 
-    </div>
-    <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
-
-      <div class="img-container-outer">
-        <div class="img-container-inner">
-          <img src="{{block.image}}" class="img" alt="block image">
+        <div class="img-container-outer">
+          <div class="img-container-inner">
+            <img src="{{block.image}}" class="img" alt="block image">
+          </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
 
 
