@@ -19,15 +19,15 @@ export class BlogComponent implements OnInit {
 
   ngOnInit() {
     if (this.index % 2 === 0) {
-      this.orderMainImage = 'order-lg-1 order-1';
-      this.orderMainText = 'order-lg-2 order-2';
+      this.orderMainImage = 'order-md-1 order-1';
+      this.orderMainText = 'order-md-2 order-2';
     } else {
-      this.orderMainImage = 'order-lg-2 order-1';
-      this.orderMainText = 'order-lg-1 order-2';
+      this.orderMainImage = 'order-md-2 order-1';
+      this.orderMainText = 'order-md-1 order-2';
     }
   }
 
-  getOrderStyle(i, startPosition) {
+  getOrderStyle(i, startPosition): string {
     let order: number;
     let subOrder: number;
     if (this.index % 2 === 0) {
@@ -48,10 +48,9 @@ export class BlogComponent implements OnInit {
       }
     }
     if (!startPosition) {
-      return 'order-lg-' + order + ' order-1';
+      return 'order-md-' + order + ' order-1';
     } else {
-      return 'order-lg-' + subOrder + ' order-2';
-
+      return 'order-md-' + subOrder + ' order-2';
     }
   }
 

@@ -3,7 +3,7 @@ let titleLengthChecker = function(title) {
 };
 
 let titleValidChecker = function(title) {
-  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ()' ]+$/);
+  const regExp = new RegExp(/^[a-zA-Z0-9а-яА-ЯіїєІЇЄ,.()' ]+$/);
   return title && regExp.test(title);
 };
 
@@ -47,25 +47,25 @@ module.exports.commentsValidators = [
 //-----
 
 let mainTextLengthChecker = function(title) {
-  return title && title.length >= 4 && title.length <= 90;
+  return title && title.length >= 4 && title.length <= 500;
 };
 
 module.exports.mainTextValidators = [
   {
     validator: mainTextLengthChecker,
-    message: 'Довжина повинна бути від 4 до 90 символів'
+    message: 'Довжина повинна бути від 4 до 500 символів'
   },
 ];
 
 //-----
 
 let blocksTextLengthChecker = function(title) {
-  return title && title.length >= 4 && title.length <= 500;
+  return title && title.length >= 4 && title.length <= 1000;
 };
 
 module.exports.blocksTextValidators = [
   {
     validator: blocksTextLengthChecker,
-    message: 'Довжина повинна бути від 4 до 500 символів'
+    message: 'Довжина повинна бути від 4 до 1000 символів'
   },
 ];

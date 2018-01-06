@@ -28,7 +28,7 @@ export class NewBlogComponent implements OnInit {
           Validators.required,
           Validators.minLength(4),
           Validators.maxLength(50),
-          Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+          Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ,.()\' ]+'),
         ]),
         body: new FormGroup({
           mainImage: new FormControl('', [
@@ -37,7 +37,7 @@ export class NewBlogComponent implements OnInit {
           mainText: new FormControl('', [
             Validators.required,
             Validators.minLength(4),
-            Validators.maxLength(90),
+            Validators.maxLength(500),
           ]),
           components: new FormArray([
             // this.initComponents()
@@ -68,7 +68,7 @@ export class NewBlogComponent implements OnInit {
       text: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(500),
+        Validators.maxLength(1000),
       ])
     });
   }
@@ -119,7 +119,6 @@ export class NewBlogComponent implements OnInit {
 
     this.blogsService.addBlog(this.blogForm.value)
       .subscribe(result => {
-        console.log('result', result);
         if (result.success) {
           this.blogForm.reset();
           this.flashMessage.show(

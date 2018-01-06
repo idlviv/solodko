@@ -6,10 +6,17 @@ html {
   position: relative;
   min-height: 100%;
 }
+
+a,
+button {
+  text-transform: capitalize;
+}
+
 body {
   margin-bottom: 4rem;
 }
 
+// Validation
 .invalid-alert {
   font-size: .75rem;
   color: $danger;
@@ -26,19 +33,12 @@ body {
   border-left: 3px solid #dc3545;
 }
 
-a,
-button {
-  text-transform: capitalize;
-}
+
 
 // vertical aligment - mateial icon and text
-a.nav-link > i , p > i {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-// vertical aligment - mateial icon and text
-button > i {
+a.nav-link > i,
+p > i,
+button > i{
   display: inline-block;
   vertical-align: middle;
 }
@@ -48,6 +48,7 @@ button > i {
  @include boxShadow(3)
 }
 
+// custom buttons
 .button-round {
   padding: 0;
   @include radius(50%);
@@ -86,6 +87,7 @@ button > i {
   color: $main_color;
 }
 
+// custom background
 body,
 .container-fluid,
 .row,
@@ -99,7 +101,7 @@ body,
   background-color: $background-color-front;
 }
 
-//begin custom dropdown
+// custom dropdown
 .c_dropdown {
   position: relative;
   display: inline-block;
@@ -112,7 +114,6 @@ body,
   min-width: 50px;
   @include boxShadow(2);
   @include radius(.1rem);
-  //box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: .2rem 1rem;
   z-index: 1;
 }
@@ -120,5 +121,107 @@ body,
 .c_dropdown:hover .c_dropdown-content {
   display: block;
 }
-//end custom dropdown
 
+//blog
+.blog-post {
+  background-color: $background-color-front;
+  //padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $background-color-front
+}
+
+.blog-header {
+  padding-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  border-bottom: .05rem solid #eee;
+}
+
+.blog-post-header {
+  padding-bottom: 2rem;
+}
+
+.blog-post-body {
+  padding-bottom: 1rem;
+}
+
+.blog-post-header-top {
+  @extend .blog-header;
+  border-bottom: 0;
+  padding-top: 2rem;
+}
+
+.blog-post-body-text {
+  @extend .blog-header;
+  border-bottom: 0;
+  padding-top: 2rem;
+}
+
+
+.blog-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.blog-post-header-title {
+  @extend .blog-title;
+  font-size: 1.5rem;
+  //text-align: left;
+
+}
+
+.blog-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #999;
+}
+
+.blog-post-description {
+  @extend .blog-description;
+  text-align: justify;
+}
+
+.blog-post-header-bottom {
+  margin-bottom: 1rem;
+}
+
+.img-container-outer {
+  min-height: 24rem;
+  max-height: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.img-container-inner {
+  display: inline-block;
+  position: relative;
+  right: -50%;
+}
+
+.img {
+  position: relative;
+  left: -50%;
+}
+
+@include media-breakpoint-up(md) {
+  .blog-title {
+    font-size: 2.5rem;
+  }
+  .blog-post-header-title {
+    font-size: 1.75rem;
+  }
+  .blog-post-header-top {
+    border-bottom: .05rem solid #eee;
+  }
+
+}
+
+@include media-breakpoint-up(lg) {
+  .blog-title {
+    font-size: 3.5rem;
+  }
+  .blog-post-header-title {
+    font-size: 2rem;
+  }
+}

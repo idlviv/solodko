@@ -59,7 +59,7 @@
              *ngIf="(blogForm.get('body').get('mainText').errors?.minlength ||
              blogForm.get('body').get('mainText').errors?.maxlength ||
              blogForm.get('body').get('mainText').errors?.required) &&
-             blogForm.get('body').get('mainText').touched">Довжина від 4 до 90 символів
+             blogForm.get('body').get('mainText').touched">Довжина від 4 до 500 символів
         </div>
       </div>
     </div>
@@ -145,7 +145,7 @@
                        *ngIf="(blogForm.get('body.blocks').controls[i].get('text').errors?.minlength ||
                          blogForm.get('body.blocks').controls[i].get('text').errors?.maxlength ||
                          blogForm.get('body.blocks').controls[i].get('text').errors?.required) &&
-                         blogForm.get('body.blocks').controls[i].get('text').touched">Довжина від 4 до 500 символів
+                         blogForm.get('body.blocks').controls[i].get('text').touched">Довжина від 4 до 1000 символів
                   </div>
                 </div>
               </div>

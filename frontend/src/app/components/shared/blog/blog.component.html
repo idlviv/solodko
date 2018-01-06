@@ -1,45 +1,89 @@
+<div class="blog-post">
+  <div class="row blog-post-header">
+    <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
+      <div class="blog-post-header-top">
+        <h2 class="blog-post-header-title">{{blog.title}}</h2>
+        <p class="lead blog-post-description">{{blog.body.mainText}}</p>
+      </div>
+      <div class="d-flex justify-content-around text-muted blog-post-header-bottom">
 
-  <div class="row">
-    <div class="col">
-      <div class="blog-post">
-        <h2 class="blog-post_title">{{blog.title}}</h2>
-        <!--<p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>-->
-        <div class="row blog-post_main">
-          <div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderMainImage">
-            <!--https://placehold.it/768x384-->
-            <img src="{{blog.body.mainImage}}" class="img-fluid" alt="main image">
-          </div>
-          <div class="col-lg-6 blog-post_main-side lead text-muted"
-               [ngClass]="orderMainText">
-            <div class="blog-post_main-side-text">
-              <h3>{{blog.body.mainText}}</h3>
-            </div>
+        <!--<div class="blog-post_avatar">-->
+        <!--<img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">-->
+        <!--</div>-->
+        <!--<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>-->
+        <div class=""><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
+        <div class="blog-post_comments">Коментарі: <strong>25</strong></div>
+      </div>
 
+    </div>
+    <div class="col-md-6 align-self-center" [ngClass]="orderMainImage">
 
-            <div class="blog-post_main-side-info d-flex justify-content-around">
-              <div class="blog-post_avatar">
-                <img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">
-              </div>
-              <!--<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>-->
-              <div class="blog-post_createdAt"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
-              <div class="blog-post_comments">Коментарі: <strong>25</strong></div>
-            </div>
-
-          </div>
-        </div>
-        <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
-          <div class="col-lg-5 blog-post_sub-img align-self-center" [ngClass]="getOrderStyle(i, 0)">
-            <img src="{{block.image}}" class="img-fluid" alt="image">
-           </div>
-          <div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center" [ngClass]="getOrderStyle(i, 1)">
-            <p>{{block.text}}</p>
-          </div>
-
+      <div class="img-container-outer">
+        <div class="img-container-inner">
+          <img src="{{blog.body.mainImage}}" class="img" alt="main image">
         </div>
       </div>
     </div>
-
   </div>
+
+  <div class="row blog-post-body" *ngFor="let block of blog.body.blocks; let i = index">
+    <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
+      <div class="blog-post-body-text">
+        <p class="lead blog-description">{{block.text}}</p>
+      </div>
+
+    </div>
+    <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
+
+      <div class="img-container-outer">
+        <div class="img-container-inner">
+          <img src="{{block.image}}" class="img" alt="block image">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="row blog-post">-->
+  <!--<div class="col">-->
+    <!--<h2 class="blog-post_title">{{blog.title}}</h2>-->
+    <!--&lt;!&ndash;<p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>&ndash;&gt;-->
+    <!--<div class="row blog-post_main">-->
+      <!--<div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderMainImage">-->
+        <!--&lt;!&ndash;https://placehold.it/768x384&ndash;&gt;-->
+        <!--<img src="{{blog.body.mainImage}}" class="img-fluid" alt="main image">-->
+      <!--</div>-->
+      <!--<div class="col-lg-6 blog-post_main-side lead text-muted"-->
+           <!--[ngClass]="orderMainText">-->
+        <!--<div class="blog-post_main-side-text">-->
+          <!--<h3>{{blog.body.mainText}}</h3>-->
+        <!--</div>-->
+
+
+        <!--<div class="blog-post_main-side-info d-flex justify-content-around">-->
+          <!--<div class="blog-post_avatar">-->
+            <!--<img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>&ndash;&gt;-->
+          <!--<div class="blog-post_createdAt"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>-->
+          <!--<div class="blog-post_comments">Коментарі: <strong>25</strong></div>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row" *ngFor="let block of blog.body.blocks; let i = index">-->
+      <!--<div class="col-lg-5 blog-post_sub-img align-self-center" [ngClass]="getOrderStyle(i, 0)">-->
+        <!--<img src="{{block.image}}" class="img-fluid" alt="image">-->
+      <!--</div>-->
+      <!--<div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center" [ngClass]="getOrderStyle(i, 1)">-->
+        <!--<p>{{block.text}}</p>-->
+      <!--</div>-->
+
+    <!--</div>-->
+  <!--</div>-->
+
+<!--</div>-->
 
 
 
