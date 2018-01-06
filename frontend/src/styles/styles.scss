@@ -127,7 +127,6 @@ body,
 
 //blog
 .blog-post {
-  background-color: $background-color-front;
   //padding-bottom: 1rem;
   margin-bottom: 2rem;
   border-bottom: 1px solid $background-color-front
@@ -140,6 +139,7 @@ body,
 }
 
 .blog-post-header {
+  background-color: $background-color-front;
   padding-bottom: 2rem;
 }
 
