@@ -11,8 +11,16 @@
         <!--<img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">-->
         <!--</div>-->
         <!--<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>-->
-        <div class=""><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>
-        <div class="blog-post_comments">Коментарі: <strong>25</strong></div>
+        <div class="">
+          <p><i class="material-icons">date_range</i>
+            <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
+        </div>
+        <div class="">
+          <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>126</strong></p>
+        </div>
+        <div class="">
+          <p><i class="material-icons">comment</i> Коментарів: <strong>25</strong></p>
+        </div>
       </div>
 
     </div>
@@ -20,12 +28,12 @@
 
       <div class="img-container-outer">
         <div class="img-container-inner">
+          <!--<img src="https://placehold.it/448x336" class="img" alt="main image">-->
           <img src="{{blog.body.mainImage}}" class="img" alt="main image">
         </div>
       </div>
     </div>
   </div>
-
   <div class="blog-post-body" *ngIf="!onMain">
     <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
       <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
@@ -35,7 +43,7 @@
 
       </div>
       <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
-
+        <!--https://placehold.it/384*288-->
         <div class="img-container-outer">
           <div class="img-container-inner">
             <img src="{{block.image}}" class="img" alt="block image">
