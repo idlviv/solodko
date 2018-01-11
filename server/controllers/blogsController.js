@@ -36,6 +36,14 @@ module.exports.getBlogs = function(req, res, next) {
     .catch(error => res.json(error));
 };
 
+module.exports.findBlogs = function(req, res, next) {
+  let searchQuery = JSON.parse(req.query.searchQuery);
+
+  BlogsModel.findBlogs(searchQuery)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
+};
+
 module.exports.getQueriedBlogs = function(req, res, next) {
   let searchQuery = JSON.parse(req.query.searchQuery);
 

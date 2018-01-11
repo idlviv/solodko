@@ -34,6 +34,19 @@ export class BlogsService {
       .map(res => res.json());
   }
 
+  findBlogs(searchQuery) {
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
+    const params = new URLSearchParams();
+    params.set('searchQuery', JSON.stringify(searchQuery));
+    const options = new RequestOptions({ headers: headers, params: params });
+    return this.http.get(
+      config.serverUrl + 'blogs/find-blogs',
+      options)
+      .map(res => res.json());
+  }
+
   getQueriedBlogs(searchQuery) {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');

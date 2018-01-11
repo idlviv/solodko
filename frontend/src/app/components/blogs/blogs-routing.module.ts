@@ -7,6 +7,7 @@ import {ListBlogsComponent} from './list-blogs/list-blogs.component';
 import {EditBlogComponent} from './edit-blog/edit-blog.component';
 import {DeleteBlogComponent} from './delete-blog/delete-blog.component';
 import {NewBlogComponent} from './new-blog/new-blog.component';
+import {BlogsListComponent} from './blogs-list/blogs-list.component';
 
 const blogsRoutes: Routes = [
   {
@@ -17,6 +18,11 @@ const blogsRoutes: Routes = [
       {
         path: 'list-blogs',
         component: ListBlogsComponent,
+        // resolve: {products: ProductResolverService}
+      },
+      {
+        path: 'blogs-list/:_id',
+        component: BlogsListComponent,
         // resolve: {products: ProductResolverService}
       },
       {

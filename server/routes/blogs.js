@@ -23,6 +23,11 @@ router.get(
   BlogsController.getQueriedBlogs
 );
 
+router.get(
+  '/find-blogs',
+  BlogsController.findBlogs
+);
+
 router.put(
   '/edit-blog',
   BlogsController.editBlog

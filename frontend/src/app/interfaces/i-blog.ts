@@ -1,6 +1,6 @@
 export interface IBlog {
+  _id?: string;
   title: string;
-
   body: {
     mainImage: string,
     mainText: string,
@@ -14,7 +14,6 @@ export interface IBlog {
       text: string,
     }],
   };
-
   createdBy?: string;
   createdBy_id: string;
   showOnMainPage?: boolean;

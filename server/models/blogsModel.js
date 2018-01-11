@@ -60,6 +60,22 @@ module.exports.getBlogs = function() {
   );
 };
 
+module.exports.findBlogs = function(searchQuery) {
+  return new Promise(function(resolve, reject) {
+      // let query = {};
+      log.verbose('searchQuery', searchQuery);
+      // if (searchQuery.type = 'object') {
+      //   query[searchQuery.query.key] = searchQuery.query.value;
+      // }
+      BlogsModel.find(searchQuery).sort({'_id': -1})
+        .then((blogs) => {
+          return resolve({success: true, data: blogs});
+        })
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
+    }
+  );
+};
+
 module.exports.getQueriedBlogs = function(searchQuery) {
   return new Promise(function(resolve, reject) {
       let query = {};

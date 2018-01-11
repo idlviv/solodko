@@ -22,6 +22,11 @@
     <ul class="nav navbar-nav navbar-right" (click)="hide()">
       <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', 'all']">
+          <i class="material-icons">chat_bubble_outline</i> Майстеркласи <span class="badge badge-success">0</span></a></li>
+
+      <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' || user.role === 'Admin'"
+          [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" [routerLink]="['/blogs/ch/list-blogs']">
           <i class="material-icons">chat_bubble_outline</i> Блог <span class="badge badge-success">0</span></a></li>
 

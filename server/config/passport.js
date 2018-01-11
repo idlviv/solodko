@@ -29,7 +29,7 @@ module.exports = function(passport) {
 
   passport.use('jwt',
     new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-      log.verbose('config/passport - JwtStrategy');
+      // log.verbose('config/passport - JwtStrategy');
       // на основі _id (витягнутого з токена) робить пошук
       // в базі, чи є такий юзер, і ф-я done повертає відповідь
       UserModel.getUserById(jwtPayload.sub._id)
@@ -48,7 +48,7 @@ module.exports = function(passport) {
 
   passport.use('jwt.manager.admin',
     new JwtStrategy(jwtOptions, (jwtPayload, done) => {
-        log.verbose('config/passport - Jwt.manager.admin.Strategy');
+        // log.verbose('config/passport - Jwt.manager.admin.Strategy');
         // на основі _id (витягнутого з токена) робить пошук
         // в базі, чи є такий юзер, і ф-я done повертає відповідь
         UserModel.getUserById(jwtPayload.sub._id)
@@ -70,7 +70,7 @@ module.exports = function(passport) {
 
   passport.use('jwt.email.verification',
     new JwtStrategy(emailVerificationOptions, (jwtPayload, done) => {
-        log.verbose('config/passport - JwtStrategy email.verification');
+        // log.verbose('config/passport - JwtStrategy email.verification');
         // на основі _id (витягнутого з токена) робить пошук
         // в базі, чи є такий юзер, і ф-я done повертає відповідь
         UserModel.getUserById(jwtPayload.sub._id)
@@ -89,7 +89,7 @@ module.exports = function(passport) {
 
   passport.use('local.signin',
     new LocalStrategy((username, password, done) => {
-      log.verbose('config/passport - LocalStrategy');
+      // log.verbose('config/passport - LocalStrategy');
       UserModel.getUserByUsername(username)
         .then((user) => {
           if (!user) {
