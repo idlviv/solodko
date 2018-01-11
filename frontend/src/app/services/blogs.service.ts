@@ -47,6 +47,7 @@ export class BlogsService {
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authService.authToken);
     const params = new URLSearchParams();
+    console.log('searchQuery--', JSON.stringify(searchQuery));
     params.set('searchQuery', JSON.stringify(searchQuery));
     const options = new RequestOptions({ headers: headers, params: params });
     return this.http.get(

@@ -2085,6 +2085,7 @@ var BlogsService = (function () {
         headers.set('Content-Type', 'application/json');
         headers.set('Authorization', this.authService.authToken);
         var params = new http_1.URLSearchParams();
+        console.log('searchQuery--', JSON.stringify(searchQuery));
         params.set('searchQuery', JSON.stringify(searchQuery));
         var options = new http_1.RequestOptions({ headers: headers, params: params });
         return this.http.get(app_config_1.config.serverUrl + 'blogs/find-blogs', options)

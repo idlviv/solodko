@@ -55,25 +55,29 @@ var BlogsListComponent = (function () {
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.loggedUser = user; });
         this.route.params
-            .subscribe(function (params) {
-            _this.blogsService.getBlogOptions()
-                .subscribe(function (blogOptions) {
-                _this.blogOptions = blogOptions;
-                _this.blogOptions['mainPage'] = false;
-                _this._id = params._id;
-                if (params._id === 'all') {
-                    _this.searchQuery = {};
-                    _this.blogOptions['singlePostMode'] = false;
-                }
-                else {
-                    _this.searchQuery = { '_id': params._id };
-                    _this.blogOptions['singlePostMode'] = true;
-                }
-            });
-            _this.blogsService.findBlogs(_this.searchQuery)
-                .subscribe(function (result) {
-                _this.blogs = result.data;
-            });
+            .switchMap(function (params) {
+            console.log('params._id', params._id);
+            _this._id = params._id;
+            return _this.blogsService.getBlogOptions();
+        })
+            .switchMap(function (blogOptions) {
+            _this.blogOptions = blogOptions;
+            console.log('this.blogOptions', _this.blogOptions);
+            _this.blogOptions['mainPage'] = false;
+            if (_this._id === 'all') {
+                _this.blogOptions['singlePostMode'] = false;
+                _this.searchQuery = {};
+            }
+            else {
+                _this.blogOptions['singlePostMode'] = true;
+                _this.searchQuery = { '_id': _this._id };
+            }
+            console.log('this.searchQuery', _this.searchQuery);
+            return _this.blogsService.findBlogs(_this.searchQuery);
+        })
+            .subscribe(function (result) {
+            console.log('result', result);
+            _this.blogs = result.data;
         });
     };
     return BlogsListComponent;
