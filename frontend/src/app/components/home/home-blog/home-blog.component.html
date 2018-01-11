@@ -6,11 +6,8 @@
   </div>
 </header>
 
-
-
-
   <div *ngFor="let blog of blogs; let index = index">
-    <app-blog [blog]="blog" [index]="index"></app-blog>
+    <app-blog [blog]="blog" [index]="index" [blogOptions]="blogOptions"></app-blog>
   </div>
 
 <div class="row" *ngIf="!blogs">

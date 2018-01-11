@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BlogsService} from '../../../services/blogs.service';
 import {IBlog} from '../../../interfaces/i-blog';
 import {ISearchQuery} from '../../../interfaces/i-searchQuery';
+import {IBlogOptions} from '../../../interfaces/i-options';
 
 @Component({
   selector: 'app-home-blog',
@@ -11,6 +12,7 @@ import {ISearchQuery} from '../../../interfaces/i-searchQuery';
 export class HomeBlogComponent implements OnInit {
   blogs: IBlog[];
   searchQuery: ISearchQuery;
+  blogOptions: IBlogOptions;
 
   constructor(
     private blogsService: BlogsService,
@@ -31,6 +33,12 @@ export class HomeBlogComponent implements OnInit {
         }
       }
       );
+    this.blogsService.getBlogOptions()
+      .subscribe((blogOptions) => {
+        this.blogOptions = blogOptions;
+        this.blogOptions['mainPage'] = true;
+        this.blogOptions['singlePostMode'] = false;
+      });
   }
 
 }

@@ -11,6 +11,7 @@ import 'rxjs/Rx';
 
 import {emptyUser} from '../data/user';
 
+
 @Injectable()
 export class AuthService {
   authToken: any;
@@ -36,6 +37,8 @@ export class AuthService {
     return this._logging.asObservable();
   }
   // end of observable
+
+
 
   // register.component підписується на registerUser
   // юзер з хедером передається на сервер

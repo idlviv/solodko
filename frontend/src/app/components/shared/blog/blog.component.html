@@ -2,7 +2,7 @@
   <div class="row blog-post-header">
     <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
       <div class="blog-post-header-top">
-
+        <button *ngIf="blogOptions.singlePostMode" class="btn btn-primary btn-sm" (click)="goBack()">< Повернутись</button>
         <!--<li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
           <!--<a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', blog._id]">-->
             <!--<i class="material-icons">chat_bubble_outline</i> Майстеркласи {{blog._id}}-->
@@ -21,10 +21,10 @@
           <p><i class="material-icons">date_range</i>
             <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
         </div>
-        <div class="">
+        <div *ngIf="blogOptions.showViews" class="">
           <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>126</strong></p>
         </div>
-        <div class="">
+        <div *ngIf="blogOptions.showComments" class="">
           <p><i class="material-icons">comment</i> Коментарів: <strong>25</strong></p>
         </div>
       </div>
@@ -40,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div class="blog-post-body" *ngIf="!onMain">
+  <div class="blog-post-body" *ngIf="!blogOptions.mainPage">
     <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
       <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
         <div class="blog-post-body-text">

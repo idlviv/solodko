@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {IBlog} from '../../../interfaces/i-blog';
+import {IBlogOptions} from '../../../interfaces/i-options';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-blog',
@@ -10,23 +12,31 @@ export class BlogComponent implements OnInit {
 
   @Input() blog: IBlog;
   @Input() index: number;
+  @Input() blogOptions: IBlogOptions;
 
-  onMain: boolean;
+  // onMain: boolean;
   orderMainImage: any;
   orderMainText: any;
+  startOrder: number;
 
-
-  constructor() { }
+  constructor(
+    private location: Location,
+  ) { }
 
   ngOnInit() {
-    this.onMain = true;
+    this.getMainImageOrderStyle();
 
+  }
+
+  getMainImageOrderStyle() {
     if (this.index % 2 === 0) {
       this.orderMainImage = 'order-md-1 order-1';
       this.orderMainText = 'order-md-2 order-2';
+      this.startOrder = 0;
     } else {
       this.orderMainImage = 'order-md-2 order-1';
       this.orderMainText = 'order-md-1 order-2';
+      this.startOrder = 1;
     }
   }
 
@@ -51,10 +61,14 @@ export class BlogComponent implements OnInit {
       }
     }
     if (!startPosition) {
-      return 'order-md-' + order + ' order-1';
+      return 'order-md-' + subOrder + ' order-1';
     } else {
-      return 'order-md-' + subOrder + ' order-2';
+      return 'order-md-' + order + ' order-2';
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

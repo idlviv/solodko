@@ -3,11 +3,19 @@ import {Http, Headers, RequestOptions, URLSearchParams} from '@angular/http';
 import {config} from '../app.config';
 import {AuthService} from './auth.service';
 
+import {blogOptions} from '../data/options';
+import {IBlogOptions} from '../interfaces/i-options';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
+
 @Injectable()
 export class BlogsService {
 
   constructor(private http: Http,
-              private authService: AuthService) {
+              private authService: AuthService) {}
+
+  getBlogOptions(): Observable <IBlogOptions> {
+    return  Observable.of(blogOptions);
   }
 
   addBlog(newBlog) {
