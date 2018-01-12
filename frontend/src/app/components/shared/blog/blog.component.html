@@ -1,12 +1,18 @@
 <div class="blog-post">
+  <div class="row blog-post-nav">
+    <div class="col-md-6 d-flex justify-content-left text-muted">
+      <button *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
+        <i class="material-icons button-round-icon-2">arrow_back</i></button>
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
   <div class="row blog-post-header">
     <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
       <div class="blog-post-header-top">
-        <button *ngIf="blogOptions.singlePostMode" class="btn btn-primary btn-sm" (click)="goBack()">< Повернутись</button>
-        <!--<li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
-          <!--<a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', blog._id]">-->
-            <!--<i class="material-icons">chat_bubble_outline</i> Майстеркласи {{blog._id}}-->
-            <!--<span class="badge badge-success">0</span></a></li>-->
+
         <a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', blog._id]">
           <h2 class="blog-post-header-title">{{blog.title}}</h2></a>
         <p class="lead blog-post-description">{{blog.body.mainText}}</p>
@@ -40,7 +46,8 @@
       </div>
     </div>
   </div>
-  <div class="blog-post-body" *ngIf="!blogOptions.mainPage">
+
+  <div class="blog-post-body" *ngIf="blogOptions.singlePostMode">
     <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
       <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
         <div class="blog-post-body-text">
@@ -58,50 +65,4 @@
       </div>
     </div>
   </div>
-
 </div>
-
-
-<!--<div class="row blog-post">-->
-  <!--<div class="col">-->
-    <!--<h2 class="blog-post_title">{{blog.title}}</h2>-->
-    <!--&lt;!&ndash;<p class="lead blog-post_meta"><strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}</strong></p>&ndash;&gt;-->
-    <!--<div class="row blog-post_main">-->
-      <!--<div class="col-lg-6 blog-post_main-img align-self-center" [ngClass]="orderMainImage">-->
-        <!--&lt;!&ndash;https://placehold.it/768x384&ndash;&gt;-->
-        <!--<img src="{{blog.body.mainImage}}" class="img-fluid" alt="main image">-->
-      <!--</div>-->
-      <!--<div class="col-lg-6 blog-post_main-side lead text-muted"-->
-           <!--[ngClass]="orderMainText">-->
-        <!--<div class="blog-post_main-side-text">-->
-          <!--<h3>{{blog.body.mainText}}</h3>-->
-        <!--</div>-->
-
-
-        <!--<div class="blog-post_main-side-info d-flex justify-content-around">-->
-          <!--<div class="blog-post_avatar">-->
-            <!--<img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">-->
-          <!--</div>-->
-          <!--&lt;!&ndash;<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>&ndash;&gt;-->
-          <!--<div class="blog-post_createdAt"><strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></div>-->
-          <!--<div class="blog-post_comments">Коментарі: <strong>25</strong></div>-->
-        <!--</div>-->
-
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row" *ngFor="let block of blog.body.blocks; let i = index">-->
-      <!--<div class="col-lg-5 blog-post_sub-img align-self-center" [ngClass]="getOrderStyle(i, 0)">-->
-        <!--<img src="{{block.image}}" class="img-fluid" alt="image">-->
-      <!--</div>-->
-      <!--<div class="col-lg-7 blog-post_sub-text lead text-muted align-self-center" [ngClass]="getOrderStyle(i, 1)">-->
-        <!--<p>{{block.text}}</p>-->
-      <!--</div>-->
-
-    <!--</div>-->
-  <!--</div>-->
-
-<!--</div>-->
-
-
-
-

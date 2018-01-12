@@ -5,7 +5,6 @@ import {IUser} from '../../../interfaces/i-user';
 import {IBlog} from '../../../interfaces/i-blog';
 import {ActivatedRoute} from '@angular/router';
 import {IBlogOptions} from '../../../interfaces/i-options';
-import {blogOptions} from '../../../data/options';
 
 @Component({
   selector: 'app-blogs-list',
@@ -30,14 +29,12 @@ blogOptions: IBlogOptions;
       .subscribe(user => this.loggedUser = user);
 
     this.route.params
-      .switchMap(params => {
-        console.log('params._id', params._id);
+      .flatMap(params => {
         this._id = params._id;
         return this.blogsService.getBlogOptions();
       })
-      .switchMap((blogOptions) => {
+      .flatMap((blogOptions) => {
         this.blogOptions = blogOptions;
-        console.log('this.blogOptions', this.blogOptions);
 
         this.blogOptions['mainPage'] = false;
         if (this._id === 'all') {
@@ -47,12 +44,9 @@ blogOptions: IBlogOptions;
           this.blogOptions['singlePostMode'] = true;
           this.searchQuery = {'_id': this._id};
         }
-        console.log('this.searchQuery', this.searchQuery);
-
         return this.blogsService.findBlogs(this.searchQuery);
       })
       .subscribe(result => {
-        console.log('result', result);
         this.blogs = result.data;
       });
   }
