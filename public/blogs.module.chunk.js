@@ -3,7 +3,7 @@ webpackJsonp(["blogs.module"],{
 /***/ "../../../../../src/app/components/blogs/blogs-list/blogs-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header>\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n<div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\" [blogOptions]=\"blogOptions\"></app-blog>\r\n</div>\r\n"
+module.exports = "<header *ngIf=\"!blogOptions.singlePostMode\">\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n<div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\" [blogOptions]=\"blogOptions\"></app-blog>\r\n</div>\r\n"
 
 /***/ }),
 
