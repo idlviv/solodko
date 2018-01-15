@@ -7,6 +7,7 @@ import { MenuHComponent } from './menu-h/menu-h.component';
 import {RouterModule} from '@angular/router';
 import { ModalImgComponent } from './modal-img/modal-img.component';
 import { BlogComponent } from './blog/blog.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { BlogComponent } from './blog/blog.component';
     Page404Component,
     MenuHComponent,
     ModalImgComponent,
-    BlogComponent
+    BlogComponent,
+    PopupComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { BlogComponent } from './blog/blog.component';
     BlogComponent,
     ModalImgComponent,
     Page404Component,
-    MenuHComponent
+    MenuHComponent,
+    PopupComponent
   ]
 })
 export class SharedModule {}

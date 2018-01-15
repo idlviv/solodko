@@ -14,7 +14,7 @@
         <i class="material-icons button-round-icon-2 text-mute">edit</i></button>
 
       <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-              class="btn button-round-2" (click)="editBlog()">
+              class="btn button-round-2" (click)="deleteBlog()">
         <i class="material-icons button-round-icon-2 text-mute">delete_forever</i></button>
     </div>
     <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->

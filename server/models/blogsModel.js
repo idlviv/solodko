@@ -52,11 +52,6 @@ module.exports.addBlog = function(newBlog) {
 
 module.exports.editBlog = function(editedBlog) {
   return new Promise(function(resolve, reject) {
-      // let query = {};
-      // if (searchQuery.type = 'object') {
-      //   query[searchQuery.query.key] = searchQuery.query.value;
-      // }
-    console.log('editedBlog', editedBlog);
       BlogsModel.update({'_id': editedBlog._id}, editedBlog)
         .then(() => {
           return resolve({success: true,  message: 'Зміни збережені'});
@@ -64,6 +59,14 @@ module.exports.editBlog = function(editedBlog) {
         .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', data: error}));
     }
   );
+};
+
+module.exports.deleteBlog = function(_id) {
+  return new Promise(function(resolve, reject) {
+    BlogsModel.remove({_id: _id})
+      .then(() => resolve({success: true, message: 'Пост видалений'}))
+      .catch(error => reject({success: false, message: 'Не вдалося видалити пост', data: error}))
+  });
 };
 
 module.exports.getBlogs = function() {
@@ -103,10 +106,4 @@ module.exports.getQueriedBlogs = function(searchQuery) {
 
 
 
-module.exports.deleteBlog = function(_id) {
-  return new Promise(function(resolve, reject) {
-    BlogsModel.remove({_id: _id})
-      .then(() => resolve({success: true, message: 'Пост видалений'}))
-      .catch(error => reject({success: false, message: 'Не вдалося видалити пост', data: error}))
-  });
-};
+

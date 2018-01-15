@@ -35,16 +35,16 @@ module.exports.editBlog = function(req, res, next) {
   } else if (!req.body.body) {
     res.json({success: false, message: 'Немає тексту повідомлення'});
   } else {
-    // const editedBlog = new BlogsModel({
-    //   title: req.body.title,
-    //   body: req.body.body,
-    //   showOnMainPage: req.body.showOnMainPage,
-    // });
-
     BlogsModel.editBlog(req.body)
       .then(result => res.json(result))
       .catch(error => res.json(error));
   }
+};
+
+module.exports.deleteBlog = function(req, res, next) {
+  BlogsModel.deleteBlog(req.params._id)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
 };
 
 module.exports.getBlogs = function(req, res, next) {
@@ -67,14 +67,6 @@ module.exports.getQueriedBlogs = function(req, res, next) {
   let searchQuery = JSON.parse(req.query.searchQuery);
 
   BlogsModel.getQueriedBlogs(searchQuery)
-    .then(result => res.json(result))
-    .catch(error => res.json(error));
-};
-
-
-
-module.exports.deleteBlog = function(req, res, next) {
-  BlogsModel.deleteBlog(req.params._id)
     .then(result => res.json(result))
     .catch(error => res.json(error));
 };

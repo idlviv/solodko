@@ -493,7 +493,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/shared/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"blog-post\">\r\n  <div class=\"row blog-post-nav\">\r\n    <div class=\"col-3 d-flex justify-content-start text-muted\">\r\n      <button *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">arrow_back</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">add_box</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">edit</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">delete_forever</i></button>\r\n    </div>\r\n    <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n         <!--class=\"col-1 d-flex justify-content-start text-muted\">-->\r\n\r\n    <!--</div>-->\r\n    <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n           <!--class=\"col-2 d-flex justify-content-end text-muted\">-->\r\n\r\n\r\n      <!--</div>-->\r\n  </div>\r\n  <div class=\"row blog-post-header\">\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n      <div class=\"blog-post-header-top\">\r\n\r\n        <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n          <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n        <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n      </div>\r\n      <div class=\"d-flex justify-content-around text-muted blog-post-header-bottom\">\r\n\r\n        <!--<div class=\"blog-post_avatar\">-->\r\n        <!--<img class=\"img-fluid\" src=\"../../../../assets/samples/my-photo180x180.png\" alt=\"main image\">-->\r\n        <!--</div>-->\r\n        <!--<div class=\"blog-post_createdBy\">Автор: <strong>{{blog.createdBy}}</strong></div>-->\r\n        <div class=\"\">\r\n          <p><i class=\"material-icons\">date_range</i>\r\n            <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n        </div>\r\n        <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n          <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>126</strong></p>\r\n        </div>\r\n        <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n          <p><i class=\"material-icons\">comment</i> Коментарів: <strong>25</strong></p>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n      <div class=\"img-container-outer\">\r\n        <div class=\"img-container-inner\">\r\n          <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n          <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n    <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n      <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n        <div class=\"blog-post-body-text\">\r\n          <p class=\"lead blog-description\">{{block.text}}</p>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n        <!--https://placehold.it/384*288-->\r\n        <div class=\"img-container-outer\">\r\n          <div class=\"img-container-inner\">\r\n            <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "\r\n<div class=\"blog-post\">\r\n  <div class=\"row blog-post-nav\">\r\n    <div class=\"col-3 d-flex justify-content-start text-muted\">\r\n      <button *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">arrow_back</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">add_box</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">edit</i></button>\r\n\r\n      <button *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n              class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n        <i class=\"material-icons button-round-icon-2 text-mute\">delete_forever</i></button>\r\n    </div>\r\n    <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n         <!--class=\"col-1 d-flex justify-content-start text-muted\">-->\r\n\r\n    <!--</div>-->\r\n    <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n           <!--class=\"col-2 d-flex justify-content-end text-muted\">-->\r\n\r\n\r\n      <!--</div>-->\r\n  </div>\r\n  <div class=\"row blog-post-header\">\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n      <div class=\"blog-post-header-top\">\r\n\r\n        <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n          <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n        <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n      </div>\r\n      <div class=\"d-flex justify-content-around text-muted blog-post-header-bottom\">\r\n\r\n        <!--<div class=\"blog-post_avatar\">-->\r\n        <!--<img class=\"img-fluid\" src=\"../../../../assets/samples/my-photo180x180.png\" alt=\"main image\">-->\r\n        <!--</div>-->\r\n        <!--<div class=\"blog-post_createdBy\">Автор: <strong>{{blog.createdBy}}</strong></div>-->\r\n        <div class=\"\">\r\n          <p><i class=\"material-icons\">date_range</i>\r\n            <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n        </div>\r\n        <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n          <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>126</strong></p>\r\n        </div>\r\n        <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n          <p><i class=\"material-icons\">comment</i> Коментарів: <strong>25</strong></p>\r\n        </div>\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n      <div class=\"img-container-outer\">\r\n        <div class=\"img-container-inner\">\r\n          <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n          <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n    <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n      <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n        <div class=\"blog-post-body-text\">\r\n          <p class=\"lead blog-description\">{{block.text}}</p>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n        <!--https://placehold.it/384*288-->\r\n        <div class=\"img-container-outer\">\r\n          <div class=\"img-container-inner\">\r\n            <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -600,6 +600,9 @@ var BlogComponent = (function () {
     };
     BlogComponent.prototype.newBlog = function () {
         this.router.navigate(['/blogs/ch/new-blog']);
+    };
+    BlogComponent.prototype.deleteBlog = function () {
+        this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);
     };
     return BlogComponent;
 }());
@@ -897,6 +900,114 @@ exports.Page404Component = Page404Component;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/shared/popup/popup.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "\n\n\n\n<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <div *ngIf=\"job === 'delete-blog'\">\n\n        <button class=\"btn\" (click)=\"deleteBlog()\">Видалити</button>\n        <button class=\"btn\" (click)=\"goBack()\">Назад</button>\n      </div>\n      </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/popup/popup.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/popup/popup.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
+var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
+var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
+var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
+var PopupComponent = (function () {
+    function PopupComponent(route, blogsService, authService, flashMessage, location) {
+        this.route = route;
+        this.blogsService = blogsService;
+        this.authService = authService;
+        this.flashMessage = flashMessage;
+        this.location = location;
+    }
+    PopupComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.url
+            .subscribe(function (url) {
+            // delete blog
+            if (url[0].path === 'delete-blog') {
+                _this.job = 'delete-blog';
+            }
+            else {
+                // somthing wrong
+                _this.flashMessage.show('Щось не так', { cssClass: 'alert-danger', timeout: 2000 });
+                _this.goBack();
+            }
+        });
+    };
+    PopupComponent.prototype.deleteBlog = function () {
+        var _this = this;
+        this.route.params
+            .flatMap(function (params) { return _this.blogsService.deleteBlog(params._id); })
+            .subscribe(function (result) {
+            if (result.success) {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-success',
+                    timeout: 2000
+                });
+            }
+            else {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 2000
+                });
+            }
+        });
+        this.location.back();
+    };
+    PopupComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    return PopupComponent;
+}());
+PopupComponent = __decorate([
+    core_1.Component({
+        selector: 'app-popup',
+        template: __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/popup/popup.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _a || Object, typeof (_b = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _b || Object, typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _d || Object, typeof (_e = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _e || Object])
+], PopupComponent);
+exports.PopupComponent = PopupComponent;
+var _a, _b, _c, _d, _e;
+//# sourceMappingURL=popup.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/shared/shared.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -917,6 +1028,7 @@ var menu_h_component_1 = __webpack_require__("../../../../../src/app/components/
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var modal_img_component_1 = __webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.ts");
 var blog_component_1 = __webpack_require__("../../../../../src/app/components/shared/blog/blog.component.ts");
+var popup_component_1 = __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.ts");
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -929,7 +1041,8 @@ SharedModule = __decorate([
             page404_component_1.Page404Component,
             menu_h_component_1.MenuHComponent,
             modal_img_component_1.ModalImgComponent,
-            blog_component_1.BlogComponent
+            blog_component_1.BlogComponent,
+            popup_component_1.PopupComponent
         ],
         imports: [
             common_1.CommonModule,
@@ -940,7 +1053,8 @@ SharedModule = __decorate([
             blog_component_1.BlogComponent,
             modal_img_component_1.ModalImgComponent,
             page404_component_1.Page404Component,
-            menu_h_component_1.MenuHComponent
+            menu_h_component_1.MenuHComponent,
+            popup_component_1.PopupComponent
         ]
     })
 ], SharedModule);
@@ -2130,8 +2244,10 @@ var BlogsService = (function () {
     BlogsService.prototype.deleteBlog = function (_id) {
         var headers = new http_1.Headers();
         headers.set('Content-Type', 'application/json');
-        headers.set('Authorization', this.authService.authToken);
-        return this.http.delete(app_config_1.config.serverUrl + 'blogs/delete-blog/' + _id, headers)
+        headers.set('Authorization', this.authService.loadToken());
+        console.log('token', this.authService.loadToken());
+        console.log('_id', _id);
+        return this.http.delete(app_config_1.config.serverUrl + 'blogs/delete-blog/' + _id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     return BlogsService;

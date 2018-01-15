@@ -90,4 +90,8 @@ export class BlogComponent implements OnInit {
     this.router.navigate(['/blogs/ch/new-blog']);
   }
 
+  deleteBlog() {
+    this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);
+  }
+
 }

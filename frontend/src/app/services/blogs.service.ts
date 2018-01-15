@@ -88,10 +88,12 @@ export class BlogsService {
   deleteBlog(_id) {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-    headers.set('Authorization', this.authService.authToken);
+    headers.set('Authorization', this.authService.loadToken());
+    console.log('token', this.authService.loadToken());
+    console.log('_id', _id);
     return this.http.delete(
       config.serverUrl + 'blogs/delete-blog/' + _id,
-      headers)
+      {headers})
       .map(res => res.json());
   }
 }

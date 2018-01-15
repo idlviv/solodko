@@ -110,9 +110,9 @@ var blogs_component_1 = __webpack_require__("../../../../../src/app/components/b
 var page404_component_1 = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
 var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var list_blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/list-blogs/list-blogs.component.ts");
-var delete_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/delete-blog/delete-blog.component.ts");
 var new_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/new-blog/new-blog.component.ts");
 var blogs_list_component_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs-list/blogs-list.component.ts");
+var popup_component_1 = __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.ts");
 var blogsRoutes = [
     {
         path: 'ch',
@@ -137,8 +137,12 @@ var blogsRoutes = [
             },
             {
                 path: 'delete-blog/:_id',
-                component: delete_blog_component_1.DeleteBlogComponent,
+                component: popup_component_1.PopupComponent,
             },
+            // {
+            //   path: 'delete-blog/:_id',
+            //   component: DeleteBlogComponent,
+            // },
             {
                 path: '**',
                 component: page404_component_1.Page404Component
