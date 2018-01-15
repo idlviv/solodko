@@ -71,7 +71,7 @@ button > i{
 .button-custom-icon-2 {
   @extend .button-round-icon;
   line-height: 2rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 //custom round buttons
@@ -192,7 +192,6 @@ body,
 
 .blog-post-nav {
   padding: .5rem 2rem;
-
   background-color: $background-color-front;
 }
 

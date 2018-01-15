@@ -52,7 +52,7 @@
       <!--body mainText-->
       <div class="form-group col-md-8">
         <label for="body.mainText">Вступ</label>
-        <textarea formControlName="mainText" rows="1"
+        <textarea formControlName="mainText" rows="5"
                   required autocomplete="false"
                   class="form-control" id="body.mainText" placeholder="Вступ"></textarea>
         <div class="invalid-alert"
@@ -138,7 +138,7 @@
                 <!--body blocks text-->
                 <div class="form-group col-md-8">
                   <label for="body.blocks.text">Текст</label>
-                  <textarea formControlName="text" rows="2"
+                  <textarea formControlName="text" rows="7"
                             required autocomplete="false"
                             class="form-control" id="body.blocks.text" placeholder="Текст"></textarea>
                   <div class="invalid-alert"
@@ -166,7 +166,8 @@
   </div>
   <!--body end-->
 
-  <button type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Запостити</button>
+  <button *ngIf="isNewPost" type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Запостити</button>
+  <button *ngIf="!isNewPost" type="submit" class="btn btn-primary btn-sm" [disabled]="!blogForm.valid">Зберегти</button>
   <button type="button" class="btn btn-danger btn-sm" (click)="goBack()">Повернутись</button>
 
 </form>

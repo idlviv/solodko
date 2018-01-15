@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {AuthService} from 'app/services/auth.service';
 import {emptyUser} from '../../../data/user';
 import {IUser} from '../../../interfaces/i-user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-blog',
@@ -26,6 +27,7 @@ export class BlogComponent implements OnInit {
   constructor(
     private location: Location,
     private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -81,7 +83,11 @@ export class BlogComponent implements OnInit {
   }
 
   editBlog() {
-    console.log('edit blog');
+    this.router.navigate(['/blogs/ch/edit-blog', this.blog._id]);
+  }
+
+  newBlog() {
+    this.router.navigate(['/blogs/ch/new-blog']);
   }
 
 }

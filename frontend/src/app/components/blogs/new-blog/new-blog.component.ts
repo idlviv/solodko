@@ -4,6 +4,8 @@ import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {IBlog} from '../../../interfaces/i-blog';
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-new-blog',
@@ -13,16 +15,21 @@ import {IBlog} from '../../../interfaces/i-blog';
 
 export class NewBlogComponent implements OnInit {
   blogs: IBlog[];
+  blog: IBlog;
   blogForm: FormGroup;
   loggedUser: any;
+  isNewPost: boolean = true;
 
   constructor(
     private blogsService: BlogsService,
     private authService: AuthService,
     private flashMessage: FlashMessagesService,
+    private route: ActivatedRoute,
+    private location: Location,
   ) {}
 
   ngOnInit() {
+
     this.blogForm = new FormGroup({
         title: new FormControl('', [
           Validators.required,
@@ -50,8 +57,33 @@ export class NewBlogComponent implements OnInit {
       },
     );
 
+    this.route.url
+      .subscribe(url => {
+        if (url[0].path = 'edit-blog') {
+          console.log('werwerwerwer', url);
+          this.isNewPost = false;
+          this.route.params
+            .flatMap((params) => this.blogsService.findBlogs({'_id': params._id}))
+            .subscribe(result => {
+              if (result.data) {
+                this.blog = result.data[0];
+
+                console.log(this.blog);
+                for (let i = 0; i < this.blog.body.components.length; i++) {
+                  this.addComponent();
+                }
+                for (let i = 0; i < this.blog.body.blocks.length - 1; i++) {
+                  this.addBlock();
+                }
+                this.blogForm.patchValue(result.data[0]);
+              }
+            });
+        }
+      });
+
     this.authService.getLoggedUser()
       .subscribe(user => this.loggedUser = user);
+
   }
 
   initComponents() {
@@ -93,49 +125,65 @@ export class NewBlogComponent implements OnInit {
   }
 
   onBlogSubmit() {
-    // this.addComponent();
     if (!this.blogForm.value.showOnMainPage) {
       this.blogForm.value.showOnMainPage = false;
     }
     this.blogForm.value['createdBy_id'] = this.loggedUser._id;
-    // const newBlog = {
-    //   title: this.blogForm.value.title,
-    //   body: {
-    //     mainImage: this.blogForm.get('body').get('mainImage').value,
-    //     mainText: this.blogForm.get('body').get('mainText').value,
-    //     components: {
-    //       material: this.blogForm.get('body').get('components').get('material').value,
-    //       // quantity: this.blogForm.get('body').get('components').get('quantity').value,
-    //       // unit: this.blogForm.get('body').get('components').get('unit').value,
-    //     }
-    //   },
-    //   showOnMainPage: this.blogForm.value.showOnMainPage,
-    //   createdBy_id: this.loggedUser._id
-    // };
-    // console.log('newBlog', newBlog);
 
-    console.log('this.blogForm.value', this.blogForm.value);
-    console.log('this.blogForm', this.blogForm);
+    if (this.isNewPost) {
+      // new post
+      this.blogsService.addBlog(this.blogForm.value)
+        .subscribe(result => {
+          if (result.success) {
+            this.blogForm.reset();
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-success',
+                timeout: 2000
+              });
+          } else {
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-danger',
+                timeout: 2000
+              });
+          }
+        });
+    } else {
+      //edit post
+      this.blogsService.editBlog(this.blogForm.value)
+        .subscribe(result => {
+          if (result.success) {
+            this.isNewPost = true;
+            this.blogForm.reset();
+            this.goBack();
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-success',
+                timeout: 2000
+              });
+          } else {
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-danger',
+                timeout: 2000
+              });
+          }
+        });
 
-    this.blogsService.addBlog(this.blogForm.value)
-      .subscribe(result => {
-        if (result.success) {
-          this.blogForm.reset();
-          this.flashMessage.show(
-            result.message,
-            {
-              cssClass: 'alert-success',
-              timeout: 2000
-            });
-        } else {
-          this.flashMessage.show(
-            result.message,
-            {
-              cssClass: 'alert-danger',
-              timeout: 2000
-            });
-        }
-      });
+    }
+
+
+
+  }
+
+  goBack() {
+    // this.router.navigate(['/blogs/ch/list-blogs']);
+    this.location.back();
   }
 
 }

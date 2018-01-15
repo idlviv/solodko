@@ -31,7 +31,7 @@ const blogsRoutes: Routes = [
       },
       {
         path: 'edit-blog/:_id',
-        component: EditBlogComponent,
+        component: NewBlogComponent,
       },
       {
         path: 'delete-blog/:_id',

@@ -37,8 +37,10 @@ module.exports.getBlogs = function(req, res, next) {
 };
 
 module.exports.findBlogs = function(req, res, next) {
+  if (!req.query.searchQuery) {
+    return res.json([]);
+  }
   let searchQuery = JSON.parse(req.query.searchQuery);
-
   BlogsModel.findBlogs(searchQuery)
     .then(result => res.json(result))
     .catch(error => res.json(error));

@@ -1,16 +1,31 @@
 
 <div class="blog-post">
   <div class="row blog-post-nav">
-      <div class="col-3 d-flex justify-content-start text-muted">
-        <button *ngIf="blogOptions.singlePostMode" class="btn button-custom-2" (click)="goBack()">
-          <i class="material-icons button-custom-icon-2">arrow_back</i></button>
-      </div>
-      <div class="col-3 d-flex justify-content-end text-muted">
+    <div class="col-3 d-flex justify-content-start text-muted">
+      <button *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
+        <i class="material-icons button-round-icon-2 text-mute">arrow_back</i></button>
 
-        <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-                class="btn button-custom-2" (click)="editBlog()">
-          <i class="material-icons button-custom-icon-2">edit</i></button>
-      </div>
+      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+              class="btn button-round-2" (click)="newBlog()">
+        <i class="material-icons button-round-icon-2 text-mute">add_box</i></button>
+
+      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+              class="btn button-round-2" (click)="editBlog()">
+        <i class="material-icons button-round-icon-2 text-mute">edit</i></button>
+
+      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+              class="btn button-round-2" (click)="editBlog()">
+        <i class="material-icons button-round-icon-2 text-mute">delete_forever</i></button>
+    </div>
+    <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
+         <!--class="col-1 d-flex justify-content-start text-muted">-->
+
+    <!--</div>-->
+    <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
+           <!--class="col-2 d-flex justify-content-end text-muted">-->
+
+
+      <!--</div>-->
   </div>
   <div class="row blog-post-header">
     <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
