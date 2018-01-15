@@ -37,7 +37,6 @@ let BlogsModel = mongoose.model('blogs', BlogsSchema);
 module.exports = BlogsModel;
 
 module.exports.addBlog = function(newBlog) {
-  console.log('newBlog', newBlog);
   return new Promise(function(resolve, reject) {
     newBlog.save(newBlog)
       .then(() => resolve({success: true, message: 'Новий пост зареєстровано'}))
@@ -49,6 +48,22 @@ module.exports.addBlog = function(newBlog) {
         }
       });
   });
+};
+
+module.exports.editBlog = function(editedBlog) {
+  return new Promise(function(resolve, reject) {
+      // let query = {};
+      // if (searchQuery.type = 'object') {
+      //   query[searchQuery.query.key] = searchQuery.query.value;
+      // }
+    console.log('editedBlog', editedBlog);
+      BlogsModel.update({'_id': editedBlog._id}, editedBlog)
+        .then(() => {
+          return resolve({success: true,  message: 'Зміни збережені'});
+        })
+        .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', data: error}));
+    }
+  );
 };
 
 module.exports.getBlogs = function() {
@@ -86,20 +101,7 @@ module.exports.getQueriedBlogs = function(searchQuery) {
   );
 };
 
-module.exports.editBlog = function(searchQuery) {
-  return new Promise(function(resolve, reject) {
-      let query = {};
-      if (searchQuery.type = 'object') {
-        query[searchQuery.query.key] = searchQuery.query.value;
-      }
-      BlogsModel.update(query, searchQuery.data)
-        .then(() => {
-          return resolve({success: true,  message: 'Зміни збережені'});
-        })
-        .catch((error) => reject({success: false, message: 'Не вдалося зберегти зміни', data: error}));
-    }
-  );
-};
+
 
 module.exports.deleteBlog = function(_id) {
   return new Promise(function(resolve, reject) {

@@ -30,11 +30,13 @@ router.get(
 
 router.put(
   '/edit-blog',
+  passport.authenticate('jwt.manager.admin', {session: false}),
   BlogsController.editBlog
 );
 
 router.delete(
   '/delete-blog/:_id',
+  passport.authenticate('jwt.manager.admin', {session: false}),
   BlogsController.deleteBlog
 );
 

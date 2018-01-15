@@ -321,7 +321,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
 
 /***/ }),
 
@@ -952,7 +952,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
+module.exports = "<p>\n  cart works!\n</p>\n"
 
 /***/ }),
 
@@ -2081,10 +2081,21 @@ var BlogsService = (function () {
     };
     BlogsService.prototype.addBlog = function (newBlog) {
         var headers = new http_1.Headers();
-        this.authService.loadToken();
-        headers.set('Authorization', this.authService.authToken);
+        // this.authService.loadToken();
+        headers.set('Authorization', this.authService.loadToken());
         headers.set('Content-Type', 'application/json');
         return this.http.post(app_config_1.config.serverUrl + 'blogs/add-blog', newBlog, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    BlogsService.prototype.editBlog = function (editedBlog) {
+        console.log('editedBlog', editedBlog);
+        var headers = new http_1.Headers();
+        headers.set('Content-Type', 'application/json');
+        headers.set('Authorization', this.authService.loadToken());
+        // const params = new URLSearchParams();
+        // params.set('searchQuery', JSON.stringify(searchQuery));
+        // const options = new RequestOptions({ headers: headers, params: params });
+        return this.http.put(app_config_1.config.serverUrl + 'blogs/edit-blog', editedBlog, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     BlogsService.prototype.getBlogs = function () {
@@ -2114,16 +2125,6 @@ var BlogsService = (function () {
         params.set('searchQuery', JSON.stringify(searchQuery));
         var options = new http_1.RequestOptions({ headers: headers, params: params });
         return this.http.get(app_config_1.config.serverUrl + 'blogs/get-queried-blogs', options)
-            .map(function (res) { return res.json(); });
-    };
-    BlogsService.prototype.editBlog = function (searchQuery) {
-        var headers = new http_1.Headers();
-        headers.set('Content-Type', 'application/json');
-        headers.set('Authorization', this.authService.authToken);
-        // const params = new URLSearchParams();
-        // params.set('searchQuery', JSON.stringify(searchQuery));
-        // const options = new RequestOptions({ headers: headers, params: params });
-        return this.http.put(app_config_1.config.serverUrl + 'blogs/edit-blog', { searchQuery: JSON.stringify(searchQuery) }, headers)
             .map(function (res) { return res.json(); });
     };
     BlogsService.prototype.deleteBlog = function (_id) {

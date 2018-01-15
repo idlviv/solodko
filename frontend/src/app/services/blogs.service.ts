@@ -20,13 +20,27 @@ export class BlogsService {
 
   addBlog(newBlog) {
     const headers = new Headers();
-    this.authService.loadToken();
-    headers.set('Authorization', this.authService.authToken);
+    // this.authService.loadToken();
+    headers.set('Authorization', this.authService.loadToken());
     headers.set('Content-Type', 'application/json');
     return this.http.post(
       config.serverUrl + 'blogs/add-blog',
       newBlog,
-      {headers: headers})
+      {headers})
+      .map(res => res.json());
+  }
+  editBlog(editedBlog) {
+    console.log('editedBlog', editedBlog);
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.loadToken());
+    // const params = new URLSearchParams();
+    // params.set('searchQuery', JSON.stringify(searchQuery));
+    // const options = new RequestOptions({ headers: headers, params: params });
+    return this.http.put(
+      config.serverUrl + 'blogs/edit-blog',
+      editedBlog,
+      {headers})
       .map(res => res.json());
   }
 
@@ -69,19 +83,7 @@ export class BlogsService {
       .map(res => res.json());
   }
 
-  editBlog(searchQuery) {
-    const headers = new Headers();
-    headers.set('Content-Type', 'application/json');
-    headers.set('Authorization', this.authService.authToken);
-    // const params = new URLSearchParams();
-    // params.set('searchQuery', JSON.stringify(searchQuery));
-    // const options = new RequestOptions({ headers: headers, params: params });
-    return this.http.put(
-      config.serverUrl + 'blogs/edit-blog',
-      {searchQuery: JSON.stringify(searchQuery)},
-      headers)
-      .map(res => res.json());
-  }
+
 
   deleteBlog(_id) {
     const headers = new Headers();

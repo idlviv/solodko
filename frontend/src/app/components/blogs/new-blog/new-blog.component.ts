@@ -18,7 +18,8 @@ export class NewBlogComponent implements OnInit {
   blog: IBlog;
   blogForm: FormGroup;
   loggedUser: any;
-  isNewPost: boolean = true;
+  isNewPost = true;
+  // edited_id: IBlog;
 
   constructor(
     private blogsService: BlogsService,
@@ -57,21 +58,19 @@ export class NewBlogComponent implements OnInit {
       },
     );
 
-    console.log('this.route.snapshot.url', this.route.snapshot);
     this.route.url
       .subscribe(url => {
-        if (url[0].path = 'edit-blog') {
-
-          console.log('this.route.snapshot', this.route.snapshot);
-          console.log('url', url);
+        if (url[0].path === 'edit-blog') {
           this.isNewPost = false;
           this.route.params
-            .flatMap((params) => this.blogsService.findBlogs({'_id': params._id}))
+            .flatMap((params) => {
+              // this.edited_id = params._id;
+              return this.blogsService.findBlogs({'_id': params._id});
+            })
             .subscribe(result => {
               if (result.data) {
                 this.blog = result.data[0];
 
-                console.log(this.blog);
                 for (let i = 0; i < this.blog.body.components.length; i++) {
                   this.addComponent();
                 }
@@ -155,12 +154,13 @@ export class NewBlogComponent implements OnInit {
           }
         });
     } else {
-      //edit post
+      // edit post
+      const editedPost = this.blogForm.value;
+      editedPost['_id'] = this.blog._id;
       this.blogsService.editBlog(this.blogForm.value)
         .subscribe(result => {
           if (result.success) {
             this.isNewPost = true;
-            this.blogForm.reset();
             this.goBack();
             this.flashMessage.show(
               result.message,
@@ -177,7 +177,6 @@ export class NewBlogComponent implements OnInit {
               });
           }
         });
-
     }
 
 
