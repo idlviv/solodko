@@ -1,14 +1,16 @@
 
 <div class="blog-post">
   <div class="row blog-post-nav">
-    <div class="col-md-6 d-flex justify-content-left text-muted">
-      <button *ngIf="blogOptions.singlePostMode" class="btn button-custom-2" (click)="goBack()">
-        <i class="material-icons button-custom-icon-2">arrow_back</i></button>
+      <div class="col-3 d-flex justify-content-start text-muted">
+        <button *ngIf="blogOptions.singlePostMode" class="btn button-custom-2" (click)="goBack()">
+          <i class="material-icons button-custom-icon-2">arrow_back</i></button>
+      </div>
+      <div class="col-3 d-flex justify-content-end text-muted">
 
-    </div>
-    <div class="col-md-6">
-
-    </div>
+        <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+                class="btn button-custom-2" (click)="editBlog()">
+          <i class="material-icons button-custom-icon-2">edit</i></button>
+      </div>
   </div>
   <div class="row blog-post-header">
     <div class="col-md-6 align-self-center" [ngClass]="orderMainText">

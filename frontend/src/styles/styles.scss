@@ -49,18 +49,17 @@ button > i{
 
 // apply box shadow for all buttons
 .btn {
-   @include boxShadow(0)
+   @include boxShadow(1)
 }
 
-.btn:hover {
-  @include boxShadow(1)
-}
+//.btn:hover {
+//  @include boxShadow(1)
+//}
 
 //custom buttons
 .button-custom {
   padding: 0;
-  @include radius(5%);
-  //border-radius: 50%;
+  @include radius(10%);
 }
 
 .button-custom-2 {
@@ -192,7 +191,7 @@ body,
 }
 
 .blog-post-nav {
-  padding: 1rem 2rem;
+  padding: .5rem 2rem;
 
   background-color: $background-color-front;
 }
@@ -214,7 +213,7 @@ body,
 .blog-post-header-top {
   @extend .blog-header;
   border-bottom: 0;
-  padding-top: 2rem;
+  //padding-top: 2rem;
 }
 
 .blog-post-header-title {

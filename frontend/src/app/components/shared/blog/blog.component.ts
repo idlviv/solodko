@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import {IBlog} from '../../../interfaces/i-blog';
 import {IBlogOptions} from '../../../interfaces/i-options';
 import {Location} from '@angular/common';
+import {AuthService} from 'app/services/auth.service';
+import {emptyUser} from '../../../data/user';
+import {IUser} from '../../../interfaces/i-user';
 
 @Component({
   selector: 'app-blog',
@@ -18,14 +21,20 @@ export class BlogComponent implements OnInit {
   orderMainImage: any;
   orderMainText: any;
   startOrder: number;
+  user: IUser = emptyUser; // = this.guest;
 
   constructor(
     private location: Location,
+    private authService: AuthService,
   ) { }
 
   ngOnInit() {
     this.getMainImageOrderStyle();
 
+    this.authService.getLoggedUser()
+      .subscribe(
+        user => this.user = user
+      );
   }
 
   getMainImageOrderStyle() {
@@ -69,6 +78,10 @@ export class BlogComponent implements OnInit {
 
   goBack() {
     this.location.back();
+  }
+
+  editBlog() {
+    console.log('edit blog');
   }
 
 }
