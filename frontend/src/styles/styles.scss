@@ -49,14 +49,49 @@ button > i{
 
 // apply box shadow for all buttons
 .btn {
- @include boxShadow(1)
+   @include boxShadow(0)
 }
 
-// custom buttons
+.btn:hover {
+  @include boxShadow(1)
+}
+
+//custom buttons
+.button-custom {
+  padding: 0;
+  @include radius(5%);
+  //border-radius: 50%;
+}
+
+.button-custom-2 {
+  @extend .button-custom;
+  width: 2rem;
+  height: 2rem;
+}
+
+.button-custom-icon-2 {
+  @extend .button-round-icon;
+  line-height: 2rem;
+  font-size: 1.2rem;
+}
+
+//custom round buttons
 .button-round {
   padding: 0;
   @include radius(50%);
   //border-radius: 50%;
+}
+
+.button-round-2 {
+  @extend .button-round;
+  width: 2rem;
+  height: 2rem;
+}
+
+.button-round-icon-2 {
+  @extend .button-round-icon;
+  line-height: 2rem;
+  font-size: 1.2rem;
 }
 
 .button-round-icon {
