@@ -57,10 +57,13 @@ export class NewBlogComponent implements OnInit {
       },
     );
 
+    console.log('this.route.snapshot.url', this.route.snapshot);
     this.route.url
       .subscribe(url => {
         if (url[0].path = 'edit-blog') {
-          console.log('werwerwerwer', url);
+
+          console.log('this.route.snapshot', this.route.snapshot);
+          console.log('url', url);
           this.isNewPost = false;
           this.route.params
             .flatMap((params) => this.blogsService.findBlogs({'_id': params._id}))

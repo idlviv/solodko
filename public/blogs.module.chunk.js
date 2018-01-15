@@ -803,10 +803,12 @@ var NewBlogComponent = (function () {
             }),
             showOnMainPage: new forms_1.FormControl('', []),
         });
+        console.log('this.route.snapshot.url', this.route.snapshot);
         this.route.url
             .subscribe(function (url) {
             if (url[0].path = 'edit-blog') {
-                console.log('werwerwerwer', url);
+                console.log('this.route.snapshot', _this.route.snapshot);
+                console.log('url', url);
                 _this.isNewPost = false;
                 _this.route.params
                     .flatMap(function (params) { return _this.blogsService.findBlogs({ '_id': params._id }); })
