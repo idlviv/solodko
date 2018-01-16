@@ -6,7 +6,7 @@ webpackJsonp(["styles"],{
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"plugins\":[null,null,null,null],\"sourceMap\":false}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss");
+var content = __webpack_require__("../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":false}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__("../../../../style-loader/addStyles.js")(content, {});
@@ -27,7 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"plugins\":[null,null,null,null],\"sourceMap\":false}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss":
+/***/ "../../../../css-loader/index.js?{\"sourceMap\":false,\"importLoaders\":1}!../../../../postcss-loader/lib/index.js?{\"ident\":\"postcss\",\"sourceMap\":false}!../../../../sass-loader/lib/loader.js?{\"sourceMap\":false,\"precision\":8,\"includePaths\":[\"D:\\\\it\\\\pNode\\\\solodko\\\\frontend\\\\src\\\\styles\"]}!../../../../../src/styles/styles.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);

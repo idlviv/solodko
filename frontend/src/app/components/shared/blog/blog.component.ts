@@ -6,6 +6,7 @@ import {AuthService} from 'app/services/auth.service';
 import {emptyUser} from '../../../data/user';
 import {IUser} from '../../../interfaces/i-user';
 import {Router} from '@angular/router';
+declare const $: any;
 
 @Component({
   selector: 'app-blog',
@@ -91,7 +92,10 @@ export class BlogComponent implements OnInit {
   }
 
   deleteBlog() {
-    this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);
+
+    $('#popupModal').modal('show');
+
+    // this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);
   }
 
 }
