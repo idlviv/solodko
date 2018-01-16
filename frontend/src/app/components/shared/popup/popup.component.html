@@ -12,15 +12,18 @@
         </button>
       </div>
       <div class="modal-body">
-        <div *ngIf="job === 'delete-blog'">
 
-        <button class="btn" (click)="deleteBlog()">Видалити</button>
-        <button class="btn" (click)="goBack()">Назад</button>
-      </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <div *ngIf="job === 'delete-blog'">
+          <button class="btn" (click)="deleteBlog()">Видалити</button>
+          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+
+          <button class="btn" data-dismiss="modal">Відмінити</button>
+        </div>
+
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
   </div>

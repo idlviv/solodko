@@ -24,6 +24,7 @@ export class BlogComponent implements OnInit {
   orderMainText: any;
   startOrder: number;
   user: IUser = emptyUser; // = this.guest;
+  job: string;
 
   constructor(
     private location: Location,
@@ -92,7 +93,7 @@ export class BlogComponent implements OnInit {
   }
 
   deleteBlog() {
-
+    this.job = 'delete-blog';
     $('#popupModal').modal('show');
 
     // this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);

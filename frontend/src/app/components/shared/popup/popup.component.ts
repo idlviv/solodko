@@ -5,6 +5,7 @@ import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Location} from '@angular/common';
 import {IBlog} from '../../../interfaces/i-blog';
+declare const $: any;
 
 
 @Component({
@@ -13,8 +14,8 @@ import {IBlog} from '../../../interfaces/i-blog';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  job: string;
   @Input() blog: IBlog;
+  @Input() job: string;
 
 
   constructor(
@@ -29,11 +30,13 @@ export class PopupComponent implements OnInit {
     // this.route.url
     //   .subscribe(url => {
     //
+
         // delete blog
-        // if (url[0].path === 'delete-blog') {
-        //   this.job = 'delete-blog';
-        // } else {
-        //   // somthing wrong
+        // if (this.job === 'delete-blog') {
+        //   this.deleteBlog();
+        // }
+        // else {
+        //   // something wrong
         //   this.flashMessage.show(
         //     'Щось не так',
         //     {cssClass: 'alert-danger', timeout: 2000});
@@ -62,6 +65,8 @@ export class PopupComponent implements OnInit {
           }
         }
       );
+    // $('#popupModal').modal('hide');
+    //
     // this.location.back();
   }
 
