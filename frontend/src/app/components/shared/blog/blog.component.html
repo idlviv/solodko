@@ -2,20 +2,20 @@
 <div class="blog-post">
   <div class="row blog-post-nav">
     <div class="col-3 d-flex justify-content-start text-muted">
-      <button *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
-        <i class="material-icons button-round-icon-2 text-mute">arrow_back</i></button>
+      <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
+        <i class="material-icons button-round-icon-2">arrow_back</i></a>
 
-      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
               class="btn button-round-2" (click)="newBlog()">
-        <i class="material-icons button-round-icon-2 text-mute">add_box</i></button>
+        <i class="material-icons button-round-icon-2">add_box</i></a>
 
-      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
               class="btn button-round-2" (click)="editBlog()">
-        <i class="material-icons button-round-icon-2 text-mute">edit</i></button>
+        <i class="material-icons button-round-icon-2">edit</i></a>
 
-      <button *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
               class="btn button-round-2" (click)="deleteBlog()">
-        <i class="material-icons button-round-icon-2 text-mute">delete_forever</i></button>
+        <i class="material-icons button-round-icon-2">delete_forever</i></a>
     </div>
     <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
          <!--class="col-1 d-flex justify-content-start text-muted">-->
@@ -84,3 +84,6 @@
     </div>
   </div>
 </div>
+
+<app-popup [blog]="blog" [job]="job"></app-popup>
+

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Location} from '@angular/common';
+import {IBlog} from '../../../interfaces/i-blog';
+declare const $: any;
 
 
 @Component({
@@ -12,7 +14,9 @@ import {Location} from '@angular/common';
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  job: string;
+  @Input() blog: IBlog;
+  @Input() job: string;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -23,25 +27,26 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.url
-      .subscribe(url => {
+    // this.route.url
+    //   .subscribe(url => {
+    //
 
         // delete blog
-        if (url[0].path === 'delete-blog') {
-          this.job = 'delete-blog';
-        } else {
-          // somthing wrong
-          this.flashMessage.show(
-            'Щось не так',
-            {cssClass: 'alert-danger', timeout: 2000});
-          this.goBack();
-        }
-      });
+        // if (this.job === 'delete-blog') {
+        //   this.deleteBlog();
+        // }
+        // else {
+        //   // something wrong
+        //   this.flashMessage.show(
+        //     'Щось не так',
+        //     {cssClass: 'alert-danger', timeout: 2000});
+        //   this.goBack();
+    //     }
+    //   });
   }
 
   deleteBlog() {
-    this.route.params
-      .flatMap(params => this.blogsService.deleteBlog(params._id))
+    this.blogsService.deleteBlog(this.blog._id)
       .subscribe(result => {
           if (result.success) {
             this.flashMessage.show(
@@ -60,7 +65,9 @@ export class PopupComponent implements OnInit {
           }
         }
       );
-    this.location.back();
+    // $('#popupModal').modal('hide');
+    //
+    // this.location.back();
   }
 
   goBack() {
