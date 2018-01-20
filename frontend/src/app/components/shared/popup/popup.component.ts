@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../../services/auth.service';
 import {BlogsService} from '../../../services/blogs.service';
@@ -16,6 +16,7 @@ declare const $: any;
 export class PopupComponent implements OnInit {
   @Input() blog: IBlog;
   @Input() job: string;
+  @Output() onDeletePopEmitter = new EventEmitter<boolean>();
 
 
   constructor(
@@ -27,28 +28,14 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.route.url
-    //   .subscribe(url => {
-    //
-
-        // delete blog
-        // if (this.job === 'delete-blog') {
-        //   this.deleteBlog();
-        // }
-        // else {
-        //   // something wrong
-        //   this.flashMessage.show(
-        //     'Щось не так',
-        //     {cssClass: 'alert-danger', timeout: 2000});
-        //   this.goBack();
-    //     }
-    //   });
   }
 
   deleteBlog() {
     this.blogsService.deleteBlog(this.blog._id)
       .subscribe(result => {
           if (result.success) {
+            $('#popupModal').modal('hide');
+            this.onDeletePopEmitter.emit();
             this.flashMessage.show(
               result.message,
               {
@@ -63,11 +50,7 @@ export class PopupComponent implements OnInit {
                 timeout: 2000
               });
           }
-        }
-      );
-    // $('#popupModal').modal('hide');
-    //
-    // this.location.back();
+        });
   }
 
   goBack() {

@@ -27,7 +27,10 @@ blogOptions: IBlogOptions;
   ngOnInit() {
     this.authService.getLoggedUser()
       .subscribe(user => this.loggedUser = user);
+    this.reloadBlogs();
+  }
 
+  reloadBlogs() {
     this.route.params
       .flatMap(params => {
         this._id = params._id;
@@ -49,5 +52,9 @@ blogOptions: IBlogOptions;
       .subscribe(result => {
         this.blogs = result.data;
       });
+  }
+
+  onDelete() {
+    this.reloadBlogs();
   }
 }

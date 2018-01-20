@@ -26,19 +26,29 @@ export class HomeBlogComponent implements OnInit {
         value: 'true'
       }
     };
-    this.blogsService.getQueriedBlogs(this.searchQuery)
-      .subscribe(blogs => {
-        if (blogs.success) {
-          this.blogs = blogs.data;
-        }
-      }
-      );
+
+    this.reloadBlogs();
+
     this.blogsService.getBlogOptions()
       .subscribe((blogOptions) => {
         this.blogOptions = blogOptions;
         this.blogOptions['mainPage'] = true;
         this.blogOptions['singlePostMode'] = false;
       });
+  }
+
+  reloadBlogs() {
+    this.blogsService.getQueriedBlogs(this.searchQuery)
+      .subscribe(blogs => {
+          if (blogs.success) {
+            this.blogs = blogs.data;
+          }
+        }
+      );
+  }
+
+  onDelete() {
+    this.reloadBlogs();
   }
 
 }

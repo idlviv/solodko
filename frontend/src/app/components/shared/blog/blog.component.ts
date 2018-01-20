@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {IBlog} from '../../../interfaces/i-blog';
 import {IBlogOptions} from '../../../interfaces/i-options';
 import {Location} from '@angular/common';
@@ -18,6 +18,7 @@ export class BlogComponent implements OnInit {
   @Input() blog: IBlog;
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
+  @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
 
   // onMain: boolean;
   orderMainImage: any;
@@ -95,8 +96,10 @@ export class BlogComponent implements OnInit {
   deleteBlog() {
     this.job = 'delete-blog';
     $('#popupModal').modal('show');
+  }
 
-    // this.router.navigate(['/blogs/ch/delete-blog/', this.blog._id]);
+  onDelete() {
+    this.onDeleteBlogEmitter.emit();
   }
 
 }
