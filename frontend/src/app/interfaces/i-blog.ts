@@ -26,4 +26,5 @@ export interface IBlog {
     comment: string,
     commentator: string,
   }];
+  views: number;
 }

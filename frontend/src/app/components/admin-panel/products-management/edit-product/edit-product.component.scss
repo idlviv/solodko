@@ -1,5 +1,11 @@
 @import '~styles/styles';
 
+.table {
+  td{
+    vertical-align: middle;
+  }
+}
+
 .active {
   background-color: rgba(159, 222, 197, 0.5);
   color: white;

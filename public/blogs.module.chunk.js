@@ -115,16 +115,14 @@ var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs.component.ts");
 var page404_component_1 = __webpack_require__("../../../../../src/app/components/shared/page404/page404.component.ts");
-var auth_user_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-user.guard.ts");
 var list_blogs_component_1 = __webpack_require__("../../../../../src/app/components/blogs/list-blogs/list-blogs.component.ts");
 var new_blog_component_1 = __webpack_require__("../../../../../src/app/components/blogs/new-blog/new-blog.component.ts");
 var blogs_list_component_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs-list/blogs-list.component.ts");
-var popup_component_1 = __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.ts");
+var auth_manager_guard_1 = __webpack_require__("../../../../../src/app/guards/auth-manager.guard.ts");
 var blogsRoutes = [
     {
         path: 'ch',
         component: blogs_component_1.BlogsComponent,
-        canActivateChild: [auth_user_guard_1.AuthUserGuard],
         children: [
             {
                 path: 'list-blogs',
@@ -137,15 +135,18 @@ var blogsRoutes = [
             {
                 path: 'new-blog',
                 component: new_blog_component_1.NewBlogComponent,
+                canActivate: [auth_manager_guard_1.AuthManagerGuard],
             },
             {
                 path: 'edit-blog/:_id',
                 component: new_blog_component_1.NewBlogComponent,
+                canActivate: [auth_manager_guard_1.AuthManagerGuard],
             },
-            {
-                path: 'delete-blog/:_id',
-                component: popup_component_1.PopupComponent,
-            },
+            // {
+            //   path: 'delete-blog/:_id',
+            //   component: PopupComponent,
+            //   canActivate: [AuthManagerGuard],
+            // },
             // {
             //   path: 'delete-blog/:_id',
             //   component: DeleteBlogComponent,

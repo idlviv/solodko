@@ -28,7 +28,7 @@
           <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
       </div>
       <div *ngIf="blogOptions.showViews" class="">
-        <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>126</strong></p>
+        <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>
       </div>
       <div *ngIf="blogOptions.showComments" class="">
         <p><i class="material-icons">comment</i> Коментарів: <strong>25</strong></p>
