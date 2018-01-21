@@ -37,11 +37,24 @@ const BlogsSchema = new Schema({
 let BlogsModel = mongoose.model('blogs', BlogsSchema);
 module.exports = BlogsModel;
 
+module.exports.addComment = function(newComment) {
+  return new Promise(function(resolve, reject) {
+    BlogsModel.updateOne(
+      {_id: newComment.blog},
+      {$push: {comments: {
+        comment: newComment.comment,
+        commentator: newComment.commentator
+      }}})
+      .then(() => resolve({success: true, message: 'Коментар добавлено'}))
+      .catch((error) => reject({success: false, message: 'Коментар не добавлено', data: error}))
+  });
+};
+
 updateViews = function(_id) {
   return new Promise(function(resolve, reject) {
     BlogsModel.updateOne({'_id': _id}, {$inc: {views: 1}})
       .then(() => resolve({success: true, message: 'К-ть переглядів збільшено на 1'}))
-      .catch((error) => reject({success: false, message: 'К-ть переглядів не збільшено на 1', error}))
+      .catch((error) => reject({success: false, message: 'К-ть переглядів не збільшено на 1', data: error}))
   });
 };
 

@@ -3,6 +3,7 @@ import {IBlog} from '../../../interfaces/i-blog';
 import {IUser} from '../../../interfaces/i-user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlogsService} from '../../../services/blogs.service';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-comment-form',
@@ -16,6 +17,7 @@ export class CommentFormComponent implements OnInit {
 
   constructor(
     private blogsService: BlogsService,
+    private flashMessage: FlashMessagesService,
   ) { }
 
   ngOnInit() {
@@ -35,10 +37,33 @@ export class CommentFormComponent implements OnInit {
       comment: this.commentForm.get('comment').value
     };
     this.blogsService.postComment(newComment)
-      .subscribe();
+      .subscribe(
+        result => {
+          if (result.success) {
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-success',
+                timeout: 2000
+              });
+          } else {
+            this.flashMessage.show(
+              result.message,
+              {
+                cssClass: 'alert-danger',
+                timeout: 2000
+              });
+          }
+        },
+        error => {
+          this.flashMessage.show(
+            'Помилка',
+            {
+              cssClass: 'alert-danger',
+              timeout: 2000
+            });
+        }
+      );
 
-    console.log('user._id', this.user._id);
-    console.log('blog._id', this.blog._id);
-    console.log('comment', this.commentForm.get('comment').value);
   }
 }

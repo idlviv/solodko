@@ -88,6 +88,7 @@
   </div>
 </div>
 
+<app-comment *ngIf="blog.comments[0]" [blog]="blog"></app-comment>
 <app-comment-form *ngIf="blogOptions.singlePostMode" [blog]="blog" [user]="user"></app-comment-form>
 
 <app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>
