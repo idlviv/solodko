@@ -26,6 +26,7 @@ export class BlogComponent implements OnInit {
   startOrder: number;
   user: IUser = emptyUser; // = this.guest;
   job: string;
+  showCommentForm: false;
 
   constructor(
     private location: Location,

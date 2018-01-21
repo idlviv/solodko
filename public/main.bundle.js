@@ -493,7 +493,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/shared/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"blog-post\">\r\n  <div class=\"row blog-post-nav\">\r\n    <div class=\"col-md-3 d-flex justify-content-start align-items-center text-muted\">\r\n      <p>\r\n        <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n          <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n      </p>\r\n    </div>\r\n\r\n    <div class=\"col-md-3\"></div>\r\n\r\n    <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n      <div class=\"\">\r\n        <p><i class=\"material-icons\">date_range</i>\r\n          <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n      </div>\r\n      <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n        <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n      </div>\r\n      <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n        <p><i class=\"material-icons\">comment</i> Коментарів: <strong>25</strong></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row blog-post-header\">\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n      <div class=\"blog-post-header-top\">\r\n\r\n        <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n          <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n        <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n      </div>\r\n\r\n      <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n        <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n        <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n            <p><i class=\"material-icons\">extension</i>\r\n              <strong>{{component.material}} </strong>\r\n              {{component.quantity}}\r\n              {{component.unit}}</p>\r\n        </div>\r\n      </div>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n      <div class=\"img-container-outer\">\r\n        <div class=\"img-container-inner\">\r\n          <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n          <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n    <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n      <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n        <div class=\"blog-post-body-text\">\r\n          <p class=\"lead blog-description\">{{block.text}}</p>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n        <!--https://placehold.it/384*288-->\r\n        <div class=\"img-container-outer\">\r\n          <div class=\"img-container-inner\">\r\n            <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<app-popup [blog]=\"blog\" [job]=\"job\" (onDeletePopEmitter)=\"onDelete()\"></app-popup>\r\n\r\n"
+module.exports = "\r\n<div class=\"blog-post\">\r\n  <div class=\"row blog-post-nav\">\r\n    <div class=\"col-md-3 d-flex justify-content-start align-items-center text-muted\">\r\n      <p>\r\n        <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n          <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n          <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n      </p>\r\n    </div>\r\n\r\n    <div class=\"col-md-3\"></div>\r\n\r\n    <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n      <div class=\"\">\r\n        <p><i class=\"material-icons\">date_range</i>\r\n          <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n      </div>\r\n      <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n        <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n      </div>\r\n      <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n        <p><i class=\"material-icons\">comment</i> Коментарів: <strong>25</strong></p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"row blog-post-header\">\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n      <div class=\"blog-post-header-top\">\r\n\r\n        <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n          <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n        <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n      </div>\r\n\r\n      <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n        <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n        <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n            <p><i class=\"material-icons\">extension</i>\r\n              <strong>{{component.material}} </strong>\r\n              {{component.quantity}}\r\n              {{component.unit}}</p>\r\n        </div>\r\n      </div>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n      <div class=\"img-container-outer\">\r\n        <div class=\"img-container-inner\">\r\n          <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n          <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n    <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n      <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n        <div class=\"blog-post-body-text\">\r\n          <p class=\"lead blog-description\">{{block.text}}</p>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n        <!--https://placehold.it/384*288-->\r\n        <div class=\"img-container-outer\">\r\n          <div class=\"img-container-inner\">\r\n            <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<app-comment-form *ngIf=\"blogOptions.singlePostMode\" [blog]=\"blog\" [user]=\"user\"></app-comment-form>\r\n\r\n<app-popup [blog]=\"blog\" [job]=\"job\" (onDeletePopEmitter)=\"onDelete()\"></app-popup>\r\n\r\n"
 
 /***/ }),
 
@@ -638,6 +638,160 @@ BlogComponent = __decorate([
 exports.BlogComponent = BlogComponent;
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=blog.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment-form/comment-form.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\n  <div class=\"form-row align-items-center\">\n    <div class=\"form-group col-md-11\">\n      <!--<label for=\"comment\">Коментар</label>-->\n      <textarea formControlName=\"comment\" rows=\"3\"\n                required autocomplete=\"false\"\n                class=\"form-control\" id=\"comment\" placeholder=\"Коментар\"></textarea>\n      <div class=\"invalid-alert\"\n           *ngIf=\"(commentForm.get('comment').errors?.minlength ||\n           commentForm.get('comment').errors?.maxlength ||\n           commentForm.get('comment').errors?.required) &&\n           commentForm.get('comment').touched\">Довжина від 2 до 150 символів\n      </div>\n    </div>\n    <div class=\"form-group col-md-1\">\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\n        <i class=\"material-icons button-round-icon-2\">local_post_office</i>\n      </button>\n    </div>\n  </div>\n</form>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment-form/comment-form.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "button {\n  display: block;\n  margin: auto; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment-form/comment-form.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var i_blog_1 = __webpack_require__("../../../../../src/app/interfaces/i-blog.ts");
+var i_user_1 = __webpack_require__("../../../../../src/app/interfaces/i-user.ts");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var CommentFormComponent = (function () {
+    function CommentFormComponent(blogsService) {
+        this.blogsService = blogsService;
+    }
+    CommentFormComponent.prototype.ngOnInit = function () {
+        this.commentForm = new forms_1.FormGroup({
+            comment: new forms_1.FormControl('', [
+                forms_1.Validators.required,
+                forms_1.Validators.minLength(2),
+                forms_1.Validators.maxLength(150),
+            ]),
+        });
+    };
+    CommentFormComponent.prototype.onCommentSubmit = function () {
+        var newComment = {
+            blog: this.blog._id,
+            commentator: this.user._id,
+            comment: this.commentForm.get('comment').value
+        };
+        this.blogsService.postComment(newComment)
+            .subscribe();
+        console.log('user._id', this.user._id);
+        console.log('blog._id', this.blog._id);
+        console.log('comment', this.commentForm.get('comment').value);
+    };
+    return CommentFormComponent;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", typeof (_a = typeof i_blog_1.IBlog !== "undefined" && i_blog_1.IBlog) === "function" && _a || Object)
+], CommentFormComponent.prototype, "blog", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", typeof (_b = typeof i_user_1.IUser !== "undefined" && i_user_1.IUser) === "function" && _b || Object)
+], CommentFormComponent.prototype, "user", void 0);
+CommentFormComponent = __decorate([
+    core_1.Component({
+        selector: 'app-comment-form',
+        template: __webpack_require__("../../../../../src/app/components/shared/comment-form/comment-form.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/comment-form/comment-form.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_c = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _c || Object])
+], CommentFormComponent);
+exports.CommentFormComponent = CommentFormComponent;
+var _a, _b, _c;
+//# sourceMappingURL=comment-form.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment/comment.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  comment works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment/comment.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/shared/comment/comment.component.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var CommentComponent = (function () {
+    function CommentComponent() {
+    }
+    CommentComponent.prototype.ngOnInit = function () { };
+    return CommentComponent;
+}());
+CommentComponent = __decorate([
+    core_1.Component({
+        selector: 'app-comment',
+        template: __webpack_require__("../../../../../src/app/components/shared/comment/comment.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/shared/comment/comment.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], CommentComponent);
+exports.CommentComponent = CommentComponent;
+//# sourceMappingURL=comment.component.js.map
 
 /***/ }),
 
@@ -1039,6 +1193,9 @@ var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var modal_img_component_1 = __webpack_require__("../../../../../src/app/components/shared/modal-img/modal-img.component.ts");
 var blog_component_1 = __webpack_require__("../../../../../src/app/components/shared/blog/blog.component.ts");
 var popup_component_1 = __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.ts");
+var comment_component_1 = __webpack_require__("../../../../../src/app/components/shared/comment/comment.component.ts");
+var comment_form_component_1 = __webpack_require__("../../../../../src/app/components/shared/comment-form/comment-form.component.ts");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -1052,11 +1209,14 @@ SharedModule = __decorate([
             menu_h_component_1.MenuHComponent,
             modal_img_component_1.ModalImgComponent,
             blog_component_1.BlogComponent,
-            popup_component_1.PopupComponent
+            popup_component_1.PopupComponent,
+            comment_component_1.CommentComponent,
+            comment_form_component_1.CommentFormComponent,
         ],
         imports: [
             common_1.CommonModule,
-            router_1.RouterModule
+            router_1.RouterModule,
+            forms_1.ReactiveFormsModule,
         ],
         exports: [
             item_component_1.ItemComponent,
@@ -1064,7 +1224,9 @@ SharedModule = __decorate([
             modal_img_component_1.ModalImgComponent,
             page404_component_1.Page404Component,
             menu_h_component_1.MenuHComponent,
-            popup_component_1.PopupComponent
+            popup_component_1.PopupComponent,
+            comment_component_1.CommentComponent,
+            comment_form_component_1.CommentFormComponent
         ]
     })
 ], SharedModule);
@@ -1668,6 +1830,7 @@ exports.blogOptions = {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.emptyUser = {
+    _id: '',
     username: '',
     email: '',
     password: '',
@@ -2001,6 +2164,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "../../../../../src/app/interfaces/i-user.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+;
+//# sourceMappingURL=i-user.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/CustomErrorHandler.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2200,12 +2374,20 @@ var BlogsService = (function () {
         this.http = http;
         this.authService = authService;
     }
+    BlogsService.prototype.postComment = function (newComment) {
+        var headers = new http_1.Headers();
+        this.authService.loadToken();
+        headers.set('Authorization', this.authService.loadToken());
+        headers.set('Content-Type', 'application/json');
+        return this.http.post(app_config_1.config.serverUrl + 'blogs/add-comment', newComment, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     BlogsService.prototype.getBlogOptions = function () {
         return Observable_1.Observable.of(options_1.blogOptions);
     };
     BlogsService.prototype.addBlog = function (newBlog) {
         var headers = new http_1.Headers();
-        // this.authService.loadToken();
+        this.authService.loadToken();
         headers.set('Authorization', this.authService.loadToken());
         headers.set('Content-Type', 'application/json');
         return this.http.post(app_config_1.config.serverUrl + 'blogs/add-blog', newBlog, { headers: headers })

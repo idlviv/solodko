@@ -1,0 +1,21 @@
+<form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
+  <div class="form-row align-items-center">
+    <div class="form-group col-md-11">
+      <!--<label for="comment">Коментар</label>-->
+      <textarea formControlName="comment" rows="3"
+                required autocomplete="false"
+                class="form-control" id="comment" placeholder="Коментар"></textarea>
+      <div class="invalid-alert"
+           *ngIf="(commentForm.get('comment').errors?.minlength ||
+           commentForm.get('comment').errors?.maxlength ||
+           commentForm.get('comment').errors?.required) &&
+           commentForm.get('comment').touched">Довжина від 2 до 150 символів
+      </div>
+    </div>
+    <div class="form-group col-md-1">
+      <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid">
+        <i class="material-icons button-round-icon-2">local_post_office</i>
+      </button>
+    </div>
+  </div>
+</form>
