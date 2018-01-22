@@ -29,7 +29,8 @@ const BlogsSchema = new Schema({
   dislikedBy: {type: Array},
   comments: [{
     comment: {type: String, validate: blogsValidators.commentsValidators},
-    commentator: {type: String}
+    commentator: {type: String},
+    commentedAt: {type: Date, default: Date.now()},
   }],
   views: {type: Number}
 });
@@ -41,10 +42,18 @@ module.exports.addComment = function(newComment) {
   return new Promise(function(resolve, reject) {
     BlogsModel.updateOne(
       {_id: newComment.blog},
-      {$push: {comments: {
-        comment: newComment.comment,
-        commentator: newComment.commentator
-      }}})
+      {
+        $push: {
+          comments: {
+            $each: [{
+              comment: newComment.comment,
+              commentator: newComment.commentator,
+            }],
+            $sort: {commentedAt: -1},
+            $position: 0
+          }
+        }
+      })
       .then(() => resolve({success: true, message: 'Коментар добавлено'}))
       .catch((error) => reject({success: false, message: 'Коментар не добавлено', data: error}))
   });
@@ -60,7 +69,7 @@ updateViews = function(_id) {
 
 findEngine = function(searchQuery) {
   return new Promise(function(resolve, reject) {
-      BlogsModel.find(searchQuery).sort({'_id': -1})
+      BlogsModel.find(searchQuery).sort({_id: -1})
         .then((blogs) => {
           return resolve({success: true, data: blogs});
         })

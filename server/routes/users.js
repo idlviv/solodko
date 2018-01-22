@@ -30,7 +30,7 @@ router.post('/authenticate',
 // якщо ні, то далі не пускає - 401 Unauthorized
 router.get(
   '/get-username/:_id',
-  // passport.authenticate('jwt.user.manager.admin', {session: false}),
+  passport.authenticate('jwt.user.manager.admin', {session: false}),
   UserController.getUsernameById
 );
 

@@ -17,7 +17,7 @@ export interface IBlog {
   createdBy?: string;
   createdBy_id: string;
   showOnMainPage?: boolean;
-  createdAt?: string;
+  createdAt: string;
   likes?: number;
   likedBy?: string[];
   dislikes?: number;
@@ -25,6 +25,7 @@ export interface IBlog {
   comments?: [{
     comment: string,
     commentator: string,
+    commentedAt: string,
   }];
   views: number;
 }

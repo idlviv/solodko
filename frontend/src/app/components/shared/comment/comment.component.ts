@@ -10,7 +10,7 @@ import {AuthService} from '../../../services/auth.service';
 export class CommentComponent implements OnInit {
   @Input() blog: IBlog;
   @Input() user: IBlog;
-  commentator: string;
+  // commentator: string;
 
   constructor(
     private authService: AuthService,
@@ -18,17 +18,17 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {}
 
-  onPostComment() {
-
-  }
-
-  getCommentator(_id) {
-    return this.authService.getUsernameById(_id)
-      .subscribe(
-        result => {
-          this.commentator = result.data[0].username;
-          console.log('res', result.data[0].username);
-          return result.data.username}
-      )
-  }
+  // onPostComment() {
+  //
+  // }
+  //
+  // getCommentator(_id) {
+  //   return this.authService.getUsernameById(_id)
+  //     .subscribe(
+  //       result => {
+  //         this.commentator = result.data[0].username;
+  //         console.log('res', result.data[0].username);
+  //         return result.data.username}
+  //     )
+  // }
 }
