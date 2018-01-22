@@ -29,6 +29,12 @@ router.post('/authenticate',
 // передає його як req.user в колбек, далі віддає його в фронт
 // якщо ні, то далі не пускає - 401 Unauthorized
 router.get(
+  '/get-username/:_id',
+  // passport.authenticate('jwt.user.manager.admin', {session: false}),
+  UserController.getUsernameById
+);
+
+router.get(
   '/profile', passport.authenticate('jwt', {session: false}),
   UserController.userProfile
 );

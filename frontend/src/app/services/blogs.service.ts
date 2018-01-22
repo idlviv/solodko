@@ -42,7 +42,6 @@ export class BlogsService {
   }
 
   editBlog(editedBlog) {
-    console.log('editedBlog', editedBlog);
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authService.loadToken());
@@ -73,7 +72,6 @@ export class BlogsService {
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authService.authToken);
     const params = new URLSearchParams();
-    console.log('searchQuery--', JSON.stringify(searchQuery));
     params.set('searchQuery', JSON.stringify(searchQuery));
     const options = new RequestOptions({ headers: headers, params: params });
     return this.http.get(
@@ -99,8 +97,6 @@ export class BlogsService {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authService.loadToken());
-    console.log('token', this.authService.loadToken());
-    console.log('_id', _id);
     return this.http.delete(
       config.serverUrl + 'blogs/delete-blog/' + _id,
       {headers})

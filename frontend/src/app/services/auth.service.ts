@@ -78,6 +78,16 @@ export class AuthService {
       .catch(this.customErrorHandler.httpErrorHandler);
   }
 
+  getUsernameById(_id) {
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.loadToken());
+    return this.http.get(
+      config.serverUrl + 'api/get-username/' + _id,
+      {headers})
+      .map(res => res.json());
+  }
+
     // profile.component підписується на getProfile
   getProfile(): Observable<IUser> {
     // береться токен юзера loadToken() з localStorage

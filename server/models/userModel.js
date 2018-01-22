@@ -50,6 +50,16 @@ const UserSchema = mongoose.Schema({
 let UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;
 
+module.exports.getUsernameById = function(_id) {
+  return new Promise((resolve, reject) => {
+    UserModel.find({_id: _id}, {username: 1})
+      .then((result) => {
+        return resolve({success: true, message: 'Користувач знайдений', data: result});
+    })
+      .catch((error) => reject({success: false, message: 'Користувач не знайдений', data: error}));
+  });
+};
+
 module.exports.getUserById = function(_id) {
   return new Promise((resolve, reject) => {
     UserModel.findById(_id)

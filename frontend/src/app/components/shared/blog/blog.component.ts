@@ -19,6 +19,7 @@ export class BlogComponent implements OnInit {
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
   @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
+  @Output() onPostCommentEmitter = new EventEmitter<boolean>();
 
   // onMain: boolean;
   orderMainImage: any;
@@ -101,6 +102,10 @@ export class BlogComponent implements OnInit {
 
   onDelete() {
     this.onDeleteBlogEmitter.emit();
+  }
+
+  onPostComment() {
+    this.onPostCommentEmitter.emit();
   }
 
 }

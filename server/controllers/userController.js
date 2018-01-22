@@ -131,6 +131,13 @@ module.exports.userAuthentication = function(req, res, next) {
   });
 };
 
+module.exports.getUsernameById = function(req, res, next) {
+  console.log('req.params._id', req.params._id);
+  UserModel.getUsernameById(req.params._id)
+    .then(result =>  res.status(200).json(result))
+    .catch(error => res.json(error));
+};
+
 module.exports.userProfile = function(req, res, next) {
   //паспорт після валідації передає юзера в полі req.user._doc
   //.json сам знайде _doc і виділить користувача тому можна передати просто req.user,

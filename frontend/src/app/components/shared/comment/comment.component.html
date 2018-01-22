@@ -1,5 +1,11 @@
-<div *ngFor="let comment of blog.comments">
-  {{comment.comment}}
-  {{comment.commentator}}
+<div class="row" *ngFor="let comment of blog.comments">
+  <div class="col-md-3" *ngIf="commentator">{{commentator}}
+       <!--*ngIf="user && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')">-->
+       <!--{{getCommentator(comment.commentator)}}-->
+  </div>
+  <div class="col-md-6">{{comment.comment}}</div>
+  <div class="col-md-3"></div>
 </div>
+<button class="btn" (click)="getCommentator('59afc0c389274717ecb25493')">getCommentator</button>
+
 

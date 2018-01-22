@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {IBlog} from '../../../interfaces/i-blog';
 import {IUser} from '../../../interfaces/i-user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -14,6 +14,8 @@ export class CommentFormComponent implements OnInit {
   @Input() blog: IBlog;
   @Input() user: IUser;
   commentForm: FormGroup;
+  @Output() onPostCommentEmitter = new EventEmitter<boolean>();
+
 
   constructor(
     private blogsService: BlogsService,
@@ -36,10 +38,12 @@ export class CommentFormComponent implements OnInit {
       commentator: this.user._id,
       comment: this.commentForm.get('comment').value
     };
+
     this.blogsService.postComment(newComment)
       .subscribe(
         result => {
           if (result.success) {
+            this.onPostCommentEmitter.emit();
             this.flashMessage.show(
               result.message,
               {

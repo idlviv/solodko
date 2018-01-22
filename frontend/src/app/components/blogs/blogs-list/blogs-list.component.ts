@@ -57,4 +57,8 @@ blogOptions: IBlogOptions;
   onDelete() {
     this.reloadBlogs();
   }
+
+  onPostComment() {
+    this.reloadBlogs();
+  }
 }
