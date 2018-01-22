@@ -195,6 +195,13 @@ body,
   background-color: $background-color-front;
 }
 
+.blog-post-nav-icons {
+  font-size: .7rem;
+  //~p {
+  //  margin-bottom: 0;
+  //}
+}
+
 .blog-post-header {
   background-color: $background-color-front;
   padding-bottom: 2rem;
@@ -230,7 +237,7 @@ body,
 
 .blog-post-header-bottom {
   margin-bottom: 1rem;
-  font-size: .7rem;
+  font-size: 1rem;
 
 }
 

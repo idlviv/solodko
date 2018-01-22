@@ -2,6 +2,17 @@ const config = require('../config');
 let BlogsModel = require('../models/blogsModel');
 const log = require('../config/winston')(module);
 
+module.exports.addComment = function(req, res, next) {
+  if (!req.body.comment) {
+    res.json({success: false, message: 'Немає коментаря'});
+  } else {
+
+    BlogsModel.addComment(req.body)
+      .then(result => res.json(result))
+      .catch(error => res.json(error));
+  }
+};
+
 module.exports.addBlog = function(req, res, next) {
   // let createdBy;
   if (!req.body.title) {

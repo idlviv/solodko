@@ -8,6 +8,9 @@ import {RouterModule} from '@angular/router';
 import { ModalImgComponent } from './modal-img/modal-img.component';
 import { BlogComponent } from './blog/blog.component';
 import { PopupComponent } from './popup/popup.component';
+import { CommentComponent } from './comment/comment.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,14 @@ import { PopupComponent } from './popup/popup.component';
     MenuHComponent,
     ModalImgComponent,
     BlogComponent,
-    PopupComponent
+    PopupComponent,
+    CommentComponent,
+    CommentFormComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ItemComponent,
@@ -28,7 +34,9 @@ import { PopupComponent } from './popup/popup.component';
     ModalImgComponent,
     Page404Component,
     MenuHComponent,
-    PopupComponent
+    PopupComponent,
+    CommentComponent,
+    CommentFormComponent
   ]
 })
 export class SharedModule {}

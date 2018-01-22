@@ -1,32 +1,41 @@
 
 <div class="blog-post">
   <div class="row blog-post-nav">
-    <div class="col-3 d-flex justify-content-start text-muted">
-      <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
-        <i class="material-icons button-round-icon-2">arrow_back</i></a>
+    <div class="col-md-3 d-flex justify-content-start align-items-center text-muted">
+      <p>
+        <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
+          <i class="material-icons button-round-icon-2">arrow_back</i></a>
 
-      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-              class="btn button-round-2" (click)="newBlog()">
-        <i class="material-icons button-round-icon-2">add_box</i></a>
+        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+           class="btn button-round-2" (click)="newBlog()">
+          <i class="material-icons button-round-icon-2">add_box</i></a>
 
-      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-              class="btn button-round-2" (click)="editBlog()">
-        <i class="material-icons button-round-icon-2">edit</i></a>
+        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+           class="btn button-round-2" (click)="editBlog()">
+          <i class="material-icons button-round-icon-2">edit</i></a>
 
-      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-              class="btn button-round-2" (click)="deleteBlog()">
-        <i class="material-icons button-round-icon-2">delete_forever</i></a>
+        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+           class="btn button-round-2" (click)="deleteBlog()">
+          <i class="material-icons button-round-icon-2">delete_forever</i></a>
+      </p>
     </div>
-    <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
-         <!--class="col-1 d-flex justify-content-start text-muted">-->
 
-    <!--</div>-->
-    <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
-           <!--class="col-2 d-flex justify-content-end text-muted">-->
+    <div class="col-md-3"></div>
 
-
-      <!--</div>-->
+    <div class="col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons">
+      <div class="">
+        <p><i class="material-icons">date_range</i>
+          <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
+      </div>
+      <div *ngIf="blogOptions.showViews" class="">
+        <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>
+      </div>
+      <div *ngIf="blogOptions.showComments" class="">
+        <p><i class="material-icons">comment</i> Коментарів: <strong>25</strong></p>
+      </div>
+    </div>
   </div>
+
   <div class="row blog-post-header">
     <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
       <div class="blog-post-header-top">
@@ -35,23 +44,17 @@
           <h2 class="blog-post-header-title">{{blog.title}}</h2></a>
         <p class="lead blog-post-description">{{blog.body.mainText}}</p>
       </div>
-      <div class="d-flex justify-content-around text-muted blog-post-header-bottom">
 
-        <!--<div class="blog-post_avatar">-->
-        <!--<img class="img-fluid" src="../../../../assets/samples/my-photo180x180.png" alt="main image">-->
-        <!--</div>-->
-        <!--<div class="blog-post_createdBy">Автор: <strong>{{blog.createdBy}}</strong></div>-->
-        <div class="">
-          <p><i class="material-icons">date_range</i>
-            <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
-        </div>
-        <div *ngIf="blogOptions.showViews" class="">
-          <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>126</strong></p>
-        </div>
-        <div *ngIf="blogOptions.showComments" class="">
-          <p><i class="material-icons">comment</i> Коментарів: <strong>25</strong></p>
+      <div  *ngIf="blog.body.components"  class="blog-post-header-bottom">
+        <h3 class="blog-post-header-title text-muted">Необхідні матеріали</h3>
+        <div class="d-flex justify-content-start text-muted" *ngFor="let component of blog.body.components">
+            <p><i class="material-icons">extension</i>
+              <strong>{{component.material}} </strong>
+              {{component.quantity}}
+              {{component.unit}}</p>
         </div>
       </div>
+
 
     </div>
     <div class="col-md-6 align-self-center" [ngClass]="orderMainImage">
@@ -85,5 +88,8 @@
   </div>
 </div>
 
-<app-popup [blog]="blog" [job]="job"></app-popup>
+<app-comment *ngIf="blog.comments[0]" [blog]="blog"></app-comment>
+<app-comment-form *ngIf="blogOptions.singlePostMode" [blog]="blog" [user]="user"></app-comment-form>
+
+<app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>
 

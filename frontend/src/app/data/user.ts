@@ -1,6 +1,7 @@
 import {IUser} from '../interfaces/i-user';
 
-export const emptyUser = {
+export const emptyUser: IUser = {
+  _id: '',
   username: '',
   email: '',
   password: '',

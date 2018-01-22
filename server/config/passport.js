@@ -65,6 +65,25 @@ module.exports = function(passport) {
       }
     ));
 
+  passport.use('jwt.user.manager.admin',
+    new JwtStrategy(jwtOptions, (jwtPayload, done) => {
+        // log.verbose('config/passport - Jwt.manager.admin.Strategy');
+        // на основі _id (витягнутого з токена) робить пошук
+        // в базі, чи є такий юзер, і ф-я done повертає відповідь
+        UserModel.getUserById(jwtPayload.sub._id)
+          .then((user) => {
+            if (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin') {
+              done(null, user);
+            } else {
+              done(null, false);
+            }
+          })
+          .catch((error) => {
+            done(error, false);
+          });
+      }
+    ));
+
   emailVerificationOptions.jwtFromRequest = ExtractJwt.fromUrlQueryParameter('token');
   emailVerificationOptions.secretOrKey = config.get('JWT_SECRET_EMAIL');
 

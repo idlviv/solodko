@@ -9,12 +9,12 @@ import {DeleteBlogComponent} from './delete-blog/delete-blog.component';
 import {NewBlogComponent} from './new-blog/new-blog.component';
 import {BlogsListComponent} from './blogs-list/blogs-list.component';
 import {PopupComponent} from '../shared/popup/popup.component';
+import {AuthManagerGuard} from '../../guards/auth-manager.guard';
 
 const blogsRoutes: Routes = [
   {
     path: 'ch',
     component: BlogsComponent,
-    canActivateChild: [AuthUserGuard],
     children: [
       {
         path: 'list-blogs',
@@ -29,15 +29,18 @@ const blogsRoutes: Routes = [
       {
         path: 'new-blog',
         component: NewBlogComponent,
+        canActivate: [AuthManagerGuard],
       },
       {
         path: 'edit-blog/:_id',
         component: NewBlogComponent,
+        canActivate: [AuthManagerGuard],
       },
-      {
-        path: 'delete-blog/:_id',
-        component: PopupComponent,
-      },
+      // {
+      //   path: 'delete-blog/:_id',
+      //   component: PopupComponent,
+      //   canActivate: [AuthManagerGuard],
+      // },
       // {
       //   path: 'delete-blog/:_id',
       //   component: DeleteBlogComponent,

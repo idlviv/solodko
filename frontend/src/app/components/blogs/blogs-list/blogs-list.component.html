@@ -7,5 +7,5 @@
 </header>
 
 <div *ngFor="let blog of blogs; let index = index">
-    <app-blog [blog]="blog" [index]="index" [blogOptions]="blogOptions"></app-blog>
+    <app-blog [blog]="blog" [index]="index" [blogOptions]="blogOptions" (onDeleteBlogEmitter)="onDelete()"></app-blog>
 </div>

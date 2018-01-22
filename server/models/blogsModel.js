@@ -30,11 +30,57 @@ const BlogsSchema = new Schema({
   comments: [{
     comment: {type: String, validate: blogsValidators.commentsValidators},
     commentator: {type: String}
-  }]
+  }],
+  views: {type: Number}
 });
 
 let BlogsModel = mongoose.model('blogs', BlogsSchema);
 module.exports = BlogsModel;
+
+module.exports.addComment = function(newComment) {
+  return new Promise(function(resolve, reject) {
+    BlogsModel.updateOne(
+      {_id: newComment.blog},
+      {$push: {comments: {
+        comment: newComment.comment,
+        commentator: newComment.commentator
+      }}})
+      .then(() => resolve({success: true, message: 'Коментар добавлено'}))
+      .catch((error) => reject({success: false, message: 'Коментар не добавлено', data: error}))
+  });
+};
+
+updateViews = function(_id) {
+  return new Promise(function(resolve, reject) {
+    BlogsModel.updateOne({'_id': _id}, {$inc: {views: 1}})
+      .then(() => resolve({success: true, message: 'К-ть переглядів збільшено на 1'}))
+      .catch((error) => reject({success: false, message: 'К-ть переглядів не збільшено на 1', data: error}))
+  });
+};
+
+findEngine = function(searchQuery) {
+  return new Promise(function(resolve, reject) {
+      BlogsModel.find(searchQuery).sort({'_id': -1})
+        .then((blogs) => {
+          return resolve({success: true, data: blogs});
+        })
+        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
+    }
+  );
+};
+
+module.exports.findBlogs = function(searchQuery) {
+  return new Promise(function(resolve, reject) {
+    if (searchQuery._id) {
+      updateViews(searchQuery._id)
+        .then(() => resolve(findEngine(searchQuery)))
+        .catch((error) => reject(error));
+    } else {
+      resolve(findEngine(searchQuery));
+    }
+  })
+
+};
 
 module.exports.addBlog = function(newBlog) {
   return new Promise(function(resolve, reject) {
@@ -78,16 +124,7 @@ module.exports.getBlogs = function() {
   );
 };
 
-module.exports.findBlogs = function(searchQuery) {
-  return new Promise(function(resolve, reject) {
-      BlogsModel.find(searchQuery).sort({'_id': -1})
-        .then((blogs) => {
-          return resolve({success: true, data: blogs});
-        })
-        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
-    }
-  );
-};
+
 
 module.exports.getQueriedBlogs = function(searchQuery) {
   return new Promise(function(resolve, reject) {
