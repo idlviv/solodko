@@ -92,7 +92,8 @@
 <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
                   [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
 
-<app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode" [blog]="blog" [user]="user"></app-comment>
+<app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
+             [blog]="blog" [user]="user"></app-comment>
 
 <app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>
 

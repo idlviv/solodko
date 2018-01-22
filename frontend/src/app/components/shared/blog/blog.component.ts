@@ -6,12 +6,14 @@ import {AuthService} from 'app/services/auth.service';
 import {emptyUser} from '../../../data/user';
 import {IUser} from '../../../interfaces/i-user';
 import {Router} from '@angular/router';
+import {SharedService} from '../../../services/shared.service';
 declare const $: any;
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss']
+  styleUrls: ['./blog.component.scss'],
+  // providers: [SharedService]
 })
 export class BlogComponent implements OnInit {
 
@@ -33,6 +35,7 @@ export class BlogComponent implements OnInit {
     private location: Location,
     private authService: AuthService,
     private router: Router,
+    private sharedService: SharedService,
   ) { }
 
   ngOnInit() {
@@ -42,6 +45,9 @@ export class BlogComponent implements OnInit {
       .subscribe(
         user => this.user = user
       );
+
+    this.sharedService.share$
+      .subscribe(x => console.log('x - blogComponent', x));
   }
 
   getMainImageOrderStyle() {

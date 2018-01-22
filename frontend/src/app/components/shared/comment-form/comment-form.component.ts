@@ -4,6 +4,7 @@ import {IUser} from '../../../interfaces/i-user';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -20,6 +21,7 @@ export class CommentFormComponent implements OnInit {
   constructor(
     private blogsService: BlogsService,
     private flashMessage: FlashMessagesService,
+    private sharedService: SharedService,
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,9 @@ export class CommentFormComponent implements OnInit {
     });
   }
 
+  onShared() {
+    this.sharedService.sharing('comment');
+  }
   onCommentSubmit() {
     const newComment = {
       blog: this.blog._id,

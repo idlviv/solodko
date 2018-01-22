@@ -80,15 +80,16 @@ findEngine = function(searchQuery) {
 
 module.exports.findBlogs = function(searchQuery) {
   return new Promise(function(resolve, reject) {
-    if (searchQuery._id) {
+    if (searchQuery._id && searchQuery.update) {
       updateViews(searchQuery._id)
-        .then(() => resolve(findEngine(searchQuery)))
+        .then(() => resolve(findEngine({_id: searchQuery._id})))
         .catch((error) => reject(error));
+    } else if (searchQuery._id) {
+      resolve(findEngine({_id: searchQuery._id}));
     } else {
       resolve(findEngine(searchQuery));
     }
-  })
-
+  });
 };
 
 module.exports.addBlog = function(newBlog) {
@@ -149,7 +150,3 @@ module.exports.getQueriedBlogs = function(searchQuery) {
     }
   );
 };
-
-
-
-

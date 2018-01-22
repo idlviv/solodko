@@ -11,6 +11,7 @@ import { PopupComponent } from './popup/popup.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SharedService} from '../../services/shared.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     PopupComponent,
     CommentComponent,
     CommentFormComponent
-  ]
+  ],
+  // providers: [
+  //   SharedService,
+  // ]
 })
 export class SharedModule {}
