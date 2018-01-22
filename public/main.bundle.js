@@ -271,6 +271,7 @@ __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
 __webpack_require__("../../../../rxjs/_esm5/add/operator/take.js");
 var url_serializer_service_1 = __webpack_require__("../../../../../src/app/services/url-serializer.service.ts");
 var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
+var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -308,7 +309,8 @@ AppModule = __decorate([
             noAuth_guard_1.NoAuthGuard,
             auth_service_1.AuthService,
             CustomErrorHandler_1.CustomErrorHandler,
-            blogs_service_1.BlogsService
+            blogs_service_1.BlogsService,
+            shared_service_1.SharedService
         ],
         bootstrap: [app_component_1.AppComponent]
     })

@@ -35,6 +35,7 @@ import 'rxjs/add/operator/take';
 
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
+import {SharedService} from './services/shared.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {CustomErrorHandler} from './services/CustomErrorHandler';
     NoAuthGuard,
     AuthService,
     CustomErrorHandler,
-    BlogsService
+    BlogsService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })
