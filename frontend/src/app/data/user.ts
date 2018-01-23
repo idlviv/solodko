@@ -9,4 +9,5 @@ export const emptyUser: IUser = {
   surname: '',
   role: 'Guest',
   isEmailConfirmed: false,
+  avatar: './assets/samples/default-avatar180x180.png',
 };

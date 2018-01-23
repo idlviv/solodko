@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Http, Headers, RequestOptions, URLSearchParams} from '@angular/http';
 
 import {tokenNotExpired} from 'angular2-jwt';
 import {config} from '../app.config';
@@ -77,6 +77,24 @@ export class AuthService {
       .map(res => res.json())
       .catch(this.customErrorHandler.httpErrorHandler);
   }
+
+  getUsersByIds(searchQuery) {
+    console.log('searchQuery - service', searchQuery);
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authToken);
+    const params = new URLSearchParams();
+    params.set('searchQuery', JSON.stringify(searchQuery));
+    console.log('params - service', params);
+
+    const options = new RequestOptions({ headers: headers, params: params });
+    console.log('options', options);
+    return this.http.get(
+      config.serverUrl + 'api/get-users-by-ids/',
+      options)
+      .map(res => res.json());
+  }
+
 
   getUsernameById(_id) {
     const headers = new Headers();

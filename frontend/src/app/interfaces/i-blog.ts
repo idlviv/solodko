@@ -24,7 +24,7 @@ export interface IBlog {
   dislikedBy?: string[];
   comments?: [{
     comment: string,
-    commentator: string,
+    commentators_id: string,
     commentedAt: string,
   }];
   views: number;

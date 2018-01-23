@@ -160,6 +160,27 @@ body,
   display: block;
 }
 
+//avatar
+.avatar-big-block {
+  max-width: 180px;
+}
+
+.avatar-big {
+  @include radius(90px);
+}
+
+.avatar-small-block {
+  max-width: 2rem;
+}
+
+.avatar-small {
+  @include radius(1rem);
+}
+
+//.c_my-photo {
+//  @include radius(90px);
+//}
+
 //blog
 
 .blog-header {
@@ -282,4 +303,9 @@ body,
   .blog-post-header-title {
     font-size: 2rem;
   }
+}
+
+//comments
+.comment {
+  margin-bottom: .5rem;
 }

@@ -45,10 +45,26 @@ const UserSchema = mongoose.Schema({
     required: true,
     default: false,
   },
+  avatar: {
+    type: String,
+    required: true,
+    default: './assets/samples/default-avatar180x180.png'
+  }
 });
 
 let UserModel = mongoose.model('user', UserSchema);
 module.exports = UserModel;
+
+module.exports.getUsersByIds = function(searchQuery) {
+  return new Promise((resolve, reject) => {
+    console.log('searchQuery', searchQuery);
+    UserModel.find(searchQuery, {username: 1, avatar: 1})
+      .then((result) => {
+        return resolve({success: true, message: 'Користувач знайдений', data: result});
+      })
+      .catch((error) => reject({success: false, message: 'Користувач не знайдений', data: error}));
+  });
+};
 
 module.exports.getUsernameById = function(_id) {
   return new Promise((resolve, reject) => {

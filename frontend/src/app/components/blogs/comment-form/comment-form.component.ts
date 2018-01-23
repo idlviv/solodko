@@ -41,7 +41,7 @@ export class CommentFormComponent implements OnInit {
   onCommentSubmit() {
     const newComment = {
       blog: this.blog._id,
-      commentator: this.user.username,
+      commentators_id: this.user._id,
       comment: this.commentForm.get('comment').value
     };
 

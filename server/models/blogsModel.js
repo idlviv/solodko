@@ -29,7 +29,7 @@ const BlogsSchema = new Schema({
   dislikedBy: {type: Array},
   comments: [{
     comment: {type: String, validate: blogsValidators.commentsValidators},
-    commentator: {type: String},
+    commentators_id: {type: String},
     commentedAt: {type: Date, default: Date.now()},
   }],
   views: {type: Number}
@@ -47,7 +47,7 @@ module.exports.addComment = function(newComment) {
           comments: {
             $each: [{
               comment: newComment.comment,
-              commentator: newComment.commentator,
+              commentators_id: newComment.commentators_id,
             }],
             $sort: {commentedAt: -1},
             $position: 0

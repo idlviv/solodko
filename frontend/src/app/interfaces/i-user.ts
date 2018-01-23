@@ -7,4 +7,5 @@ export interface IUser {
   surname: string;
   role?: string;
   isEmailConfirmed?: boolean;
-};
+  avatar: string;
+}

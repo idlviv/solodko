@@ -137,6 +137,17 @@ module.exports.getUsernameById = function(req, res, next) {
     .catch(error => res.json(error));
 };
 
+module.exports.getUsersByIds = function(req, res, next) {
+  console.log('req.query.searchQuery', req.query);
+  if (!req.query.searchQuery) {
+    return res.json([]);
+  }
+  let searchQuery = JSON.parse(req.query.searchQuery);
+  UserModel.getUsersByIds(searchQuery)
+    .then(result =>  res.status(200).json(result))
+    .catch(error => res.json(error));
+};
+
 module.exports.userProfile = function(req, res, next) {
   //паспорт після валідації передає юзера в полі req.user._doc
   //.json сам знайде _doc і виділить користувача тому можна передати просто req.user,
@@ -149,6 +160,7 @@ module.exports.userProfile = function(req, res, next) {
     surname: user.surname,
     email: user.email,
     role: user.role,
-    isEmailConfirmed: user.isEmailConfirmed
+    isEmailConfirmed: user.isEmailConfirmed,
+    avatar: user.avatar,
   });
 };

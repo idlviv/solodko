@@ -13,7 +13,7 @@ export class CommentComponent implements OnChanges, OnInit {
   @Input() blog: IBlog;
   @Input() user: IBlog;
   // private _blog: IBlog;
-  comments: [any];
+  comments = [];
 
   // get blog(): IBlog {
   //   return this._blog;
@@ -42,9 +42,31 @@ export class CommentComponent implements OnChanges, OnInit {
     if (changes.blog) {
       // const blog: SimpleChange = changes.blog;
       // console.log('blog._id', blog.currentValue);
+      const commentators = [];
+      for (const comment of this.blog.comments) {
+        if (commentators.indexOf(comment.commentators_id) === -1) {
+          commentators.push(comment.commentators_id);
+        }
+      }
+      console.log(commentators);
+      this.authService.getUsersByIds({_id: {$in: commentators}})
+        .subscribe(result => {
 
+          console.log('user', result.data);
+          for (const comment of this.blog.comments) {
+            result.data.map(commentator => {
+              if (commentator._id === comment.commentators_id) {
 
-      console.log('this.blog._id', this.blog.comments.length);
+                this.comments.push(Object.assign(
+                  comment,
+                  {username: commentator.username, avatar: commentator.avatar}));
+              }
+            });
+          }
+          console.log('this.comments', this.comments);
+
+      });
+      console.log('this.blog.comments.length', this.blog.comments.length);
 
     }
 

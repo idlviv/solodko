@@ -7,6 +7,7 @@ import {ValidateService} from '../../../services/validate.service';
 import {IUser} from '../../../interfaces/i-user';
 import {Observable} from 'rxjs/Observable';
 import {AuthUserGuard} from '../../../guards/auth-user.guard';
+import {emptyUser} from '../../../data/user';
 
 @Component({
   selector: 'app-login',
@@ -21,14 +22,7 @@ export class LoginComponent implements OnInit {
 
   previousURL;
 
-  guest: IUser = {
-    name: '',
-    surname: '',
-    email: '',
-    username: '',
-    password: '',
-    role: 'Guest',
-  };
+  guest: IUser = emptyUser;
   user: IUser = this.guest;
 
   constructor(
