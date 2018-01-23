@@ -63,8 +63,8 @@ var BlogComponent = (function () {
         this.getMainImageOrderStyle();
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.user = user; });
-        this.sharedService.share$
-            .subscribe(function (x) { return console.log('x - blogComponent', x); });
+        //   this.sharedService.share$
+        //     .subscribe(x => console.log('x - blogComponent', x));
     };
     BlogComponent.prototype.getMainImageOrderStyle = function () {
         if (this.index % 2 === 0) {
@@ -467,7 +467,7 @@ exports.BlogsModule = BlogsModule;
 /***/ "../../../../../src/app/components/blogs/comment-form/comment-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\n  <div class=\"form-row align-items-center\">\n    <div class=\"form-group col-md-11\">\n      <!--<label for=\"comment\">Коментар</label>-->\n      <textarea formControlName=\"comment\" rows=\"3\"\n                required autocomplete=\"false\"\n                class=\"form-control\" id=\"comment\" placeholder=\"Коментар\"></textarea>\n      <div class=\"invalid-alert\"\n           *ngIf=\"(commentForm.get('comment').errors?.minlength ||\n           commentForm.get('comment').errors?.maxlength ||\n           commentForm.get('comment').errors?.required) &&\n           commentForm.get('comment').touched\">Довжина від 2 до 150 символів\n      </div>\n    </div>\n    <div class=\"form-group col-md-1\">\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\n        <i class=\"material-icons button-round-icon-2\">local_post_office</i>\n      </button>\n    </div>\n  </div>\n</form>\n<button class=\"btn\" (click)=\"onShared()\">share</button>\n"
+module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\n  <div class=\"form-row align-items-center\">\n    <div class=\"form-group col-md-11\">\n      <!--<label for=\"comment\">Коментар</label>-->\n      <textarea formControlName=\"comment\" rows=\"3\"\n                required autocomplete=\"false\"\n                class=\"form-control\" id=\"comment\" placeholder=\"Коментар\"></textarea>\n      <div class=\"invalid-alert\"\n           *ngIf=\"(commentForm.get('comment').errors?.minlength ||\n           commentForm.get('comment').errors?.maxlength ||\n           commentForm.get('comment').errors?.required) &&\n           commentForm.get('comment').touched\">Довжина від 2 до 150 символів\n      </div>\n    </div>\n    <div class=\"form-group col-md-1\">\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\n        <i class=\"material-icons button-round-icon-2\">local_post_office</i>\n      </button>\n    </div>\n  </div>\n</form>\n<!--<button class=\"btn\" (click)=\"onShared()\">share</button>-->\n"
 
 /***/ }),
 
@@ -527,9 +527,9 @@ var CommentFormComponent = (function () {
             ]),
         });
     };
-    CommentFormComponent.prototype.onShared = function () {
-        this.sharedService.sharing('comment');
-    };
+    // onShared() {
+    //   this.sharedService.sharing('comment');
+    // }
     CommentFormComponent.prototype.onCommentSubmit = function () {
         var _this = this;
         var newComment = {
@@ -631,6 +631,7 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var i_blog_1 = __webpack_require__("../../../../../src/app/interfaces/i-blog.ts");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
+var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
 var CommentComponent = (function () {
     // get blog(): IBlog {
     //   return this._blog;
@@ -642,20 +643,20 @@ var CommentComponent = (function () {
     //   console.log('new value: ', blog);
     //   this._blog = blog;
     // }
-    function CommentComponent(authService, sharedService) {
+    function CommentComponent(authService, sharedService, blogsService) {
         this.authService = authService;
         this.sharedService = sharedService;
+        this.blogsService = blogsService;
     }
     CommentComponent.prototype.ngOnInit = function () {
-        this.sharedService.getSharing()
-            .subscribe(function (x) { return console.log('x - commentComponent', x); });
+        // this.sharedService.getSharing()
+        //   .subscribe(x => console.log('x - commentComponent', x));
     };
     CommentComponent.prototype.ngOnChanges = function (changes) {
         if (changes.blog) {
-            var blog = changes.blog;
-            // console.log('prev value: ', blog.previousValue);
-            console.log('changes', changes);
-            console.log('got name: ', blog.currentValue);
+            // const blog: SimpleChange = changes.blog;
+            // console.log('blog._id', blog.currentValue);
+            console.log('this.blog._id', this.blog.comments.length);
         }
     };
     return CommentComponent;
@@ -674,10 +675,10 @@ CommentComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _d || Object, typeof (_e = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _e || Object])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=comment.component.js.map
 
 /***/ }),

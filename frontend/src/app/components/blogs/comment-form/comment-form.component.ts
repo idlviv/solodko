@@ -34,9 +34,10 @@ export class CommentFormComponent implements OnInit {
     });
   }
 
-  onShared() {
-    this.sharedService.sharing('comment');
-  }
+  // onShared() {
+  //   this.sharedService.sharing('comment');
+  // }
+
   onCommentSubmit() {
     const newComment = {
       blog: this.blog._id,

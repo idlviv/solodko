@@ -2359,7 +2359,7 @@ var SharedService = (function () {
         this._share.next(x);
     };
     SharedService.prototype.getSharing = function () {
-        return this._share.asObservable();
+        return this.share$;
     };
     return SharedService;
 }());

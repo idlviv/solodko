@@ -46,8 +46,8 @@ export class BlogComponent implements OnInit {
         user => this.user = user
       );
 
-    this.sharedService.share$
-      .subscribe(x => console.log('x - blogComponent', x));
+  //   this.sharedService.share$
+  //     .subscribe(x => console.log('x - blogComponent', x));
   }
 
   getMainImageOrderStyle() {

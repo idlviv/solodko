@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '
 import {IBlog} from '../../../interfaces/i-blog';
 import {AuthService} from '../../../services/auth.service';
 import {SharedService} from '../../../services/shared.service';
+import {BlogsService} from '../../../services/blogs.service';
 
 @Component({
   selector: 'app-comment',
@@ -11,7 +12,8 @@ import {SharedService} from '../../../services/shared.service';
 export class CommentComponent implements OnChanges, OnInit {
   @Input() blog: IBlog;
   @Input() user: IBlog;
-  private _blog: IBlog;
+  // private _blog: IBlog;
+  comments: [any];
 
   // get blog(): IBlog {
   //   return this._blog;
@@ -26,21 +28,24 @@ export class CommentComponent implements OnChanges, OnInit {
 
   constructor(
     private authService: AuthService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private blogsService: BlogsService,
   ) { }
 
   ngOnInit() {
-    this.sharedService.getSharing()
-      .subscribe(x => console.log('x - commentComponent', x));
+    // this.sharedService.getSharing()
+    //   .subscribe(x => console.log('x - commentComponent', x));
 
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.blog) {
-      const blog: SimpleChange = changes.blog;
-      // console.log('prev value: ', blog.previousValue);
-      console.log('changes', changes);
-      console.log('got name: ', blog.currentValue);
+      // const blog: SimpleChange = changes.blog;
+      // console.log('blog._id', blog.currentValue);
+
+
+      console.log('this.blog._id', this.blog.comments.length);
+
     }
 
 
