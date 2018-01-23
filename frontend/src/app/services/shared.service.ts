@@ -14,7 +14,7 @@ export class SharedService {
   }
 
   getSharing() {
-    return this._share.asObservable();
+    return this.share$;
   }
 
 }
