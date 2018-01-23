@@ -666,12 +666,10 @@ var CommentComponent = (function () {
                     commentators.push(comment.commentators_id);
                 }
             }
-            console.log(commentators);
             this.authService.getUsersByIds({ _id: { $in: commentators } })
                 .subscribe(function (result) {
-                console.log('user', result.data);
                 var _loop_1 = function (comment) {
-                    result.data.map(function (commentator) {
+                    result.data.forEach(function (commentator) {
                         if (commentator._id === comment.commentators_id) {
                             _this.comments.push(Object.assign(comment, { username: commentator.username, avatar: commentator.avatar }));
                         }
@@ -681,9 +679,7 @@ var CommentComponent = (function () {
                     var comment = _a[_i];
                     _loop_1(comment);
                 }
-                console.log('this.comments', _this.comments);
             });
-            console.log('this.blog.comments.length', this.blog.comments.length);
         }
     };
     return CommentComponent;

@@ -35,7 +35,6 @@ export class CommentComponent implements OnChanges, OnInit {
   ngOnInit() {
     // this.sharedService.getSharing()
     //   .subscribe(x => console.log('x - commentComponent', x));
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -48,13 +47,10 @@ export class CommentComponent implements OnChanges, OnInit {
           commentators.push(comment.commentators_id);
         }
       }
-      console.log(commentators);
       this.authService.getUsersByIds({_id: {$in: commentators}})
         .subscribe(result => {
-
-          console.log('user', result.data);
           for (const comment of this.blog.comments) {
-            result.data.map(commentator => {
+            result.data.forEach(commentator => {
               if (commentator._id === comment.commentators_id) {
 
                 this.comments.push(Object.assign(
@@ -63,23 +59,7 @@ export class CommentComponent implements OnChanges, OnInit {
               }
             });
           }
-          console.log('this.comments', this.comments);
-
       });
-      console.log('this.blog.comments.length', this.blog.comments.length);
-
     }
-
-
   }
-
-  // getCommentator(_id) {
-  //   return this.authService.getUsernameById(_id)
-  //     .subscribe(
-  //       result => {
-  //         this.commentator = result.data[0].username;
-  //         console.log('res', result.data[0].username);
-  //         return result.data.username}
-  //     )
-  // }
 }
