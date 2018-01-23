@@ -6,6 +6,7 @@ import {SideMenuComponent} from './side-menu/side-menu.component';
 import {HomeComponent} from './home.component';
 import {ProductResolverService} from '../../services/product-resolver.service';
 import {HomeBlogComponent} from './home-blog/home-blog.component';
+import {BlogsListComponent} from '../blogs/blogs-list/blogs-list.component';
 
 const homeRoutes: Routes = [
   {
@@ -25,7 +26,7 @@ const homeRoutes: Routes = [
       {
         path: '',
         outlet: 'blog',
-        component: HomeBlogComponent
+        component: BlogsListComponent
       },
       {
         path: '**',

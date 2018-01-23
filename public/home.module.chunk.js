@@ -136,7 +136,7 @@ var home_section_component_1 = __webpack_require__("../../../../../src/app/compo
 var side_menu_component_1 = __webpack_require__("../../../../../src/app/components/home/side-menu/side-menu.component.ts");
 var home_component_1 = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 var product_resolver_service_1 = __webpack_require__("../../../../../src/app/services/product-resolver.service.ts");
-var home_blog_component_1 = __webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.ts");
+var blogs_list_component_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs-list/blogs-list.component.ts");
 var homeRoutes = [
     {
         path: '',
@@ -155,7 +155,7 @@ var homeRoutes = [
             {
                 path: '',
                 outlet: 'blog',
-                component: home_blog_component_1.HomeBlogComponent
+                component: blogs_list_component_1.BlogsListComponent
             },
             {
                 path: '**',
@@ -342,6 +342,7 @@ var shared_module_1 = __webpack_require__("../../../../../src/app/components/sha
 var home_component_1 = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 var side_menu_component_1 = __webpack_require__("../../../../../src/app/components/home/side-menu/side-menu.component.ts");
 var home_routing_module_1 = __webpack_require__("../../../../../src/app/components/home/home-routing.module.ts");
+var blogs_module_1 = __webpack_require__("../../../../../src/app/components/blogs/blogs.module.ts");
 var home_blog_component_1 = __webpack_require__("../../../../../src/app/components/home/home-blog/home-blog.component.ts");
 var HomeModule = (function () {
     function HomeModule() {
@@ -360,6 +361,7 @@ HomeModule = __decorate([
             common_1.CommonModule,
             shared_module_1.SharedModule,
             home_routing_module_1.HomeRoutingModule,
+            blogs_module_1.BlogsModule
         ],
         exports: [],
     })

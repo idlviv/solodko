@@ -21,6 +21,7 @@ import {SharedService} from '../../services/shared.service';
     CommonModule,
     SharedModule,
     HomeRoutingModule,
+    BlogsModule
   ],
   exports: [],
 

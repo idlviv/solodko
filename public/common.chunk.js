@@ -1,4 +1,4 @@
-webpackJsonp(["blogs.module"],{
+webpackJsonp(["common"],{
 
 /***/ "../../../../../src/app/components/blogs/blog/blog.component.html":
 /***/ (function(module, exports) {
@@ -218,7 +218,6 @@ var BlogsListComponent = (function () {
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.loggedUser = user; });
         this.reloadBlogs(true);
-        console.log('blog-list onInit');
     };
     BlogsListComponent.prototype.reloadBlogs = function (update) {
         var _this = this;
@@ -231,7 +230,7 @@ var BlogsListComponent = (function () {
             .flatMap(function (blogOptions) {
             _this.blogOptions = blogOptions;
             _this.blogOptions['mainPage'] = false;
-            if (_this._id === 'all') {
+            if (_this._id === 'all' || _this._id === undefined) {
                 _this.blogOptions['singlePostMode'] = false;
                 _this.searchQuery = {};
             }
@@ -239,11 +238,9 @@ var BlogsListComponent = (function () {
                 _this.blogOptions['singlePostMode'] = true;
                 _this.searchQuery = { '_id': _this._id, update: update };
             }
-            console.log('this.searchQuery', _this.searchQuery);
             return _this.blogsService.findBlogs(_this.searchQuery);
         })
             .subscribe(function (result) {
-            console.log('blog-list result', result);
             _this.blogs = result.data;
         });
     };
@@ -458,6 +455,7 @@ BlogsModule = __decorate([
         ],
         exports: [
             blog_component_1.BlogComponent,
+            blogs_list_component_1.BlogsListComponent,
         ]
     })
 ], BlogsModule);
@@ -1361,4 +1359,4 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /***/ })
 
 });
-//# sourceMappingURL=blogs.module.chunk.js.map
+//# sourceMappingURL=common.chunk.js.map

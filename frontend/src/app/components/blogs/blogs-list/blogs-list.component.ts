@@ -5,15 +5,13 @@ import {IUser} from '../../../interfaces/i-user';
 import {IBlog} from '../../../interfaces/i-blog';
 import {ActivatedRoute} from '@angular/router';
 import {IBlogOptions} from '../../../interfaces/i-options';
-import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-blogs-list',
   templateUrl: './blogs-list.component.html',
   styleUrls: ['./blogs-list.component.scss'],
-  // providers: [SharedService]
-
 })
+
 export class BlogsListComponent implements OnInit {
 loggedUser: IUser;
 blogs: IBlog[];
@@ -31,7 +29,6 @@ blogOptions: IBlogOptions;
     this.authService.getLoggedUser()
       .subscribe(user => this.loggedUser = user);
     this.reloadBlogs(true);
-    console.log('blog-list onInit');
   }
 
   reloadBlogs(update: boolean) {
@@ -45,19 +42,17 @@ blogOptions: IBlogOptions;
         this.blogOptions = blogOptions;
 
         this.blogOptions['mainPage'] = false;
-        if (this._id === 'all') {
+        if (this._id === 'all' || this._id === undefined) {
           this.blogOptions['singlePostMode'] = false;
           this.searchQuery = {};
         } else {
           this.blogOptions['singlePostMode'] = true;
           this.searchQuery = {'_id': this._id, update};
         }
-        console.log('this.searchQuery', this.searchQuery);
 
         return this.blogsService.findBlogs(this.searchQuery);
       })
       .subscribe(result => {
-        console.log('blog-list result', result);
         this.blogs = result.data;
       });
   }

@@ -6,12 +6,8 @@ import {Page404Component} from './page404/page404.component';
 import { MenuHComponent } from './menu-h/menu-h.component';
 import {RouterModule} from '@angular/router';
 import { ModalImgComponent } from './modal-img/modal-img.component';
-import { BlogComponent } from './blog/blog.component';
 import { PopupComponent } from './popup/popup.component';
-import { CommentComponent } from './comment/comment.component';
-import { CommentFormComponent } from './comment-form/comment-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SharedService} from '../../services/shared.service';
 
 @NgModule({
   declarations: [
@@ -19,10 +15,7 @@ import {SharedService} from '../../services/shared.service';
     Page404Component,
     MenuHComponent,
     ModalImgComponent,
-    BlogComponent,
     PopupComponent,
-    CommentComponent,
-    CommentFormComponent,
   ],
   imports: [
     CommonModule,
@@ -31,16 +24,10 @@ import {SharedService} from '../../services/shared.service';
   ],
   exports: [
     ItemComponent,
-    BlogComponent,
     ModalImgComponent,
     Page404Component,
     MenuHComponent,
     PopupComponent,
-    CommentComponent,
-    CommentFormComponent
   ],
-  // providers: [
-  //   SharedService,
-  // ]
 })
 export class SharedModule {}
