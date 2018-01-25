@@ -72,7 +72,7 @@
     <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
       <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
         <div class="blog-post-body-text">
-          <p class="lead blog-description">{{block.text}}</p>
+          <p class="lead blog-description text-justify">{{block.text}}</p>
         </div>
 
       </div>
@@ -88,12 +88,15 @@
   </div>
 </div>
 
-<div class="jumbotron">
-  <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
-                    [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
+<div class="row">
+  <div class="offset-md-2 col-md-8">
+    <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
+                      [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
 
-  <app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
-               [blog]="blog" [user]="user"></app-comment>
+    <app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
+                 [blog]="blog" [user]="user"></app-comment>
+  </div>
+
 
 </div>
 <app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>

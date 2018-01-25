@@ -138,7 +138,6 @@ module.exports.getUsernameById = function(req, res, next) {
 };
 
 module.exports.getUsersByIds = function(req, res, next) {
-  console.log('req.query.searchQuery', req.query);
   if (!req.query.searchQuery) {
     return res.json([]);
   }

@@ -1,20 +1,23 @@
 <form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
-  <div class="form-row align-items-center">
-    <div class="form-group col-md-11">
+  <div class="form-row comment-form align-items-center">
+    <div class="col-md-1 col-sm-2">
+      <div class="avatar-2-block align-top">
+        <img class="img-fluid avatar-2" src="{{user.avatar}}" alt="avatar">
+      </div>
+    </div>
+    <div class="form-group col-md-10 col-sm-8">
       <!--<label for="comment">Коментар</label>-->
       <textarea formControlName="comment" rows="3"
                 required autocomplete="false"
-                class="form-control" id="comment" placeholder="Коментар"></textarea>
+                class="form-control no-validate-style" id="comment" placeholder="Коментар"></textarea>
       <div class="invalid-alert"
-           *ngIf="(commentForm.get('comment').errors?.minlength ||
-           commentForm.get('comment').errors?.maxlength ||
-           commentForm.get('comment').errors?.required) &&
-           commentForm.get('comment').touched">Довжина від 2 до 150 символів
+           *ngIf="commentForm.get('comment').errors?.maxlength &&
+           commentForm.get('comment').touched">Довжина до 200 символів
       </div>
     </div>
-    <div class="form-group col-md-1">
+    <div class="form-group col-md-1 col-sm-2">
       <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid">
-        <i class="material-icons button-round-icon-2">local_post_office</i>
+        <i class="material-icons button-round-icon-2 text-muted">local_post_office</i>
       </button>
     </div>
   </div>

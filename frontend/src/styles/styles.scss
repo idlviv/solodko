@@ -23,13 +23,13 @@ body {
   color: $danger;
 }
 
-.ng-valid {
+.ng-valid:not(.no-validate-style) {
   &[required], &.required {
     border-bottom: 1px solid #42A948;
   }
 }
 
-.ng-invalid:not(form, .form-group) {
+.ng-invalid:not(form, .form-group, .no-validate-style) {
   border-bottom: 1px solid #dc3545;
   border-left: 3px solid #dc3545;
 }
@@ -169,11 +169,21 @@ body,
   @include radius(90px);
 }
 
-.avatar-small-block {
-  max-width: 2rem;
+.avatar-3-block {
+  max-width: 3rem;
+  margin: auto;
 }
 
-.avatar-small {
+.avatar-3 {
+  @include radius(1.5rem);
+}
+
+.avatar-2-block {
+  max-width: 2rem;
+  margin: auto;
+}
+
+.avatar-2 {
   @include radius(1rem);
 }
 
@@ -254,6 +264,8 @@ body,
   @extend .blog-header;
   border-bottom: 0;
   padding-top: 2rem;
+  text-align: justify;
+
 }
 
 .blog-post-header-bottom {
@@ -307,5 +319,21 @@ body,
 
 //comments
 .comment {
-  margin-bottom: .5rem;
+  padding: 1rem;
 }
+
+.comment-form {
+  padding: 1rem;
+}
+
+.comment-meta {
+  strong {
+    &:after{
+      content: ' \00b7 ';
+    }
+  }
+}
+
+//.comment-content {
+//  border-bottom: 1px solid $background-color-back;
+//}

@@ -28,8 +28,8 @@ export class CommentFormComponent implements OnInit {
     this.commentForm = new FormGroup({
       comment: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(150),
+        // Validators.minLength(2),
+        Validators.maxLength(200),
       ]),
     });
   }

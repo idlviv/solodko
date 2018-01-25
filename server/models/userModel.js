@@ -57,7 +57,6 @@ module.exports = UserModel;
 
 module.exports.getUsersByIds = function(searchQuery) {
   return new Promise((resolve, reject) => {
-    console.log('searchQuery', searchQuery);
     UserModel.find(searchQuery, {username: 1, avatar: 1})
       .then((result) => {
         return resolve({success: true, message: 'Користувач знайдений', data: result});

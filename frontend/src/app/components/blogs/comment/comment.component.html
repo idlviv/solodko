@@ -1,15 +1,16 @@
 <div class="row comment" *ngFor="let comment of comments">
-  <div class="col-md-1">
-    <div class="avatar-small-block">
-      <img class="img-fluid avatar-small" src="{{comment.avatar}}" alt="avatar">
+  <div class="col-md-1 col-sm-2">
+    <div class="avatar-3-block">
+      <img class="img-fluid avatar-3" src="{{comment.avatar}}" alt="avatar">
     </div>
   </div>
-  <div class="col-md-1">{{comment.username}}
-       <!--*ngIf="user && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')">-->
-       <!--{{getCommentator(comment.commentator)}}-->
+  <div class="col-md-10 col-sm-8">
+    <div class="small comment-meta">
+      <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}
+    </div>
+    <div class="comment-content">
+      <p class="text-justify">{{comment.comment}}</p>
+
+    </div>
   </div>
-  <div class="col-md-8">{{comment.comment}}</div>
-  <div class="col-md-2">{{comment.commentedAt | date: 'dd.MM.yyyy'}} </div>
 </div>
-
-

@@ -33,8 +33,9 @@ module.exports.bodyValidators = [
 
 //-----
 
-let commentLengthChecker = function(comments) {
-  return comments[0] && comments[0].length > 0 && comments[0].length <= 200;
+let commentLengthChecker = function(comment) {
+  console.log('comment.length', comment.length);
+  return comment && comment.length > 0 && comment.length <= 200;
 };
 
 module.exports.commentsValidators = [
