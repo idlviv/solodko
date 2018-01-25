@@ -1,105 +1,109 @@
 
-<div class="blog-post">
-  <div class="row blog-post-nav">
-    <div class="col-md-3 d-flex justify-content-start align-items-center text-muted">
-      <p>
-        <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
-          <i class="material-icons button-round-icon-2">arrow_back</i></a>
+<div class="blog-post row">
+  <!--<div class="col-10">-->
 
-        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-           class="btn button-round-2" (click)="newBlog()">
-          <i class="material-icons button-round-icon-2">add_box</i></a>
+    <div class="row blog-post-nav">
+      <div class="col-md-3 d-flex justify-content-start align-items-center text-muted">
+        <p>
+          <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
+            <i class="material-icons button-round-icon-2">arrow_back</i></a>
 
-        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-           class="btn button-round-2" (click)="editBlog()">
-          <i class="material-icons button-round-icon-2">edit</i></a>
+          <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+             class="btn button-round-2" (click)="newBlog()">
+            <i class="material-icons button-round-icon-2">add_box</i></a>
 
-        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-           class="btn button-round-2" (click)="deleteBlog()">
-          <i class="material-icons button-round-icon-2">delete_forever</i></a>
-      </p>
+          <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+             class="btn button-round-2" (click)="editBlog()">
+            <i class="material-icons button-round-icon-2">edit</i></a>
+
+          <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+             class="btn button-round-2" (click)="deleteBlog()">
+            <i class="material-icons button-round-icon-2">delete_forever</i></a>
+        </p>
+      </div>
+
+      <div class="col-md-3"></div>
+
+      <div class="col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons">
+        <div class="">
+          <p><i class="material-icons">date_range</i>
+            <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
+        </div>
+        <div *ngIf="blogOptions.showViews" class="">
+          <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>
+        </div>
+        <div *ngIf="blogOptions.showComments" class="">
+          <p><i class="material-icons">comment</i> Коментарів: <strong>{{blog.comments.length}}</strong></p>
+        </div>
+      </div>
     </div>
 
-    <div class="col-md-3"></div>
+    <div class="row blog-post-header">
+      <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
+        <div class="blog-post-header-top">
 
-    <div class="col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons">
-      <div class="">
-        <p><i class="material-icons">date_range</i>
-          <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>
-      </div>
-      <div *ngIf="blogOptions.showViews" class="">
-        <p><i class="material-icons">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>
-      </div>
-      <div *ngIf="blogOptions.showComments" class="">
-        <p><i class="material-icons">comment</i> Коментарів: <strong>{{blog.comments.length}}</strong></p>
-      </div>
-    </div>
-  </div>
+          <a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', blog._id]">
+            <h2 class="blog-post-header-title">{{blog.title}}</h2></a>
+          <p class="lead blog-post-description">{{blog.body.mainText}}</p>
+        </div>
 
-  <div class="row blog-post-header">
-    <div class="col-md-6 align-self-center" [ngClass]="orderMainText">
-      <div class="blog-post-header-top">
-
-        <a class="nav-link" [routerLink]="['/blogs/ch/blogs-list', blog._id]">
-          <h2 class="blog-post-header-title">{{blog.title}}</h2></a>
-        <p class="lead blog-post-description">{{blog.body.mainText}}</p>
-      </div>
-
-      <div  *ngIf="blog.body.components"  class="blog-post-header-bottom">
-        <h3 class="blog-post-header-title text-muted">Необхідні матеріали</h3>
-        <div class="d-flex justify-content-start text-muted" *ngFor="let component of blog.body.components">
+        <div  *ngIf="blog.body.components"  class="blog-post-header-bottom">
+          <h3 class="blog-post-header-title text-muted">Необхідні матеріали</h3>
+          <div class="d-flex justify-content-start text-muted" *ngFor="let component of blog.body.components">
             <p><i class="material-icons">extension</i>
               <strong>{{component.material}} </strong>
               {{component.quantity}}
               {{component.unit}}</p>
-        </div>
-      </div>
-
-
-    </div>
-    <div class="col-md-6 align-self-center" [ngClass]="orderMainImage">
-
-      <div class="img-container-outer">
-        <div class="img-container-inner">
-          <!--<img src="https://placehold.it/448x336" class="img" alt="main image">-->
-          <img src="{{blog.body.mainImage}}" class="img" alt="main image">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="blog-post-body" *ngIf="blogOptions.singlePostMode">
-    <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
-      <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
-        <div class="blog-post-body-text">
-          <p class="lead blog-description text-justify">{{block.text}}</p>
+          </div>
         </div>
 
+
       </div>
-      <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
-        <!--https://placehold.it/384*288-->
+      <div class="col-md-6 align-self-center" [ngClass]="orderMainImage">
+
         <div class="img-container-outer">
           <div class="img-container-inner">
-            <img src="{{block.image}}" class="img" alt="block image">
+            <!--<img src="https://placehold.it/448x336" class="img" alt="main image">-->
+            <img src="{{blog.body.mainImage}}" class="img" alt="main image">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-post-body" *ngIf="blogOptions.singlePostMode">
+      <div class="row" *ngFor="let block of blog.body.blocks; let i = index">
+        <div class="col-md-7 align-self-center" [ngClass]="getOrderStyle(i, 0)">
+          <div class="blog-post-body-text">
+            <p class="lead blog-description text-justify">{{block.text}}</p>
+          </div>
+
+        </div>
+        <div class="col-md-5 align-self-center" [ngClass]="getOrderStyle(i, 1)">
+          <!--https://placehold.it/384*288-->
+          <div class="img-container-outer">
+            <div class="img-container-inner">
+              <img src="{{block.image}}" class="img" alt="block image">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="offset-md-2 col-md-8">
-    <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
-                      [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
-
+  <div class="row">
+    <div class="offset-md-2 col-md-8">
+      <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
+                        [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
 
 
-    <app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
-                 [blog]="blog" [user]="user"></app-comment>
+
+      <app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
+                   [blog]="blog" [user]="user"></app-comment>
+    </div>
+
+
   </div>
 
-
-</div>
+<!--</div>-->
 <app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>
 
