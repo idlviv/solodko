@@ -8,5 +8,8 @@
 
 <div *ngFor="let blog of blogs; let index = index">
     <app-blog [blog]="blog" [index]="index" [blogOptions]="blogOptions"
-              (onDeleteBlogEmitter)="onDelete()" (onPostCommentEmitter)="onPostComment()"></app-blog>
+              (onDeleteBlogEmitter)="onDelete()"
+    ></app-blog>
+  <!--(onPostCommentEmitter)="onPostComment()"-->
+
 </div>

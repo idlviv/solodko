@@ -67,6 +67,17 @@ export class BlogsService {
       .map(res => res.json());
   }
 
+  findMongo(findOptions) {
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    headers.set('Authorization', this.authService.authToken);
+    const params = new URLSearchParams();
+    params.set('findOptions', JSON.stringify(findOptions));
+    const options = new RequestOptions({ headers: headers, params: params });
+    return this.http.get(config.serverUrl + 'blogs/find-mongo', options)
+      .map(res => res.json());
+  }
+
   findBlogs(searchQuery) {
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');

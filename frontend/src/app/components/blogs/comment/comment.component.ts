@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
-import {IBlog} from '../../../interfaces/i-blog';
+import {IBlog, IComment} from '../../../interfaces/i-blog';
 import {AuthService} from '../../../services/auth.service';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
@@ -9,8 +9,10 @@ import {BlogsService} from '../../../services/blogs.service';
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.scss']
 })
+
 export class CommentComponent implements OnChanges, OnInit {
   @Input() blog: IBlog;
+  @Input() blogComments: IComment[];
   @Input() user: IBlog;
   // private _blog: IBlog;
   comments = [];

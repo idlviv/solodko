@@ -7,6 +7,7 @@ import {emptyUser} from '../../../data/user';
 import {IUser} from '../../../interfaces/i-user';
 import {Router} from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
+import {BlogsService} from '../../../services/blogs.service';
 declare const $: any;
 
 @Component({
@@ -21,7 +22,7 @@ export class BlogComponent implements OnInit {
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
   @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
-  @Output() onPostCommentEmitter = new EventEmitter<boolean>();
+  // @Output() onPostCommentEmitter = new EventEmitter<boolean>();
 
   // onMain: boolean;
   orderMainImage: any;
@@ -30,12 +31,14 @@ export class BlogComponent implements OnInit {
   user: IUser = emptyUser; // = this.guest;
   job: string;
   showCommentForm: false;
+  findOptions = {};
 
   constructor(
     private location: Location,
     private authService: AuthService,
     private router: Router,
     private sharedService: SharedService,
+    private blogsService: BlogsService,
   ) { }
 
   ngOnInit() {
@@ -89,6 +92,20 @@ export class BlogComponent implements OnInit {
     }
   }
 
+  reloadComments() {
+
+    this.findOptions['query'] = {_id: this.blog._id};
+    // this.findOptions['projection'] = null;
+    this.findOptions['projection'] = {comments: 1};
+    this.findOptions['sort'] = {commentedAt: -1};
+    this.findOptions['skip'] = 0;
+    this.findOptions['limit'] = 10;
+
+    console.log('this.findOptions', this.findOptions);
+    this.blogsService.findMongo(this.findOptions)
+      .subscribe(data => console.log('findMongo - data', data));
+  }
+
   goBack() {
     this.location.back();
   }
@@ -111,7 +128,8 @@ export class BlogComponent implements OnInit {
   }
 
   onPostComment() {
-    this.onPostCommentEmitter.emit();
+    // this.onPostCommentEmitter.emit();
+    this.reloadComments();
   }
 
 }

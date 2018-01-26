@@ -34,6 +34,11 @@ router.get(
   BlogsController.findBlogs
 );
 
+router.get(
+  '/find-mongo',
+  BlogsController.findMongo
+);
+
 router.put(
   '/edit-blog',
   passport.authenticate('jwt.manager.admin', {session: false}),

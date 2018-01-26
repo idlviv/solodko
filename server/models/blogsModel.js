@@ -92,6 +92,41 @@ module.exports.findBlogs = function(searchQuery) {
   });
 };
 
+module.exports.findMongo = function(findOptions) {
+
+  return new Promise(function(resolve, reject) {
+    BlogsModel
+      .find(
+        findOptions.query,
+        findOptions.projection,
+        // {
+        //   skip: findOptions.skip,
+        //   limit: findOptions.limit
+        // }
+      )
+      // .sort(findOptions.projection)
+      // .skip(findOptions.skip)
+      .limit(findOptions.limit)
+      .exec((error, result) =>
+        {
+          if (error) {
+            return reject({success: false, message: 'Не вдалося завантажити блог', data: error})
+          } else {
+            return resolve({success: true, data: result});
+
+          }
+        }
+      );
+
+      // .then((result) => {
+      //     return resolve({success: true, data: result});
+      //   })
+      // .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
+
+    }
+  );
+};
+
 module.exports.addBlog = function(newBlog) {
   return new Promise(function(resolve, reject) {
     newBlog.save(newBlog)

@@ -79,16 +79,12 @@ export class AuthService {
   }
 
   getUsersByIds(searchQuery) {
-    console.log('searchQuery - service', searchQuery);
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
     headers.set('Authorization', this.authToken);
     const params = new URLSearchParams();
     params.set('searchQuery', JSON.stringify(searchQuery));
-    console.log('params - service', params);
-
     const options = new RequestOptions({ headers: headers, params: params });
-    console.log('options', options);
     return this.http.get(
       config.serverUrl + 'api/get-users-by-ids/',
       options)

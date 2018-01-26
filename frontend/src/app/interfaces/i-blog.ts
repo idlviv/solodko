@@ -22,10 +22,12 @@ export interface IBlog {
   likedBy?: string[];
   dislikes?: number;
   dislikedBy?: string[];
-  comments?: [{
-    comment: string,
-    commentators_id: string,
-    commentedAt: string,
-  }];
+  comments?: IComment[];
   views: number;
+}
+
+export interface IComment {
+  comment: string;
+  commentators_id: string;
+  commentedAt: string;
 }

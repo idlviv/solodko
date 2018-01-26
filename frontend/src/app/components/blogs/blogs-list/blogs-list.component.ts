@@ -61,7 +61,7 @@ blogOptions: IBlogOptions;
     this.reloadBlogs(false);
   }
 
-  onPostComment() {
-    this.reloadBlogs(false);
-  }
+  // onPostComment() {
+  //   this.reloadBlogs(false);
+  // }
 }
