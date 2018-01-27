@@ -3,7 +3,7 @@ webpackJsonp(["common"],{
 /***/ "../../../../../src/app/components/blogs/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"offset-md-1 col-md-10\">\r\n    <div class=\"blog-post\">\r\n      <div class=\"row blog-post-nav\">\r\n        <div class=\"col-md-3 d-flex justify-content-start align-items-center text-muted\">\r\n          <p>\r\n            <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n              <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n          </p>\r\n        </div>\r\n\r\n        <div class=\"col-md-3\"></div>\r\n\r\n        <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n          <div class=\"\">\r\n            <p><i class=\"material-icons\">date_range</i>\r\n              <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n            <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n            <p><i class=\"material-icons\">comment</i> Коментарів: <strong>{{blog.comments.length}}</strong></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"row blog-post-header\">\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n          <div class=\"blog-post-header-top\">\r\n\r\n            <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n              <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n            <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n          </div>\r\n\r\n          <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n            <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n            <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n              <p><i class=\"material-icons\">extension</i>\r\n                <strong>{{component.material}} </strong>\r\n                {{component.quantity}}\r\n                {{component.unit}}</p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n          <div class=\"img-container-outer\">\r\n            <div class=\"img-container-inner\">\r\n              <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n              <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n        <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n          <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n            <div class=\"blog-post-body-text\">\r\n              <p class=\"lead blog-description text-justify\">{{block.text}}</p>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n            <!--https://placehold.it/384*288-->\r\n            <div class=\"img-container-outer\">\r\n              <div class=\"img-container-inner\">\r\n                <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"offset-md-2 col-md-8\">\r\n    <app-comment-form *ngIf=\"blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"\r\n                      [blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>\r\n\r\n\r\n\r\n    <app-comment *ngIf=\"blog.comments[0] && blogOptions.singlePostMode\"\r\n                 [blog]=\"blog\" [blogComments]=\"blog.comments\" [user]=\"user\"></app-comment>\r\n  </div>\r\n\r\n\r\n</div>\r\n<app-popup [blog]=\"blog\" [job]=\"job\" (onDeletePopEmitter)=\"onDelete()\"></app-popup>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"offset-md-1 col-md-10\">\r\n    <div class=\"blog-post\">\r\n      <div class=\"row blog-post-nav\">\r\n        <div class=\"col-md-3 d-flex justify-content-start align-items-center text-muted\">\r\n          <p>\r\n            <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n              <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n          </p>\r\n        </div>\r\n\r\n        <div class=\"col-md-3\"></div>\r\n\r\n        <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n          <div class=\"\">\r\n            <p><i class=\"material-icons\">date_range</i>\r\n              <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n            <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n            <p><i class=\"material-icons\">comment</i> Коментарів: <strong>{{blog.comments.length}}</strong></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"row blog-post-header\">\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n          <div class=\"blog-post-header-top\">\r\n\r\n            <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n              <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n            <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n          </div>\r\n\r\n          <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n            <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n            <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n              <p><i class=\"material-icons\">extension</i>\r\n                <strong>{{component.material}} </strong>\r\n                {{component.quantity}}\r\n                {{component.unit}}</p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n          <div class=\"img-container-outer\">\r\n            <div class=\"img-container-inner\">\r\n              <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n              <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n        <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n          <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n            <div class=\"blog-post-body-text\">\r\n              <p class=\"lead blog-description text-justify\">{{block.text}}</p>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n            <!--https://placehold.it/384*288-->\r\n            <div class=\"img-container-outer\">\r\n              <div class=\"img-container-inner\">\r\n                <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"offset-md-2 col-md-8\">\r\n    <app-comment-form *ngIf=\"blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"\r\n                      [blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>\r\n\r\n    <div *ngIf=\"comments[0] && blogOptions.singlePostMode\">\r\n      <app-comment [comments]=\"comments\" [user]=\"user\"></app-comment>\r\n      <button class=\"btn btn-sm btn-primary\" (click)=\"onLoadComments()\">Завантажити ще 10 з {{blog.comments.length}}</button>\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n</div>\r\n<app-popup [blog]=\"blog\" [job]=\"job\" (onDeletePopEmitter)=\"onDelete()\"></app-popup>\r\n\r\n"
 
 /***/ }),
 
@@ -50,6 +50,7 @@ var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
 var BlogComponent = (function () {
+    // displayedComments = 0;
     function BlogComponent(location, authService, router, sharedService, blogsService) {
         this.location = location;
         this.authService = authService;
@@ -59,14 +60,20 @@ var BlogComponent = (function () {
         this.onDeleteBlogEmitter = new core_1.EventEmitter();
         this.user = user_1.emptyUser; // = this.guest;
         this.findOptions = {};
+        this.comments = [];
     }
     BlogComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.getMainImageOrderStyle();
         this.authService.getLoggedUser()
             .subscribe(function (user) { return _this.user = user; });
+        if (this.blogOptions.singlePostMode) {
+            this.loadComments();
+        }
         //   this.sharedService.share$
         //     .subscribe(x => console.log('x - blogComponent', x));
+    };
+    BlogComponent.prototype.ngAfterViewInit = function () {
     };
     BlogComponent.prototype.getMainImageOrderStyle = function () {
         if (this.index % 2 === 0) {
@@ -110,16 +117,28 @@ var BlogComponent = (function () {
             return 'order-md-' + order + ' order-2';
         }
     };
-    BlogComponent.prototype.reloadComments = function () {
+    BlogComponent.prototype.loadComments = function () {
+        var _this = this;
+        var commentsLength = 10;
+        var slice = ['$comments', this.comments.length, commentsLength];
+        // if (start) {
+        //   slice.push(start); }
+        // if (qty) {
+        //   slice.push(qty);
+        // } else {
+        //   slice.push(10);
+        // }
         this.findOptions['query'] = { _id: this.blog._id };
-        // this.findOptions['projection'] = null;
-        this.findOptions['projection'] = { comments: 1 };
-        this.findOptions['sort'] = { commentedAt: -1 };
-        this.findOptions['skip'] = 0;
-        this.findOptions['limit'] = 10;
+        this.findOptions['options'] = [
+            { $project: { projectedArray: { $slice: slice } } },
+        ];
         console.log('this.findOptions', this.findOptions);
         this.blogsService.findMongo(this.findOptions)
-            .subscribe(function (data) { return console.log('findMongo - data', data); });
+            .subscribe(function (result) {
+            _this.comments = result.data[0].projectedArray;
+            console.log('com ', _this.comments);
+            _this.sharedService.sharingEvent('updateCommentsList');
+        }, function (error) { return console.log(error.message); });
     };
     BlogComponent.prototype.goBack = function () {
         this.location.back();
@@ -139,7 +158,11 @@ var BlogComponent = (function () {
     };
     BlogComponent.prototype.onPostComment = function () {
         // this.onPostCommentEmitter.emit();
-        this.reloadComments();
+        this.comments = [];
+        this.loadComments();
+    };
+    BlogComponent.prototype.onLoadComments = function () {
+        this.loadComments();
     };
     return BlogComponent;
 }());
@@ -474,7 +497,7 @@ exports.BlogsModule = BlogsModule;
 /***/ "../../../../../src/app/components/blogs/comment-form/comment-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\r\n  <div class=\"form-row comment-form align-items-center\">\r\n    <div class=\"col-md-1 col-sm-2\">\r\n      <div class=\"avatar-2-block align-top\">\r\n        <img class=\"img-fluid avatar-2\" src=\"{{user.avatar}}\" alt=\"avatar\">\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group col-md-10 col-sm-8\">\r\n      <!--<label for=\"comment\">Коментар</label>-->\r\n      <textarea formControlName=\"comment\" rows=\"3\"\r\n                required autocomplete=\"false\"\r\n                class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\"></textarea>\r\n      <div class=\"invalid-alert\"\r\n           *ngIf=\"commentForm.get('comment').errors?.maxlength &&\r\n           commentForm.get('comment').touched\">Довжина до 200 символів\r\n      </div>\r\n    </div>\r\n    <div class=\"form-group col-md-1 col-sm-2\">\r\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\r\n        <i class=\"material-icons button-round-icon-2 text-muted\">local_post_office</i>\r\n      </button>\r\n    </div>\r\n  </div>\r\n</form>\r\n<!--<button class=\"btn\" (click)=\"onShared()\">share</button>-->\r\n"
+module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\n  <div class=\"form-row comment-form align-items-center\">\n    <div class=\"col-md-1 col-sm-2\">\n      <div class=\"avatar-2-block align-top\">\n        <img class=\"img-fluid avatar-2\" src=\"{{user.avatar}}\" alt=\"avatar\">\n      </div>\n    </div>\n    <div class=\"form-group col-md-10 col-sm-8\">\n      <!--<label for=\"comment\">Коментар</label>-->\n      <textarea formControlName=\"comment\" rows=\"3\"\n                required autocomplete=\"false\"\n                class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\"></textarea>\n      <div class=\"invalid-alert\"\n           *ngIf=\"commentForm.get('comment').errors?.maxlength &&\n           commentForm.get('comment').touched\">Довжина до 200 символів\n      </div>\n    </div>\n    <div class=\"form-group col-md-1 col-sm-2\">\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\n        <i class=\"material-icons button-round-icon-2 text-muted\">local_post_office</i>\n      </button>\n    </div>\n  </div>\n</form>\n<!--<button class=\"btn\" (click)=\"onShared()\">share</button>-->\n"
 
 /***/ }),
 
@@ -597,7 +620,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/blogs/comment/comment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\r\n  <ul class=\"pagination pagination-sm justify-content-center\">\r\n    <li class=\"page-item\">\r\n      <a class=\"page-link\" href=\"#\" aria-label=\"Previous\">\r\n        <span aria-hidden=\"true\">&laquo;</span>\r\n        <span class=\"sr-only\">Previous</span>\r\n      </a>\r\n    </li>\r\n    <li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>\r\n    <li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>\r\n    <li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>\r\n    <li class=\"page-item\">\r\n      <a class=\"page-link\" href=\"#\" aria-label=\"Next\">\r\n        <span aria-hidden=\"true\">&raquo;</span>\r\n        <span class=\"sr-only\">Next</span>\r\n      </a>\r\n    </li>\r\n  </ul>\r\n</nav>\r\n\r\n<div class=\"row comment\" *ngFor=\"let comment of comments\">\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"avatar-3-block\">\r\n      <img class=\"img-fluid avatar-3\" src=\"{{comment.avatar}}\" alt=\"avatar\">\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-10 col-sm-8\">\r\n    <div class=\"small comment-meta\">\r\n      <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}\r\n    </div>\r\n    <div class=\"comment-content\">\r\n      <p class=\"text-justify\">{{comment.comment}}</p>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<!--<nav>-->\r\n  <!--<ul class=\"pagination pagination-sm justify-content-center\">-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Previous\">-->\r\n        <!--<span aria-hidden=\"true\">&laquo;</span>-->\r\n        <!--<span class=\"sr-only\">Previous</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Next\">-->\r\n        <!--<span aria-hidden=\"true\">&raquo;</span>-->\r\n        <!--<span class=\"sr-only\">Next</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n  <!--</ul>-->\r\n<!--</nav>-->\r\n<div class=\"row comment\" *ngFor=\"let comment of commentsList; let i = index\">\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"avatar-3-block\">\r\n      <img class=\"img-fluid avatar-3\" src=\"{{comment.avatar}}\" alt=\"avatar\">\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-10 col-sm-8\">\r\n    <div class=\"small comment-meta\">\r\n      {{i}} <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}\r\n    </div>\r\n    <div class=\"comment-content\">\r\n      <p class=\"text-justify\">{{comment.comment}}</p>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -635,10 +658,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var i_blog_1 = __webpack_require__("../../../../../src/app/interfaces/i-blog.ts");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var i_user_1 = __webpack_require__("../../../../../src/app/interfaces/i-user.ts");
 var CommentComponent = (function () {
     // get blog(): IBlog {
     //   return this._blog;
@@ -654,54 +677,84 @@ var CommentComponent = (function () {
         this.authService = authService;
         this.sharedService = sharedService;
         this.blogsService = blogsService;
-        // private _blog: IBlog;
-        this.comments = [];
+        this.commentsList = [];
     }
     CommentComponent.prototype.ngOnInit = function () {
-        // this.sharedService.getSharing()
-        //   .subscribe(x => console.log('x - commentComponent', x));
+        var _this = this;
+        this.sharedService.getSharingEvent()
+            .subscribe(function (event) {
+            if (event === 'updateCommentsList') {
+                _this.updateCommentsList();
+            }
+        });
+    };
+    CommentComponent.prototype.updateCommentsList = function () {
+        var _this = this;
+        console.log('changes');
+        // const blog: SimpleChange = changes.blog;
+        // console.log('blog._id', blog.currentValue);
+        var commentators = [];
+        for (var _i = 0, _a = this.comments; _i < _a.length; _i++) {
+            var comment = _a[_i];
+            if (commentators.indexOf(comment.commentators_id) === -1) {
+                commentators.push(comment.commentators_id);
+            }
+        }
+        this.authService.getUsersByIds({ _id: { $in: commentators } })
+            .subscribe(function (result) {
+            var _loop_1 = function (comment) {
+                // console.log('comment', comment);
+                result.data.forEach(function (commentator) {
+                    if (commentator._id === comment.commentators_id) {
+                        // console.log('this.commentsList', this.commentsList);
+                        _this.commentsList.push(Object.assign(comment, { username: commentator.username, avatar: commentator.avatar }));
+                    }
+                });
+            };
+            for (var _i = 0, _a = _this.comments; _i < _a.length; _i++) {
+                var comment = _a[_i];
+                _loop_1(comment);
+            }
+        });
     };
     CommentComponent.prototype.ngOnChanges = function (changes) {
-        var _this = this;
-        if (changes.blog) {
-            // const blog: SimpleChange = changes.blog;
-            // console.log('blog._id', blog.currentValue);
-            var commentators = [];
-            for (var _i = 0, _a = this.blog.comments; _i < _a.length; _i++) {
-                var comment = _a[_i];
-                if (commentators.indexOf(comment.commentators_id) === -1) {
-                    commentators.push(comment.commentators_id);
-                }
-            }
-            this.authService.getUsersByIds({ _id: { $in: commentators } })
-                .subscribe(function (result) {
-                var _loop_1 = function (comment) {
-                    result.data.forEach(function (commentator) {
-                        if (commentator._id === comment.commentators_id) {
-                            _this.comments.push(Object.assign(comment, { username: commentator.username, avatar: commentator.avatar }));
-                        }
-                    });
-                };
-                for (var _i = 0, _a = _this.blog.comments; _i < _a.length; _i++) {
-                    var comment = _a[_i];
-                    _loop_1(comment);
-                }
-            });
-        }
+        console.log('on-changes');
+        //
+        //   if (changes.comments) {
+        //     console.log('changes');
+        //     // const blog: SimpleChange = changes.blog;
+        //     // console.log('blog._id', blog.currentValue);
+        //     const commentators = [];
+        //     for (const comment of this.comments) {
+        //       if (commentators.indexOf(comment.commentators_id) === -1) {
+        //         commentators.push(comment.commentators_id);
+        //       }
+        //     }
+        //     this.authService.getUsersByIds({_id: {$in: commentators}})
+        //       .subscribe(result => {
+        //         for (const comment of this.comments) {
+        //           // console.log('comment', comment);
+        //           result.data.forEach(commentator => {
+        //             if (commentator._id === comment.commentators_id) {
+        //               // console.log('this.commentsList', this.commentsList);
+        //               this.commentsList.push(Object.assign(
+        //                 comment,
+        //                 {username: commentator.username, avatar: commentator.avatar}));
+        //             }
+        //           });
+        //         }
+        //     });
+        //   }
     };
     return CommentComponent;
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", typeof (_a = typeof i_blog_1.IBlog !== "undefined" && i_blog_1.IBlog) === "function" && _a || Object)
-], CommentComponent.prototype, "blog", void 0);
-__decorate([
-    core_1.Input(),
     __metadata("design:type", Array)
-], CommentComponent.prototype, "blogComments", void 0);
+], CommentComponent.prototype, "comments", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", typeof (_b = typeof i_blog_1.IBlog !== "undefined" && i_blog_1.IBlog) === "function" && _b || Object)
+    __metadata("design:type", typeof (_a = typeof i_user_1.IUser !== "undefined" && i_user_1.IUser) === "function" && _a || Object)
 ], CommentComponent.prototype, "user", void 0);
 CommentComponent = __decorate([
     core_1.Component({
@@ -709,10 +762,10 @@ CommentComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _c || Object, typeof (_d = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _d || Object, typeof (_e = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _b || Object, typeof (_c = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _c || Object, typeof (_d = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _d || Object])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
-var _a, _b, _c, _d, _e;
+var _a, _b, _c, _d;
 //# sourceMappingURL=comment.component.js.map
 
 /***/ }),
@@ -720,7 +773,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/blogs/delete-blog/delete-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Дфйсно видалити пост?</h2>\r\n<button class=\"btn btn-danger btn-sm\" (click)=\"onConfirmDelete()\">Видалити</button>\r\n<button class=\"btn btn-info btn-sm\" (click)=\"onCancelDelete()\">Відмінити</button>\r\n<br/>\r\n<div class=\"row\" *ngIf=\"blog\">\r\n  <div class=\"col\">\r\n\r\n    <div class=\"card\">\r\n      <div class=\"card-header\">\r\n        <h4>{{blog.title}}</h4>\r\n      </div>\r\n\r\n      <div class=\"card-footer text-muted\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-4 col-sm-12\">\r\n\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Автор: </strong>{{blog.createdBy}}\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\r\n          </div>\r\n\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Лайків </strong>{{blog.likes}}\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Нелайків </strong>{{blog.dislikes}}\r\n          </div>\r\n        </div>\r\n        <br/>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<h2 class=\"page-header\">Дфйсно видалити пост?</h2>\n<button class=\"btn btn-danger btn-sm\" (click)=\"onConfirmDelete()\">Видалити</button>\n<button class=\"btn btn-info btn-sm\" (click)=\"onCancelDelete()\">Відмінити</button>\n<br/>\n<div class=\"row\" *ngIf=\"blog\">\n  <div class=\"col\">\n\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h4>{{blog.title}}</h4>\n      </div>\n\n      <div class=\"card-footer text-muted\">\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-12\">\n\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Автор: </strong>{{blog.createdBy}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\n          </div>\n\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Лайків </strong>{{blog.likes}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Нелайків </strong>{{blog.dislikes}}\n          </div>\n        </div>\n        <br/>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -852,7 +905,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/blogs/edit-blog/edit-blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Редагувати пост</h2>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col\">\r\n\r\n    <form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\" *ngIf=\"blog\">\r\n      <div class=\"form-group\">\r\n        <label for=\"title\">Заголовок</label>\r\n        <input formControlName=\"title\" [formGroup]=\"editBlogForm\" required\r\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||\r\n              editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">\r\n          Довжина від 4 до 50 символів\r\n        </div>\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">\r\n          Використовуйте тільки цифри і букви\r\n        </div>\r\n        <!--{{editBlogForm.controls['title'].errors | json}}-->\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"body\">Текст</label>\r\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\r\n                  [formGroup]=\"editBlogForm\" required autocomplete=\"false\"\r\n                  class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||\r\n              editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">\r\n          Довжина від 4 до 1000 символів\r\n        </div>\r\n      </div>\r\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Зберегти</button>\r\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"goBack()\">Повернутись</button>\r\n      <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\" type=\"button\" class=\"btn btn-danger btn-sm\">Видалити</button>\r\n\r\n    </form>\r\n\r\n  </div>\r\n</div>\r\n"
+module.exports = "<h2 class=\"page-header\">Редагувати пост</h2>\n\n<div class=\"row\">\n  <div class=\"col\">\n\n    <form [formGroup]=\"editBlogForm\" (ngSubmit)=\"onEditBlogSubmit()\" *ngIf=\"blog\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"editBlogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\" [(ngModel)]=\"blog.title\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['title'].errors?.minlength ||\n              editBlogForm.controls['title'].errors?.maxlength) && editBlogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"editBlogForm.controls['title'].errors?.pattern && editBlogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n        <!--{{editBlogForm.controls['title'].errors | json}}-->\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"editBlogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\" [(ngModel)]=\"blog.body\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(editBlogForm.controls['body'].errors?.minlength ||\n              editBlogForm.controls['body'].errors?.maxlength) && editBlogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!editBlogForm.valid || processing\">Зберегти</button>\n      <button [disabled]=\"processing\" type=\"button\" class=\"btn btn-secondary btn-sm\" (click)=\"goBack()\">Повернутись</button>\n      <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\" type=\"button\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n    </form>\n\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1008,7 +1061,7 @@ var _a, _b, _c, _d, _e, _f;
 /***/ "../../../../../src/app/components/blogs/list-blogs/list-blogs.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"page-header\">Блог</h2>\r\n<button [routerLink]=\"['/blogs/ch/new-blog']\"\r\n\r\n        class=\"btn btn-sm btn-info\">Новий пост---</button>\r\n<!--new blog form-->\r\n<div *ngIf=\"newPost\" class=\"row\">\r\n  <div class=\"col\">\r\n\r\n    <form [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\r\n      <div class=\"form-group\">\r\n        <label for=\"title\">Заголовок</label>\r\n        <input formControlName=\"title\" [formGroup]=\"blogForm\" required\r\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\r\n          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched\">\r\n          Довжина від 4 до 50 символів\r\n        </div>\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\r\n          Використовуйте тільки цифри і букви\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <label for=\"body\">Текст</label>\r\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\r\n                  [formGroup]=\"blogForm\" required autocomplete=\"false\"\r\n                  class=\"form-control\" id=\"body\" placeholder=\"\"></textarea>\r\n        <div class=\"alert alert-danger\" role=\"alert\"\r\n             *ngIf=\"(blogForm.controls['body'].errors?.minlength ||\r\n          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched\">\r\n          Довжина від 4 до 1000 символів\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"form-group\">\r\n        <div class=\"form-check\">\r\n          <label class=\"form-check-label\">\r\n            <input  class=\"form-check-input\" type=\"checkbox\" formControlName=\"showOnMainPage\"\r\n                   [formGroup]=\"blogForm\" id=\"showOnMainPage\">   На головній</label>\r\n        </div>\r\n      </div>\r\n\r\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid\">Запостити</button>\r\n      <button type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\r\n    </form>\r\n  </div>\r\n</div>\r\n<!--end of new blog form-->\r\n\r\n<div class=\"row\" *ngIf=\"!newPost\">\r\n  <div class=\"col\">\r\n\r\n    <button *ngIf=\"loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\r\n            class=\"btn btn-success btn-sm\"\r\n            (click)=\"newBlogForm()\">Новий пост</button>\r\n    <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary btn-info btn-sm\"\r\n            (click)=\"reloadBlogs()\">Перезавантажити</button>\r\n  </div>\r\n</div>\r\n<br/>\r\n\r\n<div class=\"row\" *ngIf=\"!newPost\">\r\n  <div class=\"col-12\" *ngFor=\"let blog of blogs\">\r\n\r\n    <div class=\"card\">\r\n      <div class=\"card-header\">\r\n        <h4>{{blog.title}}</h4>\r\n      </div>\r\n\r\n      <div class=\"card-body\">\r\n        <p class=\"card-text\">{{blog.body}}</p>\r\n      </div>\r\n\r\n      <div class=\"card-footer text-muted\">\r\n        <div class=\"row\">\r\n          <div class=\"col-md-4 col-sm-12\">\r\n            <button [routerLink]=\"['/blogs/ch/edit-blog', blog._id]\"\r\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\r\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\r\n                    class=\"btn btn-sm btn-info\">Редагувати</button>\r\n            <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\"\r\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\r\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\r\n                    [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\r\n\r\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\r\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\r\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\r\n              <div class=\"c_dropdown-content\">\r\n                <p><a href=\"#\">user1</a></p>\r\n                <p><a href=\"#\">user2</a></p>\r\n                <p><a href=\"#\">user3</a></p>\r\n              </div>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Автор: </strong>{{blog.createdBy}}\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\">\r\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\r\n          </div>\r\n\r\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\r\n            <strong>Лайків </strong>{{blog.likes}}\r\n          </div>\r\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\r\n            <strong>Нелайків </strong>{{blog.dislikes}}\r\n          </div>\r\n        </div>\r\n        <br/>\r\n\r\n\r\n\r\n      </div>\r\n\r\n      <ul class=\"list-group\" *ngIf=\"!newPost\">\r\n        <li class=\"list-group-item\">\r\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\r\n            Коментувати\r\n          </button>\r\n          <!--<form>-->\r\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\r\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\r\n          <!--</textarea>-->\r\n          <!--</form>-->\r\n        </li>\r\n\r\n\r\n      </ul>\r\n    </div>\r\n  </div>\r\n  <br/>\r\n\r\n</div>\r\n\r\n"
+module.exports = "<h2 class=\"page-header\">Блог</h2>\n<button [routerLink]=\"['/blogs/ch/new-blog']\"\n\n        class=\"btn btn-sm btn-info\">Новий пост---</button>\n<!--new blog form-->\n<div *ngIf=\"newPost\" class=\"row\">\n  <div class=\"col\">\n\n    <form [formGroup]=\"blogForm\" (ngSubmit)=\"onBlogSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"title\">Заголовок</label>\n        <input formControlName=\"title\" [formGroup]=\"blogForm\" required\n               class=\"form-control\" id=\"title\" placeholder=\"Заголовок\">\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['title'].errors?.minlength ||\n          blogForm.controls['title'].errors?.maxlength) && blogForm.controls['title'].touched\">\n          Довжина від 4 до 50 символів\n        </div>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"blogForm.controls['title'].errors?.pattern && blogForm.controls['title'].touched\">\n          Використовуйте тільки цифри і букви\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <label for=\"body\">Текст</label>\n        <textarea formControlName=\"body\" cols=\"30\" rows=\"5\"\n                  [formGroup]=\"blogForm\" required autocomplete=\"false\"\n                  class=\"form-control\" id=\"body\" placeholder=\"\"></textarea>\n        <div class=\"alert alert-danger\" role=\"alert\"\n             *ngIf=\"(blogForm.controls['body'].errors?.minlength ||\n          blogForm.controls['body'].errors?.maxlength) && blogForm.controls['body'].touched\">\n          Довжина від 4 до 1000 символів\n        </div>\n      </div>\n\n      <div class=\"form-group\">\n        <div class=\"form-check\">\n          <label class=\"form-check-label\">\n            <input  class=\"form-check-input\" type=\"checkbox\" formControlName=\"showOnMainPage\"\n                   [formGroup]=\"blogForm\" id=\"showOnMainPage\">   На головній</label>\n        </div>\n      </div>\n\n      <button type=\"submit\" class=\"btn btn-primary btn-sm\" [disabled]=\"!blogForm.valid\">Запостити</button>\n      <button type=\"button\" class=\"btn btn-danger btn-sm\" (click)=\"goBack()\">Повернутись</button>\n    </form>\n  </div>\n</div>\n<!--end of new blog form-->\n\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col\">\n\n    <button *ngIf=\"loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n            class=\"btn btn-success btn-sm\"\n            (click)=\"newBlogForm()\">Новий пост</button>\n    <button [disabled]=\"loadingBlogs\" class=\"btn btn-primary btn-info btn-sm\"\n            (click)=\"reloadBlogs()\">Перезавантажити</button>\n  </div>\n</div>\n<br/>\n\n<div class=\"row\" *ngIf=\"!newPost\">\n  <div class=\"col-12\" *ngFor=\"let blog of blogs\">\n\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h4>{{blog.title}}</h4>\n      </div>\n\n      <div class=\"card-body\">\n        <p class=\"card-text\">{{blog.body}}</p>\n      </div>\n\n      <div class=\"card-footer text-muted\">\n        <div class=\"row\">\n          <div class=\"col-md-4 col-sm-12\">\n            <button [routerLink]=\"['/blogs/ch/edit-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    class=\"btn btn-sm btn-info\">Редагувати</button>\n            <button [routerLink]=\"['/blogs/ch/delete-blog', blog._id]\"\n                    *ngIf=\"blog.createdBy_id === loggedUser._id ||\n                    loggedUser.role === 'Admin' || loggedUser.role === 'Manager'\"\n                    [disabled]=\"loadingBlogs\" class=\"btn btn-danger btn-sm\">Видалити</button>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Лайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n            <div class=\"c_dropdown\" *ngIf=\"blog.createdBy_id !== loggedUser._id\">\n              <button class=\"btn btn-success btn-sm\">Нелайки</button>\n              <div class=\"c_dropdown-content\">\n                <p><a href=\"#\">user1</a></p>\n                <p><a href=\"#\">user2</a></p>\n                <p><a href=\"#\">user3</a></p>\n              </div>\n            </div>\n\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Автор: </strong>{{blog.createdBy}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\">\n            <strong>Дата: </strong>{{blog.createdAt | date: 'dd.MM.yyyy HH:mm'}}\n          </div>\n\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Лайків </strong>{{blog.likes}}\n          </div>\n          <div class=\"col-md-2 col-sm-6\" *ngIf=\"blog.createdBy_id === loggedUser._id\">\n            <strong>Нелайків </strong>{{blog.dislikes}}\n          </div>\n        </div>\n        <br/>\n\n\n\n      </div>\n\n      <ul class=\"list-group\" *ngIf=\"!newPost\">\n        <li class=\"list-group-item\">\n          <button class=\"btn btn-sm btn-danger\" (click)=\"draftComment()\">\n            Коментувати\n          </button>\n          <!--<form>-->\n          <!--<textarea name=\"comment\" id=\"\" cols=\"30\" rows=\"10\" class=\"form-control\">-->\n          <!--<button class=\"btn btn-sm btn-info\">Submit</button>-->\n          <!--<button class=\"btn btn-sm btn-info\">Cancel</button>-->\n          <!--</textarea>-->\n          <!--</form>-->\n        </li>\n\n\n      </ul>\n    </div>\n  </div>\n  <br/>\n\n</div>\n\n"
 
 /***/ }),
 

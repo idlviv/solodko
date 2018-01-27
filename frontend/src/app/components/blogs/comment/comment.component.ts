@@ -3,6 +3,7 @@ import {IBlog, IComment} from '../../../interfaces/i-blog';
 import {AuthService} from '../../../services/auth.service';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
+import {IUser} from '../../../interfaces/i-user';
 
 @Component({
   selector: 'app-comment',
@@ -11,11 +12,9 @@ import {BlogsService} from '../../../services/blogs.service';
 })
 
 export class CommentComponent implements OnChanges, OnInit {
-  @Input() blog: IBlog;
-  @Input() blogComments: IComment[];
-  @Input() user: IBlog;
-  // private _blog: IBlog;
-  comments = [];
+  @Input() comments: IComment[];
+  @Input() user: IUser;
+  commentsList = [];
 
   // get blog(): IBlog {
   //   return this._blog;
@@ -35,33 +34,67 @@ export class CommentComponent implements OnChanges, OnInit {
   ) { }
 
   ngOnInit() {
-    // this.sharedService.getSharing()
-    //   .subscribe(x => console.log('x - commentComponent', x));
+    this.sharedService.getSharingEvent()
+      .subscribe(event => {
+        if (event === 'updateCommentsList') {
+          this.updateCommentsList();
+        }
+      });
+  }
+
+  updateCommentsList() {
+    console.log('changes');
+    // const blog: SimpleChange = changes.blog;
+    // console.log('blog._id', blog.currentValue);
+    const commentators = [];
+    for (const comment of this.comments) {
+      if (commentators.indexOf(comment.commentators_id) === -1) {
+        commentators.push(comment.commentators_id);
+      }
+    }
+    this.authService.getUsersByIds({_id: {$in: commentators}})
+      .subscribe(result => {
+        for (const comment of this.comments) {
+          // console.log('comment', comment);
+          result.data.forEach(commentator => {
+            if (commentator._id === comment.commentators_id) {
+              // console.log('this.commentsList', this.commentsList);
+              this.commentsList.push(Object.assign(
+                comment,
+                {username: commentator.username, avatar: commentator.avatar}));
+            }
+          });
+        }
+      });
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.blog) {
-      // const blog: SimpleChange = changes.blog;
-      // console.log('blog._id', blog.currentValue);
-      const commentators = [];
-      for (const comment of this.blog.comments) {
-        if (commentators.indexOf(comment.commentators_id) === -1) {
-          commentators.push(comment.commentators_id);
-        }
-      }
-      this.authService.getUsersByIds({_id: {$in: commentators}})
-        .subscribe(result => {
-          for (const comment of this.blog.comments) {
-            result.data.forEach(commentator => {
-              if (commentator._id === comment.commentators_id) {
-
-                this.comments.push(Object.assign(
-                  comment,
-                  {username: commentator.username, avatar: commentator.avatar}));
-              }
-            });
-          }
-      });
-    }
+    console.log('on-changes');
+  //
+  //   if (changes.comments) {
+  //     console.log('changes');
+  //     // const blog: SimpleChange = changes.blog;
+  //     // console.log('blog._id', blog.currentValue);
+  //     const commentators = [];
+  //     for (const comment of this.comments) {
+  //       if (commentators.indexOf(comment.commentators_id) === -1) {
+  //         commentators.push(comment.commentators_id);
+  //       }
+  //     }
+  //     this.authService.getUsersByIds({_id: {$in: commentators}})
+  //       .subscribe(result => {
+  //         for (const comment of this.comments) {
+  //           // console.log('comment', comment);
+  //           result.data.forEach(commentator => {
+  //             if (commentator._id === comment.commentators_id) {
+  //               // console.log('this.commentsList', this.commentsList);
+  //               this.commentsList.push(Object.assign(
+  //                 comment,
+  //                 {username: commentator.username, avatar: commentator.avatar}));
+  //             }
+  //           });
+  //         }
+  //     });
+  //   }
   }
 }

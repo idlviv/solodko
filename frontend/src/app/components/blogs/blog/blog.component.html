@@ -97,10 +97,11 @@
     <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
                       [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
 
+    <div *ngIf="comments[0] && blogOptions.singlePostMode">
+      <app-comment [comments]="comments" [user]="user"></app-comment>
+      <button class="btn btn-sm btn-primary" (click)="onLoadComments()">Завантажити ще 10 з {{blog.comments.length}}</button>
+    </div>
 
-
-    <app-comment *ngIf="blog.comments[0] && blogOptions.singlePostMode"
-                 [blog]="blog" [blogComments]="blog.comments" [user]="user"></app-comment>
   </div>
 
 

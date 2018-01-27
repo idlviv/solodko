@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const config = require('../config');
 const log = require('../config/winston')(module);
 const blogsValidators = require('../validators/blogsValidators');
+const ObjectId = mongoose.Types.ObjectId;
 
 const BlogsSchema = new Schema({
   title: {type: String, required: true, validate: blogsValidators.titleValidators},
@@ -95,36 +96,25 @@ module.exports.findBlogs = function(searchQuery) {
 module.exports.findMongo = function(findOptions) {
 
   return new Promise(function(resolve, reject) {
-    BlogsModel
-      .find(
-        findOptions.query,
-        findOptions.projection,
-        // {
-        //   skip: findOptions.skip,
-        //   limit: findOptions.limit
-        // }
-      )
-      // .sort(findOptions.projection)
-      // .skip(findOptions.skip)
-      .limit(findOptions.limit)
-      .exec((error, result) =>
-        {
-          if (error) {
-            return reject({success: false, message: 'Не вдалося завантажити блог', data: error})
-          } else {
-            return resolve({success: true, data: result});
 
-          }
-        }
-      );
-
-      // .then((result) => {
-      //     return resolve({success: true, data: result});
-      //   })
-      // .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
-
+    if ('_id' in findOptions.query) {
+      findOptions.query._id = ObjectId(findOptions.query._id);
     }
-  );
+
+    let db = BlogsModel.aggregate([{$match: findOptions.query}]);
+
+    if ('options' in findOptions) {
+      findOptions.options.forEach(
+        option => db.append(option)
+      );
+    }
+
+    db.exec()
+      .then((result) => {
+          return resolve({success: true, data: result});
+        })
+      .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
+  });
 };
 
 module.exports.addBlog = function(newBlog) {

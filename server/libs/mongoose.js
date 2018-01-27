@@ -10,7 +10,7 @@ const db = config.get('MONGOOSE_URI');
 // const options = config.get('mongoose:options');
 // mongoose.set('debug', true);
 
-mongoose.connect(db, {useMongoClient: true})
+mongoose.connect(db)
   .then(
     () => log.verbose('Connected to db '),
     (err) => {

@@ -1,24 +1,23 @@
-<nav>
-  <ul class="pagination pagination-sm justify-content-center">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-        <span class="sr-only">Previous</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-        <span class="sr-only">Next</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<div class="row comment" *ngFor="let comment of comments">
+<!--<nav>-->
+  <!--<ul class="pagination pagination-sm justify-content-center">-->
+    <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Previous">-->
+        <!--<span aria-hidden="true">&laquo;</span>-->
+        <!--<span class="sr-only">Previous</span>-->
+      <!--</a>-->
+    <!--</li>-->
+    <!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
+    <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#" aria-label="Next">-->
+        <!--<span aria-hidden="true">&raquo;</span>-->
+        <!--<span class="sr-only">Next</span>-->
+      <!--</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</nav>-->
+<div class="row comment" *ngFor="let comment of commentsList; let i = index">
   <div class="col-md-1 col-sm-2">
     <div class="avatar-3-block">
       <img class="img-fluid avatar-3" src="{{comment.avatar}}" alt="avatar">
@@ -26,7 +25,7 @@
   </div>
   <div class="col-md-10 col-sm-8">
     <div class="small comment-meta">
-      <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}
+      {{i}} <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}
     </div>
     <div class="comment-content">
       <p class="text-justify">{{comment.comment}}</p>

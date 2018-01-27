@@ -4,17 +4,17 @@ import {ReplaySubject} from 'rxjs/ReplaySubject';
 
 @Injectable()
 export class SharedService {
-  private _share: ReplaySubject<string> = new ReplaySubject(1);
-  share$ = this._share.asObservable();
+  private _shareEvent: ReplaySubject<string> = new ReplaySubject(1);
+  shareEvent$ = this._shareEvent.asObservable();
 
   constructor() { }
 
-  sharing(x) {
-    this._share.next(x);
+  sharingEvent(updateCommentsList) {
+    this._shareEvent.next(updateCommentsList);
   }
 
-  getSharing() {
-    return this.share$;
+  getSharingEvent() {
+    return this.shareEvent$;
   }
 
 }

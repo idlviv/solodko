@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import {IBlog} from '../../../interfaces/i-blog';
+import {Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit} from '@angular/core';
+import {IBlog, IComment} from '../../../interfaces/i-blog';
 import {IBlogOptions} from '../../../interfaces/i-options';
 import {Location} from '@angular/common';
 import {AuthService} from 'app/services/auth.service';
@@ -8,6 +8,7 @@ import {IUser} from '../../../interfaces/i-user';
 import {Router} from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
+import {CommentComponent} from '../comment/comment.component';
 declare const $: any;
 
 @Component({
@@ -16,13 +17,14 @@ declare const $: any;
   styleUrls: ['./blog.component.scss'],
   // providers: [SharedService]
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent implements OnInit, AfterViewInit {
 
   @Input() blog: IBlog;
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
   @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
   // @Output() onPostCommentEmitter = new EventEmitter<boolean>();
+
 
   // onMain: boolean;
   orderMainImage: any;
@@ -32,6 +34,8 @@ export class BlogComponent implements OnInit {
   job: string;
   showCommentForm: false;
   findOptions = {};
+  comments: IComment[] = [];
+  // displayedComments = 0;
 
   constructor(
     private location: Location,
@@ -48,9 +52,16 @@ export class BlogComponent implements OnInit {
       .subscribe(
         user => this.user = user
       );
+    if (this.blogOptions.singlePostMode) {
+      this.loadComments();
+    }
 
   //   this.sharedService.share$
   //     .subscribe(x => console.log('x - blogComponent', x));
+  }
+
+  ngAfterViewInit() {
+
   }
 
   getMainImageOrderStyle() {
@@ -92,19 +103,33 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  reloadComments() {
+  loadComments() {
+    const commentsLength = 10;
+    const slice: any[] = ['$comments', this.comments.length, commentsLength];
+    // if (start) {
+    //   slice.push(start); }
+    // if (qty) {
+    //   slice.push(qty);
+    // } else {
+    //   slice.push(10);
+    // }
 
     this.findOptions['query'] = {_id: this.blog._id};
-    // this.findOptions['projection'] = null;
-    this.findOptions['projection'] = {comments: 1};
-    this.findOptions['sort'] = {commentedAt: -1};
-    this.findOptions['skip'] = 0;
-    this.findOptions['limit'] = 10;
+    this.findOptions['options'] = [
+      {$project: {projectedArray: {$slice: slice}}},
+      ];
 
     console.log('this.findOptions', this.findOptions);
     this.blogsService.findMongo(this.findOptions)
-      .subscribe(data => console.log('findMongo - data', data));
+      .subscribe(
+        result => {
+        this.comments = result.data[0].projectedArray;
+        console.log('com ', this.comments);
+        this.sharedService.sharingEvent('updateCommentsList');
+        },
+        error => console.log(error.message));
   }
+
 
   goBack() {
     this.location.back();
@@ -129,7 +154,12 @@ export class BlogComponent implements OnInit {
 
   onPostComment() {
     // this.onPostCommentEmitter.emit();
-    this.reloadComments();
+    this.comments = [];
+    this.loadComments();
+  }
+
+  onLoadComments() {
+    this.loadComments();
   }
 
 }

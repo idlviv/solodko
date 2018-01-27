@@ -1,5 +1,6 @@
 const config = require('../config');
 let BlogsModel = require('../models/blogsModel');
+const BlogsMongo = require('../models/blogsMongo');
 const log = require('../config/winston')(module);
 
 module.exports.addComment = function(req, res, next) {
@@ -83,6 +84,16 @@ module.exports.findMongo = function(req, res, next) {
     .then(result => res.json(result))
     .catch(error => res.json(error));
 };
+
+// module.exports.findMongo = function(req, res, next) {
+//   if (!req.query.findOptions) {
+//     return res.json([]);
+//   }
+//   let findOptions = JSON.parse(req.query.findOptions);
+//   BlogsModel.findMongo(findOptions)
+//     .then(result => res.json(result))
+//     .catch(error => res.json(error));
+// };
 
 module.exports.getQueriedBlogs = function(req, res, next) {
   let searchQuery = JSON.parse(req.query.searchQuery);
