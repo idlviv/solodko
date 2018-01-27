@@ -49,6 +49,7 @@ module.exports.addComment = function(newComment) {
             $each: [{
               comment: newComment.comment,
               commentators_id: newComment.commentators_id,
+              commentedAt: Date.now(),
             }],
             $sort: {commentedAt: -1},
             $position: 0

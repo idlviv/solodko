@@ -1,6 +1,5 @@
 const config = require('../config');
 let BlogsModel = require('../models/blogsModel');
-const BlogsMongo = require('../models/blogsMongo');
 const log = require('../config/winston')(module);
 
 module.exports.addComment = function(req, res, next) {

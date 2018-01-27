@@ -25,7 +25,9 @@
   </div>
   <div class="col-md-10 col-sm-8">
     <div class="small comment-meta">
-      {{i}} <strong>{{comment.username}}</strong> {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}
+      {{i}} <strong>{{comment.username}}</strong>
+      {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm:ss'}}
+      <!--{{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}-->
     </div>
     <div class="comment-content">
       <p class="text-justify">{{comment.comment}}</p>

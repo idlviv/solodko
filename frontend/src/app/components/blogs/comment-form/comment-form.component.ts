@@ -50,6 +50,7 @@ export class CommentFormComponent implements OnInit {
         result => {
           if (result.success) {
             this.onPostCommentEmitter.emit();
+            this.commentForm.reset();
             this.flashMessage.show(
               result.message,
               {
