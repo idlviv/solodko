@@ -36,12 +36,14 @@ import 'rxjs/add/operator/take';
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 import {SharedService} from './services/shared.service';
+import { ScrollingDirective } from './directives/scrolling.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
+    ScrollingDirective,
   ],
   imports: [
     BrowserModule,

@@ -17,7 +17,9 @@
     <!--</li>-->
   <!--</ul>-->
 <!--</nav>-->
-<div class="row comment" *ngFor="let comment of commentsList; let i = index">
+<!--commentsList {{commentsList}} comments {{comments}}-->
+<!--<div class="row comment" *ngFor="let comment of commentsList; let i = index">-->
+<div class="row comment">
   <div class="col-md-1 col-sm-2">
     <div class="avatar-3-block">
       <img class="img-fluid avatar-3" src="{{comment.avatar}}" alt="avatar">
@@ -25,9 +27,8 @@
   </div>
   <div class="col-md-10 col-sm-8">
     <div class="small comment-meta">
-      {{i}} <strong>{{comment.username}}</strong>
+      <strong>{{comment.username}}</strong>
       {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm:ss'}}
-      <!--{{comment.commentedAt | date: 'dd.MM.yyyy hh:mm'}}-->
     </div>
     <div class="comment-content">
       <p class="text-justify">{{comment.comment}}</p>

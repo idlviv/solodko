@@ -3,4 +3,5 @@ export interface IBlogOptions {
   showViews?: boolean;
   showComments?: boolean;
   singlePostMode?: boolean;
+  commentsLength: number;
 }

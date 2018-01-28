@@ -9,8 +9,8 @@ export class SharedService {
 
   constructor() { }
 
-  sharingEvent(updateCommentsList) {
-    this._shareEvent.next(updateCommentsList);
+  sharingEvent(x) {
+    this._shareEvent.next(x);
   }
 
   getSharingEvent() {

@@ -69,30 +69,30 @@ updateViews = function(_id) {
   });
 };
 
-findEngine = function(searchQuery) {
-  return new Promise(function(resolve, reject) {
-      BlogsModel.find(searchQuery).sort({_id: -1})
-        .then((blogs) => {
-          return resolve({success: true, data: blogs});
-        })
-        .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
-    }
-  );
-};
-
-module.exports.findBlogs = function(searchQuery) {
-  return new Promise(function(resolve, reject) {
-    if (searchQuery._id && searchQuery.update) {
-      updateViews(searchQuery._id)
-        .then(() => resolve(findEngine({_id: searchQuery._id})))
-        .catch((error) => reject(error));
-    } else if (searchQuery._id) {
-      resolve(findEngine({_id: searchQuery._id}));
-    } else {
-      resolve(findEngine(searchQuery));
-    }
-  });
-};
+// findEngine = function(searchQuery) {
+//   return new Promise(function(resolve, reject) {
+//       BlogsModel.find(searchQuery).sort({_id: -1})
+//         .then((blogs) => {
+//           return resolve({success: true, data: blogs});
+//         })
+//         .catch((error) => reject({success: false, message: 'Не вдалося завантажити блог', data: error}));
+//     }
+//   );
+// };
+//
+// module.exports.findBlogs = function(searchQuery) {
+//   return new Promise(function(resolve, reject) {
+//     if (searchQuery._id && searchQuery.update) {
+//       updateViews(searchQuery._id)
+//         .then(() => resolve(findEngine({_id: searchQuery._id})))
+//         .catch((error) => reject(error));
+//     } else if (searchQuery._id) {
+//       resolve(findEngine({_id: searchQuery._id}));
+//     } else {
+//       resolve(findEngine(searchQuery));
+//     }
+//   });
+// };
 
 module.exports.findMongo = function(findOptions) {
 
@@ -108,6 +108,10 @@ module.exports.findMongo = function(findOptions) {
       findOptions.options.forEach(
         option => db.append(option)
       );
+    }
+
+    if ('updateViews' in findOptions) {
+      updateViews(findOptions.updateViews);
     }
 
     db.exec()

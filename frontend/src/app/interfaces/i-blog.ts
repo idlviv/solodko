@@ -24,6 +24,7 @@ export interface IBlog {
   dislikedBy?: string[];
   comments?: IComment[];
   views: number;
+  commentsLength?: number;
 }
 
 export interface IComment {

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit, HostListener} from '@angular/core';
 import {IBlog, IComment} from '../../../interfaces/i-blog';
 import {IBlogOptions} from '../../../interfaces/i-options';
 import {Location} from '@angular/common';
@@ -23,19 +23,17 @@ export class BlogComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
   @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
-  // @Output() onPostCommentEmitter = new EventEmitter<boolean>();
+  @Output() onPostCommentEmitter = new EventEmitter<boolean>();
 
-
-  // onMain: boolean;
+  commentsList= [];
   orderMainImage: any;
   orderMainText: any;
   startOrder: number;
   user: IUser = emptyUser; // = this.guest;
   job: string;
-  showCommentForm: false;
   findOptions = {};
   comments: IComment[] = [];
-  // displayedComments = 0;
+  processing = false;
 
   constructor(
     private location: Location,
@@ -62,6 +60,17 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+  }
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    // console.log('window.innerHeight', window.innerHeight);
+    // console.log('window.scrollY', window.scrollY);
+    // console.log('document.body.offsetHeight', document.body.offsetHeight);
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      if (!this.processing) {
+        this.loadComments();
+      }
+    }
   }
 
   getMainImageOrderStyle() {
@@ -104,32 +113,42 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   loadComments() {
-    const commentsLength = 10;
-    const slice: any[] = ['$comments', this.comments.length, commentsLength];
-    // if (start) {
-    //   slice.push(start); }
-    // if (qty) {
-    //   slice.push(qty);
-    // } else {
-    //   slice.push(10);
-    // }
-
+    this.processing = true;
     this.findOptions['query'] = {_id: this.blog._id};
     this.findOptions['options'] = [
-      {$project: {projectedArray: {$slice: slice}}},
+      {$project: {projectedArray: {$slice: ['$comments', this.commentsList.length, this.blogOptions.commentsLength]}}},
       ];
 
-    console.log('this.findOptions', this.findOptions);
     this.blogsService.findMongo(this.findOptions)
       .subscribe(
         result => {
         this.comments = result.data[0].projectedArray;
-        console.log('com ', this.comments);
-        this.sharedService.sharingEvent('updateCommentsList');
+        this.updateCommentsList();
         },
         error => console.log(error.message));
   }
 
+  updateCommentsList() {
+    const commentators = [];
+    for (const comment of this.comments) {
+      if (commentators.indexOf(comment.commentators_id) === -1) {
+        commentators.push(comment.commentators_id);
+      }
+    }
+    this.authService.getUsersByIds({_id: {$in: commentators}})
+      .subscribe(result => {
+        for (const comment of this.comments) {
+          result.data.forEach(commentator => {
+            if (commentator._id === comment.commentators_id) {
+              this.commentsList.push(Object.assign(
+                comment,
+                {username: commentator.username, avatar: commentator.avatar}));
+            }
+            this.processing = false;
+          });
+        }
+      });
+  }
 
   goBack() {
     this.location.back();
@@ -153,8 +172,8 @@ export class BlogComponent implements OnInit, AfterViewInit {
   }
 
   onPostComment() {
-    // this.onPostCommentEmitter.emit();
-    this.comments = [];
+    this.onPostCommentEmitter.emit();
+    this.commentsList = [];
     this.loadComments();
   }
 

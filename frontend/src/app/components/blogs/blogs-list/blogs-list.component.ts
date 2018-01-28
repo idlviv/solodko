@@ -18,6 +18,7 @@ blogs: IBlog[];
 _id: string;
 searchQuery: any;
 blogOptions: IBlogOptions;
+findOptions = {};
 
   constructor(
     private blogsService: BlogsService,
@@ -41,27 +42,51 @@ blogOptions: IBlogOptions;
       .flatMap((blogOptions) => {
         this.blogOptions = blogOptions;
 
+        this.findOptions['options'] = [
+          {$sort: {_id: -1}},
+          {$addFields: {commentsLength: { $size: '$comments'} }},
+          {$project: {comments: 0}}
+          ];
+        this.findOptions['options'].push({$project: {comments: 0}});
+
+
         this.blogOptions['mainPage'] = false;
         if (this._id === 'all' || this._id === undefined) {
           this.blogOptions['singlePostMode'] = false;
-          this.searchQuery = {};
+          this.findOptions['query'] = {};
+
+          // this.searchQuery = {};
         } else {
           this.blogOptions['singlePostMode'] = true;
-          this.searchQuery = {'_id': this._id, update};
+          this.findOptions['query'] = {_id: this._id};
+          if (update) {
+            this.findOptions['updateViews'] = this._id;
+          }
         }
-
-        return this.blogsService.findBlogs(this.searchQuery);
+        return this.blogsService.findMongo(this.findOptions);
       })
       .subscribe(result => {
+        console.log('result.data', result.data);
         this.blogs = result.data;
       });
   }
+
+  reloadCommentsLength() {
+    this.findOptions['query'] = {_id: this._id};
+    this.findOptions['options'] = [{$project: {commentsLength: { $size: '$comments'} }}];
+    this.blogsService.findMongo(this.findOptions)
+      .subscribe(result => {
+          console.log('result.data', result.data);
+          this.blogs[0].commentsLength = result.data[0].commentsLength;
+        });
+  }
+
 
   onDelete() {
     this.reloadBlogs(false);
   }
 
-  // onPostComment() {
-  //   this.reloadBlogs(false);
-  // }
+  onPostComment() {
+    this.reloadCommentsLength();
+  }
 }

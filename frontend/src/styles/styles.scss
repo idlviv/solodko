@@ -260,6 +260,12 @@ body,
 
 }
 
+.blog-post-comments-title {
+  @extend .blog-title;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
 .blog-post-body-text {
   @extend .blog-header;
   border-bottom: 0;
@@ -296,7 +302,8 @@ body,
   .blog-title {
     font-size: 2.5rem;
   }
-  .blog-post-header-title {
+  .blog-post-header-title,
+  .blog-post-comments-title {
     font-size: 1.75rem;
   }
   .blog-post-header-top {
@@ -312,10 +319,12 @@ body,
   .blog-title {
     font-size: 3.5rem;
   }
-  .blog-post-header-title {
+  .blog-post-header-title,
+  .blog-post-comments-title {
     font-size: 2rem;
   }
 }
+
 
 //comments
 .comment {
@@ -331,6 +340,13 @@ body,
     &:after{
       content: ' \00b7 ';
     }
+  }
+}
+
+.processing-block {
+  i {
+    display: block;
+    margin: auto;
   }
 }
 
