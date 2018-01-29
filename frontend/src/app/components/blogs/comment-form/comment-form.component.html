@@ -1,14 +1,14 @@
 <form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()">
   <div class="form-row comment-form align-items-center">
     <div class="col-md-1 col-sm-2">
-      <div class="avatar-2-block align-top">
+      <div class="avatar-2-block align-top blog-post-comments-avatar">
         <img class="img-fluid avatar-2" src="{{user.avatar}}" alt="avatar">
       </div>
     </div>
     <div class="form-group col-md-10 col-sm-8">
       <!--<label for="comment">Коментар</label>-->
       <textarea formControlName="comment" rows="3"
-                required autocomplete="false"
+                required autocomplete="false" (keydown)="onPressEnter($event)"
                 class="form-control no-validate-style" id="comment" [placeholder]="commentPlaceholder">
       </textarea>
       <!--[disabled]="!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"-->

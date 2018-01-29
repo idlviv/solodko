@@ -1,13 +1,14 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterStateSnapshot} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {ValidateService} from '../../../services/validate.service';
 import {IUser} from '../../../interfaces/i-user';
 import {Observable} from 'rxjs/Observable';
 import {AuthUserGuard} from '../../../guards/auth-user.guard';
 import {emptyUser} from '../../../data/user';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,10 @@ import {emptyUser} from '../../../data/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // signupForm: FormGroup;
-  // userSignup = {} as IUser;
-  userSignin: Object;
   getLoggedUser$: Observable<IUser>;
 
   previousURL;
+  redirectURL;
 
   guest: IUser = emptyUser;
   user: IUser = this.guest;
@@ -29,20 +28,11 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private flashMessage: FlashMessagesService,
-    private authUserGuard: AuthUserGuard
-  ) {
-      // this.form = formBuilder.group({
-      //   password: ['', Validators.required],
-      //   passwordConfirm: ['', Validators.required]
-      // },
-      //   {
-      //   validators: this.validateService.matchPassword
-      // }
-      // );
-  }
+    private authUserGuard: AuthUserGuard,
+    private location: Location
+  ) {}
 
   ngOnInit() {
-
     // if try to get url without permission
     // authUserGuard redirects to login page
     // after login automatically redirects to this url
@@ -56,7 +46,6 @@ export class LoginComponent implements OnInit {
       this.previousURL = this.authUserGuard.redirectURL;
       this.authUserGuard.redirectURL = undefined;
     }
-
     // gets user role
     this.getLoggedUser$ = this.authService.getLoggedUser();
     this.getLoggedUser$
@@ -82,7 +71,8 @@ export class LoginComponent implements OnInit {
               if (this.previousURL) {
                 this.router.navigate([this.previousURL]);
               } else {
-                this.router.navigate(['/profile']);
+                this.location.back();
+                // this.router.navigate(['/profile']);
               }
 
             } else {

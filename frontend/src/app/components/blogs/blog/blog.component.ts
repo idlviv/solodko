@@ -34,6 +34,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
   findOptions = {};
   comments: IComment[] = [];
   processing = false;
+  offsets: string;
 
   constructor(
     private location: Location,
@@ -53,6 +54,12 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
     if (this.blogOptions.singlePostMode && this.blog.commentsLength) {
       this.loadComments();
+    }
+
+    if (this.blogOptions.singlePostMode) {
+      this.offsets = 'offset-md-1 col-md-10';
+    } else {
+      this.offsets = 'col-md-12';
     }
 
   //   this.sharedService.share$

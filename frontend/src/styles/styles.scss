@@ -266,6 +266,10 @@ body,
   text-align: left;
 }
 
+.blog-post-comments-avatar {
+  padding-bottom: 1rem;
+}
+
 .blog-post-body-text {
   @extend .blog-header;
   border-bottom: 0;

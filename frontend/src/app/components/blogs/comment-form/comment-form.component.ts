@@ -55,6 +55,12 @@ export class CommentFormComponent implements OnInit {
   //   this.sharedService.sharing('comment');
   // }
 
+  onPressEnter(event) {
+    if (event.keyCode === 13) {
+      this.onCommentSubmit();
+    }
+  }
+
   onCommentSubmit() {
     const newComment = {
       blog: this.blog._id,
