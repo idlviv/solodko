@@ -5,6 +5,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {SharedService} from '../../../services/shared.service';
+import {ValidateService} from '../../../services/validate.service';
+import {disableDebugTools} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-comment-form',
@@ -16,22 +18,37 @@ export class CommentFormComponent implements OnInit {
   @Input() user: IUser;
   commentForm: FormGroup;
   @Output() onPostCommentEmitter = new EventEmitter<boolean>();
-
+  commentPlaceholder: string;
 
   constructor(
     private blogsService: BlogsService,
     private flashMessage: FlashMessagesService,
     private sharedService: SharedService,
+    private validateService: ValidateService
   ) { }
 
   ngOnInit() {
+
+
     this.commentForm = new FormGroup({
-      comment: new FormControl('', [
+      comment: new FormControl('',
+
+        [
+        // this.validateService.userLoggedIn(this.user),
         Validators.required,
-        // Validators.minLength(2),
         Validators.maxLength(200),
       ]),
     });
+
+
+    if (this.user.role === 'User' || this.user.role === 'Manager' || this.user.role === 'Admin') {
+      this.commentForm.get('comment').enable();
+      this.commentPlaceholder = 'Коментар';
+    } else {
+      this.commentForm.get('comment').disable();
+      this.commentPlaceholder = 'Щоб залишити коментар потрібно увійти';
+
+    }
   }
 
   // onShared() {

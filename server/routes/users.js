@@ -36,7 +36,7 @@ router.get(
 
 router.get(
   '/get-users-by-ids',
-  passport.authenticate('jwt.user.manager.admin', {session: false}),
+  // passport.authenticate('jwt.user.manager.admin', {session: false}),
   UserController.getUsersByIds
 );
 

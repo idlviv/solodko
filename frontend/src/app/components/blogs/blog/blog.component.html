@@ -96,12 +96,15 @@
 <!--</div>-->
 <div class="row" *ngIf="blogOptions.showComments">
   <div class="offset-md-2 col-md-8">
-    <app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"
+    <!--<app-comment-form *ngIf="blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"-->
+                      <!--[blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>-->
+
+    <app-comment-form *ngIf="blogOptions.singlePostMode"
                       [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
 
     <div *ngIf="commentsList && blogOptions.singlePostMode">
       <p class="blog-post-comments-title text-muted">
-        <i class="material-icons">comment</i> <strong>Коментарі</strong> ({{commentsList.length}} з {{blog.commentsLength}})
+        <i class="material-icons">comment</i> Коментарі ({{commentsList.length}} з {{blog.commentsLength}})
       </p>
 
       <app-comment *ngFor="let comment of commentsList" [comment]="comment" [user]="user"></app-comment>

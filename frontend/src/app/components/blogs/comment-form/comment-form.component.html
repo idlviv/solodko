@@ -9,7 +9,10 @@
       <!--<label for="comment">Коментар</label>-->
       <textarea formControlName="comment" rows="3"
                 required autocomplete="false"
-                class="form-control no-validate-style" id="comment" placeholder="Коментар"></textarea>
+                class="form-control no-validate-style" id="comment" [placeholder]="commentPlaceholder">
+      </textarea>
+      <!--[disabled]="!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"-->
+
       <div class="invalid-alert"
            *ngIf="commentForm.get('comment').errors?.maxlength &&
            commentForm.get('comment').touched">Довжина до 200 символів

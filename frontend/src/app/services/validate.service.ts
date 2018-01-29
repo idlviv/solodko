@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {AbstractControl, ValidationErrors} from '@angular/forms';
 import { ValidatorFn } from '@angular/forms';
+import {IUsePropertyDecoratorConfig} from 'codelyzer/propertyDecoratorBase';
+import {IUser} from '../interfaces/i-user';
 
 @Injectable()
 export class ValidateService {
@@ -15,6 +17,14 @@ export class ValidateService {
   validateProduct(product) {
     return true;
   }
+
+  // userLoggedIn(user: IUser) {
+  //   if (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin') {
+  //     return null;
+  //   } else {
+  //     return {'userLoggedInChecker': true};
+  //   }
+  // }
 
   validateRegister(user) {
     if (user.name === undefined ||

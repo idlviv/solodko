@@ -326,7 +326,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -766,7 +766,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Видалити?</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p><strong>Майстерклас з заголовком:</strong></p>\n        <p class=\"text-muted\">\n          {{blog.title}}\n        </p>\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"job === 'delete-blog'\">\n          <button class=\"btn\" (click)=\"deleteBlog()\">Видалити</button>\n          <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n\n          <button class=\"btn\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n\n        <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n        <!--<button type=\"button\" class=\"btn btn-primary\">Save changes</button>-->\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Видалити?</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        <p><strong>Майстерклас з заголовком:</strong></p>\r\n        <p class=\"text-muted\">\r\n          {{blog.title}}\r\n        </p>\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <div *ngIf=\"job === 'delete-blog'\">\r\n          <button class=\"btn\" (click)=\"deleteBlog()\">Видалити</button>\r\n          <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\r\n\r\n          <button class=\"btn\" data-dismiss=\"modal\">Відмінити</button>\r\n        </div>\r\n\r\n        <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\r\n        <!--<button type=\"button\" class=\"btn btn-primary\">Save changes</button>-->\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -929,7 +929,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -2505,6 +2505,13 @@ var ValidateService = (function () {
     ValidateService.prototype.validateProduct = function (product) {
         return true;
     };
+    // userLoggedIn(user: IUser) {
+    //   if (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin') {
+    //     return null;
+    //   } else {
+    //     return {'userLoggedInChecker': true};
+    //   }
+    // }
     ValidateService.prototype.validateRegister = function (user) {
         if (user.name === undefined ||
             user.email === undefined ||

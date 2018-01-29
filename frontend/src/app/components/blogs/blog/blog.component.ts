@@ -50,7 +50,8 @@ export class BlogComponent implements OnInit, AfterViewInit {
       .subscribe(
         user => this.user = user
       );
-    if (this.blogOptions.singlePostMode) {
+
+    if (this.blogOptions.singlePostMode && this.blog.commentsLength) {
       this.loadComments();
     }
 
@@ -67,7 +68,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     // console.log('window.scrollY', window.scrollY);
     // console.log('document.body.offsetHeight', document.body.offsetHeight);
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-      if (!this.processing) {
+      if (!this.processing && this.commentsList.length !== this.blog.commentsLength) {
         this.loadComments();
       }
     }
