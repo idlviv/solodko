@@ -122,6 +122,28 @@ module.exports.findMongo = function(findOptions) {
   });
 };
 
+module.exports.updateMongo = function(updateOptions) {
+  return new Promise(function(resolve, reject) {
+
+    if ('_id' in updateOptions.query) {
+      updateOptions.query._id = ObjectId(updateOptions.query._id);
+    }
+    // resolve({success: true, data: updateOptions, message: 'Зміни внесено'});
+
+    BlogsModel.update(updateOptions.query, updateOptions.update)
+      .then((result) => resolve({success: true, data: result, message: 'Зміни внесено'}))
+      .catch((error) => {
+        reject({success: false, message: 'Помилка ' + error.message, error});
+
+        // if (error.name === 'ValidationError') {
+        //   reject({success: false, message: 'Помилка валідації даних, ' + error.message, error});
+        // } else {
+        //   reject({success: false, message: 'Новий пост не зареєстровано', error});
+        // }
+      });
+  });
+};
+
 module.exports.addBlog = function(newBlog) {
   return new Promise(function(resolve, reject) {
     newBlog.save(newBlog)

@@ -40,6 +40,12 @@ router.get(
 );
 
 router.put(
+  '/update-mongo',
+  passport.authenticate('jwt.manager.admin', {session: false}),
+  BlogsController.updateMongo
+);
+
+router.put(
   '/edit-blog',
   passport.authenticate('jwt.manager.admin', {session: false}),
   BlogsController.editBlog

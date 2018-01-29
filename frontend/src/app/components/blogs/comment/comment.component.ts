@@ -11,11 +11,14 @@ import {IUser} from '../../../interfaces/i-user';
   styleUrls: ['./comment.component.scss']
 })
 
-export class CommentComponent implements OnChanges, OnInit, AfterViewInit {
+export class CommentComponent implements OnChanges, OnInit {
   @Input()
-  comment: IComment[];
+  comment: any;
   @Input() user: IUser;
-  commentsList = [];
+  updateOptions = {};
+
+
+  // commentsList = [];
 
   // get blog(): IBlog {
   //   return this._blog;
@@ -34,56 +37,18 @@ export class CommentComponent implements OnChanges, OnInit, AfterViewInit {
     private blogsService: BlogsService,
   ) { }
 
-  ngOnInit() {
-    // this.sharedService.getSharingEvent()
-      // .subscribe((result) => {
-      //   console.log(result);
-      //   if (result[0] === 'updateCommentsList') {
-      //     this.comments = result[1];
-      //     this.updateCommentsList();
-      // }
-      // });
-  }
-  ngAfterViewInit() {
-    // this.sharedService.getSharingEvent()
-    //   .subscribe((result) => {
-    //   console.log(result);
-    //   if (result === 'updateCommentsList') {
-    //     this.updateCommentsList();
-    // }
-    // });
-  }
+  ngOnInit() {}
 
-  // updateCommentsList() {
-  //   console.log('changes');
-  //   // const blog: SimpleChange = changes.blog;
-  //   // console.log('blog._id', blog.currentValue);
-  //   const commentators = [];
-  //   for (const comment of this.comments) {
-  //     if (commentators.indexOf(comment.commentators_id) === -1) {
-  //       commentators.push(comment.commentators_id);
-  //     }
-  //   }
-  //   console.log('this.comments', this.comments);
-  //   this.authService.getUsersByIds({_id: {$in: commentators}})
-  //     .subscribe(result => {
-  //       for (const comment of this.comments) {
-  //         // console.log('comment', comment);
-  //         result.data.forEach(commentator => {
-  //           if (commentator._id === comment.commentators_id) {
-  //             console.log('this.commentsList', this.commentsList);
-  //             this.commentsList.push(Object.assign(
-  //               comment,
-  //               {username: commentator.username, avatar: commentator.avatar}));
-  //           }
-  //         });
-  //       }
-  //     });
-  // }
+  onDelete() {
+    this.updateOptions['query'] = {'_id': this.comment.blog_id};
+    this.updateOptions['update'] = { $pull: { 'comments._id': this.comment._id } };
+    this.blogsService.updateMongo(this.updateOptions)
+      .subscribe(result => console.log('result', result));
+  }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.comments) {
-      console.log('changes.comments.currentValue', changes.comments.currentValue);
-    }
+    // if (changes.comments) {
+    //   console.log('changes.comments.currentValue', changes.comments.currentValue);
+    // }
   }
 }

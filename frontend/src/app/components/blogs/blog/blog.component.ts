@@ -66,9 +66,8 @@ export class BlogComponent implements OnInit, AfterViewInit {
   //     .subscribe(x => console.log('x - blogComponent', x));
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit() {}
 
-  }
   @HostListener('window:scroll', [])
   onScroll(): void {
     // console.log('window.innerHeight', window.innerHeight);
@@ -150,7 +149,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
             if (commentator._id === comment.commentators_id) {
               this.commentsList.push(Object.assign(
                 comment,
-                {username: commentator.username, avatar: commentator.avatar}));
+                {username: commentator.username, avatar: commentator.avatar, blog_id: this.blog._id}));
             }
             this.processing = false;
           });

@@ -28,6 +28,7 @@ export interface IBlog {
 }
 
 export interface IComment {
+  _id?: string;
   comment: string;
   commentators_id: string;
   commentedAt: string;

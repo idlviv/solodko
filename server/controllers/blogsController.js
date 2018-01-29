@@ -74,6 +74,17 @@ module.exports.findBlogs = function(req, res, next) {
     .catch(error => res.json(error));
 };
 
+module.exports.updateMongo = function(req, res, next) {
+
+  if (!req.body) {
+    return res.json([]);
+  }
+  let updateOptions = req.body.updateOptions;
+  BlogsModel.updateMongo(updateOptions)
+    .then(result => res.json(result))
+    .catch(error => res.json(error));
+};
+
 module.exports.findMongo = function(req, res, next) {
   if (!req.query.findOptions) {
     return res.json([]);

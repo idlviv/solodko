@@ -35,4 +35,11 @@
 
     </div>
   </div>
+  <div class="col-md-1 col-sm-2">
+    <div class="blog-post-nav">
+      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+         class="btn button-round-2" (click)="onDelete()">
+        <i class="material-icons button-round-icon-2">delete</i></a>
+    </div>
+  </div>
 </div>
