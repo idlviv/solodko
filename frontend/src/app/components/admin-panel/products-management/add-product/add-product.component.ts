@@ -98,9 +98,8 @@ export class AddProductComponent implements OnInit {
           // const category1Element = document.querySelector('#category1');
           // category1Element.nodeValue = '';
         }
+      }
     }
-    }
-    console.log('product.category1', this.product.category1);
   }
 
   createItemNumber(i) {

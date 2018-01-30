@@ -40,9 +40,8 @@ export class ProductService {
   addProduct(product) {
 
     const headers = new Headers();
-    this.authService.loadToken();
-    headers.append('Authorization', this.authService.authToken);
-
+    // this.authService.loadToken();
+    headers.append('Authorization', this.authService.loadToken());
     headers.append('Content-Type', 'application/json');
     return this.http.post(
       config.serverUrl + 'api/addProduct',

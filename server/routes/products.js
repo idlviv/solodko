@@ -11,7 +11,6 @@ router.get(
   '/getCatalog/', (req, res, next) => {
     CatalogModel.getCatalog()
       .then((catalog) => {
-        console.log('cat-router', catalog);
         res.json(catalog);
       })
       .catch((error) => {
@@ -32,7 +31,6 @@ router.get(
 
 router.get(
   '/getQueriedProducts/', (req, res, next) => {
-    console.log('searchQuery router-----------', req.query.obj);
     let searchQuery = JSON.parse(req.query.obj);
     ProductModel.getQueriedProducts(searchQuery)
       .then((products) => {
@@ -49,7 +47,6 @@ router.post(
   '/addProduct',
   // '/addProduct', passport.authenticate('jwt', {session: false}),
     (req, res, next) => {
-      console.log('Server - ProductModel - authenticated');
       let newProduct = new ProductModel(req.body);
       // let newProduct = new ProductModel({
       //   category0: req.body.category0,
@@ -76,8 +73,6 @@ router.put(
   // '/editProduct', passport.authenticate('jwt', {session: false}),
   '/editProduct',
   (req, res, next) => {
-    console.log('Server - ProductModel - authenticated');
-
     let editedProduct = req.body;
     ProductModel.editProduct(editedProduct)
       .then((result) => res.json(result))

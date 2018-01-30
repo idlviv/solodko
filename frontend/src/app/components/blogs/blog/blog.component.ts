@@ -8,7 +8,8 @@ import {IUser} from '../../../interfaces/i-user';
 import {Router} from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
-import {CommentComponent} from '../comment/comment.component';
+import {FlashMessagesService} from 'angular2-flash-messages';
+
 declare const $: any;
 
 @Component({
@@ -23,14 +24,16 @@ export class BlogComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() blogOptions: IBlogOptions;
   @Output() onDeleteBlogEmitter = new EventEmitter<boolean>();
-  @Output() onPostCommentEmitter = new EventEmitter<boolean>();
+  @Output() onPostOrDeleteCommentEmitter = new EventEmitter<boolean>();
 
+  isPopupConfirmed = false;
   commentsList= [];
   orderMainImage: any;
   orderMainText: any;
   startOrder: number;
   user: IUser = emptyUser; // = this.guest;
-  job: string;
+  taskForPopup: string;
+  dataForPopup: any;
   findOptions = {};
   comments: IComment[] = [];
   processing = false;
@@ -42,6 +45,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     private router: Router,
     private sharedService: SharedService,
     private blogsService: BlogsService,
+    private flashMessage: FlashMessagesService,
   ) { }
 
   ngOnInit() {
@@ -68,11 +72,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {}
 
+  // Listening of page bottom reached
   @HostListener('window:scroll', [])
   onScroll(): void {
-    // console.log('window.innerHeight', window.innerHeight);
-    // console.log('window.scrollY', window.scrollY);
-    // console.log('document.body.offsetHeight', document.body.offsetHeight);
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       if (!this.processing && this.commentsList.length !== this.blog.commentsLength) {
         this.loadComments();
@@ -80,6 +82,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Setting style of col order
   getMainImageOrderStyle() {
     if (this.index % 2 === 0) {
       this.orderMainImage = 'order-md-1 order-1';
@@ -119,6 +122,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     }
   }
 
+  // Loading portion of comments from blog
   loadComments() {
     this.processing = true;
     this.findOptions['query'] = {_id: this.blog._id};
@@ -135,6 +139,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
         error => console.log(error.message));
   }
 
+  // Making comments list with additional commetators data
   updateCommentsList() {
     const commentators = [];
     for (const comment of this.comments) {
@@ -157,6 +162,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
       });
   }
 
+  // Navigation
   goBack() {
     this.location.back();
   }
@@ -169,17 +175,58 @@ export class BlogComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/blogs/ch/new-blog']);
   }
 
-  deleteBlog() {
-    this.job = 'delete-blog';
-    $('#popupModal').modal('show');
+  // Listening popups event
+  onConfirmPopup(event) {
+    if (event === 'delete-blog') {
+      this.deleteBlog();
+    }
   }
 
-  onDelete() {
-    this.onDeleteBlogEmitter.emit();
+  // Starting popup
+  startPopup(taskForPopup, dataForPopup) {
+    // this.taskForPopup = taskForPopup;
+    // this.dataForPopup = dataForPopup;
+    $('#popupModal').modal('show');
+    this.sharedService.sharingEvent({taskForPopup, dataForPopup});
+
+  }
+
+  // Deleting blog
+  deleteBlog() {
+    this.blogsService.deleteBlog(this.blog._id)
+      .subscribe(result => {
+        if (result.success) {
+          this.onDeleteBlogEmitter.emit();
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-success',
+              timeout: 2000
+            });
+        } else {
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-danger',
+              timeout: 2000
+            });
+        }
+      });
+
+  }
+
+  onDeleteComment() {
+    this.onPostOrDeleteCommentEmitter.emit();
+    this.commentsList = [];
+    this.loadComments();
+  }
+
+  OnEditComment() {
+
   }
 
   onPostComment() {
-    this.onPostCommentEmitter.emit();
+    this.onPostOrDeleteCommentEmitter.emit();
     this.commentsList = [];
     this.loadComments();
   }

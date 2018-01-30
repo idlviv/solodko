@@ -766,7 +766,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Видалити?</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n      <div class=\"modal-body\">\n        <p><strong>Майстерклас з заголовком:</strong></p>\n        <p class=\"text-muted\">\n          {{blog.title}}\n        </p>\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"job === 'delete-blog'\">\n          <button class=\"btn\" (click)=\"deleteBlog()\">Видалити</button>\n          <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n\n          <button class=\"btn\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n\n        <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n        <!--<button type=\"button\" class=\"btn btn-primary\">Save changes</button>-->\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Підтвердіть</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n        data: {{dataForPopup}} task: {{taskForPopup}}\n      </div>\n\n      <div class=\"modal-body\">\n        <div *ngIf=\"taskForPopup === 'delete-blog'\">\n          <p ><strong>Видалити майстерклас?</strong></p>\n          <p class=\"text-muted\">\n            {{dataForPopup}}\n          </p>\n        </div>\n\n        <div *ngIf=\"taskForPopup === 'delete-comment'\">\n          <p ><strong>Видалити коментар?</strong></p>\n          <p class=\"text-muted\">\n            {{dataForPopup}}\n          </p>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"taskForPopup === 'delete-blog' || taskForPopup === 'delete-comment'\">\n          <button class=\"btn\" (click)=\"onConfirm()\">Видалити</button>\n          <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n\n          <button class=\"btn\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n\n        <!--<button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>-->\n        <!--<button type=\"button\" class=\"btn btn-primary\">Save changes</button>-->\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -809,37 +809,50 @@ var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.s
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
 var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
-var i_blog_1 = __webpack_require__("../../../../../src/app/interfaces/i-blog.ts");
+var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var PopupComponent = (function () {
-    function PopupComponent(route, blogsService, authService, flashMessage, location) {
+    function PopupComponent(route, blogsService, authService, flashMessage, sharedService, location) {
         this.route = route;
         this.blogsService = blogsService;
         this.authService = authService;
         this.flashMessage = flashMessage;
+        this.sharedService = sharedService;
         this.location = location;
-        this.onDeletePopEmitter = new core_1.EventEmitter();
+        this.onConfirmPopupEmitter = new core_1.EventEmitter();
     }
     PopupComponent.prototype.ngOnInit = function () {
-    };
-    PopupComponent.prototype.deleteBlog = function () {
         var _this = this;
-        this.blogsService.deleteBlog(this.blog._id)
+        // console.log('this.taskForPopup-', this.taskForPopup);
+        // console.log('this.dataForPopup-', this.dataForPopup);
+        this.sharedService.getSharingEvent()
             .subscribe(function (result) {
-            if (result.success) {
-                $('#popupModal').modal('hide');
-                _this.onDeletePopEmitter.emit();
-                _this.flashMessage.show(result.message, {
-                    cssClass: 'alert-success',
-                    timeout: 2000
-                });
-            }
-            else {
-                _this.flashMessage.show(result.message, {
-                    cssClass: 'alert-danger',
-                    timeout: 2000
-                });
-            }
+            _this.taskForPopup = result.taskForPopup;
+            _this.dataForPopup = result.dataForPopup;
         });
+    };
+    PopupComponent.prototype.onConfirm = function () {
+        this.onConfirmPopupEmitter.emit(this.taskForPopup);
+        $('#popupModal').modal('hide');
+        // this.blogsService.deleteBlog(this.blog._id)
+        //   .subscribe(result => {
+        //       if (result.success) {
+        //         $('#popupModal').modal('hide');
+        //         this.onDeletePopEmitter.emit();
+        //         this.flashMessage.show(
+        //           result.message,
+        //           {
+        //             cssClass: 'alert-success',
+        //             timeout: 2000
+        //           });
+        //       } else {
+        //         this.flashMessage.show(
+        //           result.message,
+        //           {
+        //             cssClass: 'alert-danger',
+        //             timeout: 2000
+        //           });
+        //       }
+        //     });
     };
     PopupComponent.prototype.goBack = function () {
         this.location.back();
@@ -847,27 +860,19 @@ var PopupComponent = (function () {
     return PopupComponent;
 }());
 __decorate([
-    core_1.Input(),
-    __metadata("design:type", typeof (_a = typeof i_blog_1.IBlog !== "undefined" && i_blog_1.IBlog) === "function" && _a || Object)
-], PopupComponent.prototype, "blog", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], PopupComponent.prototype, "job", void 0);
-__decorate([
     core_1.Output(),
-    __metadata("design:type", Object)
-], PopupComponent.prototype, "onDeletePopEmitter", void 0);
+    __metadata("design:type", typeof (_a = typeof core_1.EventEmitter !== "undefined" && core_1.EventEmitter) === "function" && _a || Object)
+], PopupComponent.prototype, "onConfirmPopupEmitter", void 0);
 PopupComponent = __decorate([
     core_1.Component({
         selector: 'app-popup',
         template: __webpack_require__("../../../../../src/app/components/shared/popup/popup.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/shared/popup/popup.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _b || Object, typeof (_c = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _e || Object, typeof (_f = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _b || Object, typeof (_c = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _e || Object, typeof (_f = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _f || Object, typeof (_g = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _g || Object])
 ], PopupComponent);
 exports.PopupComponent = PopupComponent;
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=popup.component.js.map
 
 /***/ }),
@@ -1869,16 +1874,6 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/interfaces/i-blog.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=i-blog.js.map
-
-/***/ }),
-
 /***/ "../../../../../src/app/interfaces/i-product.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2374,8 +2369,8 @@ var ProductService = (function () {
     };
     ProductService.prototype.addProduct = function (product) {
         var headers = new http_1.Headers();
-        this.authService.loadToken();
-        headers.append('Authorization', this.authService.authToken);
+        // this.authService.loadToken();
+        headers.append('Authorization', this.authService.loadToken());
         headers.append('Content-Type', 'application/json');
         return this.http.post(app_config_1.config.serverUrl + 'api/addProduct', product, { headers: headers })
             .map(function (res) { return res.json(); });

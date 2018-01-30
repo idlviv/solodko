@@ -2,11 +2,15 @@
   <div class="" [ngClass]="offsets">
     <div class="blog-post">
       <div class="row blog-post-nav">
-        <div class="col-md-3 d-flex justify-content-start align-items-center text-muted">
+        <div class="col-md-3 d-flex justify-content-center text-muted">
           <p>
             <a *ngIf="blogOptions.singlePostMode" class="btn button-round-2" (click)="goBack()">
               <i class="material-icons button-round-icon-2">arrow_back</i></a>
+          </p>
+        </div>
 
+        <div class="col-md-3 d-flex justify-content-center text-muted">
+          <p>
             <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
                class="btn button-round-2" (click)="newBlog()">
               <i class="material-icons button-round-icon-2">add_box</i></a>
@@ -16,12 +20,11 @@
               <i class="material-icons button-round-icon-2">edit</i></a>
 
             <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-               class="btn button-round-2" (click)="deleteBlog()">
+               class="btn button-round-2" (click)="startPopup('delete-blog', blog.title)">
               <i class="material-icons button-round-icon-2">delete_forever</i></a>
           </p>
-        </div>
 
-        <div class="col-md-3"></div>
+        </div>
 
         <div class="col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons">
           <div class="">
@@ -107,7 +110,10 @@
         <i class="material-icons">comment</i> Коментарі ({{commentsList.length}} з {{blog.commentsLength}})
       </p>
 
-      <app-comment *ngFor="let comment of commentsList" [comment]="comment" [user]="user"></app-comment>
+      <app-comment *ngFor="let comment of commentsList" [comment]="comment" [user]="user"
+                   (onDeleteCommentEmitter)="onDeleteComment()"
+      ></app-comment>
+      <!--(onEditCommentEmitter)="onEditComment()"-->
 
       <div class="processing-block text-muted" *ngIf="processing">
         <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
@@ -120,5 +126,6 @@
 
 
 </div>
-<app-popup [blog]="blog" [job]="job" (onDeletePopEmitter)="onDelete()"></app-popup>
+<app-popup (onConfirmPopupEmitter)="onConfirmPopup($event)"></app-popup>
+<!--<app-popup [dataForPopup]="dataForPopup" [taskForPopup]="taskForPopup" (onConfirmPopupEmitter)="onConfirmPopup($event)"></app-popup>-->
 

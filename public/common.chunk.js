@@ -3,7 +3,7 @@ webpackJsonp(["common"],{
 /***/ "../../../../../src/app/components/blogs/blog/blog.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"\" [ngClass]=\"offsets\">\r\n    <div class=\"blog-post\">\r\n      <div class=\"row blog-post-nav\">\r\n        <div class=\"col-md-3 d-flex justify-content-start align-items-center text-muted\">\r\n          <p>\r\n            <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n              <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"deleteBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n          </p>\r\n        </div>\r\n\r\n        <div class=\"col-md-3\"></div>\r\n\r\n        <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n          <div class=\"\">\r\n            <p><i class=\"material-icons\">date_range</i>\r\n              <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n            <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n            <p><i class=\"material-icons\">comment</i> Коментарів: <strong>{{blog.commentsLength}}</strong></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"row blog-post-header\">\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n          <div class=\"blog-post-header-top\">\r\n\r\n            <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n              <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n            <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n          </div>\r\n\r\n          <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n            <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n            <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n              <p><i class=\"material-icons\">extension</i>\r\n                <strong>{{component.material}} </strong>\r\n                {{component.quantity}}\r\n                {{component.unit}}</p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n          <div class=\"img-container-outer\">\r\n            <div class=\"img-container-inner\">\r\n              <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n              <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n        <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n          <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n            <div class=\"blog-post-body-text\">\r\n              <p class=\"lead blog-description text-justify\">{{block.text}}</p>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n            <!--https://placehold.it/384*288-->\r\n            <div class=\"img-container-outer\">\r\n              <div class=\"img-container-inner\">\r\n                <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n<!--<div id=\"th-infinite-scroll-tracker\" style=\"overflow-y:scroll; height: 500px;\" appScrolling>-->\r\n  <!--.... your container with scrollbar ...-->\r\n<!--</div>-->\r\n<div class=\"row\" *ngIf=\"blogOptions.showComments\">\r\n  <div class=\"offset-md-2 col-md-8\">\r\n    <!--<app-comment-form *ngIf=\"blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n                      <!--[blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>-->\r\n\r\n    <app-comment-form *ngIf=\"blogOptions.singlePostMode\"\r\n                      [blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>\r\n\r\n    <div *ngIf=\"commentsList && blogOptions.singlePostMode\">\r\n      <p class=\"blog-post-comments-title text-muted\">\r\n        <i class=\"material-icons\">comment</i> Коментарі ({{commentsList.length}} з {{blog.commentsLength}})\r\n      </p>\r\n\r\n      <app-comment *ngFor=\"let comment of commentsList\" [comment]=\"comment\" [user]=\"user\"></app-comment>\r\n\r\n      <div class=\"processing-block text-muted\" *ngIf=\"processing\">\r\n        <i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i>\r\n      </div>\r\n\r\n      <!--<button class=\"btn btn-sm btn-primary  mdi mdi-loading mdi-spin\" (click)=\"onLoadComments()\">Завантажити ще {{blogOptions.commentsLength}}</button>-->\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n</div>\r\n<app-popup [blog]=\"blog\" [job]=\"job\" (onDeletePopEmitter)=\"onDelete()\"></app-popup>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"\" [ngClass]=\"offsets\">\r\n    <div class=\"blog-post\">\r\n      <div class=\"row blog-post-nav\">\r\n        <div class=\"col-md-3 d-flex justify-content-center text-muted\">\r\n          <p>\r\n            <a *ngIf=\"blogOptions.singlePostMode\" class=\"btn button-round-2\" (click)=\"goBack()\">\r\n              <i class=\"material-icons button-round-icon-2\">arrow_back</i></a>\r\n          </p>\r\n        </div>\r\n\r\n        <div class=\"col-md-3 d-flex justify-content-center text-muted\">\r\n          <p>\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"newBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">add_box</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"editBlog()\">\r\n              <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n\r\n            <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n               class=\"btn button-round-2\" (click)=\"startPopup('delete-blog', blog.title)\">\r\n              <i class=\"material-icons button-round-icon-2\">delete_forever</i></a>\r\n          </p>\r\n\r\n        </div>\r\n\r\n        <div class=\"col-md-6 d-flex justify-content-around align-items-center text-muted blog-post-nav-icons\">\r\n          <div class=\"\">\r\n            <p><i class=\"material-icons\">date_range</i>\r\n              <strong>{{blog.createdAt | date: 'dd.MM.yyyy'}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showViews\" class=\"\">\r\n            <p><i class=\"material-icons\">remove_red_eye</i> Переглядів: <strong>{{blog.views}}</strong></p>\r\n          </div>\r\n          <div *ngIf=\"blogOptions.showComments\" class=\"\">\r\n            <p><i class=\"material-icons\">comment</i> Коментарів: <strong>{{blog.commentsLength}}</strong></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"row blog-post-header\">\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainText\">\r\n          <div class=\"blog-post-header-top\">\r\n\r\n            <a class=\"nav-link\" [routerLink]=\"['/blogs/ch/blogs-list', blog._id]\">\r\n              <h2 class=\"blog-post-header-title\">{{blog.title}}</h2></a>\r\n            <p class=\"lead blog-post-description\">{{blog.body.mainText}}</p>\r\n          </div>\r\n\r\n          <div  *ngIf=\"blog.body.components\"  class=\"blog-post-header-bottom\">\r\n            <h3 class=\"blog-post-header-title text-muted\">Необхідні матеріали</h3>\r\n            <div class=\"d-flex justify-content-start text-muted\" *ngFor=\"let component of blog.body.components\">\r\n              <p><i class=\"material-icons\">extension</i>\r\n                <strong>{{component.material}} </strong>\r\n                {{component.quantity}}\r\n                {{component.unit}}</p>\r\n            </div>\r\n          </div>\r\n\r\n\r\n        </div>\r\n        <div class=\"col-md-6 align-self-center\" [ngClass]=\"orderMainImage\">\r\n\r\n          <div class=\"img-container-outer\">\r\n            <div class=\"img-container-inner\">\r\n              <!--<img src=\"https://placehold.it/448x336\" class=\"img\" alt=\"main image\">-->\r\n              <img src=\"{{blog.body.mainImage}}\" class=\"img\" alt=\"main image\">\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n\r\n      <div class=\"blog-post-body\" *ngIf=\"blogOptions.singlePostMode\">\r\n        <div class=\"row\" *ngFor=\"let block of blog.body.blocks; let i = index\">\r\n          <div class=\"col-md-7 align-self-center\" [ngClass]=\"getOrderStyle(i, 0)\">\r\n            <div class=\"blog-post-body-text\">\r\n              <p class=\"lead blog-description text-justify\">{{block.text}}</p>\r\n            </div>\r\n\r\n          </div>\r\n          <div class=\"col-md-5 align-self-center\" [ngClass]=\"getOrderStyle(i, 1)\">\r\n            <!--https://placehold.it/384*288-->\r\n            <div class=\"img-container-outer\">\r\n              <div class=\"img-container-inner\">\r\n                <img src=\"{{block.image}}\" class=\"img\" alt=\"block image\">\r\n              </div>\r\n            </div>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n<!--<div id=\"th-infinite-scroll-tracker\" style=\"overflow-y:scroll; height: 500px;\" appScrolling>-->\r\n  <!--.... your container with scrollbar ...-->\r\n<!--</div>-->\r\n<div class=\"row\" *ngIf=\"blogOptions.showComments\">\r\n  <div class=\"offset-md-2 col-md-8\">\r\n    <!--<app-comment-form *ngIf=\"blogOptions.singlePostMode && (user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n                      <!--[blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>-->\r\n\r\n    <app-comment-form *ngIf=\"blogOptions.singlePostMode\"\r\n                      [blog]=\"blog\" [user]=\"user\" (onPostCommentEmitter)=\"onPostComment()\"></app-comment-form>\r\n\r\n    <div *ngIf=\"commentsList && blogOptions.singlePostMode\">\r\n      <p class=\"blog-post-comments-title text-muted\">\r\n        <i class=\"material-icons\">comment</i> Коментарі ({{commentsList.length}} з {{blog.commentsLength}})\r\n      </p>\r\n\r\n      <app-comment *ngFor=\"let comment of commentsList\" [comment]=\"comment\" [user]=\"user\"\r\n                   (onDeleteCommentEmitter)=\"onDeleteComment()\"\r\n      ></app-comment>\r\n      <!--(onEditCommentEmitter)=\"onEditComment()\"-->\r\n\r\n      <div class=\"processing-block text-muted\" *ngIf=\"processing\">\r\n        <i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i>\r\n      </div>\r\n\r\n      <!--<button class=\"btn btn-sm btn-primary  mdi mdi-loading mdi-spin\" (click)=\"onLoadComments()\">Завантажити ще {{blogOptions.commentsLength}}</button>-->\r\n    </div>\r\n\r\n  </div>\r\n\r\n\r\n</div>\r\n<app-popup (onConfirmPopupEmitter)=\"onConfirmPopup($event)\"></app-popup>\r\n<!--<app-popup [dataForPopup]=\"dataForPopup\" [taskForPopup]=\"taskForPopup\" (onConfirmPopupEmitter)=\"onConfirmPopup($event)\"></app-popup>-->\r\n\r\n"
 
 /***/ }),
 
@@ -49,15 +49,18 @@ var user_1 = __webpack_require__("../../../../../src/app/data/user.ts");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var BlogComponent = (function () {
-    function BlogComponent(location, authService, router, sharedService, blogsService) {
+    function BlogComponent(location, authService, router, sharedService, blogsService, flashMessage) {
         this.location = location;
         this.authService = authService;
         this.router = router;
         this.sharedService = sharedService;
         this.blogsService = blogsService;
+        this.flashMessage = flashMessage;
         this.onDeleteBlogEmitter = new core_1.EventEmitter();
-        this.onPostCommentEmitter = new core_1.EventEmitter();
+        this.onPostOrDeleteCommentEmitter = new core_1.EventEmitter();
+        this.isPopupConfirmed = false;
         this.commentsList = [];
         this.user = user_1.emptyUser; // = this.guest;
         this.findOptions = {};
@@ -82,16 +85,15 @@ var BlogComponent = (function () {
         //     .subscribe(x => console.log('x - blogComponent', x));
     };
     BlogComponent.prototype.ngAfterViewInit = function () { };
+    // Listening of page bottom reached
     BlogComponent.prototype.onScroll = function () {
-        // console.log('window.innerHeight', window.innerHeight);
-        // console.log('window.scrollY', window.scrollY);
-        // console.log('document.body.offsetHeight', document.body.offsetHeight);
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             if (!this.processing && this.commentsList.length !== this.blog.commentsLength) {
                 this.loadComments();
             }
         }
     };
+    // Setting style of col order
     BlogComponent.prototype.getMainImageOrderStyle = function () {
         if (this.index % 2 === 0) {
             this.orderMainImage = 'order-md-1 order-1';
@@ -134,6 +136,7 @@ var BlogComponent = (function () {
             return 'order-md-' + order + ' order-2';
         }
     };
+    // Loading portion of comments from blog
     BlogComponent.prototype.loadComments = function () {
         var _this = this;
         this.processing = true;
@@ -147,6 +150,7 @@ var BlogComponent = (function () {
             _this.updateCommentsList();
         }, function (error) { return console.log(error.message); });
     };
+    // Making comments list with additional commetators data
     BlogComponent.prototype.updateCommentsList = function () {
         var _this = this;
         var commentators = [];
@@ -172,6 +176,7 @@ var BlogComponent = (function () {
             }
         });
     };
+    // Navigation
     BlogComponent.prototype.goBack = function () {
         this.location.back();
     };
@@ -181,15 +186,48 @@ var BlogComponent = (function () {
     BlogComponent.prototype.newBlog = function () {
         this.router.navigate(['/blogs/ch/new-blog']);
     };
-    BlogComponent.prototype.deleteBlog = function () {
-        this.job = 'delete-blog';
-        $('#popupModal').modal('show');
+    // Listening popups event
+    BlogComponent.prototype.onConfirmPopup = function (event) {
+        if (event === 'delete-blog') {
+            this.deleteBlog();
+        }
     };
-    BlogComponent.prototype.onDelete = function () {
-        this.onDeleteBlogEmitter.emit();
+    // Starting popup
+    BlogComponent.prototype.startPopup = function (taskForPopup, dataForPopup) {
+        // this.taskForPopup = taskForPopup;
+        // this.dataForPopup = dataForPopup;
+        $('#popupModal').modal('show');
+        this.sharedService.sharingEvent({ taskForPopup: taskForPopup, dataForPopup: dataForPopup });
+    };
+    // Deleting blog
+    BlogComponent.prototype.deleteBlog = function () {
+        var _this = this;
+        this.blogsService.deleteBlog(this.blog._id)
+            .subscribe(function (result) {
+            if (result.success) {
+                _this.onDeleteBlogEmitter.emit();
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-success',
+                    timeout: 2000
+                });
+            }
+            else {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 2000
+                });
+            }
+        });
+    };
+    BlogComponent.prototype.onDeleteComment = function () {
+        this.onPostOrDeleteCommentEmitter.emit();
+        this.commentsList = [];
+        this.loadComments();
+    };
+    BlogComponent.prototype.OnEditComment = function () {
     };
     BlogComponent.prototype.onPostComment = function () {
-        this.onPostCommentEmitter.emit();
+        this.onPostOrDeleteCommentEmitter.emit();
         this.commentsList = [];
         this.loadComments();
     };
@@ -217,7 +255,7 @@ __decorate([
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)
-], BlogComponent.prototype, "onPostCommentEmitter", void 0);
+], BlogComponent.prototype, "onPostOrDeleteCommentEmitter", void 0);
 __decorate([
     core_1.HostListener('window:scroll', []),
     __metadata("design:type", Function),
@@ -230,10 +268,10 @@ BlogComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/blogs/blog/blog.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/blog/blog.component.scss")],
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _e || Object, typeof (_f = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _f || Object, typeof (_g = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _c || Object, typeof (_d = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _d || Object, typeof (_e = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _e || Object, typeof (_f = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _f || Object, typeof (_g = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _g || Object, typeof (_h = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _h || Object])
 ], BlogComponent);
 exports.BlogComponent = BlogComponent;
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=blog.component.js.map
 
 /***/ }),
@@ -241,7 +279,7 @@ var _a, _b, _c, _d, _e, _f, _g;
 /***/ "../../../../../src/app/components/blogs/blogs-list/blogs-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<header *ngIf=\"!blogOptions.singlePostMode\">\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n<div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\" [blogOptions]=\"blogOptions\"\r\n              (onDeleteBlogEmitter)=\"onDelete()\"\r\n              (onPostCommentEmitter)=\"onPostComment()\"\r\n\r\n  ></app-blog>\r\n  <!--(onPostCommentEmitter)=\"onPostComment()\"-->\r\n\r\n</div>\r\n"
+module.exports = "<header *ngIf=\"!blogOptions.singlePostMode\">\r\n  <div class=\"blog-header\">\r\n    <h1 class=\"blog-title\">Майстеркласи</h1>\r\n    <p class=\"lead blog-description\">Улюблені заняття,\r\n      що не є робочою спцеціальністю і до яких вдаються у вільний час називається хобі.</p>\r\n  </div>\r\n</header>\r\n\r\n<div *ngFor=\"let blog of blogs; let index = index\">\r\n    <app-blog [blog]=\"blog\" [index]=\"index\" [blogOptions]=\"blogOptions\"\r\n              (onDeleteBlogEmitter)=\"onDeleteBlog()\"\r\n              (onPostOrDeleteCommentEmitter)=\"onPostOrDeleteComment()\"\r\n\r\n  ></app-blog>\r\n  <!--(onPostCommentEmitter)=\"onPostComment()\"-->\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -300,7 +338,6 @@ var BlogsListComponent = (function () {
         this.route.params
             .flatMap(function (params) {
             _this._id = params._id;
-            console.log('this._id', _this._id);
             return _this.blogsService.getBlogOptions();
         })
             .flatMap(function (blogOptions) {
@@ -327,7 +364,6 @@ var BlogsListComponent = (function () {
             return _this.blogsService.findMongo(_this.findOptions);
         })
             .subscribe(function (result) {
-            console.log('result.data', result.data);
             _this.blogs = result.data;
         });
     };
@@ -337,14 +373,13 @@ var BlogsListComponent = (function () {
         this.findOptions['options'] = [{ $project: { commentsLength: { $size: '$comments' } } }];
         this.blogsService.findMongo(this.findOptions)
             .subscribe(function (result) {
-            console.log('result.data', result.data);
             _this.blogs[0].commentsLength = result.data[0].commentsLength;
         });
     };
-    BlogsListComponent.prototype.onDelete = function () {
+    BlogsListComponent.prototype.onDeleteBlog = function () {
         this.reloadBlogs(false);
     };
-    BlogsListComponent.prototype.onPostComment = function () {
+    BlogsListComponent.prototype.onPostOrDeleteComment = function () {
         this.reloadCommentsLength();
     };
     return BlogsListComponent;
@@ -703,7 +738,7 @@ var _a, _b, _c, _d, _e, _f;
 /***/ "../../../../../src/app/components/blogs/comment/comment.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<nav>-->\r\n  <!--<ul class=\"pagination pagination-sm justify-content-center\">-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Previous\">-->\r\n        <!--<span aria-hidden=\"true\">&laquo;</span>-->\r\n        <!--<span class=\"sr-only\">Previous</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Next\">-->\r\n        <!--<span aria-hidden=\"true\">&raquo;</span>-->\r\n        <!--<span class=\"sr-only\">Next</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n  <!--</ul>-->\r\n<!--</nav>-->\r\n<!--commentsList {{commentsList}} comments {{comments}}-->\r\n<!--<div class=\"row comment\" *ngFor=\"let comment of commentsList; let i = index\">-->\r\n<div class=\"row comment\">\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"avatar-3-block\">\r\n      <img class=\"img-fluid avatar-3\" src=\"{{comment.avatar}}\" alt=\"avatar\">\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-10 col-sm-8\">\r\n    <div class=\"small comment-meta\">\r\n      <strong>{{comment.username}}</strong>\r\n      {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm:ss'}}\r\n    </div>\r\n    <div class=\"comment-content\">\r\n      <p class=\"text-justify\">{{comment.comment}}</p>\r\n\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"blog-post-nav\">\r\n      <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n         class=\"btn button-round-2\" (click)=\"onDelete()\">\r\n        <i class=\"material-icons button-round-icon-2\">delete</i></a>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<!--<nav>-->\r\n  <!--<ul class=\"pagination pagination-sm justify-content-center\">-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Previous\">-->\r\n        <!--<span aria-hidden=\"true\">&laquo;</span>-->\r\n        <!--<span class=\"sr-only\">Previous</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>-->\r\n    <!--<li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>-->\r\n    <!--<li class=\"page-item\">-->\r\n      <!--<a class=\"page-link\" href=\"#\" aria-label=\"Next\">-->\r\n        <!--<span aria-hidden=\"true\">&raquo;</span>-->\r\n        <!--<span class=\"sr-only\">Next</span>-->\r\n      <!--</a>-->\r\n    <!--</li>-->\r\n  <!--</ul>-->\r\n<!--</nav>-->\r\n<!--commentsList {{commentsList}} comments {{comments}}-->\r\n<!--<div class=\"row comment\" *ngFor=\"let comment of commentsList; let i = index\">-->\r\n<div class=\"row comment\">\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"avatar-3-block\">\r\n      <img class=\"img-fluid avatar-3\" src=\"{{comment.avatar}}\" alt=\"avatar\">\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-10 col-sm-8\">\r\n    <div class=\"small comment-meta\">\r\n      <strong>{{comment.username}}</strong>\r\n      {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm:ss'}}\r\n    </div>\r\n    <div class=\"comment-content\">\r\n      <p class=\"text-justify\">{{comment.comment}}</p>\r\n    </div>\r\n  </div>\r\n  <div class=\"col-md-1 col-sm-2\">\r\n    <div class=\"blog-post-nav d-flex justify-content-center text-muted\">\r\n      <p>\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"startPopup('delete-comment', comment.comment)\">\r\n          <i class=\"material-icons button-round-icon-2\">delete</i></a>\r\n        <a *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"\r\n           class=\"btn button-round-2\" (click)=\"onEdit()\">\r\n          <i class=\"material-icons button-round-icon-2\">edit</i></a>\r\n      </p>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n<app-popup (onConfirmPopupEmitter)=\"onConfirmPopup($event)\"></app-popup>\r\n<!--<app-popup [dataForPopup]=\"dataForPopup\" [taskForPopup]=\"taskForPopup\" (onConfirmPopupEmitter)=\"onConfirmPopup($event)\"></app-popup>-->\r\n\r\n"
 
 /***/ }),
 
@@ -741,12 +776,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var blogs_service_1 = __webpack_require__("../../../../../src/app/services/blogs.service.ts");
 var i_user_1 = __webpack_require__("../../../../../src/app/interfaces/i-user.ts");
 var CommentComponent = (function () {
-    // commentsList = [];
     // get blog(): IBlog {
     //   return this._blog;
     // }
@@ -757,23 +792,62 @@ var CommentComponent = (function () {
     //   console.log('new value: ', blog);
     //   this._blog = blog;
     // }
-    function CommentComponent(authService, sharedService, blogsService) {
+    function CommentComponent(authService, sharedService, blogsService, flashMessage) {
         this.authService = authService;
         this.sharedService = sharedService;
         this.blogsService = blogsService;
+        this.flashMessage = flashMessage;
         this.updateOptions = {};
+        this.onDeleteCommentEmitter = new core_1.EventEmitter();
+        this.onEditCommentEmitter = new core_1.EventEmitter();
     }
     CommentComponent.prototype.ngOnInit = function () { };
-    CommentComponent.prototype.onDelete = function () {
-        this.updateOptions['query'] = { '_id': this.comment.blog_id };
-        this.updateOptions['update'] = { $pull: { 'comments._id': this.comment._id } };
-        this.blogsService.updateMongo(this.updateOptions)
-            .subscribe(function (result) { return console.log('result', result); });
+    // Listening popups event
+    CommentComponent.prototype.onConfirmPopup = function (event) {
+        if (event === 'delete-comment') {
+            this.deleteComment();
+        }
     };
-    CommentComponent.prototype.ngOnChanges = function (changes) {
-        // if (changes.comments) {
-        //   console.log('changes.comments.currentValue', changes.comments.currentValue);
-        // }
+    // Starting popup
+    CommentComponent.prototype.startPopup = function (taskForPopup, dataForPopup) {
+        // this.taskForPopup = taskForPopup;
+        // this.dataForPopup = dataForPopup;
+        // console.log('this.taskForPopup', this.taskForPopup);
+        // console.log('this.dataForPopup', this.dataForPopup);
+        $('#popupModal').modal('show');
+        this.sharedService.sharingEvent({ taskForPopup: taskForPopup, dataForPopup: dataForPopup });
+    };
+    CommentComponent.prototype.deleteComment = function () {
+        var _this = this;
+        this.updateOptions['query'] = { '_id': this.comment.blog_id };
+        this.updateOptions['update'] = { $pull: { 'comments': { _id: this.comment._id } } };
+        this.blogsService.updateMongo(this.updateOptions)
+            .subscribe(function (result) {
+            if (result.success) {
+                _this.onDeleteCommentEmitter.emit();
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-success',
+                    timeout: 2000
+                });
+            }
+            else {
+                _this.flashMessage.show(result.message, {
+                    cssClass: 'alert-danger',
+                    timeout: 2000
+                });
+            }
+        });
+    };
+    CommentComponent.prototype.onEdit = function () {
+        this.onEditCommentEmitter.emit();
+    };
+    CommentComponent.prototype.onEditComfirm = function () {
+        this.updateOptions['query'] = { '_id': this.comment.blog_id };
+        this.updateOptions['update'] = { $pull: { 'comments': { _id: this.comment._id } } };
+        this.blogsService.updateMongo(this.updateOptions)
+            .subscribe(function (result) {
+            console.log('result', result);
+        });
     };
     return CommentComponent;
 }());
@@ -785,16 +859,24 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", typeof (_a = typeof i_user_1.IUser !== "undefined" && i_user_1.IUser) === "function" && _a || Object)
 ], CommentComponent.prototype, "user", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CommentComponent.prototype, "onDeleteCommentEmitter", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], CommentComponent.prototype, "onEditCommentEmitter", void 0);
 CommentComponent = __decorate([
     core_1.Component({
         selector: 'app-comment',
         template: __webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/blogs/comment/comment.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _b || Object, typeof (_c = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _c || Object, typeof (_d = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _b || Object, typeof (_c = typeof shared_service_1.SharedService !== "undefined" && shared_service_1.SharedService) === "function" && _c || Object, typeof (_d = typeof blogs_service_1.BlogsService !== "undefined" && blogs_service_1.BlogsService) === "function" && _d || Object, typeof (_e = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _e || Object])
 ], CommentComponent);
 exports.CommentComponent = CommentComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=comment.component.js.map
 
 /***/ }),
@@ -1451,6 +1533,16 @@ NewBlogComponent = __decorate([
 exports.NewBlogComponent = NewBlogComponent;
 var _a, _b, _c, _d, _e;
 //# sourceMappingURL=new-blog.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/interfaces/i-blog.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=i-blog.js.map
 
 /***/ }),
 

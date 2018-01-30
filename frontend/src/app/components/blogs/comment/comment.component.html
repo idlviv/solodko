@@ -32,14 +32,22 @@
     </div>
     <div class="comment-content">
       <p class="text-justify">{{comment.comment}}</p>
-
     </div>
   </div>
   <div class="col-md-1 col-sm-2">
-    <div class="blog-post-nav">
-      <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-         class="btn button-round-2" (click)="onDelete()">
-        <i class="material-icons button-round-icon-2">delete</i></a>
+    <div class="blog-post-nav d-flex justify-content-center text-muted">
+      <p>
+        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+           class="btn button-round-2" (click)="startPopup('delete-comment', comment.comment)">
+          <i class="material-icons button-round-icon-2">delete</i></a>
+        <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
+           class="btn button-round-2" (click)="onEdit()">
+          <i class="material-icons button-round-icon-2">edit</i></a>
+      </p>
+
     </div>
   </div>
 </div>
+<app-popup (onConfirmPopupEmitter)="onConfirmPopup($event)"></app-popup>
+<!--<app-popup [dataForPopup]="dataForPopup" [taskForPopup]="taskForPopup" (onConfirmPopupEmitter)="onConfirmPopup($event)"></app-popup>-->
+

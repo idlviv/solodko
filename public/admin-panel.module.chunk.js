@@ -398,7 +398,6 @@ var AddProductComponent = (function () {
                 }
             }
         }
-        console.log('product.category1', this.product.category1);
     };
     AddProductComponent.prototype.createItemNumber = function (i) {
         var _this = this;

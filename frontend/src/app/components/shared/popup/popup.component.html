@@ -2,20 +2,32 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Видалити?</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Підтвердіть</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        data: {{dataForPopup}} task: {{taskForPopup}}
       </div>
+
       <div class="modal-body">
-        <p><strong>Майстерклас з заголовком:</strong></p>
-        <p class="text-muted">
-          {{blog.title}}
-        </p>
+        <div *ngIf="taskForPopup === 'delete-blog'">
+          <p ><strong>Видалити майстерклас?</strong></p>
+          <p class="text-muted">
+            {{dataForPopup}}
+          </p>
+        </div>
+
+        <div *ngIf="taskForPopup === 'delete-comment'">
+          <p ><strong>Видалити коментар?</strong></p>
+          <p class="text-muted">
+            {{dataForPopup}}
+          </p>
+        </div>
+
       </div>
       <div class="modal-footer">
-        <div *ngIf="job === 'delete-blog'">
-          <button class="btn" (click)="deleteBlog()">Видалити</button>
+        <div *ngIf="taskForPopup === 'delete-blog' || taskForPopup === 'delete-comment'">
+          <button class="btn" (click)="onConfirm()">Видалити</button>
           <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
 
           <button class="btn" data-dismiss="modal">Відмінити</button>

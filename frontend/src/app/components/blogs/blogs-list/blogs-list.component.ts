@@ -36,7 +36,6 @@ findOptions = {};
     this.route.params
       .flatMap(params => {
         this._id = params._id;
-        console.log('this._id', this._id);
         return this.blogsService.getBlogOptions();
       })
       .flatMap((blogOptions) => {
@@ -66,7 +65,6 @@ findOptions = {};
         return this.blogsService.findMongo(this.findOptions);
       })
       .subscribe(result => {
-        console.log('result.data', result.data);
         this.blogs = result.data;
       });
   }
@@ -76,17 +74,15 @@ findOptions = {};
     this.findOptions['options'] = [{$project: {commentsLength: { $size: '$comments'} }}];
     this.blogsService.findMongo(this.findOptions)
       .subscribe(result => {
-          console.log('result.data', result.data);
           this.blogs[0].commentsLength = result.data[0].commentsLength;
         });
   }
 
-
-  onDelete() {
+  onDeleteBlog() {
     this.reloadBlogs(false);
   }
 
-  onPostComment() {
+  onPostOrDeleteComment() {
     this.reloadCommentsLength();
   }
 }
