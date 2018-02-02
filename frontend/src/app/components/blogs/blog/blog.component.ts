@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output, ViewChild, AfterViewInit, HostListener} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, AfterViewInit, HostListener} from '@angular/core';
 import {IBlog, IComment} from '../../../interfaces/i-blog';
 import {IBlogOptions} from '../../../interfaces/i-options';
 import {Location} from '@angular/common';
@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
+import {IForPopup, IFromPopup} from '../../../interfaces/i-modalCommunication';
 
 declare const $: any;
 
@@ -32,12 +33,11 @@ export class BlogComponent implements OnInit, AfterViewInit {
   orderMainText: any;
   startOrder: number;
   user: IUser = emptyUser; // = this.guest;
-  taskForPopup: string;
-  dataForPopup: any;
   findOptions = {};
   comments: IComment[] = [];
   processing = false;
   offsets: string;
+  forPopup = {} as IForPopup;
 
   constructor(
     private location: Location,
@@ -175,25 +175,25 @@ export class BlogComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/blogs/ch/new-blog']);
   }
 
+  // Starting popup
+  startPopup(taskForPopup, titleForPopup, dataForPopup) {
+    this.forPopup.task = taskForPopup;
+    this.forPopup.title = titleForPopup;
+    this.forPopup.data = dataForPopup;
+    this.sharedService.sharingEvent(this.forPopup);
+    $('#popupModal').modal('show');
+  }
+
   // Listening popups event
-  onConfirmPopup(event) {
-    if (event === 'delete-blog') {
-      this.deleteBlog();
+  onConfirmPopup(event: IFromPopup) {
+    if (event.task === 'delete-blog') {
+      this.deleteBlog(event.data);
     }
   }
 
-  // Starting popup
-  startPopup(taskForPopup, dataForPopup) {
-    // this.taskForPopup = taskForPopup;
-    // this.dataForPopup = dataForPopup;
-    $('#popupModal').modal('show');
-    this.sharedService.sharingEvent({taskForPopup, dataForPopup});
-
-  }
-
   // Deleting blog
-  deleteBlog() {
-    this.blogsService.deleteBlog(this.blog._id)
+  deleteBlog(_id) {
+    this.blogsService.deleteBlog(_id)
       .subscribe(result => {
         if (result.success) {
           this.onDeleteBlogEmitter.emit();
@@ -212,20 +212,9 @@ export class BlogComponent implements OnInit, AfterViewInit {
             });
         }
       });
-
   }
 
-  onDeleteComment() {
-    this.onPostOrDeleteCommentEmitter.emit();
-    this.commentsList = [];
-    this.loadComments();
-  }
-
-  OnEditComment() {
-
-  }
-
-  onPostComment() {
+  updateComments() {
     this.onPostOrDeleteCommentEmitter.emit();
     this.commentsList = [];
     this.loadComments();

@@ -124,12 +124,6 @@ module.exports.findMongo = function(findOptions) {
 
 module.exports.updateMongo = function(updateOptions) {
   return new Promise(function(resolve, reject) {
-
-    if ('_id' in updateOptions.query) {
-      updateOptions.query._id = ObjectId(updateOptions.query._id);
-    }
-    // resolve({success: true, data: updateOptions, message: 'Зміни внесено'});
-
     BlogsModel.update(updateOptions.query, updateOptions.update)
       .then((result) => resolve({success: true, data: result, message: 'Зміни внесено'}))
       .catch((error) => {

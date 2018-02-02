@@ -6,9 +6,10 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {Location} from '@angular/common';
 import {IBlog} from '../../../interfaces/i-blog';
 import {SharedService} from '../../../services/shared.service';
+import {IForPopup, IFromPopup} from '../../../interfaces/i-modalCommunication';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 declare const $: any;
-
 
 @Component({
   selector: 'app-popup',
@@ -16,12 +17,10 @@ declare const $: any;
   styleUrls: ['./popup.component.scss']
 })
 export class PopupComponent implements OnInit {
-  // @Input()
-  dataForPopup: any;
-  // @Input()
-  taskForPopup: any;
-  @Output() onConfirmPopupEmitter: EventEmitter<string> = new EventEmitter<string>();
-
+  forPopup = {} as IForPopup;
+  fromPopup = {} as IFromPopup;
+  @Output() onConfirmPopupEmitter: EventEmitter<IFromPopup> = new EventEmitter<IFromPopup>();
+  editCommentForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,38 +32,40 @@ export class PopupComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log('this.taskForPopup-', this.taskForPopup);
-    // console.log('this.dataForPopup-', this.dataForPopup);
-      this.sharedService.getSharingEvent()
-        .subscribe(result => {
-          this.taskForPopup = result.taskForPopup;
-          this.dataForPopup = result.dataForPopup;
-        });
+
+    this.editCommentForm = new FormGroup({
+    comment: new FormControl('',
+      [
+        Validators.required,
+        Validators.maxLength(200),
+      ]),
+    });
+
+    this.sharedService.getSharingEvent()
+      .subscribe(result => {
+        this.forPopup = result;
+        this.editCommentForm.patchValue(this.forPopup.data);
+      });
+    }
+
+  onCommentEditSubmit() {
+    this.fromPopup.task = this.forPopup.task;
+    this.fromPopup.data = {_id: this.forPopup.data._id, editedText: this.editCommentForm.get('comment').value};
+    this.onConfirmPopupEmitter.emit(this.fromPopup);
+    $('#popupModal').modal('hide');
+  }
+
+  onPressEnter(event) {
+    if (event.keyCode === 13) {
+      this.onCommentEditSubmit();
+    }
   }
 
   onConfirm() {
-    this.onConfirmPopupEmitter.emit(this.taskForPopup);
+    this.fromPopup.task = this.forPopup.task;
+    this.fromPopup.data = this.forPopup.data._id;
+    this.onConfirmPopupEmitter.emit(this.fromPopup);
     $('#popupModal').modal('hide');
-    // this.blogsService.deleteBlog(this.blog._id)
-    //   .subscribe(result => {
-    //       if (result.success) {
-    //         $('#popupModal').modal('hide');
-    //         this.onDeletePopEmitter.emit();
-    //         this.flashMessage.show(
-    //           result.message,
-    //           {
-    //             cssClass: 'alert-success',
-    //             timeout: 2000
-    //           });
-    //       } else {
-    //         this.flashMessage.show(
-    //           result.message,
-    //           {
-    //             cssClass: 'alert-danger',
-    //             timeout: 2000
-    //           });
-    //       }
-    //     });
   }
 
   goBack() {

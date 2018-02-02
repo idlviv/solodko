@@ -2,39 +2,64 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Підтвердіть</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{forPopup.title}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        data: {{dataForPopup}} task: {{taskForPopup}}
       </div>
 
       <div class="modal-body">
-        <div *ngIf="taskForPopup === 'delete-blog'">
-          <p ><strong>Видалити майстерклас?</strong></p>
+
+        <div *ngIf="forPopup.task === 'delete-blog'">
+          <!--<p ><strong>Видалити майстерклас?</strong></p>-->
           <p class="text-muted">
-            {{dataForPopup}}
+            {{dataForPopup.title}}
           </p>
         </div>
 
-        <div *ngIf="taskForPopup === 'delete-comment'">
-          <p ><strong>Видалити коментар?</strong></p>
+        <div *ngIf="forPopup.task === 'delete-comment'">
+          <!--<p ><strong>Видалити коментар?</strong></p>-->
           <p class="text-muted">
-            {{dataForPopup}}
+            {{forPopup.data.comment}}
           </p>
+        </div>
+
+        <div *ngIf="forPopup.task === 'edit-comment'">
+          <form [formGroup]="editCommentForm" (ngSubmit)="onCommentEditSubmit()">
+            <div class="form-row comment-form align-items-center">
+              <div class="form-group col-md-10 col-sm-8">
+                <!--<label for="comment">Коментар</label>-->
+                <textarea formControlName="comment" rows="3"
+                          required autocomplete="false" (keydown)="onPressEnter($event)"
+                          class="form-control no-validate-style" id="comment" placeholder="Коментар">
+                </textarea>
+                <!--[disabled]="!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')"-->
+
+                <div class="invalid-alert"
+                     *ngIf="editCommentForm.get('comment').errors?.maxlength &&
+                      editCommentForm.get('comment').touched">Довжина до 200 символів
+                </div>
+              </div>
+              <div class="form-group col-md-2 col-sm-4">
+                <button class="btn btn button-round-2 btn-sm" [disabled]="!editCommentForm.valid">
+                  <i class="material-icons button-round-icon-2 text-muted">done</i>
+                </button>
+                <button class="btn btn button-round-2 btn-sm" data-dismiss="modal">
+                  <i class="material-icons button-round-icon-2 text-muted">cancel</i>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
 
       </div>
       <div class="modal-footer">
-        <div *ngIf="taskForPopup === 'delete-blog' || taskForPopup === 'delete-comment'">
-          <button class="btn" (click)="onConfirm()">Видалити</button>
-          <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-
-          <button class="btn" data-dismiss="modal">Відмінити</button>
+        <div *ngIf="forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'">
+          <button class="btn btn-sm" (click)="onConfirm()">Видалити</button>
+          <!--<button *ngIf="forPopup.task === 'edit-comment'"-->
+                  <!--class="btn btn-sm" (click)="onConfirm()">Зберегти</button>-->
+          <button class="btn btn-sm" data-dismiss="modal">Відмінити</button>
         </div>
-
-        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
       </div>
     </div>
   </div>

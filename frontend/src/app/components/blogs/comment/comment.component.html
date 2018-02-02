@@ -1,31 +1,10 @@
-<!--<nav>-->
-  <!--<ul class="pagination pagination-sm justify-content-center">-->
-    <!--<li class="page-item">-->
-      <!--<a class="page-link" href="#" aria-label="Previous">-->
-        <!--<span aria-hidden="true">&laquo;</span>-->
-        <!--<span class="sr-only">Previous</span>-->
-      <!--</a>-->
-    <!--</li>-->
-    <!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
-    <!--<li class="page-item"><a class="page-link" href="#">2</a></li>-->
-    <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
-    <!--<li class="page-item">-->
-      <!--<a class="page-link" href="#" aria-label="Next">-->
-        <!--<span aria-hidden="true">&raquo;</span>-->
-        <!--<span class="sr-only">Next</span>-->
-      <!--</a>-->
-    <!--</li>-->
-  <!--</ul>-->
-<!--</nav>-->
-<!--commentsList {{commentsList}} comments {{comments}}-->
-<!--<div class="row comment" *ngFor="let comment of commentsList; let i = index">-->
 <div class="row comment">
-  <div class="col-md-1 col-sm-2">
+  <div class="col-md-2 col-sm-3">
     <div class="avatar-3-block">
       <img class="img-fluid avatar-3" src="{{comment.avatar}}" alt="avatar">
     </div>
   </div>
-  <div class="col-md-10 col-sm-8">
+  <div class="col-md-8 col-sm-6">
     <div class="small comment-meta">
       <strong>{{comment.username}}</strong>
       {{comment.commentedAt | date: 'dd.MM.yyyy hh:mm:ss'}}
@@ -33,18 +12,19 @@
     <div class="comment-content">
       <p class="text-justify">{{comment.comment}}</p>
     </div>
+
   </div>
-  <div class="col-md-1 col-sm-2">
+  <div class="col-md-2 col-sm-3">
     <div class="blog-post-nav d-flex justify-content-center text-muted">
       <p>
         <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-           class="btn button-round-2" (click)="startPopup('delete-comment', comment.comment)">
+           class="btn button-round-2" (click)="startPopup('delete-comment', 'Видалити коментар?', comment)">
           <i class="material-icons button-round-icon-2">delete</i></a>
         <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-           class="btn button-round-2" (click)="onEdit()">
+           class="btn button-round-2" (click)="startPopup('edit-comment', 'Редагувати коментар', comment)">
           <i class="material-icons button-round-icon-2">edit</i></a>
-      </p>
 
+      </p>
     </div>
   </div>
 </div>

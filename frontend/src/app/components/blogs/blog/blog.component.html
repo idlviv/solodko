@@ -20,7 +20,7 @@
               <i class="material-icons button-round-icon-2">edit</i></a>
 
             <a *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"
-               class="btn button-round-2" (click)="startPopup('delete-blog', blog.title)">
+               class="btn button-round-2" (click)="startPopup('delete-comment', 'Видалити блог?', blog)">
               <i class="material-icons button-round-icon-2">delete_forever</i></a>
           </p>
 
@@ -103,7 +103,7 @@
                       <!--[blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>-->
 
     <app-comment-form *ngIf="blogOptions.singlePostMode"
-                      [blog]="blog" [user]="user" (onPostCommentEmitter)="onPostComment()"></app-comment-form>
+                      [blog]="blog" [user]="user" (onPostCommentEmitter)="updateComments()"></app-comment-form>
 
     <div *ngIf="commentsList && blogOptions.singlePostMode">
       <p class="blog-post-comments-title text-muted">
@@ -111,7 +111,7 @@
       </p>
 
       <app-comment *ngFor="let comment of commentsList" [comment]="comment" [user]="user"
-                   (onDeleteCommentEmitter)="onDeleteComment()"
+                   (onUpdateCommentEmitter)="updateComments()"
       ></app-comment>
       <!--(onEditCommentEmitter)="onEditComment()"-->
 

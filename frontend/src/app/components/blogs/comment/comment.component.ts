@@ -6,6 +6,8 @@ import {AuthService} from '../../../services/auth.service';
 import {SharedService} from '../../../services/shared.service';
 import {BlogsService} from '../../../services/blogs.service';
 import {IUser} from '../../../interfaces/i-user';
+import {IForPopup, IFromPopup} from '../../../interfaces/i-modalCommunication';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 declare const $: any;
 
 @Component({
@@ -19,11 +21,11 @@ export class CommentComponent implements OnInit {
   comment: any;
   @Input() user: IUser;
   updateOptions = {};
-  @Output() onDeleteCommentEmitter = new EventEmitter<boolean>();
-  @Output() onEditCommentEmitter = new EventEmitter<boolean>();
+  @Output() onUpdateCommentEmitter = new EventEmitter<boolean>();
+  // @Output() onEditCommentEmitter = new EventEmitter<boolean>();
   // commentsList = [];
-  taskForPopup: string;
-  dataForPopup: any;
+  forPopup = {} as IForPopup;
+  commentForm: FormGroup;
 
   // get blog(): IBlog {
   //   return this._blog;
@@ -44,32 +46,37 @@ export class CommentComponent implements OnInit {
 
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
 
-  // Listening popups event
-  onConfirmPopup(event) {
-    if (event === 'delete-comment') {
-      this.deleteComment();
-    }
   }
 
   // Starting popup
-  startPopup(taskForPopup, dataForPopup) {
-    // this.taskForPopup = taskForPopup;
-    // this.dataForPopup = dataForPopup;
-    // console.log('this.taskForPopup', this.taskForPopup);
-    // console.log('this.dataForPopup', this.dataForPopup);
+  startPopup(taskForPopup, titleForPopup, dataForPopup) {
+    this.forPopup.task = taskForPopup;
+    this.forPopup.title = titleForPopup;
+    this.forPopup.data = dataForPopup;
+
+    this.sharedService.sharingEvent(this.forPopup);
     $('#popupModal').modal('show');
-    this.sharedService.sharingEvent({taskForPopup, dataForPopup});
+
   }
 
-  deleteComment() {
+  // Listening popups event
+  onConfirmPopup(event: IFromPopup) {
+    if (event.task === 'delete-comment') {
+      this.deleteComment(event.data);
+    }else if (event.task === 'edit-comment') {
+      this.editComment(event.data);
+    }
+  }
+
+  deleteComment(_id) {
     this.updateOptions['query'] = {'_id': this.comment.blog_id};
-    this.updateOptions['update'] = { $pull: { 'comments': {_id: this.comment._id} } };
+    this.updateOptions['update'] = { $pull: { 'comments': {_id: _id} } };
     this.blogsService.updateMongo(this.updateOptions)
       .subscribe(result => {
         if (result.success) {
-          this.onDeleteCommentEmitter.emit();
+          this.onUpdateCommentEmitter.emit();
           this.flashMessage.show(
             result.message,
             {
@@ -87,17 +94,27 @@ export class CommentComponent implements OnInit {
       });
   }
 
-  onEdit() {
-    this.onEditCommentEmitter.emit();
-  }
-
-  onEditComfirm() {
-    this.updateOptions['query'] = {'_id': this.comment.blog_id};
-    this.updateOptions['update'] = { $pull: { 'comments': {_id: this.comment._id} } };
+  editComment(data) {
+    this.updateOptions['query'] = {_id: this.comment.blog_id, 'comments._id ': data._id};
+    this.updateOptions['update'] = {$set: {'comments.$.comment': data.editedText}};
     this.blogsService.updateMongo(this.updateOptions)
       .subscribe(result => {
-        console.log('result', result);
+        if (result.success) {
+          this.onUpdateCommentEmitter.emit();
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-success',
+              timeout: 2000
+            });
+        } else {
+          this.flashMessage.show(
+            result.message,
+            {
+              cssClass: 'alert-danger',
+              timeout: 2000
+            });
+        }
       });
   }
-
 }
