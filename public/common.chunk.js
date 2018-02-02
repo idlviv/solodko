@@ -1381,7 +1381,6 @@ var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
 var NewBlogComponent = (function () {
-    // edited_id: IBlog;
     function NewBlogComponent(blogsService, authService, flashMessage, route, location) {
         this.blogsService = blogsService;
         this.authService = authService;
@@ -1389,6 +1388,7 @@ var NewBlogComponent = (function () {
         this.route = route;
         this.location = location;
         this.isNewPost = true;
+        this.findOptions = {};
     }
     NewBlogComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1422,7 +1422,9 @@ var NewBlogComponent = (function () {
                 _this.route.params
                     .flatMap(function (params) {
                     // this.edited_id = params._id;
-                    return _this.blogsService.findBlogs({ '_id': params._id });
+                    _this.findOptions['query'] = { _id: params._id };
+                    // return this.blogsService.findMongo({'_id': params._id});
+                    return _this.blogsService.findMongo(_this.findOptions);
                 })
                     .subscribe(function (result) {
                     if (result.data) {
@@ -1523,7 +1525,6 @@ var NewBlogComponent = (function () {
         }
     };
     NewBlogComponent.prototype.goBack = function () {
-        // this.router.navigate(['/blogs/ch/list-blogs']);
         this.location.back();
     };
     return NewBlogComponent;

@@ -19,7 +19,7 @@ export class NewBlogComponent implements OnInit {
   blogForm: FormGroup;
   loggedUser: any;
   isNewPost = true;
-  // edited_id: IBlog;
+  findOptions = {};
 
   constructor(
     private blogsService: BlogsService,
@@ -65,7 +65,10 @@ export class NewBlogComponent implements OnInit {
           this.route.params
             .flatMap((params) => {
               // this.edited_id = params._id;
-              return this.blogsService.findBlogs({'_id': params._id});
+
+              this.findOptions['query'] = {_id: params._id};
+              // return this.blogsService.findMongo({'_id': params._id});
+              return this.blogsService.findMongo(this.findOptions);
             })
             .subscribe(result => {
               if (result.data) {
@@ -178,13 +181,9 @@ export class NewBlogComponent implements OnInit {
           }
         });
     }
-
-
-
   }
 
   goBack() {
-    // this.router.navigate(['/blogs/ch/list-blogs']);
     this.location.back();
   }
 
