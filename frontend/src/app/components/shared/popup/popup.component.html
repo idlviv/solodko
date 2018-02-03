@@ -27,7 +27,7 @@
         <div *ngIf="forPopup.task === 'edit-comment'">
           <form [formGroup]="editCommentForm" (ngSubmit)="onCommentEditSubmit()">
             <div class="form-row comment-form align-items-center">
-              <div class="form-group col-md-10 col-sm-8">
+              <div class="form-group col-10">
                 <!--<label for="comment">Коментар</label>-->
                 <textarea formControlName="comment" rows="3"
                           required autocomplete="false" (keydown)="onPressEnter($event)"
@@ -40,7 +40,7 @@
                       editCommentForm.get('comment').touched">Довжина до 200 символів
                 </div>
               </div>
-              <div class="form-group col-md-2 col-sm-4">
+              <div class="form-group blog-post-pop-nav">
                 <button class="btn btn button-round-2 btn-sm" [disabled]="!editCommentForm.valid">
                   <i class="material-icons button-round-icon-2 text-muted">done</i>
                 </button>

@@ -123,9 +123,14 @@ module.exports.findMongo = function(findOptions) {
 };
 
 module.exports.updateMongo = function(updateOptions) {
+  if ('_id' in updateOptions.query) {
+    updateOptions.query._id = ObjectId(updateOptions.query._id);
+  }
   return new Promise(function(resolve, reject) {
     BlogsModel.update(updateOptions.query, updateOptions.update)
-      .then((result) => resolve({success: true, data: result, message: 'Зміни внесено'}))
+      .then((result) => {
+      return resolve({success: true, data: result, message: 'Зміни внесено'})
+    })
       .catch((error) => {
         reject({success: false, message: 'Помилка ' + error.message, error});
 

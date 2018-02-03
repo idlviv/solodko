@@ -95,7 +95,7 @@ export class CommentComponent implements OnInit {
   }
 
   editComment(data) {
-    this.updateOptions['query'] = {_id: this.comment.blog_id, 'comments._id ': data._id};
+    this.updateOptions['query'] = {_id: this.comment.blog_id, 'comments._id': data._id};
     this.updateOptions['update'] = {$set: {'comments.$.comment': data.editedText}};
     this.blogsService.updateMongo(this.updateOptions)
       .subscribe(result => {
