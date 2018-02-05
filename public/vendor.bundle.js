@@ -621,6 +621,384 @@ function toComment(sourceMap) {
 
 /***/ }),
 
+/***/ "../../../../ng-recaptcha/forms.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var recaptcha_forms_module_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-forms.module.js");
+exports.RecaptchaFormsModule = recaptcha_forms_module_1.RecaptchaFormsModule;
+var recaptcha_value_accessor_directive_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-value-accessor.directive.js");
+exports.RecaptchaValueAccessorDirective = recaptcha_value_accessor_directive_1.RecaptchaValueAccessorDirective;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var recaptcha_component_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha.component.js");
+exports.RecaptchaComponent = recaptcha_component_1.RecaptchaComponent;
+var recaptcha_loader_service_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-loader.service.js");
+exports.RecaptchaLoaderService = recaptcha_loader_service_1.RecaptchaLoaderService;
+exports.RECAPTCHA_LANGUAGE = recaptcha_loader_service_1.RECAPTCHA_LANGUAGE;
+var recaptcha_module_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha.module.js");
+exports.RecaptchaModule = recaptcha_module_1.RecaptchaModule;
+var recaptcha_settings_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-settings.js");
+exports.RECAPTCHA_SETTINGS = recaptcha_settings_1.RECAPTCHA_SETTINGS;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha-common.module.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var recaptcha_component_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha.component.js");
+var RecaptchaCommonModule = (function () {
+    function RecaptchaCommonModule() {
+    }
+    RecaptchaCommonModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: [recaptcha_component_1.RecaptchaComponent],
+                    exports: [recaptcha_component_1.RecaptchaComponent],
+                },] },
+    ];
+    /** @nocollapse */
+    RecaptchaCommonModule.ctorParameters = function () { return []; };
+    return RecaptchaCommonModule;
+}());
+exports.RecaptchaCommonModule = RecaptchaCommonModule;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha-forms.module.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var recaptcha_common_module_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-common.module.js");
+var recaptcha_value_accessor_directive_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-value-accessor.directive.js");
+var RecaptchaFormsModule = (function () {
+    function RecaptchaFormsModule() {
+    }
+    RecaptchaFormsModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    declarations: [
+                        recaptcha_value_accessor_directive_1.RecaptchaValueAccessorDirective,
+                    ],
+                    exports: [recaptcha_value_accessor_directive_1.RecaptchaValueAccessorDirective],
+                    imports: [forms_1.FormsModule, recaptcha_common_module_1.RecaptchaCommonModule],
+                },] },
+    ];
+    /** @nocollapse */
+    RecaptchaFormsModule.ctorParameters = function () { return []; };
+    return RecaptchaFormsModule;
+}());
+exports.RecaptchaFormsModule = RecaptchaFormsModule;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha-loader.service.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var common_1 = __webpack_require__("../../../common/@angular/common.es5.js");
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+__webpack_require__("../../../../rxjs/_esm5/add/observable/of.js");
+var BehaviorSubject_1 = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
+var Observable_1 = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
+exports.RECAPTCHA_LANGUAGE = new core_1.InjectionToken('recaptcha-language');
+var RecaptchaLoaderService = (function () {
+    function RecaptchaLoaderService(
+        // tslint:disable-next-line:no-any
+        platformId, language) {
+        this.platformId = platformId;
+        this.language = language;
+        this.init();
+        this.ready = common_1.isPlatformBrowser(this.platformId) ? RecaptchaLoaderService.ready.asObservable() : Observable_1.Observable.of();
+    }
+    /** @internal */
+    RecaptchaLoaderService.prototype.init = function () {
+        if (RecaptchaLoaderService.ready) {
+            return;
+        }
+        if (common_1.isPlatformBrowser(this.platformId)) {
+            window.ng2recaptchaloaded = function () {
+                RecaptchaLoaderService.ready.next(grecaptcha);
+            };
+            RecaptchaLoaderService.ready = new BehaviorSubject_1.BehaviorSubject(null);
+            var script = document.createElement('script');
+            script.innerHTML = '';
+            var langParam = this.language ? '&hl=' + this.language : '';
+            script.src = "https://www.google.com/recaptcha/api.js?render=explicit&onload=ng2recaptchaloaded" + langParam;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+    };
+    RecaptchaLoaderService.decorators = [
+        { type: core_1.Injectable },
+    ];
+    /** @nocollapse */
+    RecaptchaLoaderService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: core_1.Inject, args: [core_1.PLATFORM_ID,] },] },
+        { type: undefined, decorators: [{ type: core_1.Optional }, { type: core_1.Inject, args: [exports.RECAPTCHA_LANGUAGE,] },] },
+    ]; };
+    return RecaptchaLoaderService;
+}());
+exports.RecaptchaLoaderService = RecaptchaLoaderService;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha-settings.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+exports.RECAPTCHA_SETTINGS = new core_1.InjectionToken('recaptcha-settings');
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha-value-accessor.directive.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
+var recaptcha_component_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha.component.js");
+var RecaptchaValueAccessorDirective = (function () {
+    function RecaptchaValueAccessorDirective(host) {
+        this.host = host;
+    }
+    RecaptchaValueAccessorDirective.prototype.writeValue = function (value) {
+        if (!value) {
+            this.host.reset();
+        }
+    };
+    RecaptchaValueAccessorDirective.prototype.registerOnChange = function (fn) { this.onChange = fn; };
+    RecaptchaValueAccessorDirective.prototype.registerOnTouched = function (fn) { this.onTouched = fn; };
+    RecaptchaValueAccessorDirective.prototype.onResolve = function ($event) {
+        if (this.onChange) {
+            this.onChange($event);
+        }
+        if (this.onTouched) {
+            this.onTouched();
+        }
+    };
+    RecaptchaValueAccessorDirective.decorators = [
+        { type: core_1.Directive, args: [{
+                    providers: [
+                        {
+                            multi: true,
+                            provide: forms_1.NG_VALUE_ACCESSOR,
+                            // tslint:disable-next-line:no-forward-ref
+                            useExisting: core_1.forwardRef(function () { return RecaptchaValueAccessorDirective; }),
+                        },
+                    ],
+                    // tslint:disable-next-line:directive-selector
+                    selector: 're-captcha[formControlName],re-captcha[formControl],re-captcha[ngModel]',
+                },] },
+    ];
+    /** @nocollapse */
+    RecaptchaValueAccessorDirective.ctorParameters = function () { return [
+        { type: recaptcha_component_1.RecaptchaComponent, },
+    ]; };
+    RecaptchaValueAccessorDirective.propDecorators = {
+        'onResolve': [{ type: core_1.HostListener, args: ['resolved', ['$event'],] },],
+    };
+    return RecaptchaValueAccessorDirective;
+}());
+exports.RecaptchaValueAccessorDirective = RecaptchaValueAccessorDirective;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha.component.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var recaptcha_loader_service_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-loader.service.js");
+var recaptcha_settings_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-settings.js");
+var nextId = 0;
+var RecaptchaComponent = (function () {
+    function RecaptchaComponent(elementRef, loader, zone, settings) {
+        this.elementRef = elementRef;
+        this.loader = loader;
+        this.zone = zone;
+        this.id = "ngrecaptcha-" + nextId++;
+        this.resolved = new core_1.EventEmitter();
+        if (settings) {
+            this.siteKey = settings.siteKey;
+            this.theme = settings.theme;
+            this.type = settings.type;
+            this.size = settings.size;
+            this.badge = settings.badge;
+        }
+    }
+    RecaptchaComponent.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this.subscription = this.loader.ready.subscribe(function (grecaptcha) {
+            if (grecaptcha != null) {
+                _this.grecaptcha = grecaptcha;
+                _this.renderRecaptcha();
+            }
+        });
+    };
+    RecaptchaComponent.prototype.ngOnDestroy = function () {
+        // reset the captcha to ensure it does not leave anything behind
+        // after the component is no longer needed
+        this.grecaptchaReset();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
+    };
+    /**
+     * Executes the invisible recaptcha.
+     * Does nothing if component's size is not set to "invisible".
+     */
+    RecaptchaComponent.prototype.execute = function () {
+        if (this.size !== 'invisible') {
+            return;
+        }
+        if (this.widget != null) {
+            this.grecaptcha.execute(this.widget);
+        }
+    };
+    RecaptchaComponent.prototype.reset = function () {
+        if (this.widget != null) {
+            if (this.grecaptcha.getResponse(this.widget)) {
+                // Only emit an event in case if something would actually change.
+                // That way we do not trigger "touching" of the control if someone does a "reset"
+                // on a non-resolved captcha.
+                this.resolved.emit(null);
+            }
+            this.grecaptchaReset();
+        }
+    };
+    /** @internal */
+    RecaptchaComponent.prototype.expired = function () {
+        this.resolved.emit(null);
+    };
+    /** @internal */
+    RecaptchaComponent.prototype.captchaReponseCallback = function (response) {
+        this.resolved.emit(response);
+    };
+    /** @internal */
+    RecaptchaComponent.prototype.grecaptchaReset = function () {
+        var _this = this;
+        if (this.widget != null) {
+            this.zone.runOutsideAngular(function () { return _this.grecaptcha.reset(_this.widget); });
+        }
+    };
+    /** @internal */
+    RecaptchaComponent.prototype.renderRecaptcha = function () {
+        var _this = this;
+        this.widget = this.grecaptcha.render(this.elementRef.nativeElement, {
+            badge: this.badge,
+            callback: function (response) {
+                _this.zone.run(function () { return _this.captchaReponseCallback(response); });
+            },
+            'expired-callback': function () {
+                _this.zone.run(function () { return _this.expired(); });
+            },
+            sitekey: this.siteKey,
+            size: this.size,
+            tabindex: this.tabIndex,
+            theme: this.theme,
+            type: this.type,
+        });
+    };
+    RecaptchaComponent.decorators = [
+        { type: core_1.Component, args: [{
+                    exportAs: 'reCaptcha',
+                    selector: 're-captcha',
+                    template: "",
+                },] },
+    ];
+    /** @nocollapse */
+    RecaptchaComponent.ctorParameters = function () { return [
+        { type: core_1.ElementRef, },
+        { type: recaptcha_loader_service_1.RecaptchaLoaderService, },
+        { type: core_1.NgZone, },
+        { type: undefined, decorators: [{ type: core_1.Optional }, { type: core_1.Inject, args: [recaptcha_settings_1.RECAPTCHA_SETTINGS,] },] },
+    ]; };
+    RecaptchaComponent.propDecorators = {
+        'id': [{ type: core_1.Input }, { type: core_1.HostBinding, args: ['attr.id',] },],
+        'siteKey': [{ type: core_1.Input },],
+        'theme': [{ type: core_1.Input },],
+        'type': [{ type: core_1.Input },],
+        'size': [{ type: core_1.Input },],
+        'tabIndex': [{ type: core_1.Input },],
+        'badge': [{ type: core_1.Input },],
+        'resolved': [{ type: core_1.Output },],
+    };
+    return RecaptchaComponent;
+}());
+exports.RecaptchaComponent = RecaptchaComponent;
+
+
+/***/ }),
+
+/***/ "../../../../ng-recaptcha/recaptcha/recaptcha.module.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var recaptcha_common_module_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-common.module.js");
+var recaptcha_loader_service_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha-loader.service.js");
+var recaptcha_component_1 = __webpack_require__("../../../../ng-recaptcha/recaptcha/recaptcha.component.js");
+var RecaptchaModule = (function () {
+    function RecaptchaModule() {
+    }
+    RecaptchaModule.forRoot = function () {
+        return {
+            ngModule: RecaptchaModule,
+            providers: [
+                recaptcha_loader_service_1.RecaptchaLoaderService,
+            ],
+        };
+    };
+    RecaptchaModule.decorators = [
+        { type: core_1.NgModule, args: [{
+                    exports: [recaptcha_component_1.RecaptchaComponent],
+                    imports: [recaptcha_common_module_1.RecaptchaCommonModule],
+                },] },
+    ];
+    /** @nocollapse */
+    RecaptchaModule.ctorParameters = function () { return []; };
+    return RecaptchaModule;
+}());
+exports.RecaptchaModule = RecaptchaModule;
+
+
+/***/ }),
+
 /***/ "../../../../rxjs/_esm5/AsyncSubject.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -690,7 +1068,8 @@ var AsyncSubject = /*@__PURE__*/ (/*@__PURE__*/ function (_super) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BehaviorSubject; });
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return BehaviorSubject; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_ObjectUnsubscribedError__ = __webpack_require__("../../../../rxjs/_esm5/util/ObjectUnsubscribedError.js");
 /** PURE_IMPORTS_START ._Subject,._util_ObjectUnsubscribedError PURE_IMPORTS_END */
@@ -1581,7 +1960,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_134__ReplaySubject__ = __webpack_require__("../../../../rxjs/_esm5/ReplaySubject.js");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReplaySubject", function() { return __WEBPACK_IMPORTED_MODULE_134__ReplaySubject__["ReplaySubject"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_135__BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return __WEBPACK_IMPORTED_MODULE_135__BehaviorSubject__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BehaviorSubject", function() { return __WEBPACK_IMPORTED_MODULE_135__BehaviorSubject__["BehaviorSubject"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_136__observable_ConnectableObservable__ = __webpack_require__("../../../../rxjs/_esm5/observable/ConnectableObservable.js");
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ConnectableObservable", function() { return __WEBPACK_IMPORTED_MODULE_136__observable_ConnectableObservable__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_137__Notification__ = __webpack_require__("../../../../rxjs/_esm5/Notification.js");
@@ -2884,6 +3263,7 @@ __WEBPACK_IMPORTED_MODULE_0__Observable__["Observable"].never = __WEBPACK_IMPORT
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Observable__ = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
 /** PURE_IMPORTS_START .._.._Observable,.._.._observable_of PURE_IMPORTS_END */
@@ -20942,7 +21322,7 @@ function publish(selector) {
  * @owner Observable
  */
 function publishBehavior(value) {
-    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__BehaviorSubject__["a" /* BehaviorSubject */](value))(source); };
+    return function (source) { return Object(__WEBPACK_IMPORTED_MODULE_1__multicast__["a" /* multicast */])(new __WEBPACK_IMPORTED_MODULE_0__BehaviorSubject__["BehaviorSubject"](value))(source); };
 }
 //# sourceMappingURL=publishBehavior.js.map 
 
@@ -97670,11 +98050,11 @@ var RouterState = (function (_super) {
  */
 function createEmptyState(urlTree, rootComponent) {
     var /** @type {?} */ snapshot = createEmptyStateSnapshot(urlTree, rootComponent);
-    var /** @type {?} */ emptyUrl = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]([new UrlSegment('', {})]);
-    var /** @type {?} */ emptyParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ emptyData = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ emptyQueryParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]({});
-    var /** @type {?} */ fragment = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */]('');
+    var /** @type {?} */ emptyUrl = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]([new UrlSegment('', {})]);
+    var /** @type {?} */ emptyParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ emptyData = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ emptyQueryParams = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]({});
+    var /** @type {?} */ fragment = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"]('');
     var /** @type {?} */ activated = new ActivatedRoute(emptyUrl, emptyParams, emptyQueryParams, fragment, emptyData, PRIMARY_OUTLET, rootComponent, snapshot.root);
     activated.snapshot = snapshot.root;
     return new RouterState(new TreeNode(activated, []), snapshot);
@@ -98182,7 +98562,7 @@ function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
  * @return {?}
  */
 function createActivatedRoute(c) {
-    return new ActivatedRoute(new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.url), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.params), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.queryParams), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.fragment), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](c.data), c.outlet, c.component, c);
+    return new ActivatedRoute(new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.url), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.params), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.queryParams), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.fragment), new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](c.data), c.outlet, c.component, c);
 }
 /**
  * @license
@@ -99204,7 +99584,7 @@ var Router = (function () {
         this.rootContexts = rootContexts;
         this.location = location;
         this.config = config;
-        this.navigations = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["a" /* BehaviorSubject */](/** @type {?} */ ((null)));
+        this.navigations = new __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__["BehaviorSubject"](/** @type {?} */ ((null)));
         this.routerEvents = new __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__["b" /* Subject */]();
         this.navigationId = 0;
         /**

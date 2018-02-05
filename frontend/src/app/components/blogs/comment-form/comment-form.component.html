@@ -19,15 +19,21 @@
            commentForm.get('comment').touched">Довжина до 200 символів
       </div>
     </div>
-    <div class="form-group col-md-1 col-sm-2">
 
+    <div class="form-group col-md-10 col-sm-8">
+      <re-captcha class="no-validate-style" [formControlName]="'recaptcha'"
+                  siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>
+    </div>
+
+    <div class="form-group col-md-1 col-sm-2">
+      <!--<re-captcha (resolved)="resolved($event)" siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>-->
       <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid">
         <i class="material-icons button-round-icon-2 text-muted">local_post_office</i>
       </button>
     </div>
   </div>
+  <!--<div class="g-recaptcha" data-sitekey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></div>-->
 
 </form>
-<div class="g-recaptcha" data-sitekey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></div>
 
 <!--<button class="btn" (click)="onShared()">share</button>-->

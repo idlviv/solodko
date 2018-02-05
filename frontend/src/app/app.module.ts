@@ -37,7 +37,10 @@ import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 import {SharedService} from './services/shared.service';
 import { ScrollingDirective } from './directives/scrolling.directive';
-import { RecaptchaDirective } from './directives/recaptcha.directive';
+// import { RecaptchaDirective } from './directives/recaptcha.directive';
+
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,6 @@ import { RecaptchaDirective } from './directives/recaptcha.directive';
     NavbarComponent,
     FooterComponent,
     ScrollingDirective,
-    RecaptchaDirective,
   ],
   imports: [
     BrowserModule,
@@ -56,9 +58,13 @@ import { RecaptchaDirective } from './directives/recaptcha.directive';
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   exports: [
     SharedModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   providers: [
     MyUrlSerializer,

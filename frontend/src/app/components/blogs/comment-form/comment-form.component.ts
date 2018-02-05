@@ -32,12 +32,15 @@ export class CommentFormComponent implements OnInit {
 
     this.commentForm = new FormGroup({
       comment: new FormControl('',
-
         [
         // this.validateService.userLoggedIn(this.user),
         Validators.required,
         Validators.maxLength(200),
       ]),
+
+      recaptcha: new FormControl('', [
+        Validators.required
+      ])
     });
 
 
@@ -50,6 +53,10 @@ export class CommentFormComponent implements OnInit {
 
     }
   }
+
+  // resolved(captchaResponse: string) {
+  //   console.log(`Resolved captcha with response ${captchaResponse}:`);
+  // }
 
   // onShared() {
   //   this.sharedService.sharing('comment');
@@ -65,9 +72,10 @@ export class CommentFormComponent implements OnInit {
     const newComment = {
       blog: this.blog._id,
       commentators_id: this.user._id,
-      comment: this.commentForm.get('comment').value
+      comment: this.commentForm.get('comment').value,
+      recaptcha: this.commentForm.get('recaptcha').value
     };
-
+console.log('this.commentForm.get(\'comment\').value', this.commentForm.get('recaptcha').value);
     this.blogsService.postComment(newComment)
       .subscribe(
         result => {

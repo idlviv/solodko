@@ -12,13 +12,17 @@ import { BlogsListComponent } from './blogs-list/blogs-list.component';
 import {CommentComponent} from './comment/comment.component';
 import {CommentFormComponent} from './comment-form/comment-form.component';
 import {BlogComponent} from './blog/blog.component';
+import {RecaptchaModule} from 'ng-recaptcha';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     BlogsRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   declarations: [
     BlogsComponent,

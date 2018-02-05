@@ -6,7 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0"
+		"admin-panel.module"
 	],
 	"./components/blogs/blogs.module": [
 		"../../../../../src/app/components/blogs/blogs.module.ts",
@@ -15,11 +15,11 @@ var map = {
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
 		"common",
-		"home.module.0"
+		"home.module"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0"
+		"products.module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -274,7 +274,9 @@ var url_serializer_service_1 = __webpack_require__("../../../../../src/app/servi
 var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var scrolling_directive_1 = __webpack_require__("../../../../../src/app/directives/scrolling.directive.ts");
-var recaptcha_directive_1 = __webpack_require__("../../../../../src/app/directives/recaptcha.directive.ts");
+// import { RecaptchaDirective } from './directives/recaptcha.directive';
+var ng_recaptcha_1 = __webpack_require__("../../../../ng-recaptcha/index.js");
+var forms_1 = __webpack_require__("../../../../ng-recaptcha/forms.js");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -287,7 +289,6 @@ AppModule = __decorate([
             navbar_component_1.NavbarComponent,
             footer_component_1.FooterComponent,
             scrolling_directive_1.ScrollingDirective,
-            recaptcha_directive_1.RecaptchaDirective,
         ],
         imports: [
             platform_browser_1.BrowserModule,
@@ -298,9 +299,13 @@ AppModule = __decorate([
             app_routing_module_1.AppRoutingModule,
             angular2_flash_messages_1.FlashMessagesModule,
             animations_1.BrowserAnimationsModule,
+            ng_recaptcha_1.RecaptchaModule.forRoot(),
+            forms_1.RecaptchaFormsModule
         ],
         exports: [
             shared_module_1.SharedModule,
+            ng_recaptcha_1.RecaptchaModule,
+            forms_1.RecaptchaFormsModule
         ],
         providers: [
             url_serializer_service_1.MyUrlSerializer,
@@ -328,7 +333,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
 
 /***/ }),
 
@@ -768,7 +773,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n\r\n      <div class=\"modal-body\">\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\r\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{dataForPopup.title}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\r\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{forPopup.data.comment}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\r\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\r\n            <div class=\"form-row comment-form align-items-center\">\r\n              <div class=\"form-group col-10\">\r\n                <!--<label for=\"comment\">Коментар</label>-->\r\n                <textarea formControlName=\"comment\" rows=\"3\"\r\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\r\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\r\n                </textarea>\r\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n                <div class=\"invalid-alert\"\r\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\r\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group blog-post-pop-nav\">\r\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\r\n                </button>\r\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\r\n                </button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\r\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\r\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\r\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\r\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n\n      <div class=\"modal-body\">\n\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\n          <p class=\"text-muted\">\n            {{dataForPopup.title}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\n          <p class=\"text-muted\">\n            {{forPopup.data.comment}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\n            <div class=\"form-row comment-form align-items-center\">\n              <div class=\"form-group col-10\">\n                <!--<label for=\"comment\">Коментар</label>-->\n                <textarea formControlName=\"comment\" rows=\"3\"\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\n                </textarea>\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\n\n                <div class=\"invalid-alert\"\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\n                </div>\n              </div>\n              <div class=\"form-group blog-post-pop-nav\">\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\n                </button>\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -936,7 +941,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
+module.exports = "<p>\n  cart works!\n</p>\n"
 
 /***/ }),
 
@@ -1529,47 +1534,6 @@ exports.emptyUser = {
     avatar: './assets/samples/default-avatar180x180.png',
 };
 //# sourceMappingURL=user.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/directives/recaptcha.directive.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var RecaptchaDirective = (function () {
-    // @Input() key : string;
-    // @Input() config : IReCaptchaConfig = {};
-    // @Input() lang : string;
-    //
-    // private widgetId : number;
-    function RecaptchaDirective() {
-    }
-    RecaptchaDirective.prototype.ngOnInit = function () {
-        // this.registerReCaptchaCallback();
-        // this.addScript();
-    };
-    return RecaptchaDirective;
-}());
-RecaptchaDirective = __decorate([
-    core_1.Directive({
-        selector: '[nbRecaptcha]',
-    }),
-    __metadata("design:paramtypes", [])
-], RecaptchaDirective);
-exports.RecaptchaDirective = RecaptchaDirective;
-//# sourceMappingURL=recaptcha.directive.js.map
 
 /***/ }),
 
