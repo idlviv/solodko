@@ -37,6 +37,7 @@ import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 import {SharedService} from './services/shared.service';
 import { ScrollingDirective } from './directives/scrolling.directive';
+import { RecaptchaDirective } from './directives/recaptcha.directive';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ScrollingDirective } from './directives/scrolling.directive';
     NavbarComponent,
     FooterComponent,
     ScrollingDirective,
+    RecaptchaDirective,
   ],
   imports: [
     BrowserModule,

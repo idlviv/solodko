@@ -274,6 +274,7 @@ var url_serializer_service_1 = __webpack_require__("../../../../../src/app/servi
 var CustomErrorHandler_1 = __webpack_require__("../../../../../src/app/services/CustomErrorHandler.ts");
 var shared_service_1 = __webpack_require__("../../../../../src/app/services/shared.service.ts");
 var scrolling_directive_1 = __webpack_require__("../../../../../src/app/directives/scrolling.directive.ts");
+var recaptcha_directive_1 = __webpack_require__("../../../../../src/app/directives/recaptcha.directive.ts");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -286,6 +287,7 @@ AppModule = __decorate([
             navbar_component_1.NavbarComponent,
             footer_component_1.FooterComponent,
             scrolling_directive_1.ScrollingDirective,
+            recaptcha_directive_1.RecaptchaDirective,
         ],
         imports: [
             platform_browser_1.BrowserModule,
@@ -1530,6 +1532,84 @@ exports.emptyUser = {
 
 /***/ }),
 
+/***/ "../../../../../src/app/directives/recaptcha.directive.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var i_1 = __webpack_require__("../../../../../src/app/interfaces/i.ts");
+var ReCaptchaDirective = (function () {
+    function ReCaptchaDirective(element) {
+        this.element = element;
+        this.config = {};
+    }
+    ReCaptchaDirective.prototype.ngOnInit = function () {
+        this.registerReCaptchaCallback();
+        this.addScript();
+    };
+    ReCaptchaDirective.prototype.registerReCaptchaCallback = function () {
+        var _this = this;
+        window.reCaptchaLoad = function () {
+            var config = __assign({}, _this.config, { 'sitekey': _this.key, 'callback': _this.onSuccess.bind(_this), 'expired-callback': _this.onExpired.bind(_this) });
+            _this.widgetId = _this.render(_this.element.nativeElement, config);
+        };
+    };
+    ReCaptchaDirective.prototype.render = function (element, config) {
+        return grecaptcha.render(element, config);
+    };
+    ReCaptchaDirective.prototype.addScript = function () {
+        var script = document.createElement('script');
+        var lang = this.lang ? '&hl=' + this.lang : '';
+        script.src = "https://www.google.com/recaptcha/api.js?onload=reCaptchaLoad&render=explicit" + lang;
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+    };
+    return ReCaptchaDirective;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ReCaptchaDirective.prototype, "key", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", typeof (_a = typeof i_1.IReCaptchaConfig !== "undefined" && i_1.IReCaptchaConfig) === "function" && _a || Object)
+], ReCaptchaDirective.prototype, "config", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ReCaptchaDirective.prototype, "lang", void 0);
+ReCaptchaDirective = __decorate([
+    core_1.Directive({
+        selector: '[nbRecaptcha]',
+    }),
+    __metadata("design:paramtypes", [typeof (_b = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _b || Object])
+], ReCaptchaDirective);
+exports.ReCaptchaDirective = ReCaptchaDirective;
+var _a, _b;
+//# sourceMappingURL=recaptcha.directive.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/directives/scrolling.directive.ts":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1881,6 +1961,16 @@ var _a, _b;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=i-product.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/interfaces/i.ts":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+//# sourceMappingURL=i.js.map
 
 /***/ }),
 
