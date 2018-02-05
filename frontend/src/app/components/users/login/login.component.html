@@ -21,6 +21,7 @@
             <h4 class="card-title">Вхід</h4>
             <p class="card-text"> </p>
             <form (ngSubmit)="onSigninSubmit(signinForm); signinForm.reset()" #signinForm="ngForm">
+
               <div class="form-group">
                 <label for="usernameSignin">Ім'я користувача</label>
                 <input type="text" ngModel required
@@ -31,6 +32,7 @@
                 <input type="password" ngModel required
                        name="passwordSignin" class="form-control" id="passwordSignin">
               </div>
+
               <button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>
             </form>
           </div>

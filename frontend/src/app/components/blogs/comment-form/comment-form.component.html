@@ -4,6 +4,7 @@
       <div class="avatar-2-block align-top blog-post-comments-avatar">
         <img class="img-fluid avatar-2" src="{{user.avatar}}" alt="avatar">
       </div>
+
     </div>
     <div class="form-group col-md-10 col-sm-8">
       <!--<label for="comment">Коментар</label>-->
@@ -19,10 +20,14 @@
       </div>
     </div>
     <div class="form-group col-md-1 col-sm-2">
+
       <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid">
         <i class="material-icons button-round-icon-2 text-muted">local_post_office</i>
       </button>
     </div>
   </div>
+
 </form>
+<div class="g-recaptcha" data-sitekey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></div>
+
 <!--<button class="btn" (click)="onShared()">share</button>-->

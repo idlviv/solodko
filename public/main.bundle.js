@@ -6,7 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module"
+		"admin-panel.module.0"
 	],
 	"./components/blogs/blogs.module": [
 		"../../../../../src/app/components/blogs/blogs.module.ts",
@@ -15,11 +15,11 @@ var map = {
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
 		"common",
-		"home.module"
+		"home.module.0"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module"
+		"products.module.0"
 	]
 };
 function webpackAsyncContext(req) {
@@ -328,7 +328,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -768,7 +768,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n\n      <div class=\"modal-body\">\n\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\n          <p class=\"text-muted\">\n            {{dataForPopup.title}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\n          <p class=\"text-muted\">\n            {{forPopup.data.comment}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\n            <div class=\"form-row comment-form align-items-center\">\n              <div class=\"form-group col-10\">\n                <!--<label for=\"comment\">Коментар</label>-->\n                <textarea formControlName=\"comment\" rows=\"3\"\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\n                </textarea>\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\n\n                <div class=\"invalid-alert\"\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\n                </div>\n              </div>\n              <div class=\"form-group blog-post-pop-nav\">\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\n                </button>\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n\r\n      <div class=\"modal-body\">\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\r\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{dataForPopup.title}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\r\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{forPopup.data.comment}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\r\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\r\n            <div class=\"form-row comment-form align-items-center\">\r\n              <div class=\"form-group col-10\">\r\n                <!--<label for=\"comment\">Коментар</label>-->\r\n                <textarea formControlName=\"comment\" rows=\"3\"\r\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\r\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\r\n                </textarea>\r\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n                <div class=\"invalid-alert\"\r\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\r\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group blog-post-pop-nav\">\r\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\r\n                </button>\r\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\r\n                </button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\r\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\r\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\r\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\r\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -936,7 +936,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1015,7 +1015,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/users/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        <ul class=\"nav nav-tabs justify-content-center\" id=\"myTab\" role=\"tablist\">\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link active\" id=\"signin-tab\" data-toggle=\"tab\" href=\"#signin\"\r\n               role=\"tab\" aria-controls=\"signin\" aria-selected=\"true\">Увійти</a>\r\n          </li>\r\n          <!--<li *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n              <!--class=\"nav-item\">-->\r\n            <!--<a class=\"nav-link\" id=\"signup-tab\" data-toggle=\"tab\" href=\"#signup\"-->\r\n               <!--role=\"tab\" aria-controls=\"signup\" aria-selected=\"false\">Зареєструватись</a>-->\r\n          <!--</li>-->\r\n        </ul>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <div class=\"tab-content\" id=\"myTabContent\">\r\n\r\n          <div class=\"tab-pane fade show active\" id=\"signin\" role=\"tabpanel\" aria-labelledby=\"signin-tab\">\r\n            <h4 class=\"card-title\">Вхід</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onSigninSubmit(signinForm); signinForm.reset()\" #signinForm=\"ngForm\">\r\n              <div class=\"form-group\">\r\n                <label for=\"usernameSignin\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"usernameSignin\" class=\"form-control\" id=\"usernameSignin\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"passwordSignin\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"passwordSignin\" class=\"form-control\" id=\"passwordSignin\">\r\n              </div>\r\n              <button class=\"btn btn-primary\" [disabled]=\"!signinForm.form.valid\">Увійти</button>\r\n            </form>\r\n          </div>\r\n\r\n\r\n          <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n               <!--class=\"tab-pane fade\" id=\"signup\" role=\"tabpanel\" aria-labelledby=\"signup-tab\">-->\r\n            <!--<app-signup></app-signup>-->\r\n           <!---->\r\n          <!--</div>-->\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        Творча майстерня\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <div class=\"card text-center\">\r\n      <div class=\"card-header\">\r\n        <ul class=\"nav nav-tabs justify-content-center\" id=\"myTab\" role=\"tablist\">\r\n          <li class=\"nav-item\">\r\n            <a class=\"nav-link active\" id=\"signin-tab\" data-toggle=\"tab\" href=\"#signin\"\r\n               role=\"tab\" aria-controls=\"signin\" aria-selected=\"true\">Увійти</a>\r\n          </li>\r\n          <!--<li *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n              <!--class=\"nav-item\">-->\r\n            <!--<a class=\"nav-link\" id=\"signup-tab\" data-toggle=\"tab\" href=\"#signup\"-->\r\n               <!--role=\"tab\" aria-controls=\"signup\" aria-selected=\"false\">Зареєструватись</a>-->\r\n          <!--</li>-->\r\n        </ul>\r\n      </div>\r\n      <div class=\"card-body\">\r\n        <div class=\"tab-content\" id=\"myTabContent\">\r\n\r\n          <div class=\"tab-pane fade show active\" id=\"signin\" role=\"tabpanel\" aria-labelledby=\"signin-tab\">\r\n            <h4 class=\"card-title\">Вхід</h4>\r\n            <p class=\"card-text\"> </p>\r\n            <form (ngSubmit)=\"onSigninSubmit(signinForm); signinForm.reset()\" #signinForm=\"ngForm\">\r\n\r\n              <div class=\"form-group\">\r\n                <label for=\"usernameSignin\">Ім'я користувача</label>\r\n                <input type=\"text\" ngModel required\r\n                       name=\"usernameSignin\" class=\"form-control\" id=\"usernameSignin\">\r\n              </div>\r\n              <div class=\"form-group\">\r\n                <label for=\"passwordSignin\">Пароль</label>\r\n                <input type=\"password\" ngModel required\r\n                       name=\"passwordSignin\" class=\"form-control\" id=\"passwordSignin\">\r\n              </div>\r\n\r\n              <button class=\"btn btn-primary\" [disabled]=\"!signinForm.form.valid\">Увійти</button>\r\n            </form>\r\n          </div>\r\n\r\n\r\n          <!--<div *ngIf=\"user && user.role === 'Manager' || user.role === 'Admin'\"-->\r\n               <!--class=\"tab-pane fade\" id=\"signup\" role=\"tabpanel\" aria-labelledby=\"signup-tab\">-->\r\n            <!--<app-signup></app-signup>-->\r\n           <!---->\r\n          <!--</div>-->\r\n        </div>\r\n      </div>\r\n      <div class=\"card-footer text-muted\">\r\n        Творча майстерня\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1537,14 +1537,6 @@ exports.emptyUser = {
 
 "use strict";
 
-var __assign = (this && this.__assign) || Object.assign || function(t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-        s = arguments[i];
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-            t[p] = s[p];
-    }
-    return t;
-};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1556,56 +1548,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var i_1 = __webpack_require__("../../../../../src/app/interfaces/i.ts");
-var ReCaptchaDirective = (function () {
-    function ReCaptchaDirective(element) {
-        this.element = element;
-        this.config = {};
+var RecaptchaDirective = (function () {
+    // @Input() key : string;
+    // @Input() config : IReCaptchaConfig = {};
+    // @Input() lang : string;
+    //
+    // private widgetId : number;
+    function RecaptchaDirective() {
     }
-    ReCaptchaDirective.prototype.ngOnInit = function () {
-        this.registerReCaptchaCallback();
-        this.addScript();
+    RecaptchaDirective.prototype.ngOnInit = function () {
+        // this.registerReCaptchaCallback();
+        // this.addScript();
     };
-    ReCaptchaDirective.prototype.registerReCaptchaCallback = function () {
-        var _this = this;
-        window.reCaptchaLoad = function () {
-            var config = __assign({}, _this.config, { 'sitekey': _this.key, 'callback': _this.onSuccess.bind(_this), 'expired-callback': _this.onExpired.bind(_this) });
-            _this.widgetId = _this.render(_this.element.nativeElement, config);
-        };
-    };
-    ReCaptchaDirective.prototype.render = function (element, config) {
-        return grecaptcha.render(element, config);
-    };
-    ReCaptchaDirective.prototype.addScript = function () {
-        var script = document.createElement('script');
-        var lang = this.lang ? '&hl=' + this.lang : '';
-        script.src = "https://www.google.com/recaptcha/api.js?onload=reCaptchaLoad&render=explicit" + lang;
-        script.async = true;
-        script.defer = true;
-        document.body.appendChild(script);
-    };
-    return ReCaptchaDirective;
+    return RecaptchaDirective;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ReCaptchaDirective.prototype, "key", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", typeof (_a = typeof i_1.IReCaptchaConfig !== "undefined" && i_1.IReCaptchaConfig) === "function" && _a || Object)
-], ReCaptchaDirective.prototype, "config", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ReCaptchaDirective.prototype, "lang", void 0);
-ReCaptchaDirective = __decorate([
+RecaptchaDirective = __decorate([
     core_1.Directive({
         selector: '[nbRecaptcha]',
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _b || Object])
-], ReCaptchaDirective);
-exports.ReCaptchaDirective = ReCaptchaDirective;
-var _a, _b;
+    __metadata("design:paramtypes", [])
+], RecaptchaDirective);
+exports.RecaptchaDirective = RecaptchaDirective;
 //# sourceMappingURL=recaptcha.directive.js.map
 
 /***/ }),
@@ -1961,16 +1924,6 @@ var _a, _b;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 //# sourceMappingURL=i-product.js.map
-
-/***/ }),
-
-/***/ "../../../../../src/app/interfaces/i.ts":
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-//# sourceMappingURL=i.js.map
 
 /***/ }),
 
