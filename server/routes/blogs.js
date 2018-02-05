@@ -4,11 +4,12 @@ let passport = require('passport');
 let jwt = require('jsonwebtoken');
 let BlogsController = require('../controllers/blogsController');
 const log = require('../config/winston')(module);
-
+const recaptcha = require('../middleware/recaptcha');
 const config = require('../config');
 
 router.post(
   '/add-comment',
+  recaptcha,
   passport.authenticate('jwt.user.manager.admin', {session: false}),
   BlogsController.addComment
 );
