@@ -5,42 +5,14 @@ const rp = require('request-promise-native');
 const request = require('request');
 
 module.exports.addComment = function(req, res, next) {
+  if (!req.body.comment) {
+    res.json({success: false, message: 'Немає коментаря'});
+  } else {
 
-  console.log('headers', req.headers);
-  if (req.body.recaptcha === '' ||
-    req.body.recaptcha === null ||
-    req.body.recaptcha === undefined) {
-    return res.json({success: false, message: 'Recaptcha error'});
+    BlogsModel.addComment(req.body)
+      .then(result => res.json(result))
+      .catch(error => res.json(error));
   }
-
-  const recaptchaSecret = config.get('RECAPTCHA_SECRET');
-  const recaptchaURL = `https://www.google.com/recaptcha/api/siteverify?secret=
-  ${recaptchaSecret}&response=${req.body.recaptcha}&remoteip=${req.connection.remoteAddress}`;
-
-  rp(recaptchaURL)
-    .then(result => {
-      result = JSON.parse(result);
-      if (result.success === true) {
-
-        if (!req.body.comment) {
-          res.json({success: false, message: 'Немає коментаря'});
-        } else {
-
-          BlogsModel.addComment(req.body)
-            .then(result => res.json(result))
-            .catch(error => res.json(error));
-        }
-
-      } else {
-        console.log('error');
-        return res.json({success: false, message: 'Recaptcha error'});
-      }})
-    .catch(error => res.json({success: false, message: 'Recaptcha error', data: error}));
-
-
-
-
-
 };
 
 module.exports.addBlog = function(req, res, next) {

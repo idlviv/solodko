@@ -38,9 +38,9 @@ export class CommentFormComponent implements OnInit {
         Validators.maxLength(200),
       ]),
 
-      // recaptcha: new FormControl('', [
-      //   Validators.required
-      // ])
+      recaptcha: new FormControl('', [
+        Validators.required
+      ])
     });
 
 
@@ -54,10 +54,10 @@ export class CommentFormComponent implements OnInit {
     }
   }
 
-  resolved(captchaResponse: string) {
-    this.onCommentSubmit(captchaResponse);
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
-  }
+  // resolved(captchaResponse: string) {
+  //   this.onCommentSubmit(captchaResponse);
+  //   console.log(`Resolved captcha with response ${captchaResponse}:`);
+  // }
 
   // onShared() {
   //   this.sharedService.sharing('comment');
@@ -76,8 +76,8 @@ export class CommentFormComponent implements OnInit {
       blog: this.blog._id,
       commentators_id: this.user._id,
       comment: this.commentForm.get('comment').value,
-      recaptcha: captchaResponse
-      // recaptcha: this.commentForm.get('recaptcha').value
+      // recaptcha: captchaResponse
+      recaptcha: this.commentForm.get('recaptcha').value
     };
 
     this.blogsService.postComment(newComment)

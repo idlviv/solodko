@@ -1,5 +1,5 @@
-<form [formGroup]="commentForm">
-      <!--(ngSubmit)="onCommentSubmit()">-->
+<form [formGroup]="commentForm"
+      (ngSubmit)="onCommentSubmit()">
   <div class="form-row comment-form align-items-center">
     <div class="col-md-1 col-sm-2">
       <div class="avatar-2-block align-top blog-post-comments-avatar">
@@ -24,26 +24,25 @@
     </div>
 
     <div class="form-group col-md-1 col-sm-2">
-      <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid"
-              (click)="captchaRef.execute() && captchaRef.reset()">
+      <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid">
+              <!--(click)="captchaRef.execute()">-->
         <i class="material-icons button-round-icon-2 text-muted">local_post_office</i>
       </button>
     </div>
 
-    <re-captcha
-      #captchaRef="reCaptcha"
-      (resolved)="resolved($event)"
-      siteKey="6LdkgUQUAAAAAMk2LvQnL_pSJFIzizbTQeOh1Shs"
-      size="invisible"
-    ></re-captcha>
+    <!--<re-captcha-->
+      <!--#captchaRef="reCaptcha"-->
+      <!--(resolved)="resolved($event)"-->
+      <!--siteKey="6LdkgUQUAAAAAMk2LvQnL_pSJFIzizbTQeOh1Shs"-->
+      <!--size="invisible"-->
+    <!--&gt;</re-captcha>-->
 
     <div class="form-group col-md-12 col-sm-12">
-      <!--<re-captcha class="no-validate-style" [formControlName]="'recaptcha'"-->
-                  <!--siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>-->
+      <re-captcha class="no-validate-style" [formControlName]="'recaptcha'"
+                  siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>
     </div>
 
   </div>
-  <!--<div class="g-recaptcha" data-sitekey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></div>-->
 
 </form>
 

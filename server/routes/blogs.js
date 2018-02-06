@@ -9,7 +9,7 @@ const config = require('../config');
 
 router.post(
   '/add-comment',
-  // recaptcha,
+  recaptcha,
   passport.authenticate('jwt.user.manager.admin', {session: false}),
   BlogsController.addComment
 );
