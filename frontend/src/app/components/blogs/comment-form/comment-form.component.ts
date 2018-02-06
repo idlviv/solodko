@@ -75,7 +75,6 @@ export class CommentFormComponent implements OnInit {
       comment: this.commentForm.get('comment').value,
       recaptcha: this.commentForm.get('recaptcha').value
     };
-console.log('this.commentForm.get(\'comment\').value', this.commentForm.get('recaptcha').value);
     this.blogsService.postComment(newComment)
       .subscribe(
         result => {

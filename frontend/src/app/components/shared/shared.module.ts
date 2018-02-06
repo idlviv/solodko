@@ -8,6 +8,8 @@ import {RouterModule} from '@angular/router';
 import { ModalImgComponent } from './modal-img/modal-img.component';
 import { PopupComponent } from './popup/popup.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RecaptchaModule} from 'ng-recaptcha';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   exports: [
     ItemComponent,
