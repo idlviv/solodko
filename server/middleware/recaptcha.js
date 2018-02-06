@@ -17,9 +17,11 @@ module.exports = function(req, res, next) {
   rp(recaptchaURL)
     .then(result => {
       console.log('result', result);
-      if (result.success) {
+      if (result.success === true) {
+        console.log('next');
         next();
       } else {
+        console.log('error');
         res.json({success: false, message: 'Recaptcha error'});
       }})
     .catch(error => res.json({success: false, message: 'Recaptcha error', data: error}));

@@ -598,7 +598,7 @@ exports.BlogsModule = BlogsModule;
 /***/ "../../../../../src/app/components/blogs/comment-form/comment-form.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"commentForm\" (ngSubmit)=\"onCommentSubmit()\">\r\n  <div class=\"form-row comment-form align-items-center\">\r\n    <div class=\"col-md-1 col-sm-2\">\r\n      <div class=\"avatar-2-block align-top blog-post-comments-avatar\">\r\n        <img class=\"img-fluid avatar-2\" src=\"{{user.avatar}}\" alt=\"avatar\">\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"form-group col-md-10 col-sm-8\">\r\n      <!--<label for=\"comment\">Коментар</label>-->\r\n      <textarea formControlName=\"comment\" rows=\"3\"\r\n                required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\r\n                class=\"form-control no-validate-style\" id=\"comment\" [placeholder]=\"commentPlaceholder\">\r\n      </textarea>\r\n      <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n      <div class=\"invalid-alert\"\r\n           *ngIf=\"commentForm.get('comment').errors?.maxlength &&\r\n           commentForm.get('comment').touched\">Довжина до 200 символів\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"form-group col-md-1 col-sm-2\">\r\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\">\r\n        <i class=\"material-icons button-round-icon-2 text-muted\">local_post_office</i>\r\n      </button>\r\n    </div>\r\n\r\n    <div class=\"form-group col-md-12 col-sm-12\">\r\n      <re-captcha class=\"no-validate-style\" [formControlName]=\"'recaptcha'\"\r\n                  siteKey=\"6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt\"></re-captcha>\r\n    </div>\r\n\r\n  </div>\r\n  <!--<div class=\"g-recaptcha\" data-sitekey=\"6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt\"></div>-->\r\n\r\n</form>\r\n\r\n<!--<button class=\"btn\" (click)=\"onShared()\">share</button>-->\r\n"
+module.exports = "<form [formGroup]=\"commentForm\">\r\n      <!--(ngSubmit)=\"onCommentSubmit()\">-->\r\n  <div class=\"form-row comment-form align-items-center\">\r\n    <div class=\"col-md-1 col-sm-2\">\r\n      <div class=\"avatar-2-block align-top blog-post-comments-avatar\">\r\n        <img class=\"img-fluid avatar-2\" src=\"{{user.avatar}}\" alt=\"avatar\">\r\n      </div>\r\n\r\n    </div>\r\n    <div class=\"form-group col-md-10 col-sm-8\">\r\n      <!--<label for=\"comment\">Коментар</label>-->\r\n      <textarea formControlName=\"comment\" rows=\"3\"\r\n                required autocomplete=\"false\"\r\n                class=\"form-control no-validate-style\" id=\"comment\" [placeholder]=\"commentPlaceholder\">\r\n      </textarea>\r\n      <!--(keydown)=\"onPressEnter()\"-->\r\n\r\n      <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n      <div class=\"invalid-alert\"\r\n           *ngIf=\"commentForm.get('comment').errors?.maxlength &&\r\n           commentForm.get('comment').touched\">Довжина до 200 символів\r\n      </div>\r\n    </div>\r\n\r\n    <div class=\"form-group col-md-1 col-sm-2\">\r\n      <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!commentForm.valid\"\r\n              (click)=\"captchaRef.execute()\">\r\n        <i class=\"material-icons button-round-icon-2 text-muted\">local_post_office</i>\r\n      </button>\r\n    </div>\r\n\r\n    <re-captcha\r\n      #captchaRef=\"reCaptcha\"\r\n      (resolved)=\"resolved($event)\"\r\n      siteKey=\"6LdkgUQUAAAAAMk2LvQnL_pSJFIzizbTQeOh1Shs\"\r\n      size=\"invisible\"\r\n    ></re-captcha>\r\n\r\n    <div class=\"form-group col-md-12 col-sm-12\">\r\n      <!--<re-captcha class=\"no-validate-style\" [formControlName]=\"'recaptcha'\"-->\r\n                  <!--siteKey=\"6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt\"></re-captcha>-->\r\n    </div>\r\n\r\n  </div>\r\n  <!--<div class=\"g-recaptcha\" data-sitekey=\"6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt\"></div>-->\r\n\r\n</form>\r\n\r\n<!--<button class=\"btn\" (click)=\"onShared()\">share</button>-->\r\n"
 
 /***/ }),
 
@@ -658,9 +658,6 @@ var CommentFormComponent = (function () {
                 forms_1.Validators.required,
                 forms_1.Validators.maxLength(200),
             ]),
-            recaptcha: new forms_1.FormControl('', [
-                forms_1.Validators.required
-            ])
         });
         if (this.user.role === 'User' || this.user.role === 'Manager' || this.user.role === 'Admin') {
             this.commentForm.get('comment').enable();
@@ -671,24 +668,27 @@ var CommentFormComponent = (function () {
             this.commentPlaceholder = 'Щоб залишити коментар потрібно увійти';
         }
     };
-    // resolved(captchaResponse: string) {
-    //   console.log(`Resolved captcha with response ${captchaResponse}:`);
-    // }
+    CommentFormComponent.prototype.resolved = function (captchaResponse) {
+        this.onCommentSubmit(captchaResponse);
+        console.log("Resolved captcha with response " + captchaResponse + ":");
+    };
     // onShared() {
     //   this.sharedService.sharing('comment');
     // }
-    CommentFormComponent.prototype.onPressEnter = function (event) {
-        if (event.keyCode === 13) {
-            this.onCommentSubmit();
-        }
-    };
-    CommentFormComponent.prototype.onCommentSubmit = function () {
+    // onPressEnter(event) {
+    //   if (event.keyCode === 13) {
+    //     this.onCommentSubmit();
+    //   }
+    // }
+    CommentFormComponent.prototype.onCommentSubmit = function (captchaResponse) {
         var _this = this;
+        console.log('capt ');
         var newComment = {
             blog: this.blog._id,
             commentators_id: this.user._id,
             comment: this.commentForm.get('comment').value,
-            recaptcha: this.commentForm.get('recaptcha').value
+            recaptcha: captchaResponse
+            // recaptcha: this.commentForm.get('recaptcha').value
         };
         this.blogsService.postComment(newComment)
             .subscribe(function (result) {
@@ -701,6 +701,7 @@ var CommentFormComponent = (function () {
                 });
             }
             else {
+                console.log('error', result);
                 _this.flashMessage.show(result.message, {
                     cssClass: 'alert-danger',
                     timeout: 2000

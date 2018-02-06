@@ -38,9 +38,9 @@ export class CommentFormComponent implements OnInit {
         Validators.maxLength(200),
       ]),
 
-      recaptcha: new FormControl('', [
-        Validators.required
-      ])
+      // recaptcha: new FormControl('', [
+      //   Validators.required
+      // ])
     });
 
 
@@ -54,27 +54,32 @@ export class CommentFormComponent implements OnInit {
     }
   }
 
-  // resolved(captchaResponse: string) {
-  //   console.log(`Resolved captcha with response ${captchaResponse}:`);
-  // }
+  resolved(captchaResponse: string) {
+    this.onCommentSubmit(captchaResponse);
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
+  }
 
   // onShared() {
   //   this.sharedService.sharing('comment');
   // }
 
-  onPressEnter(event) {
-    if (event.keyCode === 13) {
-      this.onCommentSubmit();
-    }
-  }
+  // onPressEnter(event) {
+  //   if (event.keyCode === 13) {
+  //     this.onCommentSubmit();
+  //   }
+  // }
 
-  onCommentSubmit() {
+  onCommentSubmit(captchaResponse) {
+    console.log('capt ');
+
     const newComment = {
       blog: this.blog._id,
       commentators_id: this.user._id,
       comment: this.commentForm.get('comment').value,
-      recaptcha: this.commentForm.get('recaptcha').value
+      recaptcha: captchaResponse
+      // recaptcha: this.commentForm.get('recaptcha').value
     };
+
     this.blogsService.postComment(newComment)
       .subscribe(
         result => {
@@ -88,6 +93,7 @@ export class CommentFormComponent implements OnInit {
                 timeout: 2000
               });
           } else {
+            console.log('error', result);
             this.flashMessage.show(
               result.message,
               {
