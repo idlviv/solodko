@@ -1,5 +1,7 @@
-var rp = require('request-promise-native');
+// const rp = require('request-promise-native');
+const request = require('request');
 const config = require('../config');
+
 const log = require('../config/winston')(module);
 
 module.exports = function(req, res, next) {
@@ -14,23 +16,29 @@ module.exports = function(req, res, next) {
   const recaptchaURL = `https://www.google.com/recaptcha/api/siteverify?secret=
   ${recaptchaSecret}&response=${req.body.recaptcha}&remoteip=${req.connection.remoteAddress}`;
 
-  rp(recaptchaURL)
-    .then(result => {
-      console.log('result', result);
-      if (result.success === true) {
-        console.log('next');
-        next();
-      } else {
-        console.log('error');
-        res.json({success: false, message: 'Recaptcha error'});
-      }})
-    .catch(error => res.json({success: false, message: 'Recaptcha error', data: error}));
+  request(recaptchaURL, function(error, response, body) {
+    // console.log('response', response);
+    console.log('body', body);
+    body = JSON.parse(body);
+    if (error) {
+      return res.json({success: false, message: 'Recaptcha error', data: error});
+    }
+    if (body.success === true) {
+      return next();
+    } else {
+      console.log('error');
+      return res.json({success: false, message: 'Recaptcha error'});
+    }});
 
-    // console.log('req.body.recaptcha', req.body.recaptcha);
-    // request('http://www.google.com', function (error, response, body) {
-    //   console.log('error:', error); // Print the error if one occurred
-    //   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //   // console.log('body:', body); // Print the HTML for the Google homepage.
-    // });
+  // rp(recaptchaURL)
 
+    // .then(result => {
+    //   result = JSON.parse(result);
+    //   if (result.success === true) {
+    //     return next();
+    //   } else {
+    //     console.log('error');
+    //     return res.json({success: false, message: 'Recaptcha error'});
+    //   }})
+    // .catch(error => res.json({success: false, message: 'Recaptcha error', data: error}));
 };

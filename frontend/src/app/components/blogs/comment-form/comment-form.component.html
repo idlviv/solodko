@@ -25,7 +25,7 @@
 
     <div class="form-group col-md-1 col-sm-2">
       <button class="btn btn button-round-2 btn-sm" [disabled]="!commentForm.valid"
-              (click)="captchaRef.execute()">
+              (click)="captchaRef.execute() && captchaRef.reset()">
         <i class="material-icons button-round-icon-2 text-muted">local_post_office</i>
       </button>
     </div>

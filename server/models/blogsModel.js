@@ -41,7 +41,6 @@ module.exports = BlogsModel;
 
 module.exports.addComment = function(newComment) {
   return new Promise(function(resolve, reject) {
-    console.log('model', newComment);
     BlogsModel.updateOne(
       {_id: newComment.blog},
       {
