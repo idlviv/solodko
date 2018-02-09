@@ -7,7 +7,7 @@ import {FormsModule} from '@angular/forms';
 import {AdminPanelRoutingModule} from './admin-panel-routing.module';
 import { ProductsManagementComponent } from './products-management/products-management.component';
 import {ProductsManagementModule} from './products-management/products-management.module';
-import {UsersManagementModule} from './users-management/users-management.module';
+// import {UsersManagementModule} from './users-management/users-management.module';
 import {UsersModule} from '../users/users.module';
 
 @NgModule({
@@ -20,7 +20,7 @@ import {UsersModule} from '../users/users.module';
     FormsModule,
     AdminPanelRoutingModule,
     ProductsManagementModule,
-    UsersManagementModule,
+    // UsersManagementModule,
     UsersModule,
   ],
 

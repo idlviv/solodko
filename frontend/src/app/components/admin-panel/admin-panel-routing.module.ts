@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import {Page404Component} from '../shared/page404/page404.component';
+// import {Page404Component} from '../shared/page404/page404.component';
 // import {ProductsManagementComponent} from './products-management.component';
 // import {EditProductComponent} from './products/edit-product/edit-product.component';
 // import {ProductsManagementSubmenuComponent} from './products-management-submenu/products-management-submenu.component';
@@ -13,7 +13,7 @@ import {AdminPanelSubmenuComponent} from './admin-panel-submenu/admin-panel-subm
 import {ProductsManagementComponent} from './products-management/products-management.component';
 import {AddProductComponent} from './products-management/add-product/add-product.component';
 import {EditProductComponent} from './products-management/edit-product/edit-product.component';
-import {AddUserComponent} from './users-management/add-user/add-user.component';
+// import {AddUserComponent} from './users-management/add-user/add-user.component';
 import {SignupComponent} from '../users/login/signup/signup.component';
 
 const adminRoutes: Routes = [

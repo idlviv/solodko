@@ -5,6 +5,16 @@ const log = require('../config/winston')(module);
 const blogsValidators = require('../validators/blogsValidators');
 const ObjectId = mongoose.Types.ObjectId;
 
+
+const CommentsSchema = new Schema({
+  comment: {
+    type: String,
+    validate: blogsValidators.commentsValidators
+  },
+  commentators_id: {type: String},
+  commentedAt: {type: Date, default: Date.now()},
+});
+
 const BlogsSchema = new Schema({
   title: {type: String, required: true, validate: blogsValidators.titleValidators},
   body: {
@@ -28,11 +38,7 @@ const BlogsSchema = new Schema({
   likedBy: {type: Array},
   dislikes: {type: Number, default: 0},
   dislikedBy: {type: Array},
-  comments: [{
-    comment: {type: String, validate: blogsValidators.commentsValidators},
-    commentators_id: {type: String},
-    commentedAt: {type: Date, default: Date.now()},
-  }],
+  comments: [CommentsSchema],
   views: {type: Number}
 });
 
