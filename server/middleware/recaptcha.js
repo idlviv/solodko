@@ -14,6 +14,7 @@ module.exports = function(req, res, next) {
   const recaptchaURL = `https://www.google.com/recaptcha/api/siteverify?secret=
   ${recaptchaSecret}&response=${req.body.recaptcha}&remoteip=${req.connection.remoteAddress}`;
 
+
   rp(recaptchaURL)
     .then(result => {
       console.log('result', result);

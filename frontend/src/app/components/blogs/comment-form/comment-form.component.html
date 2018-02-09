@@ -37,7 +37,8 @@
       <!--size="invisible"-->
     <!--&gt;</re-captcha>-->
 
-    <div class="form-group col-md-12 col-sm-12">
+    <div [ngClass]="{'display-none': !commentForm.get('comment').valid}"
+         class="form-group col-md-12 col-sm-12">
       <re-captcha class="no-validate-style" [formControlName]="'recaptcha'"
                   siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>
     </div>
