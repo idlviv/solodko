@@ -1,1 +1,2 @@
 1. blog comment server validator / nested validators
+2. login component validation min length username and pass must be 4

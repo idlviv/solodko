@@ -65,7 +65,10 @@
 
       <li class="nav-item" *ngIf="user && user.role === 'Guest'"
           [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" [routerLink]="['/login']">Вхід</a></li>
+        <a class="nav-link" [routerLink]="['/login']">Вхід/Реєстрація</a></li>
+      <!--<li class="nav-item" *ngIf="user && user.role === 'Guest'"-->
+          <!--[routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
+        <!--<a class="nav-link" [routerLink]="['/add-user']">Реєстрація</a></li>-->
       <!--<li class="nav-item" *ngIf="user && user.role === 'Admin'" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">-->
         <!--<a class="nav-link" [routerLink]="['/register']">Register</a></li>-->
       <li class="nav-item" *ngIf="user && user.role === 'User' || user.role === 'Manager' ||user.role === 'Admin'">

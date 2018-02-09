@@ -4,6 +4,7 @@ let passport = require('passport');
 let jwt = require('jsonwebtoken');
 let UserController = require('../controllers/userController');
 const log = require('../config/winston')(module);
+const recaptcha = require('../middleware/recaptcha');
 
 const config = require('../config');
 //
@@ -19,6 +20,7 @@ router.post('/register',
   );
 
 router.post('/authenticate',
+  // recaptcha,
   passport.authenticate('local.signin', {session: false}),
   UserController.userAuthentication
 );

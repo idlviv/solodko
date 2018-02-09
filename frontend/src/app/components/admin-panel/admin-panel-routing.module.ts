@@ -34,11 +34,11 @@ const adminRoutes: Routes = [
         path: 'edit-product',
         component: EditProductComponent,
       },
-      {
-        path: 'add-user',
-        canActivate: [AuthAdminGuard],
-        component: SignupComponent,
-      },
+      // {
+      //   path: 'add-user',
+      //   // canActivate: [AuthAdminGuard],
+      //   component: SignupComponent,
+      // },
       {
         path: '',
         outlet: 'adminPanelSubmenu',

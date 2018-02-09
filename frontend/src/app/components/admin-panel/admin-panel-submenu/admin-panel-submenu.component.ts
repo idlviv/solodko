@@ -40,11 +40,11 @@ export class AdminPanelSubmenuComponent implements OnInit {
         permission: ['Manager', 'Admin'],
 
       },
-      {
-        name: 'Додати користувача',
-        route: 'add-user',
-        permission: ['Admin'],
-      },
+      // {
+      //   name: 'Додати користувача',
+      //   route: 'add-user',
+      //   permission: ['Admin'],
+      // },
     ];
   }
 

@@ -9,6 +9,7 @@ import {AuthUserGuard} from './guards/auth-user.guard';
 import {CartComponent} from './components/users/cart/cart.component';
 import {BlogsComponent} from './components/blogs/blogs.component';
 import {NoAuthGuard} from './guards/noAuth.guard';
+import {SignupComponent} from './components/users/login/signup/signup.component';
 
 const appRoutes: Routes = [
   // { path: 'home',
@@ -20,11 +21,12 @@ const appRoutes: Routes = [
   },
   // {path: 'register', component: RegisterComponent, canActivate: [AuthAdminGuard]},
   {path: 'login', component: LoginComponent, canActivate: [NoAuthGuard]},
+  // {path: 'add-user', component: SignupComponent},
   // {path: 'products-management',
   //   loadChildren: './components/products-management/products-management.module#ProductsManagementModule',
   //   },
   {path: 'profile', component: ProfileComponent, canActivate: [AuthUserGuard]},
-  {path: 'cart', component: CartComponent, canActivate: [AuthUserGuard]},
+  // {path: 'cart', component: CartComponent, canActivate: [AuthUserGuard]},
   {path: 'admin',
     loadChildren: './components/admin-panel/admin-panel.module#AdminPanelModule',
   },

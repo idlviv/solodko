@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {ActivatedRoute, Router, RouterStateSnapshot} from '@angular/router';
-import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {ValidateService} from '../../../services/validate.service';
 import {IUser} from '../../../interfaces/i-user';
 import {Observable} from 'rxjs/Observable';
@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
 
   guest: IUser = emptyUser;
   user: IUser = this.guest;
+
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
@@ -52,49 +54,111 @@ export class LoginComponent implements OnInit {
       .subscribe(
         user => this.user = user
       );
+
+    this.loginForm = new FormGroup({
+      usernameLogin: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(10),
+        Validators.pattern('[a-zA-Z0-9]+'),
+      ]),
+      passwordLogin: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(10),
+        Validators.pattern('[a-zA-Z0-9]+'),
+      ]),
+      recaptcha: new FormControl('', [
+        Validators.required
+      ])
+    });
   }
 
-  onSigninSubmit(form: NgForm) {
+  onLoginSubmit() {
     this.authService.authUser({
-      username: form.value.usernameSignin,
-      password: form.value.passwordSignin})
-        .subscribe((data) => {
-            if (data.success) {
-              this.authService.storeUserData(data.token, data.user);
-              this.flashMessage.show(
-                'Logged in',
-                {
-                  cssClass: 'alert-success',
-                  timeout: 2000
-                });
+      username: this.loginForm.get('usernameLogin').value,
+      password: this.loginForm.get('passwordLogin').value})
+      .subscribe((data) => {
+          if (data.success) {
+            this.authService.storeUserData(data.token, data.user);
+            this.flashMessage.show(
+              'Logged in',
+              {
+                cssClass: 'alert-success',
+                timeout: 2000
+              });
 
-              if (this.previousURL) {
-                this.router.navigate([this.previousURL]);
-              } else {
-                this.location.back();
-                // this.router.navigate(['/profile']);
-              }
-
+            if (this.previousURL) {
+              this.router.navigate([this.previousURL]);
             } else {
-              this.flashMessage.show(
-                data.msg,
-                {
-                  cssClass: 'alert-danger',
-                  timeout: 2000
-                });
-              this.router.navigate(['/login']);
+              this.location.back();
+              // this.router.navigate(['/profile']);
             }
 
-          }, err => {
+          } else {
             this.flashMessage.show(
-              err,
-              // err.status + ' ' + err.statusText,
+              data.msg,
               {
                 cssClass: 'alert-danger',
-                timeout: 5000
+                timeout: 2000
               });
             this.router.navigate(['/login']);
           }
-        );
+
+        }, err => {
+          this.flashMessage.show(
+            err,
+            // err.status + ' ' + err.statusText,
+            {
+              cssClass: 'alert-danger',
+              timeout: 5000
+            });
+          this.router.navigate(['/login']);
+        }
+      );
   }
+
+  // onSigninSubmit(form: NgForm) {
+  //   this.authService.authUser({
+  //     username: form.value.usernameSignin,
+  //     password: form.value.passwordSignin})
+  //       .subscribe((data) => {
+  //           if (data.success) {
+  //             this.authService.storeUserData(data.token, data.user);
+  //             this.flashMessage.show(
+  //               'Logged in',
+  //               {
+  //                 cssClass: 'alert-success',
+  //                 timeout: 2000
+  //               });
+  //
+  //             if (this.previousURL) {
+  //               this.router.navigate([this.previousURL]);
+  //             } else {
+  //               this.location.back();
+  //               // this.router.navigate(['/profile']);
+  //             }
+  //
+  //           } else {
+  //             this.flashMessage.show(
+  //               data.msg,
+  //               {
+  //                 cssClass: 'alert-danger',
+  //                 timeout: 2000
+  //               });
+  //             this.router.navigate(['/login']);
+  //           }
+  //
+  //         }, err => {
+  //           this.flashMessage.show(
+  //             err,
+  //             // err.status + ' ' + err.statusText,
+  //             {
+  //               cssClass: 'alert-danger',
+  //               timeout: 5000
+  //             });
+  //           this.router.navigate(['/login']);
+  //         }
+  //       );
+  // }
 }

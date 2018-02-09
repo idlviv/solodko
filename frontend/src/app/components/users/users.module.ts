@@ -12,6 +12,8 @@ import {ProfileComponent} from './profile/profile.component';
 import {CustomErrorHandler} from '../../services/CustomErrorHandler';
 import { CartComponent } from './cart/cart.component';
 import {SignupComponent} from './login/signup/signup.component';
+import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import {RecaptchaModule} from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {SignupComponent} from './login/signup/signup.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   exports: [
     SignupComponent,

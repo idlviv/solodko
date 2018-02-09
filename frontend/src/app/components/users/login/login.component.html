@@ -8,10 +8,10 @@
                role="tab" aria-controls="signin" aria-selected="true">Увійти</a>
           </li>
           <!--<li *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
-              <!--class="nav-item">-->
-            <!--<a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup"-->
-               <!--role="tab" aria-controls="signup" aria-selected="false">Зареєструватись</a>-->
-          <!--</li>-->
+              <li class="nav-item">
+            <a class="nav-link" id="signup-tab" data-toggle="tab" href="#signup"
+               role="tab" aria-controls="signup" aria-selected="false">Зареєструватись</a>
+          </li>
         </ul>
       </div>
       <div class="card-body">
@@ -20,29 +20,72 @@
           <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
             <h4 class="card-title">Вхід</h4>
             <p class="card-text"> </p>
-            <form (ngSubmit)="onSigninSubmit(signinForm); signinForm.reset()" #signinForm="ngForm">
+
+            <form [formGroup]="loginForm" (submit)="onLoginSubmit()">
+              <div class="form-group">
+                <label for="usernameLogin">Ім'я користувача</label>
+
+                <input formControlName="usernameLogin" required
+                       class="form-control" id="usernameLogin" placeholder="Ім'я користувача">
+                <div class="invalid-alert"
+                     *ngIf="(loginForm.controls['usernameLogin'].errors?.minlength ||
+             loginForm.controls['usernameLogin'].errors?.maxlength ||
+             loginForm.controls['usernameLogin'].errors?.required) &&
+             loginForm.controls['usernameLogin'].touched">Довжина від 2 до 10 символів
+                </div>
+                <div class="invalid-alert"
+                     *ngIf="loginForm.controls['usernameLogin'].errors?.pattern &&
+             loginForm.controls['usernameLogin'].touched">Використовуйте тільки латинські цифри і букви
+                </div>
+              </div>
 
               <div class="form-group">
-                <label for="usernameSignin">Ім'я користувача</label>
-                <input type="text" ngModel required
-                       name="usernameSignin" class="form-control" id="usernameSignin">
-              </div>
-              <div class="form-group">
-                <label for="passwordSignin">Пароль</label>
-                <input type="password" ngModel required
-                       name="passwordSignin" class="form-control" id="passwordSignin">
-              </div>
+                <label for="passwordLogin">Пароль</label>
 
-              <button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>
+                <input formControlName="passwordLogin" required type="password"
+                       class="form-control" id="passwordLogin" placeholder="Пароль">
+                <div class="invalid-alert"
+                     *ngIf="(loginForm.controls['passwordLogin'].errors?.minlength ||
+             loginForm.controls['passwordLogin'].errors?.maxlength ||
+             loginForm.controls['passwordLogin'].errors?.required) &&
+             loginForm.controls['passwordLogin'].touched">Довжина від 2 до 10 символів
+                </div>
+                <div class="invalid-alert"
+                     *ngIf="loginForm.controls['passwordLogin'].errors?.pattern &&
+             loginForm.controls['passwordLogin'].touched">Використовуйте тільки латинські цифри і букви
+                </div>
+              </div>
+              <div [ngClass]="{'display-none': !loginForm.get('usernameLogin').valid ||
+              !loginForm.get('passwordLogin').valid}"
+                   class="form-group">
+                <re-captcha class="no-validate-style" [formControlName]="'recaptcha'"
+                            siteKey="6Lc6LEQUAAAAADwWC0KvVZCX5mJakilrNisfFHwt"></re-captcha>
+              </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Увійти</button>
             </form>
+            <!--<form (ngSubmit)="onSigninSubmit(signinForm); signinForm.reset()" #signinForm="ngForm">-->
+
+              <!--<div class="form-group">-->
+                <!--<label for="usernameSignin">Ім'я користувача</label>-->
+                <!--<input type="text" ngModel required-->
+                       <!--name="usernameSignin" class="form-control" id="usernameSignin">-->
+              <!--</div>-->
+              <!--<div class="form-group">-->
+                <!--<label for="passwordSignin">Пароль</label>-->
+                <!--<input type="password" ngModel required-->
+                       <!--name="passwordSignin" class="form-control" id="passwordSignin">-->
+              <!--</div>-->
+
+              <!--<button class="btn btn-primary" [disabled]="!signinForm.form.valid">Увійти</button>-->
+            <!--</form>-->
           </div>
 
 
           <!--<div *ngIf="user && user.role === 'Manager' || user.role === 'Admin'"-->
-               <!--class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">-->
-            <!--<app-signup></app-signup>-->
-           <!---->
-          <!--</div>-->
+             <div  class="tab-pane fade" id="signup" role="tabpanel" aria-labelledby="signup-tab">
+            <app-signup></app-signup>
+
+          </div>
         </div>
       </div>
       <div class="card-footer text-muted">
