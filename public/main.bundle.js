@@ -2542,7 +2542,7 @@ var UploadService = (function () {
     }
     UploadService.prototype.uploadPic = function (file) {
         var headers = new http_1.Headers();
-        headers.set('Content-Type', 'application/x-www-form-urlencoded');
+        // headers.set('Content-Type', 'application/x-www-form-urlencoded');
         headers.set('Authorization', this.authService.authToken);
         return this.http.put(app_config_1.config.serverUrl + 'upload/change-avatar', { file: file }, { headers: headers })
             .map(function (res) { return res.json(); });

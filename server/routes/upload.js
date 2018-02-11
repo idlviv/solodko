@@ -10,7 +10,7 @@ const config = require('../config');
 
 router.put(
   '/change-avatar',
-  passport.authenticate('jwt.user.manager.admin', {session: false}),
+  // passport.authenticate('jwt.user.manager.admin', {session: false}),
   UploadController.changeAvatar
 );
 

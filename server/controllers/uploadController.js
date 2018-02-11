@@ -13,8 +13,8 @@ module.exports.changeAvatar = function(req, res, next) {
     api_key: config.get('CLODINARY_KEY'),
     api_secret: config.get('CLODINARY_SECRET')
   });
-  console.log('req.body.file', req.body.file);
-  cloudinary.uploader.upload(req.body.file, function(result) {
+  console.log('req.body.file', req.files.file);
+  cloudinary.uploader.upload(req.files.file, function(result) {
     console.log(result);
     return res.json(result);
   });
