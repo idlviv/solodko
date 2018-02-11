@@ -16,13 +16,39 @@
   <div class="col-md-4">
     <ul class="list-group">
 
-      <li class="list-group-item list-group-item-primary text-left"><span class="float-right"><h3>Профіль</h3></span>
+      <li class="list-group-item list-group-item-primary text-left">
+        <div class="float-right">
+          <p>
+            <span class="float-right"><h3>Профіль</h3></span>
+          </p>
+          <p>
+            <button class="btn btn-sm float-right" *ngIf="!editMode" (click)="editModeOn()">Редагувати</button>
+            <button class="btn btn-sm float-right" *ngIf="editMode" (click)="saveChanges()">Зберегти</button>
+          </p>
+          <p>
+            <!--<input class="float-right" *ngIf="editMode">-->
+          </p>
+        </div>
         <div class="avatar-big-block">
           <img class="img-fluid avatar-big" src="{{user.avatar}}" alt="avatar">
+
+          <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
+            <label for="input-file" class="change-avatar">Змінити аватар</label>
+            <input type="file" (change)="changeAvatar($event)" id="input-file">
+            <button *ngIf="editAvatar" class="btn btn-sm" [disabled]="!changeAvatarForm.valid">Зберегти</button>
+            <p *ngIf="changeAvatarForm.get('file').value">{{changeAvatarForm.get('file').value | json}}</p>
+          </form>
+
+          <!--<div class="custom-file">-->
+            <!--<input type="file" class="custom-file-input" id="customFile">-->
+            <!--<label class="custom-file-label" for="customFile">Змінити аватар</label>-->
+          <!--</div>-->
+
         </div>
       </li>
       <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я</strong></span>
-        {{user.name}}
+        <span *ngIf="!editMode">{{user.name}}</span>
+        <input *ngIf="editMode">
       </li>
       <li class="list-group-item text-right"><span class="float-left"><strong>Прізвище</strong></span>
         {{user.surname}}

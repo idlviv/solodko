@@ -41,6 +41,7 @@ import { ScrollingDirective } from './directives/scrolling.directive';
 
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import {UploadService} from './services/upload.service';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
     AuthService,
     CustomErrorHandler,
     BlogsService,
-    SharedService
+    SharedService,
+    UploadService,
   ],
   bootstrap: [AppComponent]
 })

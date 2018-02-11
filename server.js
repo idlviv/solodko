@@ -47,11 +47,13 @@ require('./server/config/passport')(passport);
 const users = require('./server/routes/users');
 const products = require('./server/routes/products');
 const blogs = require('./server/routes/blogs');
+const upload = require('./server/routes/upload');
 const index = require('./server/routes');
 
 app.use('/api', users);
 app.use('/api', products);
 app.use('/blogs', blogs);
+app.use('/upload', upload);
 
 app.use('/', index);
 
