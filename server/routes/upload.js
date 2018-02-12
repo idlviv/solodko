@@ -8,7 +8,7 @@ const config = require('../config');
 
 
 
-router.put(
+router.post(
   '/change-avatar',
   // passport.authenticate('jwt.user.manager.admin', {session: false}),
   UploadController.changeAvatar

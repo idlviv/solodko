@@ -12,8 +12,9 @@ export class UploadService {
   uploadPic(file) {
     const headers = new Headers();
     // headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    headers.set('Content-Type', 'multipart/form-data');
     headers.set('Authorization', this.authService.authToken);
-    return this.http.put(config.serverUrl + 'upload/change-avatar',
+    return this.http.post(config.serverUrl + 'upload/change-avatar',
       {file},
       {headers})
       .map(res => res.json());

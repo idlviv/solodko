@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
   onSubmitchangeAvatarForm() {
     const formData = new FormData();
     formData.append('file', this.changeAvatarForm.get('file').value);
-console.log('this.changeAvatarForm.get(\'file\').value', this.changeAvatarForm.get('file').value);
+    console.log('this.changeAvatarForm.get(\'file\').value', this.changeAvatarForm.get('file').value);
     this.uploadService.uploadPic(formData)
       .subscribe(result => console.log('result', result));
 
@@ -97,8 +97,8 @@ console.log('this.changeAvatarForm.get(\'file\').value', this.changeAvatarForm.g
 
   changeAvatar(event) {
     this.editAvatar = true;
-    console.log('event', event.target.files[0]);
-    console.log('event', event);
+    // console.log('event', event.target.files[0]);
+    // console.log('event', event);
     this.changeAvatarForm.get('file').setValue(event.target.files[0]);
 
   }
