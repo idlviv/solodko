@@ -34,10 +34,31 @@
 
           <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
             <label for="input-file" class="change-avatar">Змінити аватар</label>
-            <input type="file" (change)="changeAvatar($event)" id="input-file">
+            <input type="file" (change)="changeAvatar($event)" id="input-file" #inputFile>
             <button *ngIf="editAvatar" class="btn btn-sm" [disabled]="!changeAvatarForm.valid">Зберегти</button>
             <p *ngIf="changeAvatarForm.get('file').value">{{changeAvatarForm.get('file').value | json}}</p>
           </form>
+
+
+          <form name="person">
+            <input name="name" id="iii" value="Виктор">
+            <input name="surname" value="Цой">
+            <button (click)="f()"></button>
+          </form>
+
+          <!--<script>-->
+            <!--// создать объект для формы-->
+            <!--var formData = new FormData(document.forms.person);-->
+
+            <!--// добавить к пересылке ещё пару ключ - значение-->
+            <!--formData.append("patronym", "Робертович");-->
+            <!--console.log(formData);-->
+            <!--// отослать-->
+            <!--var xhr = new XMLHttpRequest();-->
+            <!--xhr.open("POST", "localhost:8080/upload/upload");-->
+            <!--xhr.send(formData);-->
+          <!--</script>-->
+
 
           <!--<div class="custom-file">-->
             <!--<input type="file" class="custom-file-input" id="customFile">-->

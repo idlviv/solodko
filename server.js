@@ -16,6 +16,9 @@ const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
 
+const multer = require('multer'); // v1.0.5
+const upload = multer(); // for parsing multipart/form-data
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -47,13 +50,13 @@ require('./server/config/passport')(passport);
 const users = require('./server/routes/users');
 const products = require('./server/routes/products');
 const blogs = require('./server/routes/blogs');
-const upload = require('./server/routes/upload');
+const uploadURL = require('./server/routes/upload');
 const index = require('./server/routes');
 
 app.use('/api', users);
 app.use('/api', products);
 app.use('/blogs', blogs);
-app.use('/upload', upload);
+app.use('/upload', uploadURL);
 
 app.use('/', index);
 

@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UploadService} from '../../../services/upload.service';
 
+import {config} from '../../../app.config';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,6 +18,7 @@ export class ProfileComponent implements OnInit {
   editAvatar = false;
   editForm: FormGroup;
   changeAvatarForm: FormGroup;
+  @ViewChild('inputFile') inputFile;
 
   constructor(
     private authService: AuthService,
@@ -87,19 +90,40 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmitchangeAvatarForm() {
-    const formData = new FormData();
-    formData.append('file', this.changeAvatarForm.get('file').value);
-    console.log('this.changeAvatarForm.get(\'file\').value', this.changeAvatarForm.get('file').value);
-    this.uploadService.uploadPic(formData)
-      .subscribe(result => console.log('result', result));
 
   }
+// f(){
+//   // создать объект для формы
+//   var formData = new FormData(document.forms.person);
+//
+//   // добавить к пересылке ещё пару ключ - значение
+//   formData.append("patronym", "Робертович");
+//   console.log(formData);
+//   // отослать
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("POST", config.serverUrl + 'upload/upload');
+//   xhr.send(formData);
+// }
 
   changeAvatar(event) {
+
+    let iii = document.getElementById('iii');
+    console.log('iii', iii.value);
+
+    const formData: FormData = new FormData();
+    formData.append('iii', iii);
+  console.log('form data', formData.get('iii'));
+
     this.editAvatar = true;
-    // console.log('event', event.target.files[0]);
+    console.log('event', typeof(event.target.files[0]));
     // console.log('event', event);
     this.changeAvatarForm.get('file').setValue(event.target.files[0]);
+    this.uploadService.uploadPic(this.changeAvatarForm.get('file').value)
+      .subscribe(result => console.log('result', result));
+
+    // this.uploadService.uploadPic(this.inputFile.nativeElement.files[0])
+    //   .subscribe(result => console.log('result', result));
 
   }
+
 }
