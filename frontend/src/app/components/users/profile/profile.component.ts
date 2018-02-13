@@ -26,17 +26,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     // підписується на юзера з auth.service
-    this.authService.getProfile()
-      .subscribe(profile => this.user = profile,
-        error => {
-          this.flashMessage.show(
-            error,
-            {
-              cssClass: 'alert-danger',
-              timeout: 3000
-            });
-          return false;
-        });
+    this.getUsersProfile();
 
     this.editForm = new FormGroup({
       password : new FormControl('', [
@@ -53,6 +43,20 @@ export class ProfileComponent implements OnInit {
         Validators.minLength(4),
       ]),
     });
+  }
+
+  getUsersProfile() {
+    this.authService.getProfile()
+      .subscribe(profile => this.user = profile,
+        error => {
+          this.flashMessage.show(
+            error,
+            {
+              cssClass: 'alert-danger',
+              timeout: 3000
+            });
+          return false;
+        });
   }
 
   onVerificationSend() {
@@ -86,10 +90,14 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmitchangeAvatarForm() {
-    this.uploadService.uploadPic(this.changeAvatarForm.get('file').value)
-      .subscribe(result => console.log('result', result));
-    this.previewAvatarUrl = null;
-    this.editAvatar = false;
+    this.uploadService.uploadPic(this.changeAvatarForm.get('file').value, this.user)
+      .subscribe(result => {
+        this.getUsersProfile();
+        this.previewAvatarUrl = null;
+        this.editAvatar = false;
+        console.log('result', result);
+      });
+
 
   }
 

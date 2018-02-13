@@ -1,4 +1,4 @@
-webpackJsonp(["products.module.0"],{
+webpackJsonp(["products.module"],{
 
 /***/ "../../../../../src/app/components/products/products-detail/products-detail.component.css":
 /***/ (function(module, exports, __webpack_require__) {
@@ -537,4 +537,4 @@ exports.ProductsModule = ProductsModule;
 /***/ })
 
 });
-//# sourceMappingURL=products.module.0.chunk.js.map
+//# sourceMappingURL=products.module.chunk.js.map

@@ -9,7 +9,7 @@ export class UploadService {
   constructor(private http: Http,
               private authService: AuthService) { }
 
-  uploadPic(file) {
+  uploadPic(file, user) {
 
     const formData: FormData = new FormData();
 
@@ -19,7 +19,7 @@ export class UploadService {
 
     formData.append('file', file, file.name);
 
-    // formData.append("username", "Groucho");
+    formData.append('user_id', user._id);
     // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
     const headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());

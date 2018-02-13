@@ -1,4 +1,4 @@
-webpackJsonp(["admin-panel.module.0"],{
+webpackJsonp(["admin-panel.module"],{
 
 /***/ "../../../../../src/app/components/admin-panel/admin-panel-routing.module.ts":
 /***/ (function(module, exports, __webpack_require__) {
@@ -839,4 +839,4 @@ exports.emptyProduct = {
 /***/ })
 
 });
-//# sourceMappingURL=admin-panel.module.0.chunk.js.map
+//# sourceMappingURL=admin-panel.module.chunk.js.map

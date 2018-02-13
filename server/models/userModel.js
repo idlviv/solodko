@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const config = require('../config');
 const log = require('../config/winston')(module);
 const userValidators = require('../validators/userValidators');
+const ObjectId = mongoose.Types.ObjectId;
 
 const UserSchema = mongoose.Schema({
   name: {
@@ -124,6 +125,27 @@ module.exports.addUser = function(newUser) {
             });
         })
       .catch((error) => {throw error;});
+  });
+};
+
+module.exports.updateMongo = function(updateOptions) {
+  if ('_id' in updateOptions.query) {
+    updateOptions.query._id = ObjectId(updateOptions.query._id);
+  }
+  return new Promise(function(resolve, reject) {
+    UserModel.update(updateOptions.query, updateOptions.update)
+      .then((result) => {
+        return resolve({success: true, data: result, message: 'Зміни внесено'})
+      })
+      .catch((error) => {
+        reject({success: false, message: 'Помилка ' + error.message, error});
+
+        // if (error.name === 'ValidationError') {
+        //   reject({success: false, message: 'Помилка валідації даних, ' + error.message, error});
+        // } else {
+        //   reject({success: false, message: 'Новий пост не зареєстровано', error});
+        // }
+      });
   });
 };
 

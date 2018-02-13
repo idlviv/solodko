@@ -1,4 +1,4 @@
-webpackJsonp(["home.module.0"],{
+webpackJsonp(["home.module"],{
 
 /***/ "../../../../../src/app/components/home/home-blog/home-blog.component.html":
 /***/ (function(module, exports) {
@@ -445,4 +445,4 @@ var _a, _b;
 /***/ })
 
 });
-//# sourceMappingURL=home.module.0.chunk.js.map
+//# sourceMappingURL=home.module.chunk.js.map

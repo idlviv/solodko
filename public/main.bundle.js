@@ -6,7 +6,7 @@ webpackJsonp(["main"],{
 var map = {
 	"./components/admin-panel/admin-panel.module": [
 		"../../../../../src/app/components/admin-panel/admin-panel.module.ts",
-		"admin-panel.module.0"
+		"admin-panel.module"
 	],
 	"./components/blogs/blogs.module": [
 		"../../../../../src/app/components/blogs/blogs.module.ts",
@@ -15,11 +15,11 @@ var map = {
 	"./components/home/home.module": [
 		"../../../../../src/app/components/home/home.module.ts",
 		"common",
-		"home.module.0"
+		"home.module"
 	],
 	"./components/products/products.module": [
 		"../../../../../src/app/components/products/products.module.ts",
-		"products.module.0"
+		"products.module"
 	]
 };
 function webpackAsyncContext(req) {
@@ -1363,16 +1363,8 @@ var ProfileComponent = (function () {
         this.editAvatar = false;
     }
     ProfileComponent.prototype.ngOnInit = function () {
-        var _this = this;
         // підписується на юзера з auth.service
-        this.authService.getProfile()
-            .subscribe(function (profile) { return _this.user = profile; }, function (error) {
-            _this.flashMessage.show(error, {
-                cssClass: 'alert-danger',
-                timeout: 3000
-            });
-            return false;
-        });
+        this.getUsersProfile();
         this.editForm = new forms_1.FormGroup({
             password: new forms_1.FormControl('', [
                 forms_1.Validators.required,
@@ -1386,6 +1378,17 @@ var ProfileComponent = (function () {
                 forms_1.Validators.required,
                 forms_1.Validators.minLength(4),
             ]),
+        });
+    };
+    ProfileComponent.prototype.getUsersProfile = function () {
+        var _this = this;
+        this.authService.getProfile()
+            .subscribe(function (profile) { return _this.user = profile; }, function (error) {
+            _this.flashMessage.show(error, {
+                cssClass: 'alert-danger',
+                timeout: 3000
+            });
+            return false;
         });
     };
     ProfileComponent.prototype.onVerificationSend = function () {
@@ -1412,10 +1415,14 @@ var ProfileComponent = (function () {
         this.editMode = false;
     };
     ProfileComponent.prototype.onSubmitchangeAvatarForm = function () {
-        this.uploadService.uploadPic(this.changeAvatarForm.get('file').value)
-            .subscribe(function (result) { return console.log('result', result); });
-        this.previewAvatarUrl = null;
-        this.editAvatar = false;
+        var _this = this;
+        this.uploadService.uploadPic(this.changeAvatarForm.get('file').value, this.user)
+            .subscribe(function (result) {
+            _this.getUsersProfile();
+            _this.previewAvatarUrl = null;
+            _this.editAvatar = false;
+            console.log('result', result);
+        });
     };
     ProfileComponent.prototype.changeAvatar = function (event) {
         var _this = this;
@@ -2545,13 +2552,13 @@ var UploadService = (function () {
         this.http = http;
         this.authService = authService;
     }
-    UploadService.prototype.uploadPic = function (file) {
+    UploadService.prototype.uploadPic = function (file, user) {
         var formData = new FormData();
         // for (let i = 0; i < files.length; i++) {
         //   formData.append('file[]', files[i]);
         // }
         formData.append('file', file, file.name);
-        // formData.append("username", "Groucho");
+        formData.append('user_id', user._id);
         // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
