@@ -46,7 +46,8 @@ re-captcha > div{
 // vertical aligment - mateial icon and text
 a.nav-link > i,
 p > i,
-button > i{
+button > i,
+label > i {
   display: inline-block;
   vertical-align: middle;
 }

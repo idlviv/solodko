@@ -118,4 +118,10 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+  cancelChangeAvatar() {
+    this.changeAvatarForm.get('file').setValue(null);
+    this.editAvatar = false;
+    this.previewAvatarUrl = null;
+  }
 }
