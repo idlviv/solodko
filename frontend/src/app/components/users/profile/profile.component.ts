@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   editAvatar = false;
   editForm: FormGroup;
   changeAvatarForm: FormGroup;
+  previewAvatarUrl;
 
   constructor(
     private authService: AuthService,
@@ -87,11 +88,26 @@ export class ProfileComponent implements OnInit {
   onSubmitchangeAvatarForm() {
     this.uploadService.uploadPic(this.changeAvatarForm.get('file').value)
       .subscribe(result => console.log('result', result));
+    this.previewAvatarUrl = null;
+    this.editAvatar = false;
+
   }
 
   changeAvatar(event) {
     this.editAvatar = true;
-    console.log('event', event.target.files[0]);
-    this.changeAvatarForm.get('file').setValue(event.target.files[0]);
+
+    if (event.target.files && event.target.files[0]) {
+
+      this.changeAvatarForm.get('file').setValue(event.target.files[0]);
+
+      const reader = new FileReader();
+
+      reader.onload = (readerEvent: any) => {
+        this.previewAvatarUrl = readerEvent.target.result;
+        console.log('reader onload');
+      };
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
 }

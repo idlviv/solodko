@@ -19,13 +19,15 @@
           </p>
         </div>
         <div class="avatar-big-block">
-          <img class="img-fluid avatar-big" src="{{user.avatar}}" alt="avatar">
+          <img *ngIf="!previewAvatarUrl" class="img-fluid avatar-big" src="{{user.avatar}}" alt="avatar">
+          <img *ngIf="previewAvatarUrl" class="img-fluid avatar-big" src="{{previewAvatarUrl}}" alt="avatar">
 
           <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
             <label for="input-file" class="change-avatar">Змінити аватар</label>
             <input type="file" (change)="changeAvatar($event)" id="input-file">
             <div *ngIf="editAvatar">
-              <p>{{changeAvatarForm.get('file').value.name}}</p>
+              <!--<img src="{{previewAvatarUrl}}" alt="avatar">-->
+              <!--<p>{{changeAvatarForm.get('file').value.name}}</p>-->
               <button  class="btn btn-sm" [disabled]="!changeAvatarForm.valid">Зберегти</button>
             </div>
           </form>

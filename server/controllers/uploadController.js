@@ -19,7 +19,13 @@ module.exports.changeAvatar = function(req, res, next) {
 
     // res.json(util.inspect({fields: fields, files: files}));
 
-    cloudinary.uploader.upload(files.file.path, function(result) {
+    cloudinary.v2.uploader.upload(
+      files.file.path,
+
+        {width: 180, height: 180, crop: 'limit'},
+        // {overlay: "my_watermark", flags: "relative", width: 0.5}
+      function(err, result) {
+      console.log('err', err);
       console.log('result', result);
       return res.json(result);
     });
