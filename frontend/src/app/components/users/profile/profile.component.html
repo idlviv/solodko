@@ -1,15 +1,4 @@
 <div *ngIf="user">
-  <!--<h2 class="page-header">Profile of {{user.name}} {{user.surname}}</h2>-->
-  <!--<ul class="list-group">-->
-    <!--<li class="list-group-item">username: {{user.username}}</li>-->
-    <!--<li class="list-group-item" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">email: {{user.email}}-->
-      <!--<span *ngIf="!user.isEmailConfirmed"> - Потрібно пітвердити</span>-->
-    <!--</li>-->
-    <!--<li class="list-group-item">email: {{user | json}}</li>-->
-
-  <!--</ul>-->
-
-  <!--<h2 class="page-header">Профіль</h2>-->
 <div class="row">
   <div class="col-md-4"></div>
 
@@ -34,36 +23,12 @@
 
           <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
             <label for="input-file" class="change-avatar">Змінити аватар</label>
-            <input type="file" (change)="changeAvatar($event)" id="input-file" #inputFile>
-            <button *ngIf="editAvatar" class="btn btn-sm" [disabled]="!changeAvatarForm.valid">Зберегти</button>
-            <p *ngIf="changeAvatarForm.get('file').value">{{changeAvatarForm.get('file').value | json}}</p>
+            <input type="file" (change)="changeAvatar($event)" id="input-file">
+            <div *ngIf="editAvatar">
+              <p>{{changeAvatarForm.get('file').value.name}}</p>
+              <button  class="btn btn-sm" [disabled]="!changeAvatarForm.valid">Зберегти</button>
+            </div>
           </form>
-
-
-          <form name="person">
-            <input name="name" id="iii" value="Виктор">
-            <input name="surname" value="Цой">
-            <button (click)="f()"></button>
-          </form>
-
-          <!--<script>-->
-            <!--// создать объект для формы-->
-            <!--var formData = new FormData(document.forms.person);-->
-
-            <!--// добавить к пересылке ещё пару ключ - значение-->
-            <!--formData.append("patronym", "Робертович");-->
-            <!--console.log(formData);-->
-            <!--// отослать-->
-            <!--var xhr = new XMLHttpRequest();-->
-            <!--xhr.open("POST", "localhost:8080/upload/upload");-->
-            <!--xhr.send(formData);-->
-          <!--</script>-->
-
-
-          <!--<div class="custom-file">-->
-            <!--<input type="file" class="custom-file-input" id="customFile">-->
-            <!--<label class="custom-file-label" for="customFile">Змінити аватар</label>-->
-          <!--</div>-->
 
         </div>
       </li>

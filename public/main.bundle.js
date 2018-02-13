@@ -336,7 +336,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -776,7 +776,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n\n      <div class=\"modal-body\">\n\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\n          <p class=\"text-muted\">\n            {{dataForPopup.title}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\n          <p class=\"text-muted\">\n            {{forPopup.data.comment}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\n            <div class=\"form-row comment-form align-items-center\">\n              <div class=\"form-group col-10\">\n                <!--<label for=\"comment\">Коментар</label>-->\n                <textarea formControlName=\"comment\" rows=\"3\"\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\n                </textarea>\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\n\n                <div class=\"invalid-alert\"\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\n                </div>\n              </div>\n              <div class=\"form-group blog-post-pop-nav\">\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\n                </button>\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n\r\n      <div class=\"modal-body\">\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\r\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{dataForPopup.title}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\r\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{forPopup.data.comment}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\r\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\r\n            <div class=\"form-row comment-form align-items-center\">\r\n              <div class=\"form-group col-10\">\r\n                <!--<label for=\"comment\">Коментар</label>-->\r\n                <textarea formControlName=\"comment\" rows=\"3\"\r\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\r\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\r\n                </textarea>\r\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n                <div class=\"invalid-alert\"\r\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\r\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group blog-post-pop-nav\">\r\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\r\n                </button>\r\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\r\n                </button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\r\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\r\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\r\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\r\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -948,7 +948,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1312,7 +1312,7 @@ var _a, _b, _c, _d;
 /***/ "../../../../../src/app/components/users/profile/profile.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"user\">\r\n  <!--<h2 class=\"page-header\">Profile of {{user.name}} {{user.surname}}</h2>-->\r\n  <!--<ul class=\"list-group\">-->\r\n    <!--<li class=\"list-group-item\">username: {{user.username}}</li>-->\r\n    <!--<li class=\"list-group-item\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">email: {{user.email}}-->\r\n      <!--<span *ngIf=\"!user.isEmailConfirmed\"> - Потрібно пітвердити</span>-->\r\n    <!--</li>-->\r\n    <!--<li class=\"list-group-item\">email: {{user | json}}</li>-->\r\n\r\n  <!--</ul>-->\r\n\r\n  <!--<h2 class=\"page-header\">Профіль</h2>-->\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\"></div>\r\n\r\n  <div class=\"col-md-4\">\r\n    <ul class=\"list-group\">\r\n\r\n      <li class=\"list-group-item list-group-item-primary text-left\">\r\n        <div class=\"float-right\">\r\n          <p>\r\n            <span class=\"float-right\"><h3>Профіль</h3></span>\r\n          </p>\r\n          <p>\r\n            <button class=\"btn btn-sm float-right\" *ngIf=\"!editMode\" (click)=\"editModeOn()\">Редагувати</button>\r\n            <button class=\"btn btn-sm float-right\" *ngIf=\"editMode\" (click)=\"saveChanges()\">Зберегти</button>\r\n          </p>\r\n          <p>\r\n            <!--<input class=\"float-right\" *ngIf=\"editMode\">-->\r\n          </p>\r\n        </div>\r\n        <div class=\"avatar-big-block\">\r\n          <img class=\"img-fluid avatar-big\" src=\"{{user.avatar}}\" alt=\"avatar\">\r\n\r\n          <form [formGroup]=\"changeAvatarForm\" (submit)=\"onSubmitchangeAvatarForm()\">\r\n            <label for=\"input-file\" class=\"change-avatar\">Змінити аватар</label>\r\n            <input type=\"file\" (change)=\"changeAvatar($event)\" id=\"input-file\" #inputFile>\r\n            <button *ngIf=\"editAvatar\" class=\"btn btn-sm\" [disabled]=\"!changeAvatarForm.valid\">Зберегти</button>\r\n            <p *ngIf=\"changeAvatarForm.get('file').value\">{{changeAvatarForm.get('file').value | json}}</p>\r\n          </form>\r\n\r\n\r\n          <form name=\"person\">\r\n            <input name=\"name\" id=\"iii\" value=\"Виктор\">\r\n            <input name=\"surname\" value=\"Цой\">\r\n            <button (click)=\"f()\"></button>\r\n          </form>\r\n\r\n          <!--<script>-->\r\n            <!--// создать объект для формы-->\r\n            <!--var formData = new FormData(document.forms.person);-->\r\n\r\n            <!--// добавить к пересылке ещё пару ключ - значение-->\r\n            <!--formData.append(\"patronym\", \"Робертович\");-->\r\n            <!--console.log(formData);-->\r\n            <!--// отослать-->\r\n            <!--var xhr = new XMLHttpRequest();-->\r\n            <!--xhr.open(\"POST\", \"localhost:8080/upload/upload\");-->\r\n            <!--xhr.send(formData);-->\r\n          <!--</script>-->\r\n\r\n\r\n          <!--<div class=\"custom-file\">-->\r\n            <!--<input type=\"file\" class=\"custom-file-input\" id=\"customFile\">-->\r\n            <!--<label class=\"custom-file-label\" for=\"customFile\">Змінити аватар</label>-->\r\n          <!--</div>-->\r\n\r\n        </div>\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я</strong></span>\r\n        <span *ngIf=\"!editMode\">{{user.name}}</span>\r\n        <input *ngIf=\"editMode\">\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Прізвище</strong></span>\r\n        {{user.surname}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я користувача</strong></span>\r\n        {{user.username}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>email</strong></span> {{user.email}}\r\n      </li>\r\n      <li *ngIf=\"!user.isEmailConfirmed\" class=\"list-group-item text-right\"\r\n          [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>Пошта не верифікована</strong></span>\r\n        <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"onVerificationSend()\">\r\n          Надіслати код\r\n        </button>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n  <div class=\"col-md-4\"></div>\r\n</div>\r\n\r\n\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"user\">\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\"></div>\r\n\r\n  <div class=\"col-md-4\">\r\n    <ul class=\"list-group\">\r\n\r\n      <li class=\"list-group-item list-group-item-primary text-left\">\r\n        <div class=\"float-right\">\r\n          <p>\r\n            <span class=\"float-right\"><h3>Профіль</h3></span>\r\n          </p>\r\n          <p>\r\n            <button class=\"btn btn-sm float-right\" *ngIf=\"!editMode\" (click)=\"editModeOn()\">Редагувати</button>\r\n            <button class=\"btn btn-sm float-right\" *ngIf=\"editMode\" (click)=\"saveChanges()\">Зберегти</button>\r\n          </p>\r\n          <p>\r\n            <!--<input class=\"float-right\" *ngIf=\"editMode\">-->\r\n          </p>\r\n        </div>\r\n        <div class=\"avatar-big-block\">\r\n          <img class=\"img-fluid avatar-big\" src=\"{{user.avatar}}\" alt=\"avatar\">\r\n\r\n          <form [formGroup]=\"changeAvatarForm\" (submit)=\"onSubmitchangeAvatarForm()\">\r\n            <label for=\"input-file\" class=\"change-avatar\">Змінити аватар</label>\r\n            <input type=\"file\" (change)=\"changeAvatar($event)\" id=\"input-file\">\r\n            <div *ngIf=\"editAvatar\">\r\n              <p>{{changeAvatarForm.get('file').value.name}}</p>\r\n              <button  class=\"btn btn-sm\" [disabled]=\"!changeAvatarForm.valid\">Зберегти</button>\r\n            </div>\r\n          </form>\r\n\r\n        </div>\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я</strong></span>\r\n        <span *ngIf=\"!editMode\">{{user.name}}</span>\r\n        <input *ngIf=\"editMode\">\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Прізвище</strong></span>\r\n        {{user.surname}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\"><span class=\"float-left\"><strong>Ім'я користувача</strong></span>\r\n        {{user.username}}\r\n      </li>\r\n      <li class=\"list-group-item text-right\" [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>email</strong></span> {{user.email}}\r\n      </li>\r\n      <li *ngIf=\"!user.isEmailConfirmed\" class=\"list-group-item text-right\"\r\n          [ngClass]=\"{'list-group-item-warning': !user.isEmailConfirmed}\">\r\n        <span class=\"float-left\"><strong>Пошта не верифікована</strong></span>\r\n        <button type=\"button\" class=\"btn btn-primary btn-sm\" (click)=\"onVerificationSend()\">\r\n          Надіслати код\r\n        </button>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n  <div class=\"col-md-4\"></div>\r\n</div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1352,13 +1352,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var auth_service_1 = __webpack_require__("../../../../../src/app/services/auth.service.ts");
 var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-messages/index.js");
-var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var forms_1 = __webpack_require__("../../../forms/@angular/forms.es5.js");
 var upload_service_1 = __webpack_require__("../../../../../src/app/services/upload.service.ts");
 var ProfileComponent = (function () {
-    function ProfileComponent(authService, router, flashMessage, uploadService) {
+    function ProfileComponent(authService, flashMessage, uploadService) {
         this.authService = authService;
-        this.router = router;
         this.flashMessage = flashMessage;
         this.uploadService = uploadService;
         this.editMode = false;
@@ -1414,50 +1412,26 @@ var ProfileComponent = (function () {
         this.editMode = false;
     };
     ProfileComponent.prototype.onSubmitchangeAvatarForm = function () {
-    };
-    // f(){
-    //   // создать объект для формы
-    //   var formData = new FormData(document.forms.person);
-    //
-    //   // добавить к пересылке ещё пару ключ - значение
-    //   formData.append("patronym", "Робертович");
-    //   console.log(formData);
-    //   // отослать
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.open("POST", config.serverUrl + 'upload/upload');
-    //   xhr.send(formData);
-    // }
-    ProfileComponent.prototype.changeAvatar = function (event) {
-        var iii = document.getElementById('iii');
-        console.log('iii', iii.value);
-        var formData = new FormData();
-        formData.append('iii', iii);
-        console.log('form data', formData.get('iii'));
-        this.editAvatar = true;
-        console.log('event', typeof (event.target.files[0]));
-        // console.log('event', event);
-        this.changeAvatarForm.get('file').setValue(event.target.files[0]);
         this.uploadService.uploadPic(this.changeAvatarForm.get('file').value)
             .subscribe(function (result) { return console.log('result', result); });
-        // this.uploadService.uploadPic(this.inputFile.nativeElement.files[0])
-        //   .subscribe(result => console.log('result', result));
+    };
+    ProfileComponent.prototype.changeAvatar = function (event) {
+        this.editAvatar = true;
+        console.log('event', event.target.files[0]);
+        this.changeAvatarForm.get('file').setValue(event.target.files[0]);
     };
     return ProfileComponent;
 }());
-__decorate([
-    core_1.ViewChild('inputFile'),
-    __metadata("design:type", Object)
-], ProfileComponent.prototype, "inputFile", void 0);
 ProfileComponent = __decorate([
     core_1.Component({
         selector: 'app-profile',
         template: __webpack_require__("../../../../../src/app/components/users/profile/profile.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/users/profile/profile.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object, typeof (_c = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _c || Object, typeof (_d = typeof upload_service_1.UploadService !== "undefined" && upload_service_1.UploadService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.AuthService !== "undefined" && auth_service_1.AuthService) === "function" && _a || Object, typeof (_b = typeof angular2_flash_messages_1.FlashMessagesService !== "undefined" && angular2_flash_messages_1.FlashMessagesService) === "function" && _b || Object, typeof (_c = typeof upload_service_1.UploadService !== "undefined" && upload_service_1.UploadService) === "function" && _c || Object])
 ], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
@@ -2567,17 +2541,11 @@ var UploadService = (function () {
         //   formData.append('file[]', files[i]);
         // }
         formData.append('file', file, file.name);
-        formData.append("username", "Groucho");
-        formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
-        // console.log('file', file);
-        console.log('formData--', formData);
+        // formData.append("username", "Groucho");
+        // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
-        // headers.append('Accept', 'application/json');
-        // headers.set('Content-Type', 'application/x-www-form-urlencoded');
-        // headers.set('Content-Type', 'multipart/form-data');
-        // headers.set('Authorization', this.authService.authToken);
-        return this.http.post(app_config_1.config.serverUrl + 'upload/upload', formData)
+        return this.http.post(app_config_1.config.serverUrl + 'upload/change-avatar', formData)
             .map(function (res) { return res.json(); });
     };
     return UploadService;

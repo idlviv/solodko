@@ -19,17 +19,11 @@ export class UploadService {
 
     formData.append('file', file, file.name);
 
-    formData.append("username", "Groucho");
-    formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
-    // console.log('file', file);
-    console.log('formData--', formData);
+    // formData.append("username", "Groucho");
+    // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
     const headers = new Headers();
     headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
-    // headers.append('Accept', 'application/json');
-    // headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    // headers.set('Content-Type', 'multipart/form-data');
-    // headers.set('Authorization', this.authService.authToken);
-    return this.http.post(config.serverUrl + 'upload/upload',
+    return this.http.post(config.serverUrl + 'upload/change-avatar',
       formData,
     // {headers}
     )

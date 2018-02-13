@@ -16,8 +16,8 @@ const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
 
-const multer = require('multer'); // v1.0.5
-const upload = multer(); // for parsing multipart/form-data
+// const multer = require('multer'); // v1.0.5
+// const upload = multer(); // for parsing multipart/form-data
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
