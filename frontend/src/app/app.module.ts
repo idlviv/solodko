@@ -29,11 +29,11 @@ import {AuthManagerGuard} from './guards/auth-manager.guard';
 import {AuthUserGuard} from './guards/auth-user.guard';
 import {NoAuthGuard} from './guards/noAuth.guard';
 
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/take';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/add/operator/catch';
+// import 'rxjs/add/observable/throw';
+// import 'rxjs/add/operator/filter';
+// import 'rxjs/add/operator/take';
 
 import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';

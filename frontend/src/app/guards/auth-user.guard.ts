@@ -3,6 +3,7 @@ import {Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanAct
 import {AuthService} from '../services/auth.service';
 import {Observable} from 'rxjs/Observable';
 import {CustomErrorHandler} from '../services/CustomErrorHandler';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class AuthUserGuard implements CanActivate, CanActivateChild {

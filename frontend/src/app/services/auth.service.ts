@@ -7,7 +7,8 @@ import {CustomErrorHandler} from './CustomErrorHandler';
 import {IUser} from '../interfaces/i-user';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
 
 import {emptyUser} from '../data/user';
 

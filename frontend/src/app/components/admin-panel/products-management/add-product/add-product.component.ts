@@ -8,8 +8,9 @@ import {NgForm} from '@angular/forms';
 import {CatalogService} from '../../../../services/catalog.service';
 import {ICatalog, ICategory1} from '../../../../interfaces/i-catalog';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
 import {emptyProduct} from '../../../../data/product';
+import 'rxjs/add/operator/filter';
 
 @Component({
   moduleId: module.id,

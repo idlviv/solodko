@@ -7,6 +7,7 @@ import {AuthService} from './services/auth.service';
 import {IUser} from './interfaces/i-user';
 // import {Observable} from 'rxjs/Observable';
 import {emptyUser} from './data/user';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-root',

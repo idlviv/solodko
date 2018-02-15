@@ -319,8 +319,9 @@ var angular2_flash_messages_1 = __webpack_require__("../../../../angular2-flash-
 var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var catalog_service_1 = __webpack_require__("../../../../../src/app/services/catalog.service.ts");
 var Observable_1 = __webpack_require__("../../../../rxjs/_esm5/Observable.js");
-__webpack_require__("../../../../rxjs/_esm5/Rx.js");
+// import 'rxjs/Rx';
 var product_1 = __webpack_require__("../../../../../src/app/data/product.ts");
+__webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
 var AddProductComponent = (function () {
     // emptyProduct = {} as IProduct;
     function AddProductComponent(validateService, productService, flashMessage, router, route, catalogService) {

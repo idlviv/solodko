@@ -5,7 +5,7 @@ import {AuthService} from './auth.service';
 import {blogOptions} from '../data/options';
 import {IBlogOptions} from '../interfaces/i-options';
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
 
 @Injectable()
 export class BlogsService {
