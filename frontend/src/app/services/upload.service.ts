@@ -19,13 +19,18 @@ export class UploadService {
 
     formData.append('file', file, file.name);
 
-    formData.append('user_id', user._id);
-    // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
+    // if role manager or admin, allow to change avatar for user_id
+    // if not, user changes it for itself
+    let user_id = user._id;
+    formData.append('user_id', user_id);
+
     const headers = new Headers();
-    headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
+    headers.append('Authorization', this.authService.loadToken());
+
+    // headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
     return this.http.post(config.serverUrl + 'upload/change-avatar',
       formData,
-    // {headers}
+    {headers}
     )
       .map(res => res.json());
   }

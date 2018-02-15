@@ -3,40 +3,54 @@ const cloudinary = require('../config/cloudinary');
 // let UploadModel = require('../models/uploadModel');
 let UserModel = require('../models/userModel');
 const formidable = require('formidable');
+util = require('util');
 
 module.exports.changeAvatar = function(req, res, next) {
 
   let form = new formidable.IncomingForm();
 
+  // req.user._doc._id is ObjectId?
+  let _idFromPassport = req.user._doc._id + '';
+  let roleFromPassport = req.user._doc.role;
+
   form.parse(req, function(err, fields, files) {
 
-    console.log('files', files);
-    console.log('fields', fields.user_id);
+    let _idFromFrontend = fields.user_id;
+    // console.log('files', files);
+    // console.log('fields', fields.user_id);
 
+    if (_idFromFrontend === _idFromPassport) {
+      doChangeAvatar(_idFromPassport);
+    } else if (roleFromPassport === 'Admin' || roleFromPassport === 'Manager') {
+      doChangeAvatar(_idFromFrontend);
+    }
 
-    cloudinary.v2.uploader.upload(
-      files.file.path,
+    function doChangeAvatar(_id) {
+      cloudinary.v2.uploader.upload(
+        files.file.path,
 
         {width: 180, height: 180, crop: 'limit'},
         // {overlay: "my_watermark", flags: "relative", width: 0.5}
-      function(error, result) {
-        if (error) {
-          return res.json({success: false, message: 'Помилка завантаження аватара', error});
-        }
+        function(error, result) {
+          if (error) {
+            return res.json({success: false, message: 'Помилка завантаження аватара', error});
+          }
 
-        console.log('result', result);
-        // res.json(util.inspect({fields: fields, files: files}));
+          console.log('result', result);
+          // res.json(util.inspect({fields: fields, files: files}));
 
-        let updateOptions = {};
-        updateOptions['query'] = {_id: fields.user_id};
-        updateOptions['update'] = {$set: {
-          avatar: 'https://res.cloudinary.com/hegjiwupj/image/upload/' + result.public_id
-        }};
-        console.log('updateOptions', updateOptions);
-        UserModel.updateMongo(updateOptions)
-          .then(result => res.json(result))
-          .catch(error => res.json(error));
-      });
+          let updateOptions = {};
+          updateOptions['query'] = {_id: _id};
+          updateOptions['update'] = {$set: {
+            avatar: 'https://res.cloudinary.com/hegjiwupj/image/upload/' + result.public_id
+          }};
+          console.log('updateOptions', updateOptions);
+          UserModel.updateMongo(updateOptions)
+            .then(result => res.json(result))
+            .catch(error => res.json(error));
+        });
+    }
+
   });
 
   // let updateOptions = req.body.updateOptions;

@@ -4,10 +4,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const passport = require('passport');
-// const mongoose = require('./server/libs/mongoose');
-
-// const MongoClient = require('./server/libs/MongoClient');
-
 const config = require('./server/config');
 const errorhandler = require('errorhandler');
 const HttpError = require('./server/error').HttpError;
@@ -15,9 +11,6 @@ const log = require('./server/config/winston')(module);
 const csrf = require('csurf');
 const csrfCookie = require('./server/libs/csrf');
 const app = express();
-
-// const multer = require('multer'); // v1.0.5
-// const upload = multer(); // for parsing multipart/form-data
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

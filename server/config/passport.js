@@ -81,8 +81,8 @@ module.exports = function(passport) {
           .catch((error) => {
             done(error, false);
           });
-      }
-    ));
+    }
+  ));
 
   emailVerificationOptions.jwtFromRequest = ExtractJwt.fromUrlQueryParameter('token');
   emailVerificationOptions.secretOrKey = config.get('JWT_SECRET_EMAIL');

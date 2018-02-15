@@ -336,7 +336,7 @@ exports.AppModule = AppModule;
 /***/ "../../../../../src/app/components/footer/footer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--<div class=\"row c_footer\"></div>-->\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\n</nav>\n"
+module.exports = "<!--<div class=\"row c_footer\"></div>-->\r\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-main_color c_footer\">\r\n  <a class=\"navbar-brand\" href=\"#\">H<span class=\"navbar-brand-small\">and</span>MADE</a>\r\n</nav>\r\n"
 
 /***/ }),
 
@@ -776,7 +776,7 @@ exports.Page404Component = Page404Component;
 /***/ "../../../../../src/app/components/shared/popup/popup.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n  <div class=\"modal-dialog\" role=\"document\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\n          <span aria-hidden=\"true\">&times;</span>\n        </button>\n      </div>\n\n      <div class=\"modal-body\">\n\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\n          <p class=\"text-muted\">\n            {{dataForPopup.title}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\n          <p class=\"text-muted\">\n            {{forPopup.data.comment}}\n          </p>\n        </div>\n\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\n            <div class=\"form-row comment-form align-items-center\">\n              <div class=\"form-group col-10\">\n                <!--<label for=\"comment\">Коментар</label>-->\n                <textarea formControlName=\"comment\" rows=\"3\"\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\n                </textarea>\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\n\n                <div class=\"invalid-alert\"\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\n                </div>\n              </div>\n              <div class=\"form-group blog-post-pop-nav\">\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\n                </button>\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\n                </button>\n              </div>\n            </div>\n          </form>\n        </div>\n\n      </div>\n      <div class=\"modal-footer\">\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"modal fade\" id=\"popupModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">{{forPopup.title}}</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n\r\n      <div class=\"modal-body\">\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-blog'\">\r\n          <!--<p ><strong>Видалити майстерклас?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{dataForPopup.title}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'delete-comment'\">\r\n          <!--<p ><strong>Видалити коментар?</strong></p>-->\r\n          <p class=\"text-muted\">\r\n            {{forPopup.data.comment}}\r\n          </p>\r\n        </div>\r\n\r\n        <div *ngIf=\"forPopup.task === 'edit-comment'\">\r\n          <form [formGroup]=\"editCommentForm\" (ngSubmit)=\"onCommentEditSubmit()\">\r\n            <div class=\"form-row comment-form align-items-center\">\r\n              <div class=\"form-group col-10\">\r\n                <!--<label for=\"comment\">Коментар</label>-->\r\n                <textarea formControlName=\"comment\" rows=\"3\"\r\n                          required autocomplete=\"false\" (keydown)=\"onPressEnter($event)\"\r\n                          class=\"form-control no-validate-style\" id=\"comment\" placeholder=\"Коментар\">\r\n                </textarea>\r\n                <!--[disabled]=\"!(user.role === 'User' || user.role === 'Manager' || user.role === 'Admin')\"-->\r\n\r\n                <div class=\"invalid-alert\"\r\n                     *ngIf=\"editCommentForm.get('comment').errors?.maxlength &&\r\n                      editCommentForm.get('comment').touched\">Довжина до 200 символів\r\n                </div>\r\n              </div>\r\n              <div class=\"form-group blog-post-pop-nav\">\r\n                <button class=\"btn btn button-round-2 btn-sm\" [disabled]=\"!editCommentForm.valid\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">done</i>\r\n                </button>\r\n                <button class=\"btn btn button-round-2 btn-sm\" data-dismiss=\"modal\">\r\n                  <i class=\"material-icons button-round-icon-2 text-muted\">cancel</i>\r\n                </button>\r\n              </div>\r\n            </div>\r\n          </form>\r\n        </div>\r\n\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <div *ngIf=\"forPopup.task === 'delete-blog' || forPopup.task === 'delete-comment'\">\r\n          <button class=\"btn btn-sm\" (click)=\"onConfirm()\">Видалити</button>\r\n          <!--<button *ngIf=\"forPopup.task === 'edit-comment'\"-->\r\n                  <!--class=\"btn btn-sm\" (click)=\"onConfirm()\">Зберегти</button>-->\r\n          <button class=\"btn btn-sm\" data-dismiss=\"modal\">Відмінити</button>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -948,7 +948,7 @@ exports.SharedModule = SharedModule;
 /***/ "../../../../../src/app/components/users/cart/cart.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  cart works!\n</p>\n"
+module.exports = "<p>\r\n  cart works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -2563,11 +2563,14 @@ var UploadService = (function () {
         //   formData.append('file[]', files[i]);
         // }
         formData.append('file', file, file.name);
-        formData.append('user_id', user._id);
-        // formData.append("accountnum", 123456); // number 123456 is immediately converted to a string "123456"
+        // if role manager or admin, allow to change avatar for user_id
+        // if not, user changes it for itself
+        var user_id = user._id;
+        formData.append('user_id', user_id);
         var headers = new http_1.Headers();
-        headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
-        return this.http.post(app_config_1.config.serverUrl + 'upload/change-avatar', formData)
+        headers.append('Authorization', this.authService.loadToken());
+        // headers.append('Content-Type', 'multipart/form-data;boundary=' + Math.random());
+        return this.http.post(app_config_1.config.serverUrl + 'upload/change-avatar', formData, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     return UploadService;
