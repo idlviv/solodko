@@ -29,7 +29,7 @@ module.exports.changeAvatar = function(req, res, next) {
       cloudinary.v2.uploader.upload(
         files.file.path,
 
-        {width: 180, height: 180, crop: 'limit'},
+        {width: 180, height: 180, crop: 'fill'},
         // {overlay: "my_watermark", flags: "relative", width: 0.5}
         function(error, result) {
           if (error) {
