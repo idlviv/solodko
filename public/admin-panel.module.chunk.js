@@ -726,7 +726,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/admin-panel/products-management/products-management.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  products-management works!\r\n</p>\r\n"
+module.exports = "<p>\n  products-management works!\n</p>\n"
 
 /***/ }),
 
