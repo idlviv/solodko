@@ -9,6 +9,12 @@
   }
 }
 
+.avatar-big {
+  object-fit: cover;
+  width: 180px;
+  height: 180px;
+}
+
 .change-avatar {
   position: absolute;
   top: 0;

@@ -19,8 +19,8 @@
           </p>
         </div>
         <div class="avatar-big-block">
-          <img *ngIf="!previewAvatarUrl" class="img-fluid avatar-big" src="{{user.avatar}}" alt="avatar">
-          <img *ngIf="previewAvatarUrl" class="img-fluid avatar-big" src="{{previewAvatarUrl}}" alt="avatar">
+          <img *ngIf="!previewAvatarUrl" class="img-fluid avatar-big float-left" src="{{user.avatar}}" alt="avatar">
+          <img *ngIf="previewAvatarUrl" class="img-fluid avatar-big float-left" src="{{previewAvatarUrl}}" alt="avatar">
 
           <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
             <label *ngIf="!editAvatar" for="input-file" class="change-avatar"><i class="material-icons">compare_arrows</i> Змінити аватар

@@ -17,7 +17,7 @@ module.exports = function(req, res, next) {
 
   rp(recaptchaURL)
     .then(result => {
-      console.log('result', result);
+      // console.log('result', result);
       result = JSON.parse(result);
       if (result.success === true) {
         return next();
