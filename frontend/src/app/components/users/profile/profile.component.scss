@@ -1,25 +1,90 @@
 @import '~styles/styles';
 
-.avatar-big-block {
+.profile-avatar-block {
   position: relative;
   &:hover {
-    .change-avatar {
+    .profile-avatar-div-change,
+    .profile-avatar-button-change-label {
       display: block;
     }
   }
 }
 
-.avatar-big {
+.profile-avatar {
+  @include radius(90px);
   object-fit: cover;
   width: 180px;
   height: 180px;
 }
 
-.change-avatar {
+.profile-avatar-div-change {
+   display: none;
+   height: 90px;
+   width: 180px;
+   opacity: .5;
+   background: $main_color;
+   position: absolute;
+   top: 0;
+   @include radius(90px 90px 0 0);
+ }
+
+.profile-avatar-div-ok {
+  height: 90px;
+  width: 90px;
+  opacity: .2;
+  background: green;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include radius(90px 0 0 0);
+}
+
+.profile-avatar-button-change-label {
+  display: none;
+  color: black;
+  position: absolute;
+  left: 0;
+  width: 180px;
+  height: 90px;
+  label {
+    position: absolute;
+    bottom: .5rem;
+    width: 100%;
+    text-align: center;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.profile-avatar-div-cancel {
+  height: 90px;
+  width: 90px;
+  opacity: .2;
+  background: red;
   position: absolute;
   top: 0;
-  display: none;
+  left: 90px;
+  @include radius(0 90px 0 0);
 }
+
+.profile-avatar-button-ok {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  background-color: transparent;
+}
+
+.profile-avatar-button-cancel {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  background-color: transparent;
+}
+
+
+
+
 
 #input-file {
   display: none;

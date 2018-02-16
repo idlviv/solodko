@@ -18,24 +18,40 @@
             <!--<input class="float-right" *ngIf="editMode">-->
           </p>
         </div>
-        <div class="avatar-big-block">
-          <img *ngIf="!previewAvatarUrl" class="img-fluid avatar-big float-left" src="{{user.avatar}}" alt="avatar">
-          <img *ngIf="previewAvatarUrl" class="img-fluid avatar-big float-left" src="{{previewAvatarUrl}}" alt="avatar">
+        <div class="profile-avatar-block">
+          <img *ngIf="!previewAvatarUrl" class="img-fluid profile-avatar float-left" src="{{user.avatar}}" alt="avatar">
+          <img *ngIf="previewAvatarUrl" class="img-fluid profile-avatar float-left" src="{{previewAvatarUrl}}" alt="avatar">
 
-          <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
-            <label *ngIf="!editAvatar" for="input-file" class="change-avatar"><i class="material-icons">compare_arrows</i> Змінити аватар
-            <input type="file" (change)="changeAvatar($event)" id="input-file"></label>
-            <div *ngIf="editAvatar" class="change-avatar">
-              <!--<img src="{{previewAvatarUrl}}" alt="avatar">-->
-              <!--<p>{{changeAvatarForm.get('file').value.name}}</p>-->
-              <button  class="btn button-round-2" [disabled]="!changeAvatarForm.valid">
-                <i class="material-icons button-round-icon-2">done</i>
-              </button>
-              <button  class="btn button-round-2" (click)="cancelChangeAvatar()">
-                <i class="material-icons button-round-icon-2">cancel</i>
-              </button>
-            </div>
-          </form>
+            <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
+              <div *ngIf="!editAvatar" class="profile-avatar-div-change"></div>
+              <div *ngIf="!editAvatar" class="profile-avatar-button-change-label">
+                <input type="file" (change)="changeAvatar($event)" id="input-file">
+                <label for="input-file">Змінити
+                  </label>
+              </div>
+
+              <!--<div *ngIf="editAvatar" class="profile-avatar-buttons">-->
+                <!--<img src="{{previewAvatarUrl}}" alt="avatar">-->
+                <!--<p>{{changeAvatarForm.get('file').value.name}}</p>-->
+                <div *ngIf="editAvatar" class="profile-avatar-div-ok" >
+                  <button *ngIf="editAvatar" class="btn button-round-3 profile-avatar-button-ok" [disabled]="!changeAvatarForm.valid">
+                    <i class="material-icons button-round-icon-3">done</i>
+                  </button>
+
+                </div>
+                <div *ngIf="editAvatar" class="profile-avatar-div-cancel" (click)="cancelChangeAvatar()">
+                  <button *ngIf="editAvatar" class="btn button-round-3 profile-avatar-button-cancel" (click)="cancelChangeAvatar()">
+                    <i class="material-icons button-round-icon-3">cancel</i>
+                  </button>
+                </div>
+
+
+
+
+              <!--</div>-->
+            </form>
+
+
 
         </div>
       </li>
