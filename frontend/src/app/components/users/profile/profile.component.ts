@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   editForm: FormGroup;
   changeAvatarForm: FormGroup;
   previewAvatarUrl;
+  processingChangeAvatar = false;
 
   constructor(
     private authService: AuthService,
@@ -26,7 +27,18 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     // підписується на юзера з auth.service
-    this.getUsersProfile();
+    // this.getUsersProfile();
+    this.authService.getProfile()
+      .subscribe(profile => this.user = profile,
+        error => {
+          this.flashMessage.show(
+            error,
+            {
+              cssClass: 'alert-danger',
+              timeout: 3000
+            });
+          return false;
+        });
 
     this.editForm = new FormGroup({
       password : new FormControl('', [
@@ -45,19 +57,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getUsersProfile() {
-    this.authService.getProfile()
-      .subscribe(profile => this.user = profile,
-        error => {
-          this.flashMessage.show(
-            error,
-            {
-              cssClass: 'alert-danger',
-              timeout: 3000
-            });
-          return false;
-        });
-  }
+  // getUsersProfile() {
+  //
+  // }
 
   onVerificationSend() {
     this.authService.sendVerificationEmail()
@@ -90,16 +92,37 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmitchangeAvatarForm() {
+    this.processingChangeAvatar = true;
+    this.editAvatar = false;
     this.uploadService.uploadPic(this.changeAvatarForm.get('file').value, this.user)
       .subscribe(result => {
-        this.getUsersProfile();
+        this.authService.getProfile()
+          .subscribe(profile => {
+            this.user = profile;
+            this.previewAvatarUrl = null;
+            this.processingChangeAvatar = false;
+            if (!result.success) {
+              this.flashMessage.show(
+                result.message,
+                {
+                  cssClass: 'alert-danger',
+                  timeout: 3000
+                });
+            }
+            console.log('result', result);
+          },
+            error => {
+              this.flashMessage.show(
+                error,
+                {
+                  cssClass: 'alert-danger',
+                  timeout: 3000
+                });
+              return false;
+            });
         // console.log('user.avatar', this.user.avatar);
-        this.previewAvatarUrl = null;
-        this.editAvatar = false;
-        console.log('result', result);
+
       });
-
-
   }
 
   changeAvatar(event) {

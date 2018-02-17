@@ -49,7 +49,7 @@ const UserSchema = mongoose.Schema({
   avatar: {
     type: String,
     required: true,
-    default: './assets/samples/default-avatar180x180.png'
+    default: config.get('defaultAvatarPath')
   }
 });
 

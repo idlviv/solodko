@@ -15,7 +15,7 @@ const config = require('../config');
 
 // реєстрація і повернення результату в фронт
 router.post('/register',
-  passport.authenticate('jwt.manager.admin', {session: false}),
+  // passport.authenticate('jwt.manager.admin', {session: false}),
   UserController.userRegistration
   );
 

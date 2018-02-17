@@ -9,5 +9,6 @@
     "secure": false,
     "httpOnly": false,
     "maxAge": 360000
-  }
+  },
+  "defaultAvatarPath": "./assets/samples/default-avatar180x180.png"
 }

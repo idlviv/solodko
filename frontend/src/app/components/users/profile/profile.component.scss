@@ -1,23 +1,40 @@
 @import '~styles/styles';
 
-.profile-avatar-block {
+.profile_avatar-block {
   position: relative;
   &:hover {
-    .profile-avatar-div-change,
-    .profile-avatar-button-change-label {
+    .profile_avatar-div-change,
+    .profile_avatar-button-change {
       display: block;
     }
   }
 }
 
-.profile-avatar {
+.profile_avatar {
   @include radius(90px);
   object-fit: cover;
   width: 180px;
   height: 180px;
 }
 
-.profile-avatar-div-change {
+.profile_avatar-div-processing {
+  height: 180px;
+  width: 180px;
+  opacity: .5;
+  background: $main_color;
+  position: absolute;
+  top: 0;
+  @include radius(90px 90px 90px 90px);
+  i {
+    width: 100%;
+    text-align: center;
+    color: white;
+    position: absolute;
+    bottom: 70px;
+  }
+}
+
+.profile_avatar-div-change {
    display: none;
    height: 90px;
    width: 180px;
@@ -28,18 +45,8 @@
    @include radius(90px 90px 0 0);
  }
 
-.profile-avatar-div-ok {
-  height: 90px;
-  width: 90px;
-  opacity: .2;
-  background: green;
-  position: absolute;
-  left: 0;
-  top: 0;
-  @include radius(90px 0 0 0);
-}
 
-.profile-avatar-button-change-label {
+.profile_avatar-button-change {
   display: none;
   color: black;
   position: absolute;
@@ -47,6 +54,7 @@
   width: 180px;
   height: 90px;
   label {
+    color: white;
     position: absolute;
     bottom: .5rem;
     width: 100%;
@@ -57,10 +65,20 @@
   }
 }
 
-.profile-avatar-div-cancel {
+.profile_avatar-div-ok {
   height: 90px;
   width: 90px;
-  opacity: .2;
+  opacity: .3;
+  background: green;
+  position: absolute;
+  left: 0;
+  top: 0;
+  @include radius(90px 0 0 0);
+}
+.profile_avatar-div-cancel {
+  height: 90px;
+  width: 90px;
+  opacity: .3;
   background: red;
   position: absolute;
   top: 0;
@@ -68,23 +86,43 @@
   @include radius(0 90px 0 0);
 }
 
-.profile-avatar-button-ok {
+.profile_avatar-button-ok {
   position: absolute;
-  bottom: 10px;
-  right: 15px;
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
   background-color: transparent;
+  border: transparent;
+  @include radius(90px 0 0 0);
+  i {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    background-color: transparent;
+  }
 }
 
-.profile-avatar-button-cancel {
+.profile_avatar-button-cancel {
   position: absolute;
-  bottom: 10px;
-  right: 15px;
+  left: 90px;
+  top: 0;
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
   background-color: transparent;
+  border: transparent;
+  @include radius(0 90px 0 0);
+  i {
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    background-color: transparent;
+  }
 }
-
-
-
-
 
 #input-file {
   display: none;
