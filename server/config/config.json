@@ -10,5 +10,5 @@
     "httpOnly": false,
     "maxAge": 360000
   },
-  "defaultAvatarPath": "./assets/samples/default-avatar180x180.png"
+  "defaultAvatarPath": "https://res.cloudinary.com/hegjiwupj/image/upload/v1518960315/Avatars/default-avatar180x180.png"
 }

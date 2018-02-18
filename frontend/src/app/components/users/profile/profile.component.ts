@@ -128,18 +128,29 @@ export class ProfileComponent implements OnInit {
   changeAvatar(event) {
     this.editAvatar = true;
 
-    if (event.target.files && event.target.files[0]) {
-
+    if (event.target.files[0] &&
+        event.target.files[0].size < 15000000 && (
+        event.target.files[0].type === 'image/jpg' ||
+        event.target.files[0].type === 'image/jpe' ||
+        event.target.files[0].type === 'image/jpeg' ||
+        event.target.files[0].type === 'image/bmp' ||
+        event.target.files[0].type === 'image/png' ||
+        event.target.files[0].type === 'image/webp')
+    ) {
+      console.log('event.target.files[0]', event.target.files[0]);
       this.changeAvatarForm.get('file').setValue(event.target.files[0]);
 
       const reader = new FileReader();
 
       reader.onload = (readerEvent: any) => {
+        // .jpg, .jpe, .jpeg, .bmp, .webp, .png
         this.previewAvatarUrl = readerEvent.target.result;
         console.log('reader onload');
       };
 
       reader.readAsDataURL(event.target.files[0]);
+    } else {
+      console.log('wrong');
     }
   }
 
