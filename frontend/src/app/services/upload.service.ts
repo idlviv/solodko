@@ -34,4 +34,24 @@ export class UploadService {
     )
       .map(res => res.json());
   }
+
+  checkFile(eventTarget) {
+    console.log('eventTarget', eventTarget);
+    if (!eventTarget.files[0]) {
+      return ({success: false, message: 'Виберіть файл'});
+    } else if (eventTarget.files[0].size > 15000000) {
+      return ({success: false, message: 'Розмір файлу повинен бути менше 15Мб'});
+    } else if (
+      eventTarget.files[0].type !== 'image/jpg' &&
+      eventTarget.files[0].type !== 'image/jpe' &&
+      eventTarget.files[0].type !== 'image/jpeg' &&
+      eventTarget.files[0].type !== 'image/bmp' &&
+      eventTarget.files[0].type !== 'image/png' &&
+      eventTarget.files[0].type !== 'image/webp') {
+      return ({success: false, message: 'Виберіть інший тип файлу'});
+    } else {
+      return ({success: true,  message: ''});
+    }
+  }
+
 }

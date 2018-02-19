@@ -12,9 +12,10 @@ import {UploadService} from '../../../services/upload.service';
 export class ProfileComponent implements OnInit {
   user: Object;
   editMode = false;
-  editAvatar = false;
   editForm: FormGroup;
   changeAvatarForm: FormGroup;
+
+  editAvatar = false;
   previewAvatarUrl;
   processingChangeAvatar = false;
 
@@ -30,15 +31,7 @@ export class ProfileComponent implements OnInit {
     // this.getUsersProfile();
     this.authService.getProfile()
       .subscribe(profile => this.user = profile,
-        error => {
-          this.flashMessage.show(
-            error,
-            {
-              cssClass: 'alert-danger',
-              timeout: 3000
-            });
-          return false;
-        });
+        error => this.flashMessage.show(error, {cssClass: 'alert-danger', timeout: 3000}));
 
     this.editForm = new FormGroup({
       password : new FormControl('', [
@@ -56,10 +49,6 @@ export class ProfileComponent implements OnInit {
       ]),
     });
   }
-
-  // getUsersProfile() {
-  //
-  // }
 
   onVerificationSend() {
     this.authService.sendVerificationEmail()
@@ -93,7 +82,6 @@ export class ProfileComponent implements OnInit {
 
   onSubmitchangeAvatarForm() {
     this.processingChangeAvatar = true;
-    this.editAvatar = false;
     this.uploadService.uploadPic(this.changeAvatarForm.get('file').value, this.user)
       .subscribe(result => {
         this.authService.getProfile()
@@ -102,14 +90,9 @@ export class ProfileComponent implements OnInit {
             this.previewAvatarUrl = null;
             this.processingChangeAvatar = false;
             if (!result.success) {
-              this.flashMessage.show(
-                result.message,
-                {
-                  cssClass: 'alert-danger',
-                  timeout: 3000
-                });
+              this.flashMessage.show(result.message, {cssClass: 'alert-danger', timeout: 3000});
             }
-            console.log('result', result);
+              this.editAvatar = false;
           },
             error => {
               this.flashMessage.show(
@@ -118,39 +101,30 @@ export class ProfileComponent implements OnInit {
                   cssClass: 'alert-danger',
                   timeout: 3000
                 });
-              return false;
+              this.editAvatar = false;
             });
-        // console.log('user.avatar', this.user.avatar);
-
       });
   }
 
   changeAvatar(event) {
     this.editAvatar = true;
+    const checkFile = this.uploadService.checkFile(event.target);
 
-    if (event.target.files[0] &&
-        event.target.files[0].size < 15000000 && (
-        event.target.files[0].type === 'image/jpg' ||
-        event.target.files[0].type === 'image/jpe' ||
-        event.target.files[0].type === 'image/jpeg' ||
-        event.target.files[0].type === 'image/bmp' ||
-        event.target.files[0].type === 'image/png' ||
-        event.target.files[0].type === 'image/webp')
-    ) {
-      console.log('event.target.files[0]', event.target.files[0]);
+    if (!checkFile.success) {
+      this.cancelChangeAvatar();
+      this.flashMessage.show(checkFile.message, {cssClass: 'alert-danger', timeout: 3000});
+    } else {
       this.changeAvatarForm.get('file').setValue(event.target.files[0]);
 
       const reader = new FileReader();
 
-      reader.onload = (readerEvent: any) => {
+      reader.addEventListener('load', (readerEvent: any) => {
         // .jpg, .jpe, .jpeg, .bmp, .webp, .png
         this.previewAvatarUrl = readerEvent.target.result;
         console.log('reader onload');
-      };
+      });
 
       reader.readAsDataURL(event.target.files[0]);
-    } else {
-      console.log('wrong');
     }
   }
 
