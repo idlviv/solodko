@@ -10,6 +10,7 @@ import { PopupComponent } from './popup/popup.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
+import { EditFormFieldComponent } from './edit-form-field/edit-form-field.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
     MenuHComponent,
     ModalImgComponent,
     PopupComponent,
+    EditFormFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
     Page404Component,
     MenuHComponent,
     PopupComponent,
+    EditFormFieldComponent,
   ],
 })
 export class SharedModule {}

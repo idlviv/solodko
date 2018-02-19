@@ -1,5 +1,38 @@
 @import '~styles/styles';
 
+
+// profile fields
+form {
+  position: relative;
+  //&:hover {
+  //  //padding-right: 2.5rem;
+  //  .profile_field_edit_button {
+  //    display: block;
+  //  }
+  //}
+}
+
+.profile_field_cancel_button {
+  display: block;
+  background: red;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: -1.5rem;
+  top: 1.5rem;
+}
+
+.profile_field_submit_button {
+  display: block;
+  background: #55a934;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+}
+
+// avatar
 .profile_avatar-block {
   position: relative;
   &:hover {

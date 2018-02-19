@@ -27,18 +27,52 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    this.editForm = new FormGroup({
+      emailSignup: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      nameSignup: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+      ]),
+      surnameSignup: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+      ]),
+    });
+
     // підписується на юзера з auth.service
     // this.getUsersProfile();
     this.authService.getProfile()
-      .subscribe(profile => this.user = profile,
+      .subscribe(profile => {
+          this.user = profile;
+          console.log('this.user', this.user);
+          this.editForm.patchValue(this.user);
+
+        },
         error => this.flashMessage.show(error, {cssClass: 'alert-danger', timeout: 3000}));
 
     this.editForm = new FormGroup({
-      password : new FormControl('', [
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+      ]),
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
-        Validators.maxLength(10),
-        Validators.pattern('[a-zA-Z0-9]+'),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
+      ]),
+      surname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(20),
+        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
       ]),
     });
 
@@ -72,6 +106,24 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  onEditForm() {
+    this.editMode = true;
+
+  }
+
+  onSubmitEditForm() {
+    console.log('submit');
+    this.editMode = false;
+
+  }
+
+  onCancelEditForm() {
+    console.log('cancel');
+
+    this.editMode = false;
+
+  }
+
   editModeOn() {
     this.editMode = true;
   }
@@ -80,7 +132,11 @@ export class ProfileComponent implements OnInit {
     this.editMode = false;
   }
 
-  onSubmitchangeAvatarForm() {
+  onSubmitEditForm0() {
+
+  }
+
+  onSubmitChangeAvatarForm() {
     this.processingChangeAvatar = true;
     this.uploadService.uploadPic(this.changeAvatarForm.get('file').value, this.user)
       .subscribe(result => {

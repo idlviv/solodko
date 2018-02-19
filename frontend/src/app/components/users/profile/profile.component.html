@@ -22,7 +22,7 @@
           <img *ngIf="!previewAvatarUrl" class="img-fluid profile_avatar float-left" src="{{user.avatar}}" alt="avatar">
           <img *ngIf="previewAvatarUrl" class="img-fluid profile_avatar float-left" src="{{previewAvatarUrl}}" alt="avatar">
 
-            <form [formGroup]="changeAvatarForm" (submit)="onSubmitchangeAvatarForm()">
+            <form [formGroup]="changeAvatarForm" (submit)="onSubmitChangeAvatarForm()">
               <div *ngIf="processingChangeAvatar" class="profile_avatar-div-processing text-muted">
                 <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
               </div>
@@ -35,45 +35,43 @@
               </div>
 
               <div *ngIf="editAvatar">
-                <!--<img src="{{previewAvatarUrl}}" alt="avatar">-->
-                <!--<p>{{changeAvatarForm.get('file').value.name}}</p>-->
                 <div class="profile_avatar-div-ok" >
                 </div>
                 <div class="profile_avatar-div-cancel">
                 </div>
                 <button class="profile_avatar-button-ok" [disabled]="!changeAvatarForm.valid">
-                  <!--<button class="btn button-round-3" [disabled]="!changeAvatarForm.valid">-->
                     <i class="material-icons button-round-icon-3">done</i>
-                  <!--</button>-->
                 </button>
                 <button class="profile_avatar-button-cancel" (click)="cancelChangeAvatar()">
-                  <!--<button  class="btn button-round-3" (click)="cancelChangeAvatar()">-->
                   <i class="material-icons button-round-icon-3">cancel</i>
-                <!--</button>-->
                 </button>
-
-
-
-
               </div>
             </form>
 
-
-
         </div>
       </li>
-      <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я</strong></span>
+
+      <form [formGroup]="editForm" (submit)="onSubmitEditForm0()">
+
+        <div *ngIf="editMode" class="profile_field_cancel_button" (click)="onCancelEditForm()"></div>
+        <div *ngIf="editMode" class="profile_field_submit_button" (click)="onSubmitEditForm()"></div>
+      <li class="list-group-item editable text-right"><span class="float-left"><strong>Ім'я</strong></span>
         <span *ngIf="!editMode">{{user.name}}</span>
-        <input *ngIf="editMode">
+        <input *ngIf="editMode" formControlName="name">
+
+        <!--<div class="profile_field_submit_button" (click)="onSubmitField($event)"></div>-->
       </li>
-      <li class="list-group-item text-right"><span class="float-left"><strong>Прізвище</strong></span>
-        {{user.surname}}
+      <li class="list-group-item editable text-right"><span class="float-left"><strong>Прізвище</strong></span>
+        <span *ngIf="!editMode">{{user.surname}}</span>
+        <input *ngIf="editMode" formControlName="surname">
       </li>
       <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я користувача</strong></span>
         {{user.username}}
       </li>
-      <li class="list-group-item text-right" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
-        <span class="float-left"><strong>email</strong></span> {{user.email}}
+      <li class="list-group-item editable text-right" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
+        <span class="float-left"><strong>email</strong></span>
+        <span *ngIf="!editMode">{{user.email}}</span>
+        <input *ngIf="editMode" formControlName="email">
       </li>
       <li *ngIf="!user.isEmailConfirmed" class="list-group-item text-right"
           [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
@@ -82,6 +80,8 @@
           Надіслати код
         </button>
       </li>
+
+      </form>
 
     </ul>
   </div>

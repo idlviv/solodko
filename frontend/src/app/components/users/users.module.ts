@@ -14,6 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import {SignupComponent} from './login/signup/signup.component';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 import {RecaptchaModule} from 'ng-recaptcha';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {RecaptchaModule} from 'ng-recaptcha';
     FormsModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    SharedModule,
   ],
   exports: [
     SignupComponent,
