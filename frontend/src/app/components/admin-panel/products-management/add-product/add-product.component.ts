@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Observable';
 // import 'rxjs/Rx';
 import {emptyProduct} from '../../../../data/product';
 import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   moduleId: module.id,

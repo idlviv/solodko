@@ -28,36 +28,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.editForm = new FormGroup({
-      emailSignup: new FormControl('', [
-        Validators.required,
-        Validators.email,
-      ]),
-      nameSignup: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
-      ]),
-      surnameSignup: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(20),
-        Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
-      ]),
-    });
-
-    // підписується на юзера з auth.service
-    // this.getUsersProfile();
-    this.authService.getProfile()
-      .subscribe(profile => {
-          this.user = profile;
-          console.log('this.user', this.user);
-          this.editForm.patchValue(this.user);
-
-        },
-        error => this.flashMessage.show(error, {cssClass: 'alert-danger', timeout: 3000}));
-
-    this.editForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
         Validators.email,
@@ -74,7 +44,19 @@ export class ProfileComponent implements OnInit {
         Validators.maxLength(20),
         Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
       ]),
+
     });
+
+    // підписується на юзера з auth.service
+    // this.getUsersProfile();
+    this.authService.getProfile()
+      .subscribe(profile => {
+          this.user = profile;
+          console.log('this.user', this.user);
+          this.editForm.patchValue(this.user);
+
+        },
+        error => this.flashMessage.show(error, {cssClass: 'alert-danger', timeout: 3000}));
 
     this.changeAvatarForm = new FormGroup({
       file : new FormControl('', [
@@ -134,6 +116,10 @@ export class ProfileComponent implements OnInit {
 
   onSubmitEditForm0() {
 
+  }
+  getEl(event) {
+    console.log(event.target.attributes.formControlName.value);
+    console.log(event);
   }
 
   onSubmitChangeAvatarForm() {
