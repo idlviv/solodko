@@ -1,91 +1,11 @@
 <div *ngIf="user">
 <div class="row">
-  <div class="col-md-4"></div>
+  <!--<div class="col-md-4"></div>-->
 
-  <div class="col-md-4">
-    <ul class="list-group">
+  <!--<div class="col-md-4">-->
+  <!--</div>-->
 
-      <li class="list-group-item list-group-item-primary text-left">
-        <div class="float-right">
-          <p>
-            <span class="float-right"><h3>Профіль</h3></span>
-          </p>
-          <p>
-            <button class="btn btn-sm float-right" *ngIf="!editMode" (click)="editModeOn()">Редагувати</button>
-            <button class="btn btn-sm float-right" *ngIf="editMode" (click)="saveChanges()">Зберегти</button>
-          </p>
-          <p>
-            <!--<input class="float-right" *ngIf="editMode">-->
-          </p>
-        </div>
-        <div class="profile_avatar-block">
-          <img *ngIf="!previewAvatarUrl" class="img-fluid profile_avatar float-left" src="{{user.avatar}}" alt="avatar">
-          <img *ngIf="previewAvatarUrl" class="img-fluid profile_avatar float-left" src="{{previewAvatarUrl}}" alt="avatar">
-
-            <form [formGroup]="changeAvatarForm" (submit)="onSubmitChangeAvatarForm()">
-              <div *ngIf="processingChangeAvatar" class="profile_avatar-div-processing text-muted">
-                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-              </div>
-
-              <div *ngIf="!editAvatar && !processingChangeAvatar" class="profile_avatar-div-change"></div>
-              <div *ngIf="!editAvatar && !processingChangeAvatar" class="profile_avatar-button-change">
-                <input type="file" accept=".jpg, .jpe, .jpeg, .bmp, .webp, .png" (change)="changeAvatar($event)" id="input-file">
-                <label for="input-file">Змінити
-                  </label>
-              </div>
-
-              <div *ngIf="editAvatar && !processingChangeAvatar">
-                <div class="profile_avatar-div-ok" >
-                </div>
-                <div class="profile_avatar-div-cancel">
-                </div>
-                <button class="profile_avatar-button-ok" [disabled]="!changeAvatarForm.valid">
-                    <i class="material-icons button-round-icon-3">done</i>
-                </button>
-                <button class="profile_avatar-button-cancel" (click)="cancelChangeAvatar()">
-                  <i class="material-icons button-round-icon-3">cancel</i>
-                </button>
-              </div>
-            </form>
-
-        </div>
-      </li>
-      <!--<form [formGroup]="editForm" (submit)="onSubmitEditForm0()">-->
-
-        <!--<div *ngIf="editMode" class="profile_field_cancel_button" (click)="onCancelEditForm()"></div>-->
-        <!--<div *ngIf="editMode" class="profile_field_submit_button" (click)="onSubmitEditForm()"></div>-->
-      <li class="list-group-item editable text-right"><span class="float-left"><strong>Ім'я</strong></span>
-        <span>{{user.name}}</span>
-        <!--<input *ngIf="editMode" formControlName="name">-->
-
-        <!--<div class="profile_field_submit_button" (click)="onSubmitField($event)"></div>-->
-      </li>
-      <li class="list-group-item editable text-right"><span class="float-left"><strong>Прізвище</strong></span>
-        <span>{{user.surname}}</span>
-        <!--<input *ngIf="editMode" formControlName="surname">-->
-      </li>
-      <li class="list-group-item text-right"><span class="float-left"><strong>Ім'я користувача</strong></span>
-        {{user.username}}
-      </li>
-      <li class="list-group-item editable text-right" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
-        <span class="float-left"><strong>email</strong></span>
-        <span>{{user.email}}</span>
-        <!--<input *ngIf="editMode" formControlName="email">-->
-      </li>
-      <li *ngIf="!user.isEmailConfirmed" class="list-group-item text-right"
-          [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
-        <span class="float-left"><strong>Пошта не верифікована</strong></span>
-        <button type="button" class="btn btn-primary btn-sm" (click)="onVerificationSend()">
-          Надіслати код
-        </button>
-      </li>
-
-      <!--</form>-->
-
-    </ul>
-  </div>
-
-  <div class="col-md-4">
+  <div class="col-md-4 offset-md-4">
     <div class="card">
       <div class="card-header">
       <!--<ul class="list-group">-->
@@ -137,32 +57,63 @@
         <!--</li>-->
       <!--</ul>-->
       <!--<div class="card-body">-->
-      <form [formGroup]="editForm" (submit)="onSubmitEditForm0()">
+      
+      <!--<button class="btn-save button primary"-->
+              <!--(click)="userChangeForm.ngSubmit.emit()"-->
+              <!--[disabled]="!userChangeForm.form.valid">SAVE</button>-->
 
-        <div class="card-body text-right"><span class="float-left"><strong>Ім'я</strong></span>
-          <span class="span" *ngIf="!editMode">{{user.name}}</span>
-          <input class="input" id="name" *ngIf="editMode" formControlName="name" (click)="getEl($event)">
-          <!--<button "></button>-->
-
-          <!--<div class="form-group">-->
-            <!--<label for="name">uu</label>-->
-
-          <!--</div>-->
-
-          <!--<div class="profile_field_submit_button" (click)="onSubmitField($event)"></div>-->
-        </div>
-        <div class="card-body text-right"><span class="float-left"><strong>Прізвище</strong></span>
-          <span>{{user.surname}}</span>
-          <!--<input *ngIf="editMode" formControlName="surname">-->
-        </div>
+      <form [formGroup]="changeUserForm" #userChangeForm (submit)="onSubmitEditForm0()">
         <div class="card-body text-right"><span class="float-left"><strong>Ім'я користувача</strong></span>
-          {{user.username}}
+          <span class="edit-form-span">{{user.username}}</span>
         </div>
+        <div class="card-body text-right"><span class="float-left"><strong>Ім'я</strong></span>
+          <span class="edit-form-span" *ngIf="!editMode">{{user.name}}</span>
+          <input class="edit-form-input" *ngIf="editMode" formControlName="name">
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('name').errors?.minlength ||
+             changeUserForm.get('name').errors?.maxlength ||
+             changeUserForm.get('name').errors?.required) &&
+             changeUserForm.get('name').touched">Довжина від 2 до 20 символів
+          </div>
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('name').errors?.pattern &&
+             changeUserForm.get('name').touched)">Використовуйте тільки літери та цифри
+          </div>
+        </div>
+
+        <div class="card-body text-right"><span class="float-left"><strong>Прізвище</strong></span>
+          <span class="edit-form-span" *ngIf="!editMode">{{user.surname}}</span>
+          <input class="edit-form-input" *ngIf="editMode" formControlName="surname">
+
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('surname').errors?.minlength ||
+             changeUserForm.get('surname').errors?.maxlength ||
+             changeUserForm.get('surname').errors?.required) &&
+             changeUserForm.get('surname').touched">Довжина від 2 до 20 символів
+          </div>
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('surname').errors?.pattern &&
+             changeUserForm.get('surname').touched)">Використовуйте тільки літери та цифри
+          </div>
+        </div>
+
         <div class="card-body text-right" [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
-          <span class="float-left"><strong>email</strong></span>
-          <span>{{user.email}}</span>
-          <!--<input *ngIf="editMode" formControlName="email">-->
+          <span class="float-left"><strong>e-mail</strong></span>
+          <span class="edit-form-span" *ngIf="!editMode">{{user.email}}</span>
+          <input class="edit-form-input" *ngIf="editMode" formControlName="email">
+
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('email').errors?.minlength ||
+             changeUserForm.get('email').errors?.maxlength ||
+             changeUserForm.get('email').errors?.required) &&
+             changeUserForm.get('email').touched">Довжина від 5 до 40 символів
+          </div>
+          <div class="invalid-alert"
+               *ngIf="(changeUserForm.get('email').errors?.pattern &&
+             changeUserForm.get('email').touched)">Використовуйте тільки літери та цифри
+          </div>
         </div>
+
         <div *ngIf="!user.isEmailConfirmed" class="card-body text-right"
             [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
           <span class="float-left"><strong>Пошта не верифікована</strong></span>

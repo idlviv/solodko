@@ -12,8 +12,9 @@ import {UploadService} from '../../../services/upload.service';
 export class ProfileComponent implements OnInit {
   user: Object;
   editMode = false;
-  editForm: FormGroup;
   changeAvatarForm: FormGroup;
+  changeUserForm: FormGroup;
+
 
   editAvatar = false;
   previewAvatarUrl;
@@ -27,10 +28,18 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.editForm = new FormGroup({
+    this.changeAvatarForm = new FormGroup({
+      file : new FormControl('', [
+        Validators.required,
+      ]),
+    });
+
+    this.changeUserForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
-        Validators.email,
+        Validators.minLength(5),
+        Validators.maxLength(40),
+        Validators.pattern(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)),
       ]),
       name: new FormControl('', [
         Validators.required,
@@ -44,7 +53,6 @@ export class ProfileComponent implements OnInit {
         Validators.maxLength(20),
         Validators.pattern('[a-zA-Z0-9а-яА-ЯіїєІЇЄ\' ]+'),
       ]),
-
     });
 
     // підписується на юзера з auth.service
@@ -53,17 +61,9 @@ export class ProfileComponent implements OnInit {
       .subscribe(profile => {
           this.user = profile;
           console.log('this.user', this.user);
-          this.editForm.patchValue(this.user);
-
+          this.changeUserForm.patchValue(this.user);
         },
         error => this.flashMessage.show(error, {cssClass: 'alert-danger', timeout: 3000}));
-
-    this.changeAvatarForm = new FormGroup({
-      file : new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-    });
   }
 
   onVerificationSend() {
@@ -115,8 +115,9 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmitEditForm0() {
-
+    console.log('submit0');
   }
+
   getEl(event) {
     console.log(event.target.attributes.formControlName.value);
     console.log(event);

@@ -12,19 +12,19 @@ form {
   //}
 }
 
-.input {
+.edit-form-input {
   text-align: right;
   border-bottom: 1px solid #5cd6f6;
-  //border-left: 3px solid #5cd6f6;
   border-left: 0;
   border-top: 0;
   border-right: 0;
 }
-.span {
+.edit-form-span {
   display: block;
   padding: 1px 0;
   border-bottom: 1px solid transparent;
 }
+
 .ng-invalid:not(form, .form-group, .no-validate-style) {
   border-right: 3px solid #dc3545;
   border-left: 0;
