@@ -96,31 +96,12 @@ export class ProfileComponent implements OnInit {
   onSubmitEditForm() {
     console.log('submit');
     this.editMode = false;
-
   }
 
   onCancelEditForm() {
     console.log('cancel');
-
     this.editMode = false;
-
-  }
-
-  editModeOn() {
-    this.editMode = true;
-  }
-
-  saveChanges() {
-    this.editMode = false;
-  }
-
-  onSubmitEditForm0() {
-    console.log('submit0');
-  }
-
-  getEl(event) {
-    console.log(event.target.attributes.formControlName.value);
-    console.log(event);
+    this.changeUserForm.patchValue(this.user);
   }
 
   onSubmitChangeAvatarForm() {

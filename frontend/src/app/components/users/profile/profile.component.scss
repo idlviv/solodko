@@ -14,7 +14,7 @@ form {
 
 .edit-form-input {
   text-align: right;
-  border-bottom: 1px solid #5cd6f6;
+  border-bottom: 1px solid $c_material-border;
   border-left: 0;
   border-top: 0;
   border-right: 0;
@@ -52,6 +52,7 @@ form {
 
 // avatar
 .profile_avatar-block {
+  margin: auto;
   position: relative;
   &:hover {
     .profile_avatar-div-change,
