@@ -1,6 +1,7 @@
 @import './variables';
 @import './mixins';
 @import './custom-bootstrap';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html {
   position: relative;
