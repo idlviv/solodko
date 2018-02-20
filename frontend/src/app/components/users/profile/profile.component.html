@@ -130,6 +130,8 @@
   <div class="col-md-4 offset-md-4">
 
     <mat-card>
+      <mat-card-title>Профіль</mat-card-title>
+
       <mat-card-header>
           <div class="profile_avatar-block">
             <img *ngIf="!previewAvatarUrl" class="img-fluid profile_avatar float-left" src="{{user.avatar}}" alt="avatar">
@@ -225,7 +227,7 @@
         <div *ngIf="!user.isEmailConfirmed" class="card-body text-right"
             [ngClass]="{'list-group-item-warning': !user.isEmailConfirmed}">
           <span class="float-left"><strong>Пошта не верифікована</strong></span>
-          <button type="button" class="btn btn-primary btn-sm" (click)="onVerificationSend()">
+          <button mat-raised-button color="primary" type="button" (click)="onVerificationSend()">
             Надіслати код
           </button>
         </div>

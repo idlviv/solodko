@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {SharedModule} from './components/shared/shared.module';
 import {UsersModule} from './components/users/users.module';
-// import {BlogsModule} from './components/blogs/blogs.module';
 
 import {ProductResolverService} from './services/product-resolver.service';
 import {ProductService} from './services/product.service';
@@ -39,11 +38,10 @@ import {MyUrlSerializer} from './services/url-serializer.service';
 import {CustomErrorHandler} from './services/CustomErrorHandler';
 import {SharedService} from './services/shared.service';
 import { ScrollingDirective } from './directives/scrolling.directive';
-// import { RecaptchaDirective } from './directives/recaptcha.directive';
-
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import {UploadService} from './services/upload.service';
+import {MaterialModule} from './material.module';
 
 @NgModule({
   declarations: [
@@ -57,13 +55,13 @@ import {UploadService} from './services/upload.service';
     HttpModule,
     SharedModule,
     UsersModule,
-    // BlogsModule,
     AppRoutingModule,
     FlashMessagesModule,
     BrowserAnimationsModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
     // HttpClientModule
+    MaterialModule
   ],
   exports: [
     SharedModule,

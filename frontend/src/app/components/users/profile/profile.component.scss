@@ -30,25 +30,14 @@ form {
   border-left: 0;
 }
 
-.profile_field_cancel_button {
-  display: block;
-  background: red;
-  width: 1.5rem;
-  height: 1.5rem;
-  position: absolute;
-  left: -1.5rem;
-  top: 1.5rem;
+mat-card {
+  max-width: 400px;
 }
 
-.profile_field_submit_button {
-  display: block;
-  background: #55a934;
-  width: 1.5rem;
-  height: 1.5rem;
-  position: absolute;
-  left: -1.5rem;
-  top: 0;
+mat-card-title {
+  text-align: center;
 }
+
 
 // avatar
 .profile_avatar-block {
